@@ -31,7 +31,7 @@
 
 ||||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| |unit / Einheit |nominal / Soll |   actual / Ist| Status|
+| |unit   |nominal  |   actual | status|
 | Lin. Error / L-fehler   | µm | @PARAM{"Name":"Linearity Table + Sensor","Precision":6}@ |   @PARAM{"Name":"Wt","Precision":3}@ | <span id="control"> Ok</span>|
  
 

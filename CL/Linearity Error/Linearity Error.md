@@ -35,8 +35,8 @@
 
 ||||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|
-| |unit / Einheit |nominal / Soll |  actual / Ist| Status|
-| Lin. Error / L-fehler   | µm | @PARAM{"Name":"Linearity Table + Sensor","Precision":6}@ |  @PARAM{"Name":"Wt","Precision":3}@ | <span id="control">  </span>|
+| |unit   |nominal   |  actual  | status|
+| Lin. Error     | µm | @PARAM{"Name":"Linearity Table + Sensor","Precision":6}@ |  @PARAM{"Name":"Wt","Precision":3}@ | <span id="control">  </span>|
  
 
 __Unit location:__ Oberhausen

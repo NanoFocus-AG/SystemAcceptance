@@ -42,7 +42,7 @@
 ### Evaluation
 ||||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| |unit / Einheit |nominal / Soll | tolerance / Toleranz +/- | actual / Ist| Status|
+| |unit  |nominal   | tolerance   +/- | actual | status|
 | Ra   | µm | @PARAM{"Name":"Soll Ra","Precision":6}@ |    @PARAM{"Name":"Tolerance Ra","Precision":12}@|  @PARAM{"Name":"Ra","Precision":3}@ | <span id="controlRa"></span>|
 | Rz   | µm| @PARAM{"Name":"Soll Rz","Precision":6}@  |    @PARAM{"Name":"Tolerance Rz","Precision":12}@ |  @PARAM{"Name":"Rz","Precision":3}@ | <span id="controlRz"> </span>|
  

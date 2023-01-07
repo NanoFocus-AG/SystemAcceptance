@@ -11,7 +11,7 @@
 
 ||||
 |-|-|-|
-|System| Mahrscan CP | @PARAM{"Name":"SerialNumber"}@ |
+|System| Mahrscan CL | @PARAM{"Name":"SerialNumber"}@ |
 |Sensor| CL 08/15  | K0000000| 
 |Customer|||
 
