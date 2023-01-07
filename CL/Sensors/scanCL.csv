@@ -1,0 +1,5 @@
+Name;Typ/Type;Controller;Serien Nummer / Serial No;Sensor MeasureRange;Max. angle;Straightness];Frequency;Resolution;Measurment length;Cutoff;Linearity Sensor;Linearity Table + Sensor;MeasureRange;Recommended measuring tilt;Recommended measuring length;Frequency;Resolution;Groove Tolerance;Frequency;Resolution;Measurment length;Cutoff;Tolerance;Frequency;Resolution;Measurment length;Tolerance Ra;Tolerance Rz;Frequency;Resolution;Measurment length;Cutoff R;Needle;Noise
+CLS 0,2;CLS 0,2;CHR;0011;200;44;0;0;0;0;0;0;0;0;0;0;0;0;0,3;1000;2;3,5;25;0;0;0;0;0;0;0;0;0;0;0;0
+CLS 1;CLS 1;CHR  ;0011;950;33;0,5;1000;5;50;250;0,35;0,85;850;4;12,2;1000;5;0,3;1000;2;3,5;25;1;1000;5;43;0;0;0;0;0;0;0;0
+CLS 2,3;CLS 2,3;CHR;0011;2300;30;2,5;500;10;50;250;0,70;0,7;2185;10;12,4;1000;10;0;0;0;0;0;1,5;1000;5;43;0;0;0;0;0;0;0;0
+CLS 4;CLS 4;CHR;0011;3900;20;0,5;500;10;50;250;2;4;3800;10;21,5;1000;10;0;0;0;0;0;3;1000;5;43;0;0;0;0;0;0;0;0

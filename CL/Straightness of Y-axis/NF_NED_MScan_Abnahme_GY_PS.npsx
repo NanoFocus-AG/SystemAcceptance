@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<NFParameterSet>
+    <NFParameter Name="DataLabel">
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1"></NFVariant>
+    </NFParameter>
+    <NFParameter Name="GaussSigma [um]">
+        <NFVariant Type="float" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">250</NFVariant>
+    </NFParameter>
+    <NFParameter Name="ImageWidth [Pix]">
+        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">700</NFVariant>
+    </NFParameter>
+    <NFParameter Name="MedianRadius [Pix]">
+        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">5</NFVariant>
+    </NFParameter>
+    <NFParameter Name="Title">
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1"></NFVariant>
+    </NFParameter>
+    <NFParameter Name="UseUserTempDir">
+        <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
+    </NFParameter>
+    <NFParameter Name="WorkingDirectory">
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">C:\data\code\trunk\NFeval\Applications\NFSystemCalibration\CP\Straightness of Y-axis\</NFVariant>
+    </NFParameter>
+</NFParameterSet>

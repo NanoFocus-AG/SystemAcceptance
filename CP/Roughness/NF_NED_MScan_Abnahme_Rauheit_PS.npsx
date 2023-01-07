@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<NFParameterSet>
+    <NFParameter Name="DataLabel">
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1"></NFVariant>
+    </NFParameter>
+    <NFParameter Name="Gauss CutOff High Pass">
+        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">800</NFVariant>
+    </NFParameter>
+    <NFParameter Name="Gauss CutOff Low Pass">
+        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">2</NFVariant>
+    </NFParameter>
+    <NFParameter Name="ImageWidth [Pix]">
+        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">755</NFVariant>
+    </NFParameter>
+    <NFParameter Name="Median Radius [Pix]">
+        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">3</NFVariant>
+    </NFParameter>
+    <NFParameter Name="Title">
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1"></NFVariant>
+    </NFParameter>
+    <NFParameter Name="UseUserTempDir">
+        <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
+    </NFParameter>
+    <NFParameter Name="WorkingDirectory">
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">C:\data\code\trunk\NFeval\Applications\NFSystemCalibration\CP\Roughness\</NFVariant>
+    </NFParameter>
+</NFParameterSet>
