@@ -22,6 +22,6 @@
         <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
     </NFParameter>
     <NFParameter Name="WorkingDirectory">
-        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">C:\data\code\trunk\NFeval\Applications\NFSystemCalibration\CP\Roughness\</NFVariant>
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">C:\ProgramData\NanoFocus\SystemAcceptance\CP\Roughness\</NFVariant>
     </NFParameter>
 </NFParameterSet>

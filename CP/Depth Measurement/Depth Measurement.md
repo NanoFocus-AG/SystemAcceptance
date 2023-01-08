@@ -6,15 +6,15 @@
 |![](logo.png)|
 
 
-## Depth Measurement /  Tiefenmessung
+## Depth Measurement  
 
  
 
 
 |||||
 |-|-|-|-|
-|System: |MarSurf CP |Calibration instruction:| VDI/VDE 2655 Part 1.2|
-|Type| MarSurf CP | Certificate number: |600410-44854376|
+|System: |  CP |Calibration instruction:| VDI/VDE 2655 Part 1.2|
+|Type|   CP | Certificate number: |600410-44854376|
 |System number:| @PARAM{"Name":"Serial"}@|||
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@  @PARAM{"Name":"Typ/Type","Precision":12}@ |||
@@ -32,8 +32,8 @@
  
 ### Evaluation
 
-||||||||
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|||||||
+|:-:|:-:|:-:|:-:|:-:|:-:|
 | |unit   |nominal  | tolerance  +/- | actual  | status|
 | Wt1   | µm | @PARAM{"Name":"T1","Precision":6}@ |    @PARAM{"Name":"Groove Tolerance","Precision":12}@|   @PARAM{"Name":"Wt1","Precision":3}@ | <span id="Wt1control"> Ok</span>|
 | Wt2   | µm| @PARAM{"Name":"T2","Precision":6}@  |    @PARAM{"Name":"Groove Tolerance","Precision":12}@ |  @PARAM{"Name":"Wt2","Precision":3}@ | <span id="Wt2control"> Ok</span>|
@@ -49,54 +49,82 @@ __Tester:__ @PARAM{"Name":"Tester Name"}@
 
  
 
-<div id="sumresults">  </div>
 
 <script>
 
-var PARAM = @PJSON{"Set":0}@;
-var META = @MJSON{"Set":0}@;
  
-var t =  @PARAM{"Name":"Groove Tolerance"}@;
-var v =  @PARAM{"Name":"Wt1"}@;
-var s = @PARAM{"Name":"T1"}@;
+var tolerance =  @PARAM{"Name":"Groove Tolerance"}@;
+var status1 ="";
 
-if(  v < s-t || v > s+t) 
+
+var value1 =  @PARAM{"Name":"Wt1"}@;
+var nominal1 = @PARAM{"Name":"T1"}@;
+var status1 ="";
+
+if(  value1 < nominal1-tolerance || value1 > nominal1+tolerance) 
 {
- document.getElementById("Wt1control").innerHTML = "not Ok";
+  status1 = "not Ok";
 } 
 else
 {
-document.getElementById("Wt1control").innerHTML = "Ok";
+  status1 = "Ok";
 }
+document.getElementById("Wt1control").innerHTML = status1;
 
  
- v =  @PARAM{"Name":"Wt2"}@;
- s = @PARAM{"Name":"T2"}@;
-
-if(  v < s-t || v > s+t) 
+var value2 =  @PARAM{"Name":"Wt2"}@;
+var nominal2 = @PARAM{"Name":"T2"}@;
+var status2 ="";
+if(  value2 < nominal2-tolerance || value2 > nominal2+tolerance) 
 {
- document.getElementById("Wt2control").innerHTML = "not Ok";
+  status2 = "not Ok";
 } 
 else
 {
-document.getElementById("Wt2control").innerHTML = "Ok";
+  status2 = "Ok";
 }
 
+document.getElementById("Wt2control").innerHTML = status2;
 
 
 
  
-v =  @PARAM{"Name":"Wt3"}@;
-s = @PARAM{"Name":"T3"}@;
-
-if(  v < s-t || v > s+t) 
+var value3 =  @PARAM{"Name":"Wt3"}@;
+var nominal3 = @PARAM{"Name":"T3"}@;
+var status3 ="";
+if(  value3 < nominal3-tolerance || value3 > nominal3+tolerance) 
 {
- document.getElementById("Wt3control").innerHTML = "not Ok";
+  status3 = "not Ok";
 } 
 else
 {
-document.getElementById("Wt3control").innerHTML = "Ok";
+  status3 = "Ok";
 }
+document.getElementById("Wt3control").innerHTML = status3;
+
+
+var Result = {"value":0,"nominal":0,"status":"","timestamp":0};
+
+Result["value"] = value1;
+Result["nominal"] = nominal1;
+Result["status"] = status1;
+Result["timestamp"] = Date.now();
+sessionStorage.setItem(document.title+"Result1_T1", JSON.stringify(Result));
+
+Result["value"] = value2;
+Result["nominal"] = nominal2;
+Result["status"] = status2;
+Result["timestamp"] = Date.now();
+sessionStorage.setItem(document.title+"Result2_T2", JSON.stringify(Result));
+
+Result["value"] = value3;
+Result["nominal"] = nominal3;
+Result["status"] = status3;
+Result["timestamp"] = Date.now();
+sessionStorage.setItem(document.title+"Result3_T3", JSON.stringify(Result));
+
+
+
 
 
 </script>

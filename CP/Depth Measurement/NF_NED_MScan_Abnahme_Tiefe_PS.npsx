@@ -34,6 +34,6 @@
         <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
     </NFParameter>
     <NFParameter Name="WorkingDir">
-        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">C:\data\code\trunk\NFeval\Applications\NFSystemCalibration\CP\Depth Measurement\</NFVariant>
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">C:\ProgramData\NanoFocus\SystemAcceptance\CP\Depth Measurement\</NFVariant>
     </NFParameter>
 </NFParameterSet>

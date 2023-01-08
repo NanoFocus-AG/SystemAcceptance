@@ -6,15 +6,15 @@
 |![](logo.png)|
 
 
-## Roughness / Rauheit
+## Roughness 
 
  
 
 
 |||||
 |-|-|-|-|
-|System: |MarSurf CP |Calibration instruction:| VDI/VDE 2655 Part 1.2|
-|Type| MarSurf CP| Certificate number: |600410-44854376|
+|System: |  CP |Calibration instruction:| VDI/VDE 2655 Part 1.2|
+|Type|   CP| Certificate number: |600410-44854376|
 |System number:| @PARAM{"Name":"Serial"}@|||
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@  @PARAM{"Name":"Typ/Type","Precision":12}@ |||
@@ -67,28 +67,52 @@ var META = @MJSON{"Set":0}@;
  
 
 var tolerance = TOLERANCE["Tolerance Ra"].value;
-var v = PARAM["Ra"].value;
-var soll =  @PARAM{"Name":"Soll Ra"}@;
-if(v < soll-tolerance || v > soll+tolerance) 
+var value = PARAM["Ra"].value;
+var nominal =  @PARAM{"Name":"Soll Ra"}@;
+var status ="";
+
+if(value < nominal-tolerance || value > nominal+tolerance) 
 {
- document.getElementById("controlRa").innerHTML = "not Ok";
+ status = "not Ok";
 } 
 else
 {
-document.getElementById("controlRa").innerHTML = "Ok";
+status = "Ok";
 }
 
+document.getElementById("controlRa").innerHTML = status;
+
+
+var Result = {"value":0,"nominal":0,"status":"","timestamp":0};
+
+Result["value"] = value ;
+Result["nominal"] = nominal ;
+Result["status"] = status ;
+Result["timestamp"] = Date.now();
+sessionStorage.setItem(document.title+"Result_Ra", JSON.stringify(Result));
+
+
 tolerance = TOLERANCE["Tolerance Rz"].value;
-v = PARAM["Rz"].value;
-soll =  @PARAM{"Name":"Soll Rz"}@;
-if(  v < soll-tolerance || v > soll+tolerance) 
+value = PARAM["Rz"].value;
+nominal =  @PARAM{"Name":"Soll Rz"}@;
+if(value < nominal-tolerance || value > nominal+tolerance) 
 {
- document.getElementById("controlRz").innerHTML = "not Ok";
+ status =  "not Ok";
 } 
 else
 {
-document.getElementById("controlRz").innerHTML = "Ok";
+ status = "Ok";
 }
+
+document.getElementById("controlRz").innerHTML = status;
+
+
+Result["value"] = value ;
+Result["nominal"] = nominal ;
+Result["status"] = status ;
+Result["timestamp"] = Date.now();
+sessionStorage.setItem(document.title+"Result_Rz", JSON.stringify(Result));
+
 
 </script>
 
