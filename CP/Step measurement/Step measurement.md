@@ -32,9 +32,9 @@
 ||||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | |unit  |nominal   | tolerance  +/- | actual | status|
-| Wt1   | µm | @PARAM{"Name":"T1","Precision":6}@ |    @PARAM{"Name":"Groove Tolerance","Precision":12}@|  @PARAM{"Name":"StepHeight1","Precision":3}@ | <spban id="fcontroT1"> Ok</span>|
-| Wt2   | µm| @PARAM{"Name":"T2","Precision":6}@  |    @PARAM{"Name":"Groove Tolerance","Precision":12}@ |  @PARAM{"Name":"StepHeight2","Precision":3}@ | <spban id="fcontrolT2"> Ok</span>|
-| Wt3   | µm| @PARAM{"Name":"T3","Precision":6}@  |    @PARAM{"Name":"Groove Tolerance","Precision":12}@ |  @PARAM{"Name":"StepHeight3","Precision":3}@ | <spban id="fcontrolT3"> Ok</span>|
+| Wt1   | µm | @PARAM{"Name":"T1","Precision":6}@ |    @PARAM{"Name":"Groove Tolerance","Precision":12}@|  @PARAM{"Name":"StepHeight1","Precision":3}@ | <span id="fcontroT1"> Ok</span>|
+| Wt2   | µm| @PARAM{"Name":"T2","Precision":6}@  |    @PARAM{"Name":"Groove Tolerance","Precision":12}@ |  @PARAM{"Name":"StepHeight2","Precision":3}@ | <span id="fcontrolT2"> Ok</span>|
+| Wt3   | µm| @PARAM{"Name":"T3","Precision":6}@  |    @PARAM{"Name":"Groove Tolerance","Precision":12}@ |  @PARAM{"Name":"StepHeight3","Precision":3}@ | <span id="fcontrolT3"> Ok</span>|
  
  
 
