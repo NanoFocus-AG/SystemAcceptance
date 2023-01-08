@@ -12,8 +12,8 @@
 
 |||||
 |-|-|-|-|
-|System: |MarSurf CM |Calibration instruction:| VDI/VDE 2655 Part 1.2|
-|Type| MarSurf CM explorer| Certificate number: |600410-44854376|
+|System: |  CM |Calibration instruction:| VDI/VDE 2655 Part 1.2|
+|Type|  CM explorer| Certificate number: |600410-44854376|
 |System number:| @PARAM{"Name":"Serial"}@|||
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@|||

@@ -32,9 +32,16 @@
  
 ### Evaluation
 
+<<<<<<< HEAD
 ||||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | |unit  |nominal   | tolerance  +/- | actual  | status|
+=======
+
+|||||||
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| |unit / Einheit |nominal / Soll | tolerance / Toleranz +/- | actual / Ist| Status|
+>>>>>>> c5569d1a371d7f91ca24627bbb91e1820da6d9b2
 | Wt1   | µm | @PARAM{"Name":"T1","Precision":6}@ |    @PARAM{"Name":"Groove Tolerance","Precision":12}@|   @PARAM{"Name":"Wt1","Precision":3}@ | <span id="Wt1control"> Ok</span>|
 | Wt2   | µm| @PARAM{"Name":"T2","Precision":6}@  |    @PARAM{"Name":"Groove Tolerance","Precision":12}@ |  @PARAM{"Name":"Wt2","Precision":3}@ | <span id="Wt2control"> Ok</span>|
 | Wt3   | µm| @PARAM{"Name":"T3","Precision":6}@  |    @PARAM{"Name":"Groove Tolerance","Precision":12}@ |  @PARAM{"Name":"Wt3","Precision":3}@ | <span id="Wt3control"> Ok</span>|
