@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<NFParameterSet>
+    <NFParameter Name="DataLabel">
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">Straightness-Y Profile</NFVariant>
+    </NFParameter>
+    <NFParameter Name="GaussSigma [um]">
+        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">250</NFVariant>
+    </NFParameter>
+    <NFParameter Name="ImageWidth [Pix]">
+        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1024</NFVariant>
+    </NFParameter>
+    <NFParameter Name="Title">
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">MScan CLS Certification: Straightness Y</NFVariant>
+    </NFParameter>
+    <NFParameter Name="UseUserTempDir">
+        <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
+    </NFParameter>
+    <NFParameter Name="WorkingDirectory">
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">C:\ProgramData\NanoFocus\SystemAcceptance\CL\Straightness of Y-axis\</NFVariant>
+    </NFParameter>
+</NFParameterSet>

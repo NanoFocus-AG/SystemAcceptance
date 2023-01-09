@@ -63,7 +63,7 @@ for (i = 0; i < sessionStorage.length; i++) {
      row.insertCell().textContent =  data["value"];
 	 row.insertCell().textContent =  data["status"];
 	 
-	 console.log(data["timestamp"]);
+	 
    
   }
 }

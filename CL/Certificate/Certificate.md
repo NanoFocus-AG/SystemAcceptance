@@ -12,7 +12,7 @@
 
 ||||
 |-|-|-|
-|__Object__|  Mahr Scan CP | The calibration is performed by comparison with reference standards, with standard measuring equipment or on the basis of documented calibration procedures. <br>|
+|__Object__|    Scan CP | The calibration is performed by comparison with reference standards, with standard measuring equipment or on the basis of documented calibration procedures. <br>|
 ||||
 |__Manufacturer__| @PARAM{"Name":"Manufacturer"}@ || 
 ||| The reference standards and standard measuring equipment are traceable to the national measuring standards maintained by the Physikalisch-Technische Bundesanstalt (PTB) or to other national standards.|

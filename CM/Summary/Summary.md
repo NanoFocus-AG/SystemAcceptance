@@ -11,8 +11,8 @@
 
 ||||
 |-|-|-|
-|System| Mahrscan CP | @PARAM{"Name":"SerialNumber"}@ |
-|Sensor| CM 08/15  | K0000000| 
+|System|   CP | @PARAM{"Name":"SerialNumber"}@ |
+|Sensor| CP 08/15  | K0000000| 
 |Customer|||
 
 <span id="output">
@@ -50,12 +50,20 @@ for (i = 0; i < sessionStorage.length; i++) {
    
      row = table.insertRow();  // DOM method for creating table rows
     
-	 row.insertCell().textContent = (x.split("_"))[0];
-     row.insertCell().textContent =  data["nominal"];      
+	 var desc = (x.split("_"));
+	 if(desc.length == 3) 
+	 {
+		row.insertCell().textContent =  desc[0] + " "  +  desc[2] ;
+     }
+	 else
+	 {
+	 row.insertCell().textContent =  desc[0] + " " ;
+	 }
+	 row.insertCell().textContent =  data["nominal"];      
      row.insertCell().textContent =  data["value"];
 	 row.insertCell().textContent =  data["status"];
 	 
-	 console.log(data["timestamp"]);
+	 
    
   }
 }

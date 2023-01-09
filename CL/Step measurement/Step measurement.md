@@ -10,8 +10,8 @@
 
 |||||
 |-|-|-|-|
-|System: |MarSurf CL |Calibration instruction:| VDI/VDE 2655 Part 1.2|
-|Type| MarSurf CL | Certificate number: |600410-44854376|
+|System: |  CL |Calibration instruction:| VDI/VDE 2655 Part 1.2|
+|Type|   CL | Certificate number: |600410-44854376|
 |System number:| @PARAM{"Name":"Serial"}@|||
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: | @PARAM{"Name":"Typ/Type","Precision":12}@ |||
@@ -25,8 +25,8 @@
  
 ### Evaluation
 
-||||||||
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|||||||
+|:-:|:-:|:-:|:-:|:-:|:-:|
 | |unit   |nominal  | tolerance  +/- | actual | status|
 | Wt1   | µm | @PARAM{"Name":"T1","Precision":5}@ |    @PARAM{"Name":"Groove Tolerance","Precision":12}@|  @PARAM{"Name":"StepHeight1","Precision":5}@ | <span id="StepHeight1control"> </span>|
 | Wt2   | µm| @PARAM{"Name":"T2","Precision":5}@  |    @PARAM{"Name":"Groove Tolerance","Precision":12}@ |  @PARAM{"Name":"StepHeight2","Precision":5}@ | <span id="StepHeight2control"> </span>|
@@ -47,65 +47,82 @@ __Tester:__ @PARAM{"Name":"Tester Name"}@
 
 var PARAM = @PJSON{"Set":0}@;
 var META = @MJSON{"Set":0}@;
+ 
+ var tolerance =  @PARAM{"Name":"Groove Tolerance"}@;
+var status1 ="";
 
-var key = document.title;
-var length = 0;
+
+var value1 =  @PARAM{"Name":"StepHeight1"}@;
+var nominal1 = @PARAM{"Name":"T1"}@;
+var status1 ="";
  
- 
-if(sessionStorage.getItem(key)) 
+if(  value1 < nominal1-tolerance || value1 > nominal1+tolerance) 
 {
-   length =  parseInt(sessionStorage.getItem(key));
- 
+  status1 = "not Ok";
 } 
-
-sessionStorage.setItem(key+length, JSON.stringify(PARAM));
-
-length = length+1;
-sessionStorage.setItem(key,length);
-
-
-
-let table = document.createElement("table");
-var row = null;
-var head = table.insertRow();
-head.insertCell().textContent = "";
-head.insertCell().textContent = "";
-
-var average =0.0;
-for(let i = 0; i<length;++i)
+else
 {
-    
-	var data = JSON.parse(sessionStorage.getItem(key+i.toString()));
-	
-	row = table.insertRow();  // DOM method for creating table rows
-    row.insertCell().textContent =  i.toString();      
-    row.insertCell().textContent =  data["StepHeight2"].value;
-	
-	average += data["StepHeight2"].value;
-   
-	 
-
+  status1 = "Ok";
 }
+document.getElementById("StepHeight1control").innerHTML = status1;
+
  
- row = table.insertRow();  // DOM method for creating table rows
- row.insertCell().textContent =  "Mittelwert";      
- if(length >0 ) row.insertCell().textContent =  (average/length).toFixed(6);
-	
-// Adding the entire table to the   tag
-document.getElementById("sumresults").appendChild(table);
+var value2 =  @PARAM{"Name":"StepHeight2"}@;
+var nominal2 = @PARAM{"Name":"T2"}@;
+var status2 ="";
+if(  value2 < nominal2-tolerance || value2 > nominal2+tolerance) 
+{
+  status2 = "not Ok";
+} 
+else
+{
+  status2 = "Ok";
+}
+
+document.getElementById("StepHeight2control").innerHTML = status2;
 
 
-let btn = document.createElement("button");
-btn.id ="b1";
-btn.innerHTML = "Reset Table";
-btn.onclick = function () {
-	 
-  sessionStorage.setItem(key,0);
-  window.location.reload(true);
-};
 
-document.getElementById("sumresults").appendChild(btn);
+ 
+var value3 =  @PARAM{"Name":"StepHeight3"}@;
+var nominal3 = @PARAM{"Name":"T3"}@;
+var status3 ="";
+if(  value3 < nominal3-tolerance || value3 > nominal3+tolerance) 
+{
+  status3 = "not Ok";
+} 
+else
+{
+  status3 = "Ok";
+}
+document.getElementById("StepHeight3control").innerHTML = status3;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
+var Result = {"value":0,"nominal":0,"status":"","timestamp":0};
+
+Result["value"] = value1;
+Result["nominal"] = nominal1;
+Result["status"] = status1;
+Result["timestamp"] = Date.now();
+sessionStorage.setItem(document.title+"Result1_T1", JSON.stringify(Result));
+
+Result["value"] = value2;
+Result["nominal"] = nominal2;
+Result["status"] = status2;
+Result["timestamp"] = Date.now();
+sessionStorage.setItem(document.title+"Result2_T2", JSON.stringify(Result));
+
+Result["value"] = value3;
+Result["nominal"] = nominal3;
+Result["status"] = status3;
+Result["timestamp"] = Date.now();
+sessionStorage.setItem(document.title+"Result3_T3", JSON.stringify(Result));
 </script>
 
  
