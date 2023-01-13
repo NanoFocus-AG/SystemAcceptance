@@ -18,6 +18,7 @@
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@  @PARAM{"Name":"Typ/Type","Precision":12}@ |||
 || |||
+|Stage: |  @PARAM{"Name":"Typ der Achse"}@ |||
 |Standard: |@PARAM{"Name":"Ebenheitsnormal","Precision":12}@|||
 
  
