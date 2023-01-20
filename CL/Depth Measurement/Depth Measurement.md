@@ -21,6 +21,13 @@
 || |||
 |Standard: |@PARAM{"Name":"Tiefennormal","Precision":12}@|||
 
+### Terms of measurement 
+
+|||
+|-|-|
+|Distance|@PARAM{"Name":"LengthX","Precision":8}@  µm|
+|Resolution|@PARAM{"Name":"DeltaX"}@ µm|
+|Frequency| @PARAM{"Name":"Frequency"}@ Hz|
  
 
 ||
