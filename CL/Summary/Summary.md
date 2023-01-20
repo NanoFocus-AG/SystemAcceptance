@@ -11,8 +11,8 @@
 
 ||||
 |-|-|-|
-|System|   CL | @PARAM{"Name":"SerialNumber"}@ |
-|Sensor| CL 08/15  | K0000000| 
+|System|   CL | @PARAM{"Name":"Serial"}@ |
+|Sensor| CL    | @PARAM{"Name":"Lens"}@  /  @PARAM{"Name":"Typ/Type","Precision":12}@| 
 |Customer|||
 
 <span id="output">

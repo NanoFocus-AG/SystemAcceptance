@@ -19,7 +19,7 @@
 |Type|   CL | Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
-|Objective Lens: |@PARAM{"Name":"Lens"}@  @PARAM{"Name":"Typ/Type","Precision":12}@ |||
+|Objective Lens: |@PARAM{"Name":"Lens"}@  /  @PARAM{"Name":"Typ/Type","Precision":12}@ |||
 | |  |||
 |Standard: |@PARAM{"Name":"Ebenheitsnormal","Precision":12}@|||
 
