@@ -11,7 +11,7 @@
 |||||
 |-|-|-|-|
 |System: |  CL |Calibration instruction:| VDI/VDE 2655 Part 1.2|
-|Type|   CL | Certificate number: |600410-44854376|
+|Type|   CL | Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: | @PARAM{"Name":"Typ/Type","Precision":12}@ |||

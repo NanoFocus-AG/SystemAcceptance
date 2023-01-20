@@ -12,7 +12,7 @@
 
 ||||
 |-|-|-|
-|__Object__|    Scan CP | The calibration is performed by comparison with reference standards, with standard measuring equipment or on the basis of documented calibration procedures. <br>|
+|__Object__| CM | The calibration is performed by comparison with reference standards, with standard measuring equipment or on the basis of documented calibration procedures. <br>|
 ||||
 |__Manufacturer__| @PARAM{"Name":"Manufacturer"}@ || 
 ||| The reference standards and standard measuring equipment are traceable to the national measuring standards maintained by the Physikalisch-Technische Bundesanstalt (PTB) or to other national standards.|
@@ -22,8 +22,8 @@
 |__Sensor serial no.__ |  | |
 |__Customer__ |  | |
 |__Date of calibration__  |  @DAY@. @MONTH@ @YEAR@  | |
-|__Calibration Certificate No.__ |  | |
-|__Evaluation__  |The measured values at the calibration time are within the tolerance range.  | |
+|__Calibration Certificate No.__ | @PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@ | |
+|__Evaluation__  | The measured values at the calibration time are within the tolerance range.  | |
 |__Tester__  | @PARAM{"Name":"Tester Name"}@  | |
 |__Date__ |  @DAY@. @MONTH@ @YEAR@ | |
 | | | | 

@@ -11,8 +11,8 @@
 
 ||||
 |-|-|-|
-|System|   CP | @PARAM{"Name":"SerialNumber"}@ |
-|Sensor| CP 08/15  | K0000000| 
+|System|   CM | @PARAM{"Name":"Serial"}@ |
+|Sensor| CM   | @PARAM{"Name":"Lens"}@| 
 |Customer|||
 
 <span id="output">

@@ -13,11 +13,11 @@
 |||||
 |-|-|-|-|
 |System: |  CM |Calibration instruction:| VDI/VDE 2655 Part 1.2|
-|Type|   CM explorer| Certificate number: |600410-44854376|
+|Type|   CM explorer| Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@|||
-|Obj.Number:| 20X-M1064|||
+|Obj.Number:| @PARAM{"Name":"LensSerial"}@|||
 |Standard: |@PARAM{"Name":"Tiefeneinstellnormal","Precision":12}@|||
 
  
@@ -33,10 +33,10 @@
 
 ### Evaluation
 
-|||||||
-|-|-|-|-|-|-|
-|unit|nominal value|target value| tolerance +/-| status |
-| µm| @PARAM{"Name":"Soll","Precision":12}@|  @PARAM{"Name":"d","Precision":5}@|  @PARAM{"Name":"delta_Tiefe","Precision":5}@| <span id="control"> Ok</span>|
+||||||||
+|-|-|-|-|-|-|-|
+||unit|nominal value|target value| tolerance +/-| status |
+|Depth | µm| @PARAM{"Name":"Soll","Precision":12}@|  @PARAM{"Name":"d","Precision":5}@|  @PARAM{"Name":"delta_Tiefe","Precision":5}@| <span id="control"> Ok</span>|
  
 
 __Unit location:__ Oberhausen
