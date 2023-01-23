@@ -27,7 +27,7 @@
 
 |||
 |-|-|
-|Distance|@PARAM{"Name":"LengthX","Precision":8}@  µm|
+|Distance| <span id="distance"> </span>  mm|
 |Resolution|@PARAM{"Name":"DeltaX"}@ µm|
 |Frequency| @PARAM{"Name":"Frequency"}@ Hz|
  
@@ -38,6 +38,8 @@
 
 
 ### Evaluation
+
+* Z-Measuring range :   <span id="zrange"> </span> mm
 
 ||||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|
@@ -77,6 +79,14 @@ else
 document.getElementById("control").innerHTML = "not Ok";
 status ="not OK";
 }
+
+
+
+document.getElementById("zrange").innerHTML = (@PARAM{"Name":"Maximum Height"}@ - @PARAM{"Name":"Minimum Height"}@) /1000;
+
+document.getElementById("distance").innerHTML = @PARAM{"Name":"LengthX","Precision":5}@ / 1000;
+
+
 
 
 
