@@ -39,6 +39,15 @@
 |Depth | µm| @PARAM{"Name":"Soll","Precision":12}@|  @PARAM{"Name":"d","Precision":5}@|  @PARAM{"Name":"delta_Tiefe","Precision":5}@| <span id="control"> Ok</span>|
  
 
+--- 
+
+||||||||
+|-|-|-|-|-|-|-|
+||unit|nominal value|average value| standard deviation| status |
+|Depth | µm| @PARAM{"Name":"Soll","Precision":12}@|  <span id="average"> </span>|  <span id="sigma"> </span>| <span id="control_repeat"> Ok</span>|
+ 
+
+
 __Unit location:__ Oberhausen
 
 __Date:__ @YEAR@-@MONTH@-@DAY@ 
@@ -97,24 +106,64 @@ var head = table.insertRow();
 head.insertCell().textContent = "";
 head.insertCell().textContent = "";
 
+ 
+var ak_prev =0.0;
+var ak =0.0;
 var average =0.0;
+
+var sigma =0.0;
+var sigma_prev =0.0;
+
+
 for(let i = 0; i<length;++i)
 {
     
 	var data = JSON.parse(sessionStorage.getItem(key+i.toString()));
 	
-	row = table.insertRow();  // DOM method for creating table rows
-    row.insertCell().textContent =  i.toString();      
-    row.insertCell().textContent =  data["d"].value;
+	row = table.insertRow();   
+  row.insertCell().textContent =  i.toString();      
+  row.insertCell().textContent =  data["d"].value.toPrecision(5);
 	
 	average += data["d"].value;
-   
-	 
+    
+   if(i >0)
+   {
+    ak = ak_prev + (data["d"].value - ak_prev)/i;
+    
+      sigma = sigma_prev +  (data["d"].value - ak_prev)*(data["d"].value - ak);
+      sigma_prev = sigma;
+      ak_prev = ak;
+   }	 
+   else
+   {
+    ak_prev = data["d"].value;
+   }
 }
+
+// insert row for average into table
+ row = table.insertRow();   
+ row.insertCell().textContent =  "average";      
+ if(length >0 ) 
+ {
+  row.insertCell().textContent =  ak.toPrecision(5);
+ }
  
- row = table.insertRow();  // DOM method for creating table rows
- row.insertCell().textContent =  "Mittelwert";      
- if(length >0 ) row.insertCell().textContent =  (average/length).toFixed(6);
+ 
+ // insert row for sigma  into table
+ row = table.insertRow();   
+ row.insertCell().textContent =  "standard deviation";      
+ var sig =0.0;
+ if(length >0 ) 
+ {
+  sig = Math.sqrt(sigma/length);
+  row.insertCell().textContent =   (Math.sqrt(sigma/length)).toPrecision(5);
+ }
+
+
+document.getElementById("average").innerHTML = ak.toPrecision(5);;
+document.getElementById("sigma").innerHTML =sig.toPrecision(5);;
+
+
 	
 // Adding the entire table to the   tag
 document.getElementById("sumresults").appendChild(table);
@@ -132,7 +181,7 @@ btn.onclick = function () {
 document.getElementById("sumresults").appendChild(btn);
 
 
- var Result = {"value":0,"nominal":0,"status":"","timestamp":0};
+var Result = {"value":0,"nominal":0,"status":"","timestamp":0};
 
 Result["value"] = value ;
 Result["nominal"] = nominal ;

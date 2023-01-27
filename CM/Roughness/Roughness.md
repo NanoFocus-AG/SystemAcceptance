@@ -56,8 +56,8 @@ var  dRz =  @PARAM{"Name":"delta_Rz"}@;
 var Ra_tol = @PARAM{"Name":"Ra Soll"}@ * dRa ;
 var Rz_tol = @PARAM{"Name":"Rz Soll"}@ * dRz ;
 
-document.getElementById("Ra_tol").innerHTML = Ra_tol ;
-document.getElementById("Rz_tol").innerHTML = Rz_tol;
+document.getElementById("Ra_tol").innerHTML = Ra_tol.toPrecsion(3);
+document.getElementById("Rz_tol").innerHTML = Rz_tol.toPrecision(3);
 
 var status = "";
  
