@@ -59,47 +59,28 @@ __Tester:__ @PARAM{"Name":"Tester Name"}@
 
 <div id="sumresults">  </div>
 
+<script src="../../SystemAcceptance.js"> </script>
 <script>
 
 var PARAM = @PJSON{"Set":0}@;
-var META = @MJSON{"Set":0}@;
+ 
 
 
 var value =   @PARAM{"Name":"d","Precision":3}@;
 var nominal = @PARAM{"Name":"Soll","Precision":6}@;
 var tolerance = @PARAM{"Name":"delta_Tiefe","Precision":5}@; 
-var status = ""; 
 
+var status = checkResult(value, nominal, tolerance);
 
-
-if(  value < nominal-tolerance || value > nominal+tolerance) 
-{
-  status = "not Ok";
-} 
-else
-{
-  status = "Ok";
-}
 document.getElementById("control").innerHTML = status;
 
 
-
 var key = document.title;
-var length = 0;
- 
-if(sessionStorage.getItem(key)) 
-{
-   length =  parseInt(sessionStorage.getItem(key));
- 
-} 
-
-sessionStorage.setItem(key+length, JSON.stringify(PARAM));
-
-length = length+1;
-sessionStorage.setItem(key,length);
 
 
+var length = addDataToStorage(PARAM);
 
+  
 let table = document.createElement("table");
 var row = null;
 var head = table.insertRow();
@@ -137,6 +118,7 @@ for(let i = 0; i<length;++i)
    else
    {
     ak_prev = data["d"].value;
+	ak = data["d"].value;
    }
 }
 
@@ -174,22 +156,19 @@ btn.id ="b1";
 btn.innerHTML = "Reset Table";
 btn.onclick = function () {
 	 
-  sessionStorage.setItem(key,0);
+	 
+  sessionStorage.setItem(key,-1);
   window.location.reload(true);
 };
 
 document.getElementById("sumresults").appendChild(btn);
 
 
-var Result = {"value":0,"nominal":0,"status":"","timestamp":0};
-
-Result["value"] = value ;
-Result["nominal"] = nominal ;
-Result["status"] = status ;
-Result["timestamp"] = Date.now();
-sessionStorage.setItem(document.title+"Result", JSON.stringify(Result));
 
 
+storeResults(value,nominal,status, "")
+
+ 
 </script>
 
  
