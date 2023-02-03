@@ -46,7 +46,7 @@ tr:nth-child(even) {
 .table2{
      
     border-collapse: collapse;
-    width: 100%;
+    width: 90%;
 }
 
 
@@ -68,11 +68,12 @@ tr:nth-child(even) {
 	page {
 		size: A4,portrait;
 		orientation: portrait;
+		margin: 2cm !important;
 	}
     body {
         background: #fff !important;
         color: #000;
-        font-family:Calibri,sans-serif;
+        font-family: Calibri,sans-serif;
         text-align: justify;  Blocksatz 
         quotes: "\201E" "\201C" "\201A" "\2018";
 		line-height: 100%;

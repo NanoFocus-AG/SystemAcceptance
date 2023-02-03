@@ -30,10 +30,9 @@
 |Frequency| @PARAM{"Name":"Frequency"}@ Hz|
  
 
-||
-|:-:| 
-|![](Depth01_LS.svg)|
-|![](Depth02_LS.svg)|
+|||
+|-|-| 
+|![](Depth01_LS.svg)|![](Depth02_LS.svg)|
 |![](Depth03_LS.svg)|
  
  

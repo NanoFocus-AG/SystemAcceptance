@@ -13,7 +13,7 @@
 |-|-|-|
 |System|   CL | @PARAM{"Name":"Serial"}@ |
 |Sensor| CL    | @PARAM{"Name":"Lens"}@  /  @PARAM{"Name":"Typ/Type","Precision":12}@| 
-|Customer|||
+|Customer| @PARAM{"Name":"Manufacturer"}@||
 
 <span id="output">
 </span>
@@ -31,7 +31,7 @@ table.id = "tableResults";
 
 var row = null;
 var head = table.insertRow();
-head.insertCell().textContent = "Content";
+head.insertCell().textContent = "";
 head.insertCell().textContent = "nominal value";
 head.insertCell().textContent = "actual value";
 head.insertCell().textContent = "status";
