@@ -33,12 +33,23 @@
 ### Noise
 
 
+__noise mean value per channel__
+
 || 
 |:-:|
 ||
-|@PARAM{"Name":"Means","Display":"graph","Width":750,"Xlabel":"Sensor channel","Ylabel":"Average noise [µm]"}@|
+|@PARAM{"Name":"Means","Display":"graph","Width":750,"Xlabel":"Sensor channel","Ylabel":"Mean values  [µm]"}@|
 
 
+
+__noise standard deviation per channel__
+
+||
+|:-:|
+||
+|@PARAM{"Name":"Stddevs","Display":"graph","Width":750,"Xlabel":"Sensor channel","Ylabel":"Stddevs   [µm]"}@|
+
+ 
 
 
 ### Spectrum
@@ -54,7 +65,6 @@
 <script>
 
 var PARAM = @PJSON{"Set":0}@;
-var TOLERANCE = @PJSON{"Set":2}@;
-var META = @MJSON{"Set":0}@;
+
  
 </script>

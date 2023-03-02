@@ -213,7 +213,7 @@
                         <NFVariant Type="double []" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1" />
                     </NFParameter>
                     <NFParameter Name="Title">
-                        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">Line Sensor: Height Noise Spectrum</NFVariant>
+                        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">Height Noise  Frquency Spectrum</NFVariant>
                     </NFParameter>
                     <NFParameter Name="Title with Image Name">
                         <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
