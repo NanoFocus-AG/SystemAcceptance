@@ -17,7 +17,7 @@
                         <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">1.6999999999999999556</NFVariant>
                     </NFParameter>
                     <NFParameter Name="ImageSize_X [Pix]">
-                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1800</NFVariant>
+                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">950</NFVariant>
                     </NFParameter>
                     <NFParameter Name="ImageSize_Y [Pix]">
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">800</NFVariant>
@@ -35,7 +35,7 @@
                         <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
                     </NFParameter>
                     <NFParameter Name="Title">
-                        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">Line Sensor: Height Noise Statistics</NFVariant>
+                        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">Height Noise Statistics</NFVariant>
                     </NFParameter>
                     <NFParameter Name="Title with Image Name">
                         <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
@@ -183,7 +183,7 @@
                         <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">1.6999999999999999556</NFVariant>
                     </NFParameter>
                     <NFParameter Name="ImageSize_X [Pix]">
-                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">750</NFVariant>
+                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">950</NFVariant>
                     </NFParameter>
                     <NFParameter Name="ImageSize_Y [Pix]">
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">800</NFVariant>
@@ -213,7 +213,7 @@
                         <NFVariant Type="double []" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1" />
                     </NFParameter>
                     <NFParameter Name="Title">
-                        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">Height Noise  Frquency Spectrum</NFVariant>
+                        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">Height Noise  Frequency Spectrum</NFVariant>
                     </NFParameter>
                     <NFParameter Name="Title with Image Name">
                         <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>

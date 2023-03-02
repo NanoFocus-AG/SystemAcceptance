@@ -33,24 +33,12 @@
 ### Noise
 
 
-__noise mean value per channel__
-
+ 
 || 
 |:-:|
 ||
-|@PARAM{"Name":"Means","Display":"graph","Width":750,"Xlabel":"Sensor channel","Ylabel":"Mean values  [µm]"}@|
-
-
-
-__noise standard deviation per channel__
-
-||
-|:-:|
-||
-|@PARAM{"Name":"Stddevs","Display":"graph","Width":750,"Xlabel":"Sensor channel","Ylabel":"Stddevs   [µm]"}@|
-
+|![]( LineSensorNoiseStat.svg)|
  
-
 
 ### Spectrum
 
