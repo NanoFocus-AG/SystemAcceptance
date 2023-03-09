@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<NFParameterSet>
+    <NFParameter Name="Use User Tmp Dir">
+        <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
+    </NFParameter>
+    <NFParameter Name="Working Dir">
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">C:\ProgramData\NanoFocus\SystemAcceptance\CX\Noise\</NFVariant>
+    </NFParameter>
+</NFParameterSet>

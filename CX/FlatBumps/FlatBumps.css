@@ -1,0 +1,108 @@
+<style type="text/css" >
+@media screen,print {
+body  {
+        margin: auto;
+        padding-right: 1em;
+        padding-left: 1em;
+        max-width: 84em; 
+        border-left: 0px solid black;
+        border-right: 0px solid black;
+        color: black;
+        font-family: Calibri,sans-serif;
+        font-size: 100%;
+        line-height: 100%;
+        background-color: #FFFFFF; 
+		clear: both;
+		background-size: 40px 40px;
+
+    }
+ 
+p{
+	 text-align: justify;
+      font-size: 100%;
+ }
+
+h1, h2, h3, h4, h5, h6,p {
+	clear: both;
+	 
+   }
+   
+table {
+          border-collapse: collapse;
+          width: 100%;
+          
+          }
+
+th, td {
+  text-align: left;
+  padding: 6px;
+} 
+
+tr:nth-child(even) {
+    background-color:  #ffffff;
+
+}
+
+.table2{
+     
+    border-collapse: collapse;
+    width: 90%;
+}
+
+
+.table2 tbody tr:nth-child(even) {
+   background-color: #ffffff;
+}
+
+
+.table3{ 
+
+   width: 25%;
+}
+
+#tableHeights{ 
+
+   width:86%;
+   font-size: 110%;
+   margin-left: auto;
+margin-right: auto;
+}
+
+
+}
+@media print   {
+	
+	page {
+		size: A4,portrait;
+		orientation: portrait;
+		margin: 2cm !important;
+	}
+    body {
+        background: #fff !important;
+        color: #000;
+        font-family: Calibri,sans-serif;
+        text-align: justify;  Blocksatz 
+        quotes: "\201E" "\201C" "\201A" "\2018";
+		line-height: 100%;
+		width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+	
+     pre, blockquote
+	 {
+		page-break-inside: avoid;
+	 }  
+  
+ 
+
+h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+    }
+    
+    
+    
+   
+
+ }
+</style>
