@@ -27,9 +27,9 @@
  
  
  
-||
-|:-:|
-|@IMAGE{"Name":"Height","Topo":1,"Width":400}@|
+|full area| flat bumps gold|
+|-|-|
+|@IMAGE{"Name":"Height","Topo":0,"Width":400}@|@IMAGE{"Name":"Height","Topo":1,"Width":400}@|
 
 ## Heights
 

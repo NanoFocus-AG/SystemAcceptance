@@ -66,9 +66,9 @@ document.getElementById("t").innerHTML = t;
 var key = document.title;
 
 
-var length = addDataToStorage(PARAM,key);
+var length = addDataToStorage(PARAM);
 
-var l2 =  addDataToStorage(MPARAM,key+"M");
+ 
   
 let table = document.createElement("table");
 var row = null;
@@ -82,8 +82,8 @@ for(let i = 0; i<length;++i)
 {
     
  var data = JSON.parse(sessionStorage.getItem(key+i.toString()));
-	
- var mdata = JSON.parse(sessionStorage.getItem((key +"M")+i.toString()));
+	 
+	 
  row = table.insertRow();   
  row.insertCell().textContent =  i.toString();      
  row.insertCell().textContent =  data["shift"].value.toPrecision(5);
