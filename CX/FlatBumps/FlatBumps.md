@@ -29,9 +29,9 @@
  
 |full area| flat bumps gold|
 |-|-|
-|@IMAGE{"Name":"Height","Topo":0,"Width":400}@|@IMAGE{"Name":"Height","Topo":1,"Width":400}@|
+|@IMAGE{"Name":"Height","Topo":0,"Width":320}@|@IMAGE{"Name":"Height","Topo":1,"Width":320}@|
 
-## Heights
+### Heights
 
 
 <div id="tableHeights">  </div>
@@ -45,9 +45,10 @@
 |||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|
 | |unit  |nominal   | tolerance  +/- | actual  | status|
-| average height scale factor   | | 1 |    0 | <span id="averageScaleFactor"></span> | <span id="status"> </span>|
+|average height scale factor | n | 1 | 0 | <span id="averageScaleFactor"></span> | <span id="status"> </span>|
  
  
+<div id="btn1">  </div>
 
  
  __File__ @PARAM{"Name":"Filename"}@ 
@@ -60,11 +61,7 @@ __Tester:__ @PARAM{"Name":"Tester Name"}@
 
  
  
-
----
-
-
-
+ 
 
 
 <script src="../../SystemAcceptance.js"> </script>
@@ -129,5 +126,16 @@ document.getElementById("tableHeights").appendChild(tableHeights);
 
 
  
+
+
+//let btn = document.createElement("button");
+
+//btn.id ="b1";
+//btn.innerHTML = "Set height Scale Factor";
+//btn.onclick =   boundAsync.showMessage('Message from JS',averageScaleFactor);
+ 
+//document.getElementById("btn1").appendChild(btn);
+
+
  </script>
  

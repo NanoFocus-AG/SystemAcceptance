@@ -30,7 +30,8 @@ h1, h2, h3, h4, h5, h6,p {
 table {
           border-collapse: collapse;
           width: 100%;
-          
+          margin-bottom:60px;
+
           }
 
 th, td {
@@ -62,10 +63,12 @@ tr:nth-child(even) {
 
 #tableHeights{ 
 
-   width:86%;
+   width:90%;
    font-size: 110%;
    margin-left: auto;
-margin-right: auto;
+   margin-right: auto;
+   margin-bottom:150px;
+   margin-top:50px;
 }
 
 
@@ -98,6 +101,7 @@ margin-right: auto;
 
 h1, h2, h3, h4, h5, h6 {
         page-break-after: avoid;
+		break-after: avoid-page;
     }
     
     
