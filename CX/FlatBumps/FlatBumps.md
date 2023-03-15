@@ -1,4 +1,4 @@
-<!--   EvalAlgoName=FlatBumpNormalV01 -->
+<!--   EvalAlgoName=FlatBumpNormalV02 -->
 ||||
 |:-|:-:|-:|
 |![](logo.png)| | Nanofocus AG <br> Max-Planck-Ring 48  <br>  D-46049 Oberhausen|
@@ -105,7 +105,7 @@ for(j=0;j<NY; j++)
    SKEY= "HX0"+ (i+1)+"Y0" +(j+1+NY);
    if(j==NY-1) SKEY= "HX0"+ (i+1)+"Y" +(j+1+NY);
    
-   var scaleFactor = (h[i+j*NX] / STANDARD[SKEY].value);
+   var scaleFactor = (   STANDARD[SKEY].value /  h[i+j*NX] );
    
    row.insertCell().textContent =  h[i+j*NX].toFixed( 3 ) + "   (" + scaleFactor.toFixed(3) + ")";
 
