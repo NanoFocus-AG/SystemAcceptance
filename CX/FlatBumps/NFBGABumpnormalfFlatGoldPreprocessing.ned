@@ -32,7 +32,7 @@
             <NFEvaluation Name="NFBGA_normal_flat_preprocessing">
                 <NFParameterSet>
                     <NFParameter Name="Min blobsize">
-                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">100</NFVariant>
+                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">20</NFVariant>
                     </NFParameter>
                     <NFParameter Name="radius erode dilate mask">
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">2</NFVariant>
