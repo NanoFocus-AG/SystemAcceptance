@@ -345,12 +345,32 @@
             <NextParameterNodes />
             <NextInputParameterNodes />
         </NFComplexEvalNode>
+        <NFComplexEvalNode Index="38" Description="">
+            <NFEvaluation Name="NFDilateMaskAsymmetric">
+                <NFParameterSet>
+                    <NFParameter Name="Radius X [Pixel]">
+                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
+                    </NFParameter>
+                    <NFParameter Name="Radius Y [Pixel]">
+                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">4</NFVariant>
+                    </NFParameter>
+                    <NFParameter Name="Structuring element type ( 0=Ball, 1=Box )">
+                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
+                    </NFParameter>
+                </NFParameterSet>
+            </NFEvaluation>
+            <NextTopoNodes>
+                <NextTopo NextIndex="0" SourcePort="0" DestinationPort="0" />
+            </NextTopoNodes>
+            <NextParameterNodes />
+            <NextInputParameterNodes />
+        </NFComplexEvalNode>
         <InputTopoMapping>
-            <IOTopoMap EvalIndex="0" EvalPort="0" MapPort="0" />
             <IOTopoMap EvalIndex="30" EvalPort="0" MapPort="0" />
             <IOTopoMap EvalIndex="35" EvalPort="0" MapPort="0" />
             <IOTopoMap EvalIndex="36" EvalPort="0" MapPort="0" />
             <IOTopoMap EvalIndex="37" EvalPort="0" MapPort="0" />
+            <IOTopoMap EvalIndex="38" EvalPort="0" MapPort="0" />
         </InputTopoMapping>
         <OutputTopoMapping>
             <IOTopoMap EvalIndex="30" EvalPort="0" MapPort="0" />
@@ -362,7 +382,7 @@
         <OutputParameterMapping />
         <sMetaInfo>
             <NFParameter Name="SaveCount">
-                <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">18</NFVariant>
+                <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">19</NFVariant>
             </NFParameter>
             <NFParameter Name="SaveDates">
                 <NFVariant Type="char [][]" Unit="" UnitMultiplicator="1" UnitExponent="1">
@@ -384,6 +404,7 @@
                     <string>2023-03-08 14:42:24</string>
                     <string>2023-03-08 14:43:38</string>
                     <string>2023-03-08 14:47:30</string>
+                    <string>2023-03-22 09:59:29</string>
                 </NFVariant>
             </NFParameter>
             <NFParameter Name="SaveNames">
@@ -406,10 +427,12 @@
                     <string>D:/Data/build/NFEval/current/vs2017_x64/bin/Plugins/NF_Bumpnormal_crop.ned</string>
                     <string>D:/Data/build/NFEval/current/vs2017_x64/bin/Plugins/NF_Bumpnormal_crop.ned</string>
                     <string>D:/Data/build/NFEval/current/vs2017_x64/bin/Plugins/NF_Bumpnormal_crop.ned</string>
+                    <string>D:/Data/build/NFEval/current/vs2017_x64/bin/Plugins/NF_Bumpnormal_crop.ned</string>
                 </NFVariant>
             </NFParameter>
             <NFParameter Name="SaveUsers">
                 <NFVariant Type="char [][]" Unit="" UnitMultiplicator="1" UnitExponent="1">
+                    <string>weimann</string>
                     <string>weimann</string>
                     <string>weimann</string>
                     <string>weimann</string>
@@ -483,6 +506,9 @@
             <NFComplexAlgoNodeGUI Index="37">
                 <NFAlgoGUI Name="NFRoiFilter" PosX="4785.11" PosY="5545.32" />
             </NFComplexAlgoNodeGUI>
+            <NFComplexAlgoNodeGUI Index="38">
+                <NFAlgoGUI Name="NFDilateMaskAsymmetric" PosX="4566.14" PosY="5349.24" />
+            </NFComplexAlgoNodeGUI>
             <NFComplexAlgoTopoOutput Index="0">
                 <NFAlgoGUI PosX="4814.09" PosY="5919.3" />
             </NFComplexAlgoTopoOutput>
@@ -498,9 +524,6 @@
             <NFComplexAlgoTopoInput Index="0">
                 <NFAlgoGUI PosX="4611.04" PosY="5684.21" />
             </NFComplexAlgoTopoInput>
-            <NFComplexAlgoParamOutput Name="Param1">
-                <NFAlgoGUI PosX="5262" PosY="5552" />
-            </NFComplexAlgoParamOutput>
         </NFComplexAlgoGUIDescription>
     </NFComplexEvaluation>
 </NFComplexEvaluationContainer>
