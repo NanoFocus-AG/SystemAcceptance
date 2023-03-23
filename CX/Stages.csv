@@ -1,4 +1,5 @@
 Name;Typ der Achse;Länge [mm];Ebenheit/Flatness  ;Ebenheit/Flatness  >10mm;Ebenheit/Flatness   50mm (Abnahme);Accuracy   
+Hiwin 0815 4711;Hiwin 0815 4711;50;0,5;0,2;0,5;10
 PMT 160-050-DC-R;PMT 160-050-DC-R;50;0,5;0,2;0,5;10
 PMT 160-100-DC-R;PMT 160-100-DC-R;100;1;0,4;0,5;10
 PMT 160-150-DC-R;PMT 160-150-DC-R;150;1,5;1;1;10

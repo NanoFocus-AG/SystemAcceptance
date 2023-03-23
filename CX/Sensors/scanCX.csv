@@ -1,3 +1,2 @@
-Name;Typ/Type;Controller;Serien Nummer / Serial No;Sensor MeasureRange;Max. angle;Straightness];Frequency;Resolution;Measurment length;Cutoff;Linearity Sensor;Linearity Table + Sensor;MeasureRange;Recommended measuring tilt;Recommended measuring length;Frequency;Resolution;Groove Tolerance;Frequency;Resolution;Measurment length;Cutoff;Tolerance;Frequency;Resolution;Measurment length;Tolerance Ra;Tolerance Rz;Frequency;Resolution;Measurment length;Cutoff R;Needle;Noise
-C3x 0,2;C3x 0,2;CHR;11;200;44;0;0;0;0;0;0;0;0;0;0;0;0;0,3;1000;2;3,5;25;0;0;0;0;0;0;0;0;0;0;0;0
- 
+Name;Typ/Type;Controller;Serien Nummer / Serial No;Sensor MeasureRange;Max. angle;Straightness;Frequency;Resolution;Measurment length;Cutoff;Linearity Sensor;Linearity Table + Sensor;MeasureRange;Recommended measuring tilt;Recommended measuring length;Frequency;Resolution;Groove Tolerance;Frequency;Resolution;Measurment length;Cutoff;Tolerance;Frequency;Resolution;Measurment length;Tolerance Ra;Tolerance Rz;Frequency;Resolution;Measurment length;Cutoff R;Needle;Noise
+C3x 0,2;C3x 0,2;CHR;11;300;44;1;0;0;0;0;0,6;1,6;0;0;0;0;0;0,3;1000;2;3,5;25;0;0;0;0;0;0;0;0;0;0;0;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
