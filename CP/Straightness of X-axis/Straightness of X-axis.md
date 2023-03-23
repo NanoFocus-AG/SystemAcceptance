@@ -33,7 +33,7 @@
 ||||||
 |:-:|:-:|:-:|:-:|:-:|
 | |unit  |nominal   |   actual | status|
-| Straightness    | µm | @PARAM{"Name":"Linearity Table + Sensor","Precision":6}@  |   @PARAM{"Name":"Wt","Precision":3}@ | <span id="controlWt"> Ok</span>|
+| Straightness    | µm | @PARAM{"Name":"Straightness","Precision":6}@  |   @PARAM{"Name":"Wt","Precision":3}@ | <span id="controlWt"> Ok</span>|
  
 
 __Unit location:__ Oberhausen
@@ -55,7 +55,7 @@ var META = @MJSON{"Set":0}@;
 
 
 var value =   @PARAM{"Name":"Wt","Precision":3}@;
-var nominal = @PARAM{"Name":"Linearity Table + Sensor","Precision":6}@;
+var nominal = @PARAM{"Name":"Straightness","Precision":6}@;
 var status = ""; 
  
 if(  value < nominal)
