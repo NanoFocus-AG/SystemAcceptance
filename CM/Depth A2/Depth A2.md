@@ -25,24 +25,26 @@
 
 ||
 |:-:|
-|@IMAGE{"Name":"Height","Topo":1,"Width":300}@|
 |@IMAGE{"Name":"Profile","Topo":1,"Width":700}@|
+
+
+//|@IMAGE{"Name":"Height","Topo":1,"Width":350}@
 
  
 
 
 ### Evaluation
 
-||||||||
-|-|-|-|-|-|-|-|
+|||||||
+|-|-|-|-|-|-|
 ||unit|nominal value|target value| tolerance +/-| status |
 |Depth | µm| @PARAM{"Name":"Soll","Precision":12}@|  @PARAM{"Name":"d","Precision":5}@|  @PARAM{"Name":"delta_Tiefe","Precision":5}@| <span id="control"> Ok</span>|
  
 
 --- 
 
-||||||||
-|-|-|-|-|-|-|-|
+|||||||
+|-|-|-|-|-|-|
 ||unit|nominal value|average value| standard deviation| status |
 |Depth | µm| @PARAM{"Name":"Soll","Precision":12}@|  <span id="average"> </span>|  <span id="sigma"> </span>| <span id="control_repeat"> Ok</span>|
  

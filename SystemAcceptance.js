@@ -8,8 +8,8 @@ avoid duplication of boilerplate code
 */
 
 
-const IO = "ok s";
-const nIO = "not ok s";
+const IO = "Ok";
+const nIO = "not Ok";
 
 function  checkResult(value, nominal, tolerance)
 {
