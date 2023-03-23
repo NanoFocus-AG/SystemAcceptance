@@ -31,8 +31,8 @@
 ||||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | |unit   |nominal   | tolerance   +/- | actual  | status|
-| Ra   | µm | @PARAM{"Name":"Ra Soll","Precision":6}@ |    <span id="Ra_tol"></span> |  @PARAM{"Name":"Ra","Precision":3}@ | <span id="controlRa"></span>|
-| Rz   | µm| @PARAM{"Name":"Rz Soll","Precision":6}@  |   <span id="Rz_tol"></span>  |  @PARAM{"Name":"Rz","Precision":3}@ | <span id="controlRz"> </span>|
+| Ra   | µm | @PARAM{"Name":"Ra Soll","Precision":6}@ |    <span id="Ratol"></span> |  @PARAM{"Name":"Ra","Precision":3}@ | <span id="controlRa"></span>|
+| Rz   | µm| @PARAM{"Name":"Rz Soll","Precision":6}@  |   <span id="Rztol"></span>  |  @PARAM{"Name":"Rz","Precision":3}@ | <span id="controlRz"> </span>|
  
  
 
@@ -56,8 +56,8 @@ var  dRz =  @PARAM{"Name":"delta_Rz"}@;
 var Ra_tol = @PARAM{"Name":"Ra Soll"}@ * dRa ;
 var Rz_tol = @PARAM{"Name":"Rz Soll"}@ * dRz ;
 
-document.getElementById("Ra_tol").innerHTML = Ra_tol.toPrecsion(3);
-document.getElementById("Rz_tol").innerHTML = Rz_tol.toPrecision(3);
+document.getElementById("Ratol").innerHTML = Ra_tol.toPrecision(3);
+document.getElementById("Rztol").innerHTML = Rz_tol.toPrecision(3);
 
 var status = "";
  
