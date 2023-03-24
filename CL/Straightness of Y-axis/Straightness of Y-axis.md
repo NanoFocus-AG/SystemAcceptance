@@ -44,7 +44,7 @@
 | Straightness    | µm | @PARAM{"Name":"Straightness","Precision":6}@  |   @PARAM{"Name":"Wt","Precision":3}@ | <span id="control"> Ok</span>|
  
 
-__Unit location:__ Oberhausen
+__Unit location:__ @PARAM{"Name":"Location"}@
 
 __Date:__ @YEAR@-@MONTH@-@DAY@ 
 

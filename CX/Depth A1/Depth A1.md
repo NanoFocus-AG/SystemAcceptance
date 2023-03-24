@@ -1,4 +1,4 @@
-<!--   EvalAlgoName=NF_NED_MScan_Abnahme_Tiefe_LS -->
+<!--   EvalAlgoName=NF_NED_Abnahme_Tiefennormal_A1 -->
 
 
 ||
@@ -49,7 +49,7 @@
  
  
 
-__Unit location:__ Oberhausen
+__Unit location:__ @PARAM{"Name":"Location"}@
 
 __Date:__ @YEAR@-@MONTH@-@DAY@ 
 

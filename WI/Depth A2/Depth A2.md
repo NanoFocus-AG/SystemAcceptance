@@ -39,7 +39,7 @@
 | µm| @PARAM{"Name":"Soll","Precision":12}@|  @PARAM{"Name":"d","Precision":5}@|  @PARAM{"Name":"delta_Tiefe","Precision":5}@| <span id="control"> Ok</span>|
  
 
-__Unit location:__ Oberhausen
+__Unit location:__ @PARAM{"Name":"Location"}@
 
 __Date:__ @YEAR@-@MONTH@-@DAY@ 
 

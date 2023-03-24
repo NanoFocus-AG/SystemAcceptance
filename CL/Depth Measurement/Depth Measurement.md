@@ -49,7 +49,7 @@
  
  
 
-__Unit location:__ Oberhausen
+__Unit location:__ @PARAM{"Name":"Location"}@
 
 __Date:__ @YEAR@-@MONTH@-@DAY@ 
 

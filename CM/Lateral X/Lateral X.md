@@ -37,7 +37,7 @@
 |lateral distance| µm|   @PARAM{"Name":"Soll","Set":1}@   |   @PARAM{"Name":"delta_AbbMaßstab","Precision":12}@ | @PARAM{"Name":"Sum Gap Lateral Width","Precision":5}@  | <span id="control"> Ok</span>|
  
 
-__Unit location:__ Oberhausen
+__Unit location:__ @PARAM{"Name":"Location"}@
 
 __Date:__ @YEAR@-@MONTH@-@DAY@ 
 

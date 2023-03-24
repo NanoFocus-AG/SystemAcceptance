@@ -5,10 +5,10 @@
             <NFEvaluation Name="NFBGABumpnormalfFlatGoldPreprocessing">
                 <NFParameterSet>
                     <NFParameter Name="half angle">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">10</NFVariant>
+                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
                     </NFParameter>
                     <NFParameter Name="min Intensity">
-                        <NFVariant Type="short" Unit="" UnitMultiplicator="1" UnitExponent="1">300</NFVariant>
+                        <NFVariant Type="short" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
                     </NFParameter>
                 </NFParameterSet>
             </NFEvaluation>
@@ -48,7 +48,7 @@
                         <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">manual absolute</NFVariant>
                     </NFParameter>
                     <NFParameter Name="2) LowerHeight (manual mode)">
-                        <NFVariant Type="float" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">10</NFVariant>
+                        <NFVariant Type="float" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">2</NFVariant>
                     </NFParameter>
                     <NFParameter Name="3) UpperHeight (manual mode)">
                         <NFVariant Type="float" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">3.402823466e+38</NFVariant>
@@ -63,7 +63,7 @@
                         <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">NFBGA_flat</NFVariant>
                     </NFParameter>
                     <NFParameter Name="Min. Item Size">
-                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">55</NFVariant>
+                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">12</NFVariant>
                     </NFParameter>
                 </NFParameterSet>
             </NFEvaluation>

@@ -36,7 +36,7 @@
 | Homogenity   | % | @PARAM{"Name":"min_Ausleuchtung","Precision":6}@  |     |  @PARAM{"Name":"Homogenity","Precision":3}@ | <span id="control"> Ok</span>|
  
 
-__Unit location:__ Oberhausen
+__Unit location:__ @PARAM{"Name":"Location"}@
 
 __Date:__ @YEAR@-@MONTH@-@DAY@ 
 

@@ -16,6 +16,6 @@
         <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
     </NFParameter>
     <NFParameter Name="WorkingDirectory">
-        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">C:\ProgramData\NanoFocus\SystemAcceptance\CL\Straightness of X-axis\</NFVariant>
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">C:\ProgramData\NanoFocus\SystemAcceptance\CX\Straightness of X-axis\</NFVariant>
     </NFParameter>
 </NFParameterSet>
