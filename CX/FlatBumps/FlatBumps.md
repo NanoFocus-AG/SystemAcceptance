@@ -128,12 +128,10 @@ document.getElementById("tableHeights").appendChild(tableHeights);
  
 
 
-//let btn = document.createElement("button");
-
-//btn.id ="b1";
-//btn.innerHTML = "Set height Scale Factor";
-//btn.onclick =   boundAsync.showMessage('Message from JS',averageScaleFactor);
- 
+if(averageScaleFactor <1.01 && averageScaleFactor >0.98) 
+{
+   var h =   cxBound.setHeightScaleFactor(document.title,averageScaleFactor);
+}
 //document.getElementById("btn1").appendChild(btn);
 
 
