@@ -70,6 +70,8 @@ __Tester:__ @PARAM{"Name":"Tester Name"}@
 var PARAM0 = @PJSON{"Set":0}@;
 var STANDARD = @PJSON{"Set":1}@;
 var h = PARAM0["3) heights"].value;
+var tol = @PARAM{"Name":"HeightScaleFactorTolerance"}@;
+
 
  
 let tableHeights = document.createElement("table");
@@ -128,7 +130,7 @@ document.getElementById("tableHeights").appendChild(tableHeights);
  
 
 
-if(averageScaleFactor <1.01 && averageScaleFactor >0.98) 
+if(averageScaleFactor <(1+tol) && averageScaleFactor > (1-tol)) 
 {
    var h =   cxBound.setHeightScaleFactor(document.title,averageScaleFactor);
 }
