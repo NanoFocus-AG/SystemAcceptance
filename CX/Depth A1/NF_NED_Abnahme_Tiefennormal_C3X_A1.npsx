@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<NFParameterSet>
+    <NFParameter Name="HM_GradPeakWidth [%]">
+        <NFVariant Type="double" Unit="%" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
+    </NFParameter>
+    <NFParameter Name="HM_MedianWidthRadius [Pix]">
+        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">20</NFVariant>
+    </NFParameter>
+    <NFParameter Name="HM_MinimumSlope">
+        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0.010000000000000000208</NFVariant>
+    </NFParameter>
+    <NFParameter Name="ROI-Height [um]">
+        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">200</NFVariant>
+    </NFParameter>
+    <NFParameter Name="Working Directory">
+        <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1">C:\ProgramData\NanoFocus\SystemAcceptance\CX\Depth A1\</NFVariant>
+    </NFParameter>
+</NFParameterSet>
