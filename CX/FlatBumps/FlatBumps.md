@@ -9,7 +9,7 @@
 
  |||||
 |-|-|-|-|
-|System: |  CX3 |Calibration instruction:| VDI/VDE 2655 Part 1.2|
+|System: |  CX3 |Calibration instruction:|  |
 |Type|   CX3 | Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||

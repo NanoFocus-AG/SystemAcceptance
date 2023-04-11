@@ -15,7 +15,7 @@
 
 |||||
 |-|-|-|-|
-|System: |  CX |Calibration instruction:| VDI/VDE 2655 Part 1.2|
+|System: |  CX |Calibration instruction:|  |
 |Type|   CX | Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
