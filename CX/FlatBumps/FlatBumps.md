@@ -45,7 +45,7 @@
 |||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|
 | |unit  |nominal   | tolerance  +/- | actual  | status|
-|average height scale factor | n | 1 | 0 | <span id="averageScaleFactor"></span> | <span id="status"> </span>|
+|average height scale factor | n | 1 |<span id="tolerance" > </span> | <span id="averageScaleFactor"></span> | <span id="status"> </span>|
  
  
 <div id="btn1">  </div>
@@ -127,6 +127,7 @@ document.getElementById("status").innerText =   averageScaleFactor != 1 ? "not O
 document.getElementById("tableHeights").appendChild(tableHeights);
 
 
+document.getElementById("tolerance").innerText = tol;
  
 
 
