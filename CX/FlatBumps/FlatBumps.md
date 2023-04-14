@@ -70,6 +70,7 @@ __Tester:__ @PARAM{"Name":"Tester Name"}@
 var PARAM0 = @PJSON{"Set":0}@;
 var STANDARD = @PJSON{"Set":1}@;
 var h = PARAM0["3) heights"].value;
+
 var tol = @PARAM{"Name":"HeightScaleFactorTolerance"}@;
 
 
@@ -119,7 +120,7 @@ for(j=0;j<NY; j++)
  averageScaleFactor /= NX*NY;
  
 document.getElementById("averageScaleFactor").innerText = averageScaleFactor.toFixed(5);
-document.getElementById("status").innerText =   averageScaleFactor != 1 ? "not OK":"OK";
+document.getElementById("status").innerText =  "not OK";
 
  
  
@@ -131,10 +132,13 @@ document.getElementById("tolerance").innerText = tol;
  
 
 
-if(averageScaleFactor <(1+tol) && averageScaleFactor > (1-tol)) 
+if(averageScaleFactor <(1.0+tol) && averageScaleFactor > (1.0-tol)) 
 {
-   var h =   cxBound.setHeightScaleFactor(document.title,averageScaleFactor);
+   document.getElementById("status").innerText =  "OK";
+   
 }
+var h =   cxBound.setHeightScaleFactor(document.title,averageScaleFactor,tol);
+
 //document.getElementById("btn1").appendChild(btn);
 
 
