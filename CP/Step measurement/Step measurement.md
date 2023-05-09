@@ -54,7 +54,7 @@ __Tester:__ @PARAM{"Name":"Tester Name"}@
 var PARAM = @PJSON{"Set":0}@;
 var META = @MJSON{"Set":0}@;
  
- var tolerance =  @PARAM{"Name":"Groove Tolerance"}@;
+ var tolerance =  @PARAM{"Name":"Tolerance"}@;
 var status1 ="";
 
 
