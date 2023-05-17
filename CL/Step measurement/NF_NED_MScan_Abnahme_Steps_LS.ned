@@ -480,6 +480,8 @@
             <NextTopoNodes />
             <NextParameterNodes>
                 <NextParameter NextIndex="37" SourceParameterName="Mean" DestinationParameterName="A" />
+                <NextParameter NextIndex="72" SourceParameterName="Mean" DestinationParameterName="C" />
+                <NextParameter NextIndex="70" SourceParameterName="Mean" DestinationParameterName="C" />
             </NextParameterNodes>
             <NextInputParameterNodes />
         </NFComplexEvalNode>
@@ -500,6 +502,8 @@
             <NextTopoNodes />
             <NextParameterNodes>
                 <NextParameter NextIndex="38" SourceParameterName="Mean" DestinationParameterName="A" />
+                <NextParameter NextIndex="66" SourceParameterName="Mean" DestinationParameterName="C" />
+                <NextParameter NextIndex="68" SourceParameterName="Mean" DestinationParameterName="C" />
             </NextParameterNodes>
             <NextInputParameterNodes />
         </NFComplexEvalNode>
@@ -520,6 +524,8 @@
             <NextTopoNodes />
             <NextParameterNodes>
                 <NextParameter NextIndex="39" SourceParameterName="Mean" DestinationParameterName="A" />
+                <NextParameter NextIndex="64" SourceParameterName="Mean" DestinationParameterName="C" />
+                <NextParameter NextIndex="60" SourceParameterName="Mean" DestinationParameterName="C" />
             </NextParameterNodes>
             <NextInputParameterNodes />
         </NFComplexEvalNode>
@@ -674,8 +680,6 @@
             </NFEvaluation>
             <NextTopoNodes />
             <NextParameterNodes>
-                <NextParameter NextIndex="72" SourceParameterName="Result" DestinationParameterName="C" />
-                <NextParameter NextIndex="70" SourceParameterName="Result" DestinationParameterName="C" />
                 <NextParameter NextIndex="93" SourceParameterName="Result" DestinationParameterName="A" />
             </NextParameterNodes>
             <NextInputParameterNodes />
@@ -693,8 +697,6 @@
             </NFEvaluation>
             <NextTopoNodes />
             <NextParameterNodes>
-                <NextParameter NextIndex="68" SourceParameterName="Result" DestinationParameterName="C" />
-                <NextParameter NextIndex="66" SourceParameterName="Result" DestinationParameterName="C" />
                 <NextParameter NextIndex="94" SourceParameterName="Result" DestinationParameterName="A" />
             </NextParameterNodes>
             <NextInputParameterNodes />
@@ -712,8 +714,6 @@
             </NFEvaluation>
             <NextTopoNodes />
             <NextParameterNodes>
-                <NextParameter NextIndex="64" SourceParameterName="Result" DestinationParameterName="C" />
-                <NextParameter NextIndex="60" SourceParameterName="Result" DestinationParameterName="C" />
                 <NextParameter NextIndex="92" SourceParameterName="Result" DestinationParameterName="A" />
             </NextParameterNodes>
             <NextInputParameterNodes />
@@ -1590,22 +1590,28 @@
         </OutputParameterMapping>
         <sMetaInfo>
             <NFParameter Name="SaveCount">
-                <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">2</NFVariant>
+                <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">4</NFVariant>
             </NFParameter>
             <NFParameter Name="SaveDates">
                 <NFVariant Type="char [][]" Unit="" UnitMultiplicator="1" UnitExponent="1">
                     <string>2022-11-22 10:32:41</string>
                     <string>2022-12-15 15:06:15</string>
+                    <string>2023-05-16 17:23:42</string>
+                    <string>2023-05-16 17:29:23</string>
                 </NFVariant>
             </NFParameter>
             <NFParameter Name="SaveNames">
                 <NFVariant Type="char [][]" Unit="" UnitMultiplicator="1" UnitExponent="1">
                     <string>E:/code/NFEval_Trunk/NFEvalPlugins/NFComplexFilters/NF_NED_MScan_Abnahme_Steps_LS.ned</string>
                     <string>E:/code/NFEval_Trunk/NFEvalPlugins/NFComplexFilters/NF_NED_MScan_Abnahme_Steps_LS.ned</string>
+                    <string>E:/build/NFEvalSDK_VS2017_Win64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_LS.ned</string>
+                    <string>E:/build/NFEvalSDK_VS2017_Win64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_LS.ned</string>
                 </NFVariant>
             </NFParameter>
             <NFParameter Name="SaveUsers">
                 <NFVariant Type="char [][]" Unit="" UnitMultiplicator="1" UnitExponent="1">
+                    <string>rose</string>
+                    <string>rose</string>
                     <string>rose</string>
                     <string>rose</string>
                 </NFVariant>
@@ -1670,25 +1676,25 @@
                 <NFAlgoGUI Name="NFRoiFilter" PosX="4432" PosY="5330.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="28">
-                <NFAlgoGUI Name="NFRoiFilter" PosX="4606.33" PosY="5428" />
+                <NFAlgoGUI Name="NFRoiFilter" PosX="4603.33" PosY="5414" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="29">
-                <NFAlgoGUI Name="NFRoiFilter" PosX="4779" PosY="5548.67" />
+                <NFAlgoGUI Name="NFRoiFilter" PosX="4776" PosY="5498.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="30">
                 <NFAlgoGUI Name="NFProfStatistics" PosX="4269" PosY="5714" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="31">
-                <NFAlgoGUI Name="NFProfStatistics" PosX="4432.67" PosY="5568" />
+                <NFAlgoGUI Name="NFProfStatistics" PosX="4434.67" PosY="5538" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="32">
-                <NFAlgoGUI Name="NFProfStatistics" PosX="4603.33" PosY="5572.33" />
+                <NFAlgoGUI Name="NFProfStatistics" PosX="4602.33" PosY="5588.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="33">
-                <NFAlgoGUI Name="NFProfStatistics" PosX="4778" PosY="5642" />
+                <NFAlgoGUI Name="NFProfStatistics" PosX="4773" PosY="5646" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="37">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="4435" PosY="5840" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="4435" PosY="5839" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="38">
                 <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="4603.06" PosY="5781.33" />
@@ -1700,10 +1706,10 @@
                 <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="4806.33" PosY="5328" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="42">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="4953.33" PosY="5427.67" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="4958.33" PosY="5413.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="43">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="5103.33" PosY="5552.34" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="5078.33" PosY="5499.34" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="44">
                 <NFAlgoGUI Name="NFTopoInfo" PosX="5221.62" PosY="5193.53" />
@@ -1763,7 +1769,7 @@
                 <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="6132.33" PosY="5232" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="68">
-                <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="6785.55" PosY="5844.23" />
+                <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="6785.55" PosY="5843.23" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="69">
                 <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="6133.33" PosY="5141.67" />
@@ -1784,10 +1790,10 @@
                 <NFAlgoGUI Name="NFParameterMultiplexer" PosX="5261.33" PosY="5332" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="75">
-                <NFAlgoGUI Name="NFParameterMultiplexer" PosX="5428" PosY="5429.33" />
+                <NFAlgoGUI Name="NFParameterMultiplexer" PosX="5430" PosY="5417.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="76">
-                <NFAlgoGUI Name="NFParameterMultiplexer" PosX="5586.66" PosY="5549.33" />
+                <NFAlgoGUI Name="NFParameterMultiplexer" PosX="5603.66" PosY="5508.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="77">
                 <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5833.34" PosY="5140" />
@@ -1805,7 +1811,7 @@
                 <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5838.66" PosY="5228" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="82">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5830.67" PosY="5074.67" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5848.67" PosY="5064.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="83">
                 <NFAlgoGUI Name="NFGetUserTmpDir" PosX="6339.67" PosY="4890.81" />
@@ -1835,13 +1841,13 @@
                 <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="4866.66" PosY="6563.99" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="92">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="4585.3" PosY="6407.2" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="4564.3" PosY="6403.2" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="93">
                 <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="4224.17" PosY="6563.07" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="94">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="4413.36" PosY="6483.86" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="4402.36" PosY="6482.86" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="95">
                 <NFAlgoGUI Name="NF_NED_MScan_Abnahme_PreProc_LS" PosX="4506.67" PosY="3637.33" />
@@ -1856,10 +1862,10 @@
                 <NFAlgoGUI PosX="4369.22" PosY="4878.43" />
             </NFComplexAlgoTopoOutput>
             <NFComplexAlgoTopoOutput Index="3">
-                <NFAlgoGUI PosX="4487.67" PosY="5429.66" />
+                <NFAlgoGUI PosX="4169.67" PosY="5409.66" />
             </NFComplexAlgoTopoOutput>
             <NFComplexAlgoTopoOutput Index="4">
-                <NFAlgoGUI PosX="4995" PosY="5663.67" />
+                <NFAlgoGUI PosX="4170" PosY="5498.67" />
             </NFComplexAlgoTopoOutput>
             <NFComplexAlgoTopoInput Index="0">
                 <NFAlgoGUI PosX="5165.33" PosY="3630.33" />
@@ -1874,10 +1880,10 @@
                 <NFAlgoGUI PosX="5261.34" PosY="5254.66" />
             </NFComplexAlgoParamInput>
             <NFComplexAlgoParamInput Name="ROI2_Offset [um]">
-                <NFAlgoGUI PosX="5426.66" PosY="5362" />
+                <NFAlgoGUI PosX="5435.66" PosY="5318" />
             </NFComplexAlgoParamInput>
             <NFComplexAlgoParamInput Name="ROI3_Offset [um]">
-                <NFAlgoGUI PosX="5583" PosY="5474.34" />
+                <NFAlgoGUI PosX="5617" PosY="5443.34" />
             </NFComplexAlgoParamInput>
             <NFComplexAlgoParamInput Name="ROILength [um]">
                 <NFAlgoGUI PosX="5226.33" PosY="4959.67" />
