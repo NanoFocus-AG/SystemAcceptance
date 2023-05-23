@@ -15,14 +15,13 @@
 |System number:| @PARAM{"Name":"Serial"}@|||
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: | @PARAM{"Name":"Typ/Type","Precision":12}@ |||
-| |  |||
 |Standard: |@PARAM{"Name":"Stufennormal","Precision":12}@|||
 
 ### Terms of measurement 
 
 ||||
 |-|-|-|
-|Distance|@PARAM{"Name":"LengthX","Precision":8}@|  µm|
+|Distance|@PARAM{"Name":"LengthX","Precision":4}@|  µm|
 |Resolution|@PARAM{"Name":"DeltaX"}@ |µm|
 |Frequency| @PARAM{"Name":"Frequency"}@ |Hz|
  

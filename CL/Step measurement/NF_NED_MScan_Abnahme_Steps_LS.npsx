@@ -7,16 +7,16 @@
         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">700</NFVariant>
     </NFParameter>
     <NFParameter Name="ROI1_Offset [um]">
-        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">8000</NFVariant>
+        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">10000</NFVariant>
     </NFParameter>
     <NFParameter Name="ROI2_Offset [um]">
-        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">16250</NFVariant>
+        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">19250</NFVariant>
     </NFParameter>
     <NFParameter Name="ROI3_Offset [um]">
-        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">26000</NFVariant>
+        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">28000</NFVariant>
     </NFParameter>
     <NFParameter Name="ROILength [um]">
-        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">6500</NFVariant>
+        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">5500</NFVariant>
     </NFParameter>
     <NFParameter Name="Title">
         <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1"></NFVariant>
