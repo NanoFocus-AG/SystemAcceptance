@@ -37,9 +37,9 @@
 |||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|
 | |unit   |nominal  | tolerance  +/- | actual | status|
-| Wt1   | µm | @PARAM{"Name":"T1","Precision":5}@ |    @PARAM{"Name":"Groove Tolerance","Precision":12}@|  @PARAM{"Name":"StepHeight1","Precision":5}@ | <span id="StepHeight1control"> </span>|
-| Wt2   | µm| @PARAM{"Name":"T2","Precision":5}@  |    @PARAM{"Name":"Groove Tolerance","Precision":12}@ |  @PARAM{"Name":"StepHeight2","Precision":5}@ | <span id="StepHeight2control"> </span>|
-| Wt3   | µm| @PARAM{"Name":"T3","Precision":5}@  |    @PARAM{"Name":"Groove Tolerance","Precision":12}@ |  @PARAM{"Name":"StepHeight3","Precision":5}@ | <span id="StepHeight3control"> </span>|
+| Wt1   | µm | @PARAM{"Name":"T1","Precision":5}@ |    @PARAM{"Name":"Tolerance","Precision":12}@|  @PARAM{"Name":"StepHeight1","Precision":5}@ | <span id="StepHeight1control"> </span>|
+| Wt2   | µm| @PARAM{"Name":"T2","Precision":5}@  |    @PARAM{"Name":"Tolerance","Precision":12}@ |  @PARAM{"Name":"StepHeight2","Precision":5}@ | <span id="StepHeight2control"> </span>|
+| Wt3   | µm| @PARAM{"Name":"T3","Precision":5}@  |    @PARAM{"Name":"Tolerance","Precision":12}@ |  @PARAM{"Name":"StepHeight3","Precision":5}@ | <span id="StepHeight3control"> </span>|
  
  
 
