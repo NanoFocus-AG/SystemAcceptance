@@ -38,9 +38,9 @@
  
 
  
-| Resolution [µm] | Speed  [mm/s] |Trigger shift [µm]|  Trigger delay [s]|
-|-|-|-|-|
-| @PARAM{"Name":"DeltaX"}@  |<span id="v"> </span>  |@PARAM{"Name":"shift"}@ | <span id="t"> </span>|
+| Resolution [µm] | Speed  [mm/s] |Trigger shift [µm]| Trigger shift [px] |  N | Trigger delay [s]|
+|-|-|-|-|-|-|
+| @PARAM{"Name":"DeltaX"}@  |<span id="v"> </span>  |@PARAM{"Name":"shift"}@ |<span id="shiftpx"> </span> | <span id="NSamples" > </span>  | <span id="t"> </span>|
 
 
 
@@ -56,11 +56,23 @@
 
 var PARAM = @PJSON{"Set":0}@;
 var MPARAM = @PJSON{"Set":5}@;
+
+// velocity
 var v = @PARAM{"Name":"DeltaX"}@*0.001  * @PARAM{"Name":"Frequency"}@;
 document.getElementById("v").innerHTML = v;
 
+// trigger delay time
 var t = @PARAM{"Name":"shift"}@*0.001 / (@PARAM{"Name":"DeltaX"}@*0.001 *@PARAM{"Name":"Frequency"}@); 
 document.getElementById("t").innerHTML = t;
+
+// shift expressed in px
+var spx = @PARAM{"Name":"shift"}@ / @PARAM{"Name":"DeltaX"}@; 
+document.getElementById("shiftpx").innerHTML = spx;
+
+
+// number of samples
+var Ns = @PARAM{"Name":"LengthX","Precision":8}@ / @PARAM{"Name":"DeltaX"}@
+document.getElementById("NSamples").innerHTML = Ns ;
 
 
 var key = document.title;
@@ -86,7 +98,7 @@ for(let i = 0; i<length;++i)
 	 
  row = table.insertRow();   
  row.insertCell().textContent =  i.toString();      
- row.insertCell().textContent =  data["shift"].value.toPrecision(5);
+ row.insertCell().textContent =  data["shift"].value;
 	
 }
 	
