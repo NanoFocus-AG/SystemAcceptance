@@ -12,7 +12,7 @@
 |System: |  CX3 |Calibration instruction:|  |
 |Type|   CX3 | Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
-|Customer:| @PARAM{"Name":"Manufacturer"}@|||
+|Customer:| @PARAM{"Name":"Customer"}@|||
 |Objective Lens: | @PARAM{"Name":"Typ/Type","Precision":12}@ |||
 | |  |||
 |Standard: |@PARAM{"Name":"Bumpnormal","Precision":12}@|||

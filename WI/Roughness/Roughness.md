@@ -14,7 +14,7 @@
 |System: |  WI |Calibration instruction:| VDI/VDE 2655 Part 1.2|
 |Type|   WI explorer| Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
-|Customer:| @PARAM{"Name":"Manufacturer"}@|||
+|Customer:| @PARAM{"Name":"Customer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@|||
 |Obj.Number:| @PARAM{"Name":"LensSerial"}@|||
 |Standard: |@PARAM{"Name":"Rauhnormal","Precision":12}@|||

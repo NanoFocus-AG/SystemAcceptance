@@ -16,7 +16,7 @@
 |System: |  CP |Calibration instruction:|   |
 |Type|   CP | Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
-|Customer:| @PARAM{"Name":"Manufacturer"}@|||
+|Customer:| @PARAM{"Name":"Customer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@  @PARAM{"Name":"Typ/Type","Precision":12}@ |||
 | |  |||
 |Standard: |@PARAM{"Name":"Stufennormal","Precision":12}@|||

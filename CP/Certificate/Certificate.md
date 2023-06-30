@@ -20,7 +20,7 @@
 ||||
 |__Sensor__ | @PARAM{"Name":"Lens"}@  | |
 |__Sensor serial no.__ |@PARAM{"Name":"LensSerialNumber"}@  | |
-|__Customer__ |  | |
+|__Customer__ | @PARAM{"Name":"Customer"}@ | |
 |__Date of calibration__  |  @DAY@.@MONTH@.@YEAR@  | |
 |__Calibration Certificate No.__ |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@  | |
 |__Evaluation__  |The measured values at the calibration time are within the tolerance range.  | |
