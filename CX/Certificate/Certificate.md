@@ -18,7 +18,7 @@
 ||| The reference standards and standard measuring equipment are traceable to the national measuring standards maintained by the Physikalisch-Technische Bundesanstalt (PTB) or to other national standards.|
 |__System serial no__|  @PARAM{"Name":"Serial"}@ | The calibration results refer exclusively to the object. <br> This calibration certificate may not be circulated other than in full, except with our permission. <br> Calibration certificates without signature have no validity.| 
 ||||
-|__Sensor__ | @PARAM{"Name":"Lens"}@  /  @PARAM{"Name":"Typ/Type","Precision":12}@  | |
+|__Sensor__ |    @PARAM{"Name":"Typ/Type","Precision":12}@  | |
 |__Sensor serial no.__ | @PARAM{"Name":"LensSerialNumber"}@ | |
 |__Customer__ | @PARAM{"Name":"Customer"}@ | |
 |__Date of calibration__  |  @DAY@.@MONTH@.@YEAR@  | |

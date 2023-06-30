@@ -12,8 +12,8 @@
 ||||
 |-|-|-|
 |System|   CL | @PARAM{"Name":"Serial"}@ |
-|Sensor| CL    | @PARAM{"Name":"Lens"}@  /  @PARAM{"Name":"Typ/Type","Precision":12}@| 
-|Customer| @PARAM{"Name":"Manufacturer"}@||
+|Sensor| CL    |    @PARAM{"Name":"Typ/Type","Precision":12}@| 
+ |Customer| @PARAM{"Name":"Customer"}@||
 
 <span id="output">
 </span>
