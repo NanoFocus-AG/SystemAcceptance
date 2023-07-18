@@ -35,8 +35,8 @@
 |||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|
 | |unit|nominal value <| tolerance +/- | actual value| status|
-| Flatness   | µm| @PARAM{"Name":"max_Ebenheit","Precision":6}@ |     |  @PARAM{"Name":"Sz","Precision":6}@ | <span id="control"> Ok</span>|
-| RMS| µm| - |    @PARAM{"Name":"Toleranz","Precision":6}@ |  @PARAM{"Name":"Sq","Precision":6}@ | <span id="controlRMS"> Ok</span>|
+| Flatness   | µm| @PARAM{"Name":"max_Ebenheit","Precision":6}@ |     |  @PARAM{"Name":"Sz","Precision":4}@ | <span id="control"> Ok</span>|
+| RMS| µm| - |    @PARAM{"Name":"Toleranz","Precision":6}@ |  @PARAM{"Name":"Sq","Precision":4}@ | <span id="controlRMS"> Ok</span>|
  
 
 
