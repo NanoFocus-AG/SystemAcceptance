@@ -18,9 +18,9 @@
 |System: |  CX |Calibration instruction:|  |
 |Type|   CX | Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
-|Customer:| @PARAM{"Name":"Customer"}@|||
-|Objective Lens: |   @PARAM{"Name":"Typ/Type","Precision":12}@ |||
-| |  |||
+|Customer:| @PARAM{"Name":"Manufacturer"}@|||
+|Objective Lens: |@PARAM{"Name":"Lens"}@  /  @PARAM{"Name":"Typ/Type","Precision":12}@ |||
+|||||
 |Standard: |@PARAM{"Name":"Ebenheitsnormal","Precision":12}@|||
 
 ### Terms of measurement 
@@ -32,7 +32,7 @@
 |Frequency| @PARAM{"Name":"Frequency"}@ Hz|
  
 
- || 
+|| 
 |:-:|
 |![](Linearity_LS.svg)|
 
@@ -41,8 +41,8 @@
 
 * Z-Measuring range :   <span id="zrange"> </span> mm
 
-||||||||
-|:-:|:-:|:-:|:-:|:-:|:-:|
+||||||
+|:-:|:-:|:-:|:-:|:-:|
 | |unit   |nominal   |  actual  | status|
 | Lin. Error     | µm | @PARAM{"Name":"Linearity Table + Sensor","Precision":6}@ |  @PARAM{"Name":"Wt","Precision":3}@ | <span id="control">  </span>|
  

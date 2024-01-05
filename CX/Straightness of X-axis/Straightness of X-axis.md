@@ -15,8 +15,8 @@
 |System: |  CX |Calibration instruction:|  |
 |Type|   CX | Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
-|Customer:| @PARAM{"Name":"Customer"}@|||
-|Objective Lens: |   @PARAM{"Name":"Typ/Type","Precision":12}@ |||
+|Customer:| @PARAM{"Name":"Manufacturer"}@|||
+|Objective Lens: |@PARAM{"Name":"Lens"}@  /  @PARAM{"Name":"Typ/Type","Precision":12}@ |||
 | |  |||
 |Stage: |  @PARAM{"Name":"Typ der Achse"}@ |||
 |Standard: |@PARAM{"Name":"Ebenheitsnormal","Precision":12}@|||
@@ -31,15 +31,15 @@
  
 
 
- || 
+|| 
 |:-:|
 |![](StraightnessX_LS.svg)|
 
 
 ### Evaluation
 
-|||||||
-|:-:|:-:|:-:|:-:|:-:|:-:|
+||||||
+|:-:|:-:|:-:|:-:|:-:|
 | |unit   |nominal   |   actual  | status|
 | Straightness     | µm | @PARAM{"Name":"Straightness","Precision":6}@  |   @PARAM{"Name":"Wt","Precision":3}@ | <span id="control"> Ok</span>|
  
