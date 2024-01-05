@@ -15,7 +15,7 @@
 |System: |  CM |Calibration instruction:| VDI/VDE 2655 Part 1.2|
 |Type|  CM explorer| Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
-|Customer:| @PARAM{"Name":"Customer"}@|||
+|Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@|||
 |Obj.Number:| @PARAM{"Name":"LensSerial"}@|||
 |Standard: |@PARAM{"Name":"Ebenheitsnormal","Precision":12}@|||
@@ -35,8 +35,8 @@
 |||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|
 | |unit|nominal value <| tolerance +/- | actual value| status|
-| Flatness   | µm| @PARAM{"Name":"max_Ebenheit","Precision":6}@ |     |  @PARAM{"Name":"Sz","Precision":4}@ | <span id="control"> Ok</span>|
-| RMS| µm| - |    @PARAM{"Name":"Toleranz","Precision":6}@ |  @PARAM{"Name":"Sq","Precision":4}@ | <span id="controlRMS"> Ok</span>|
+| Flatness   | µm| @PARAM{"Name":"max_Ebenheit","Precision":6}@ |     |  @PARAM{"Name":"Sz","Precision":6}@ | <span id="control"> Ok</span>|
+| RMS| µm| - |    @PARAM{"Name":"Toleranz","Precision":6}@ |  @PARAM{"Name":"Sq","Precision":6}@ | <span id="controlRMS"> Ok</span>|
  
 
 

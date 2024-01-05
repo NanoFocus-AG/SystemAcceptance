@@ -14,7 +14,7 @@
 |System: |  CM |Calibration instruction:| VDI/VDE 2655 Part 1.2|
 |Type|   CM explorer| Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
-|Customer:| @PARAM{"Name":"Customer"}@|||
+|Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@|||
 |Obj.Number:| @PARAM{"Name":"LensSerial"}@|||
 |Standard: |@PARAM{"Name":"Lateralnormal","Precision":12}@|||

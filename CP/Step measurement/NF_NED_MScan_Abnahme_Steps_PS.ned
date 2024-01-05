@@ -8,14 +8,24 @@
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
                     </NFParameter>
                     <NFParameter Name="WidthRadiusPixel">
-                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">5</NFVariant>
+                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
                     </NFParameter>
                 </NFParameterSet>
             </NFEvaluation>
             <NextTopoNodes>
+                <NextTopo NextIndex="1" SourcePort="0" DestinationPort="0" />
+            </NextTopoNodes>
+            <NextParameterNodes />
+            <NextInputParameterNodes />
+        </NFComplexEvalNode>
+        <NFComplexEvalNode Index="1" Description="">
+            <NFEvaluation Name="NFInterpolator">
+                <NFParameterSet />
+            </NFEvaluation>
+            <NextTopoNodes>
                 <NextTopo NextIndex="2" SourcePort="0" DestinationPort="0" />
-                <NextTopo NextIndex="53" SourcePort="0" DestinationPort="0" />
                 <NextTopo NextIndex="3" SourcePort="0" DestinationPort="0" />
+                <NextTopo NextIndex="53" SourcePort="0" DestinationPort="0" />
             </NextTopoNodes>
             <NextParameterNodes />
             <NextInputParameterNodes />
@@ -341,7 +351,7 @@
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
                     </NFParameter>
                     <NFParameter Name="SizeX [Pixel]">
-                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
+                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1000</NFVariant>
                     </NFParameter>
                     <NFParameter Name="SizeY [Pixel]">
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
@@ -370,7 +380,7 @@
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
                     </NFParameter>
                     <NFParameter Name="SizeX [Pixel]">
-                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
+                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1000</NFVariant>
                     </NFParameter>
                     <NFParameter Name="SizeY [Pixel]">
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
@@ -399,7 +409,7 @@
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
                     </NFParameter>
                     <NFParameter Name="SizeX [Pixel]">
-                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
+                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1000</NFVariant>
                     </NFParameter>
                     <NFParameter Name="SizeY [Pixel]">
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
@@ -428,7 +438,7 @@
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
                     </NFParameter>
                     <NFParameter Name="SizeX [Pixel]">
-                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
+                        <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1000</NFVariant>
                     </NFParameter>
                     <NFParameter Name="SizeY [Pixel]">
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
@@ -480,9 +490,6 @@
             <NextTopoNodes />
             <NextParameterNodes>
                 <NextParameter NextIndex="37" SourceParameterName="Mean" DestinationParameterName="A" />
-                <NextParameter NextIndex="72" SourceParameterName="Mean" DestinationParameterName="C" />
-                <NextParameter NextIndex="70" SourceParameterName="Mean" DestinationParameterName="C" />
-                <NextParameter NextIndex="48" SourceParameterName="Mean" DestinationParameterName="A" />
             </NextParameterNodes>
             <NextInputParameterNodes />
         </NFComplexEvalNode>
@@ -503,9 +510,6 @@
             <NextTopoNodes />
             <NextParameterNodes>
                 <NextParameter NextIndex="38" SourceParameterName="Mean" DestinationParameterName="A" />
-                <NextParameter NextIndex="68" SourceParameterName="Mean" DestinationParameterName="C" />
-                <NextParameter NextIndex="66" SourceParameterName="Mean" DestinationParameterName="C" />
-                <NextParameter NextIndex="49" SourceParameterName="Mean" DestinationParameterName="A" />
             </NextParameterNodes>
             <NextInputParameterNodes />
         </NFComplexEvalNode>
@@ -526,9 +530,6 @@
             <NextTopoNodes />
             <NextParameterNodes>
                 <NextParameter NextIndex="39" SourceParameterName="Mean" DestinationParameterName="A" />
-                <NextParameter NextIndex="64" SourceParameterName="Mean" DestinationParameterName="C" />
-                <NextParameter NextIndex="60" SourceParameterName="Mean" DestinationParameterName="C" />
-                <NextParameter NextIndex="50" SourceParameterName="Mean" DestinationParameterName="A" />
             </NextParameterNodes>
             <NextInputParameterNodes />
         </NFComplexEvalNode>
@@ -544,7 +545,9 @@
                 </NFParameterSet>
             </NFEvaluation>
             <NextTopoNodes />
-            <NextParameterNodes />
+            <NextParameterNodes>
+                <NextParameter NextIndex="48" SourceParameterName="Result" DestinationParameterName="A" />
+            </NextParameterNodes>
             <NextInputParameterNodes />
         </NFComplexEvalNode>
         <NFComplexEvalNode Index="38" Description="">
@@ -559,7 +562,9 @@
                 </NFParameterSet>
             </NFEvaluation>
             <NextTopoNodes />
-            <NextParameterNodes />
+            <NextParameterNodes>
+                <NextParameter NextIndex="49" SourceParameterName="Result" DestinationParameterName="A" />
+            </NextParameterNodes>
             <NextInputParameterNodes />
         </NFComplexEvalNode>
         <NFComplexEvalNode Index="39" Description="">
@@ -574,14 +579,16 @@
                 </NFParameterSet>
             </NFEvaluation>
             <NextTopoNodes />
-            <NextParameterNodes />
+            <NextParameterNodes>
+                <NextParameter NextIndex="50" SourceParameterName="Result" DestinationParameterName="A" />
+            </NextParameterNodes>
             <NextInputParameterNodes />
         </NFComplexEvalNode>
         <NFComplexEvalNode Index="41" Description="">
             <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;">
                 <NFParameterSet>
                     <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">0</NFVariant>
+                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">10000</NFVariant>
                     </NFParameter>
                     <NFParameter Name="B">
                         <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">0</NFVariant>
@@ -598,7 +605,7 @@
             <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;">
                 <NFParameterSet>
                     <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">0</NFVariant>
+                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">18000</NFVariant>
                     </NFParameter>
                     <NFParameter Name="B">
                         <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">0</NFVariant>
@@ -615,7 +622,7 @@
             <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;">
                 <NFParameterSet>
                     <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">0</NFVariant>
+                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">28000</NFVariant>
                     </NFParameter>
                     <NFParameter Name="B">
                         <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">0</NFVariant>
@@ -637,8 +644,30 @@
                 <NextParameter NextIndex="41" SourceParameterName="DeltaX" DestinationParameterName="B" />
                 <NextParameter NextIndex="42" SourceParameterName="DeltaX" DestinationParameterName="B" />
                 <NextParameter NextIndex="43" SourceParameterName="DeltaX" DestinationParameterName="B" />
-                <NextParameter NextIndex="96" SourceParameterName="Maximum Height" DestinationParameterName="A" />
-                <NextParameter NextIndex="108" SourceParameterName="DeltaX" DestinationParameterName="B" />
+                <NextParameter NextIndex="45" SourceParameterName="DeltaX" DestinationParameterName="B" />
+                <NextParameter NextIndex="77" SourceParameterName="OffsetX" DestinationParameterName="A" />
+                <NextParameter NextIndex="78" SourceParameterName="OffsetX" DestinationParameterName="A" />
+                <NextParameter NextIndex="79" SourceParameterName="OffsetX" DestinationParameterName="A" />
+            </NextParameterNodes>
+            <NextInputParameterNodes />
+        </NFComplexEvalNode>
+        <NFComplexEvalNode Index="45" Description="">
+            <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;">
+                <NFParameterSet>
+                    <NFParameter Name="A">
+                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">6000</NFVariant>
+                    </NFParameter>
+                    <NFParameter Name="B">
+                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">0</NFVariant>
+                    </NFParameter>
+                </NFParameterSet>
+            </NFEvaluation>
+            <NextTopoNodes />
+            <NextParameterNodes>
+                <NextParameter NextIndex="26" SourceParameterName="Result" DestinationParameterName="SizeX [Pixel]" />
+                <NextParameter NextIndex="27" SourceParameterName="Result" DestinationParameterName="SizeX [Pixel]" />
+                <NextParameter NextIndex="28" SourceParameterName="Result" DestinationParameterName="SizeX [Pixel]" />
+                <NextParameter NextIndex="29" SourceParameterName="Result" DestinationParameterName="SizeX [Pixel]" />
             </NextParameterNodes>
             <NextInputParameterNodes />
         </NFComplexEvalNode>
@@ -655,6 +684,8 @@
             </NFEvaluation>
             <NextTopoNodes />
             <NextParameterNodes>
+                <NextParameter NextIndex="72" SourceParameterName="Result" DestinationParameterName="C" />
+                <NextParameter NextIndex="70" SourceParameterName="Result" DestinationParameterName="C" />
                 <NextParameter NextIndex="93" SourceParameterName="Result" DestinationParameterName="A" />
             </NextParameterNodes>
             <NextInputParameterNodes />
@@ -672,6 +703,8 @@
             </NFEvaluation>
             <NextTopoNodes />
             <NextParameterNodes>
+                <NextParameter NextIndex="68" SourceParameterName="Result" DestinationParameterName="C" />
+                <NextParameter NextIndex="66" SourceParameterName="Result" DestinationParameterName="C" />
                 <NextParameter NextIndex="94" SourceParameterName="Result" DestinationParameterName="A" />
             </NextParameterNodes>
             <NextInputParameterNodes />
@@ -689,6 +722,8 @@
             </NFEvaluation>
             <NextTopoNodes />
             <NextParameterNodes>
+                <NextParameter NextIndex="64" SourceParameterName="Result" DestinationParameterName="C" />
+                <NextParameter NextIndex="60" SourceParameterName="Result" DestinationParameterName="C" />
                 <NextParameter NextIndex="92" SourceParameterName="Result" DestinationParameterName="A" />
             </NextParameterNodes>
             <NextInputParameterNodes />
@@ -729,7 +764,7 @@
             <NFEvaluation Name="NFRemoveLinearProfile">
                 <NFParameterSet>
                     <NFParameter Name="Remove X-Offset">
-                        <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
+                        <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
                     </NFParameter>
                     <NFParameter Name="Slope [Rad]">
                         <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
@@ -746,7 +781,6 @@
                 <NextTopo NextIndex="27" SourcePort="0" DestinationPort="0" />
                 <NextTopo NextIndex="26" SourcePort="0" DestinationPort="0" />
                 <NextTopo NextIndex="55" SourcePort="0" DestinationPort="0" />
-                <NextTopo NextIndex="95" SourcePort="0" DestinationPort="0" />
             </NextTopoNodes>
             <NextParameterNodes />
             <NextInputParameterNodes />
@@ -1131,6 +1165,68 @@
             </NextParameterNodes>
             <NextInputParameterNodes />
         </NFComplexEvalNode>
+        <NFComplexEvalNode Index="73" Description="">
+            <NFEvaluation Name="NFParameterMultiplexer">
+                <NFParameterSet>
+                    <NFParameter Name="InputParameter">
+                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">6500</NFVariant>
+                    </NFParameter>
+                </NFParameterSet>
+            </NFEvaluation>
+            <NextTopoNodes />
+            <NextParameterNodes>
+                <NextParameter NextIndex="45" SourceParameterName="OutputParameter" DestinationParameterName="A" />
+                <NextParameter NextIndex="82" SourceParameterName="OutputParameter" DestinationParameterName="B" />
+                <NextParameter NextIndex="81" SourceParameterName="OutputParameter" DestinationParameterName="B" />
+                <NextParameter NextIndex="80" SourceParameterName="OutputParameter" DestinationParameterName="B" />
+            </NextParameterNodes>
+            <NextInputParameterNodes />
+        </NFComplexEvalNode>
+        <NFComplexEvalNode Index="74" Description="">
+            <NFEvaluation Name="NFParameterMultiplexer">
+                <NFParameterSet>
+                    <NFParameter Name="InputParameter">
+                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">10000</NFVariant>
+                    </NFParameter>
+                </NFParameterSet>
+            </NFEvaluation>
+            <NextTopoNodes />
+            <NextParameterNodes>
+                <NextParameter NextIndex="41" SourceParameterName="OutputParameter" DestinationParameterName="A" />
+                <NextParameter NextIndex="77" SourceParameterName="OutputParameter" DestinationParameterName="B" />
+            </NextParameterNodes>
+            <NextInputParameterNodes />
+        </NFComplexEvalNode>
+        <NFComplexEvalNode Index="75" Description="">
+            <NFEvaluation Name="NFParameterMultiplexer">
+                <NFParameterSet>
+                    <NFParameter Name="InputParameter">
+                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">18250</NFVariant>
+                    </NFParameter>
+                </NFParameterSet>
+            </NFEvaluation>
+            <NextTopoNodes />
+            <NextParameterNodes>
+                <NextParameter NextIndex="42" SourceParameterName="OutputParameter" DestinationParameterName="A" />
+                <NextParameter NextIndex="78" SourceParameterName="OutputParameter" DestinationParameterName="B" />
+            </NextParameterNodes>
+            <NextInputParameterNodes />
+        </NFComplexEvalNode>
+        <NFComplexEvalNode Index="76" Description="">
+            <NFEvaluation Name="NFParameterMultiplexer">
+                <NFParameterSet>
+                    <NFParameter Name="InputParameter">
+                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">28000</NFVariant>
+                    </NFParameter>
+                </NFParameterSet>
+            </NFEvaluation>
+            <NextTopoNodes />
+            <NextParameterNodes>
+                <NextParameter NextIndex="43" SourceParameterName="OutputParameter" DestinationParameterName="A" />
+                <NextParameter NextIndex="79" SourceParameterName="OutputParameter" DestinationParameterName="B" />
+            </NextParameterNodes>
+            <NextInputParameterNodes />
+        </NFComplexEvalNode>
         <NFComplexEvalNode Index="77" Description="">
             <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;">
                 <NFParameterSet>
@@ -1414,7 +1510,7 @@
             <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;">
                 <NFParameterSet>
                     <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
+                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">0</NFVariant>
                     </NFParameter>
                     <NFParameter Name="B">
                         <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">20</NFVariant>
@@ -1431,7 +1527,7 @@
             <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;">
                 <NFParameterSet>
                     <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
+                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">0</NFVariant>
                     </NFParameter>
                     <NFParameter Name="B">
                         <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">20</NFVariant>
@@ -1448,7 +1544,7 @@
             <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;">
                 <NFParameterSet>
                     <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
+                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">0</NFVariant>
                     </NFParameter>
                     <NFParameter Name="B">
                         <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">20</NFVariant>
@@ -1461,231 +1557,24 @@
             </NextParameterNodes>
             <NextInputParameterNodes />
         </NFComplexEvalNode>
-        <NFComplexEvalNode Index="95" Description="">
-            <NFEvaluation Name="NFThresholdHeights">
-                <NFParameterSet>
-                    <NFParameter Name="Cut Height and Intensity">
-                        <NFVariant Type="bool" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
-                    </NFParameter>
-                    <NFParameter Name="lower Height">
-                        <NFVariant Type="float" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">-3.402823466e+38</NFVariant>
-                    </NFParameter>
-                    <NFParameter Name="upper Height">
-                        <NFVariant Type="float" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">3.402823466e+38</NFVariant>
-                    </NFParameter>
-                </NFParameterSet>
-            </NFEvaluation>
-            <NextTopoNodes>
-                <NextTopo NextIndex="97" SourcePort="0" DestinationPort="0" />
-            </NextTopoNodes>
-            <NextParameterNodes />
-            <NextInputParameterNodes />
-        </NFComplexEvalNode>
-        <NFComplexEvalNode Index="96" Description="">
-            <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarSub&gt;">
-                <NFParameterSet>
-                    <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                    <NFParameter Name="B">
-                        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">100</NFVariant>
-                    </NFParameter>
-                </NFParameterSet>
-            </NFEvaluation>
-            <NextTopoNodes />
-            <NextParameterNodes>
-                <NextParameter NextIndex="95" SourceParameterName="Result" DestinationParameterName="lower Height" />
-            </NextParameterNodes>
-            <NextInputParameterNodes />
-        </NFComplexEvalNode>
-        <NFComplexEvalNode Index="97" Description="">
-            <NFEvaluation Name="NFProfileGetUnmaskedSections">
-                <NFParameterSet />
-            </NFEvaluation>
-            <NextTopoNodes />
-            <NextParameterNodes>
-                <NextParameter NextIndex="99" SourceParameterName="StartPositions" DestinationParameterName="A" />
-                <NextParameter NextIndex="100" SourceParameterName="Lengths" DestinationParameterName="A" />
-            </NextParameterNodes>
-            <NextInputParameterNodes />
-        </NFComplexEvalNode>
-        <NFComplexEvalNode Index="99" Description="">
-            <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarGetVectorElement&gt;">
-                <NFParameterSet>
-                    <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                    <NFParameter Name="B">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                </NFParameterSet>
-            </NFEvaluation>
-            <NextTopoNodes />
-            <NextParameterNodes>
-                <NextParameter NextIndex="102" SourceParameterName="Result" DestinationParameterName="A" />
-            </NextParameterNodes>
-            <NextInputParameterNodes />
-        </NFComplexEvalNode>
-        <NFComplexEvalNode Index="100" Description="">
-            <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarGetVectorElement&gt;">
-                <NFParameterSet>
-                    <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                    <NFParameter Name="B">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                </NFParameterSet>
-            </NFEvaluation>
-            <NextTopoNodes />
-            <NextParameterNodes>
-                <NextParameter NextIndex="101" SourceParameterName="Result" DestinationParameterName="A" />
-                <NextParameter NextIndex="103" SourceParameterName="Result" DestinationParameterName="A" />
-                <NextParameter NextIndex="104" SourceParameterName="Result" DestinationParameterName="B" />
-                <NextParameter NextIndex="105" SourceParameterName="Result" DestinationParameterName="B" />
-            </NextParameterNodes>
-            <NextInputParameterNodes />
-        </NFComplexEvalNode>
-        <NFComplexEvalNode Index="101" Description="">
-            <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;">
-                <NFParameterSet>
-                    <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                    <NFParameter Name="B">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">4</NFVariant>
-                    </NFParameter>
-                </NFParameterSet>
-            </NFEvaluation>
-            <NextTopoNodes />
-            <NextParameterNodes>
-                <NextParameter NextIndex="102" SourceParameterName="Result" DestinationParameterName="B" />
-            </NextParameterNodes>
-            <NextInputParameterNodes />
-        </NFComplexEvalNode>
-        <NFComplexEvalNode Index="102" Description="">
-            <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;">
-                <NFParameterSet>
-                    <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                    <NFParameter Name="B">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                </NFParameterSet>
-            </NFEvaluation>
-            <NextTopoNodes />
-            <NextParameterNodes>
-                <NextParameter NextIndex="79" SourceParameterName="Result" DestinationParameterName="B" />
-                <NextParameter NextIndex="43" SourceParameterName="Result" DestinationParameterName="A" />
-                <NextParameter NextIndex="104" SourceParameterName="Result" DestinationParameterName="A" />
-            </NextParameterNodes>
-            <NextInputParameterNodes />
-        </NFComplexEvalNode>
-        <NFComplexEvalNode Index="103" Description="">
-            <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;">
-                <NFParameterSet>
-                    <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                    <NFParameter Name="B">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">2</NFVariant>
-                    </NFParameter>
-                </NFParameterSet>
-            </NFEvaluation>
-            <NextTopoNodes />
-            <NextParameterNodes>
-                <NextParameter NextIndex="80" SourceParameterName="Result" DestinationParameterName="B" />
-                <NextParameter NextIndex="81" SourceParameterName="Result" DestinationParameterName="B" />
-                <NextParameter NextIndex="82" SourceParameterName="Result" DestinationParameterName="B" />
-                <NextParameter NextIndex="108" SourceParameterName="Result" DestinationParameterName="A" />
-            </NextParameterNodes>
-            <NextInputParameterNodes />
-        </NFComplexEvalNode>
-        <NFComplexEvalNode Index="104" Description="">
-            <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarSub&gt;">
-                <NFParameterSet>
-                    <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                    <NFParameter Name="B">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                </NFParameterSet>
-            </NFEvaluation>
-            <NextTopoNodes />
-            <NextParameterNodes>
-                <NextParameter NextIndex="105" SourceParameterName="Result" DestinationParameterName="A" />
-                <NextParameter NextIndex="78" SourceParameterName="Result" DestinationParameterName="B" />
-                <NextParameter NextIndex="42" SourceParameterName="Result" DestinationParameterName="A" />
-            </NextParameterNodes>
-            <NextInputParameterNodes />
-        </NFComplexEvalNode>
-        <NFComplexEvalNode Index="105" Description="">
-            <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarSub&gt;">
-                <NFParameterSet>
-                    <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                    <NFParameter Name="B">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                </NFParameterSet>
-            </NFEvaluation>
-            <NextTopoNodes />
-            <NextParameterNodes>
-                <NextParameter NextIndex="77" SourceParameterName="Result" DestinationParameterName="B" />
-                <NextParameter NextIndex="41" SourceParameterName="Result" DestinationParameterName="A" />
-            </NextParameterNodes>
-            <NextInputParameterNodes />
-        </NFComplexEvalNode>
-        <NFComplexEvalNode Index="108" Description="">
-            <NFEvaluation Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;">
-                <NFParameterSet>
-                    <NFParameter Name="A">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                    <NFParameter Name="B">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
-                    </NFParameter>
-                </NFParameterSet>
-            </NFEvaluation>
-            <NextTopoNodes />
-            <NextParameterNodes>
-                <NextParameter NextIndex="26" SourceParameterName="Result" DestinationParameterName="SizeX [Pixel]" />
-                <NextParameter NextIndex="27" SourceParameterName="Result" DestinationParameterName="SizeX [Pixel]" />
-                <NextParameter NextIndex="28" SourceParameterName="Result" DestinationParameterName="SizeX [Pixel]" />
-                <NextParameter NextIndex="29" SourceParameterName="Result" DestinationParameterName="SizeX [Pixel]" />
-            </NextParameterNodes>
-            <NextInputParameterNodes />
-        </NFComplexEvalNode>
-        <NFComplexEvalNode Index="110" Description="">
-            <NFEvaluation Name="NFInterpolator">
-                <NFParameterSet />
-            </NFEvaluation>
-            <NextTopoNodes>
-                <NextTopo NextIndex="0" SourcePort="0" DestinationPort="0" />
-            </NextTopoNodes>
-            <NextParameterNodes />
-            <NextInputParameterNodes />
-        </NFComplexEvalNode>
         <InputTopoMapping>
+            <IOTopoMap EvalIndex="0" EvalPort="0" MapPort="0" />
             <IOTopoMap EvalIndex="13" EvalPort="0" MapPort="0" />
-            <IOTopoMap EvalIndex="110" EvalPort="0" MapPort="0" />
         </InputTopoMapping>
         <OutputTopoMapping>
-            <IOTopoMap EvalIndex="53" EvalPort="0" MapPort="0" />
-            <IOTopoMap EvalIndex="2" EvalPort="0" MapPort="1" />
-            <IOTopoMap EvalIndex="3" EvalPort="0" MapPort="2" />
-            <IOTopoMap EvalIndex="97" EvalPort="0" MapPort="3" />
+            <IOTopoMap EvalIndex="2" EvalPort="0" MapPort="0" />
+            <IOTopoMap EvalIndex="3" EvalPort="0" MapPort="1" />
+            <IOTopoMap EvalIndex="53" EvalPort="0" MapPort="2" />
+            <IOTopoMap EvalIndex="28" EvalPort="0" MapPort="3" />
             <IOTopoMap EvalIndex="29" EvalPort="0" MapPort="4" />
-            <IOTopoMap EvalIndex="28" EvalPort="0" MapPort="5" />
-            <IOTopoMap EvalIndex="27" EvalPort="0" MapPort="6" />
         </OutputTopoMapping>
         <InputParameterMapping>
             <IOParameterMap EvalIndex="55" EvalParameterName="Label" MapName="DataLabel" />
-            <IOParameterMap EvalIndex="96" EvalParameterName="B" MapName="Distance From Max" />
-            <IOParameterMap EvalIndex="55" EvalParameterName="ImageSize_X [Pix]" MapName="ImageWidth [Pix]" />
+			<IOParameterMap EvalIndex="55" EvalParameterName="ImageSize_X [Pix]" MapName="ImageWidth [Pix]" />			
+            <IOParameterMap EvalIndex="74" EvalParameterName="InputParameter" MapName="ROI1_Offset [um]" />
+            <IOParameterMap EvalIndex="75" EvalParameterName="InputParameter" MapName="ROI2_Offset [um]" />
+            <IOParameterMap EvalIndex="76" EvalParameterName="InputParameter" MapName="ROI3_Offset [um]" />
+            <IOParameterMap EvalIndex="73" EvalParameterName="InputParameter" MapName="ROILength [um]" />
             <IOParameterMap EvalIndex="55" EvalParameterName="Title" MapName="Title" />
             <IOParameterMap EvalIndex="83" EvalParameterName="Use User Tmp Dir" MapName="UseUserTempDir" />
             <IOParameterMap EvalIndex="83" EvalParameterName="Directory" MapName="WorkingDirectory" />
@@ -1695,231 +1584,111 @@
             <IOParameterMap EvalIndex="52" EvalParameterName="Result" MapName="MeanROI2" />
             <IOParameterMap EvalIndex="17" EvalParameterName="Result" MapName="PosMeanROI1" />
             <IOParameterMap EvalIndex="20" EvalParameterName="Result" MapName="PosMeanROI2" />
-            <IOParameterMap EvalIndex="37" EvalParameterName="Result" MapName="StepHeight1" />
-            <IOParameterMap EvalIndex="38" EvalParameterName="Result" MapName="StepHeight2" />
-            <IOParameterMap EvalIndex="39" EvalParameterName="Result" MapName="StepHeight3" />
+            <IOParameterMap EvalIndex="48" EvalParameterName="Result" MapName="StepHeight1" />
+            <IOParameterMap EvalIndex="49" EvalParameterName="Result" MapName="StepHeight2" />
+            <IOParameterMap EvalIndex="50" EvalParameterName="Result" MapName="StepHeight3" />
         </OutputParameterMapping>
         <sMetaInfo>
             <NFParameter Name="SaveCount">
-                <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">42</NFVariant>
+                <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">1</NFVariant>
             </NFParameter>
             <NFParameter Name="SaveDates">
                 <NFVariant Type="char [][]" Unit="" UnitMultiplicator="1" UnitExponent="1">
                     <string>2022-11-22 10:39:00</string>
-                    <string>2023-05-16 17:36:23</string>
-                    <string>2023-05-16 17:39:07</string>
-                    <string>2023-06-13 10:44:14</string>
-                    <string>2023-06-13 14:40:26</string>
-                    <string>2023-06-13 14:45:57</string>
-                    <string>2023-06-13 14:55:50</string>
-                    <string>2023-06-13 16:06:07</string>
-                    <string>2023-06-13 16:19:11</string>
-                    <string>2023-06-13 16:26:48</string>
-                    <string>2023-06-13 16:35:26</string>
-                    <string>2023-06-13 16:39:08</string>
-                    <string>2023-06-13 16:44:19</string>
-                    <string>2023-06-13 16:44:35</string>
-                    <string>2023-06-13 16:51:52</string>
-                    <string>2023-06-13 17:05:02</string>
-                    <string>2023-06-13 17:05:47</string>
-                    <string>2023-06-13 17:07:40</string>
-                    <string>2023-06-13 17:18:04</string>
-                    <string>2023-06-13 17:38:47</string>
-                    <string>2023-06-14 08:23:38</string>
-                    <string>2023-06-14 08:36:33</string>
-                    <string>2023-06-14 08:41:49</string>
-                    <string>2023-06-14 08:54:51</string>
-                    <string>2023-06-14 09:10:24</string>
-                    <string>2023-06-14 09:18:11</string>
-                    <string>2023-06-14 09:18:59</string>
-                    <string>2023-06-14 09:22:24</string>
-                    <string>2023-06-14 09:31:36</string>
-                    <string>2023-06-14 09:32:41</string>
-                    <string>2023-06-14 09:33:37</string>
-                    <string>2023-06-14 09:43:46</string>
-                    <string>2023-06-14 09:44:15</string>
-                    <string>2023-06-14 09:56:56</string>
-                    <string>2023-06-14 10:00:32</string>
-                    <string>2023-06-14 10:01:01</string>
-                    <string>2023-06-14 10:04:14</string>
-                    <string>2023-06-14 10:06:58</string>
-                    <string>2023-06-14 10:07:47</string>
-                    <string>2023-06-14 10:08:25</string>
-                    <string>2023-06-14 10:17:33</string>
-                    <string>2023-06-14 12:00:11</string>
                 </NFVariant>
             </NFParameter>
             <NFParameter Name="SaveNames">
                 <NFVariant Type="char [][]" Unit="" UnitMultiplicator="1" UnitExponent="1">
                     <string>E:/code/NFEval_Trunk/NFEvalPlugins/NFComplexFilters/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NFEvalSDK_VS2017_Win64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NFEvalSDK_VS2017_Win64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_LS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_LS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_LS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_LS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_LS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_LS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_LS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_LS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_LS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/build/NanoFocus/trunk/vs2017_x64/bin/Plugins/NF_NED_MScan_Abnahme_Steps_PS_experimental.ned</string>
-                    <string>E:/code/trunk/NFEval/NFEvalPlugins/NFComplexFilters/NF_NED_MScan_Abnahme_Steps_PS.ned</string>
                 </NFVariant>
             </NFParameter>
             <NFParameter Name="SaveUsers">
                 <NFVariant Type="char [][]" Unit="" UnitMultiplicator="1" UnitExponent="1">
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
-                    <string>rose</string>
                     <string>rose</string>
                 </NFVariant>
             </NFParameter>
         </sMetaInfo>
         <NFComplexAlgoGUIDescription Version="1" Name="NF_NED_MScan_Abnahme_Steps_PS">
             <NFComplexAlgoNodeGUI Index="0">
-                <NFAlgoGUI Name="NFMedianHeights" PosX="4768.57" PosY="3443.74" />
+                <NFAlgoGUI Name="NFMedianHeights" PosX="4500.33" PosY="3629" />
+            </NFComplexAlgoNodeGUI>
+            <NFComplexAlgoNodeGUI Index="1">
+                <NFAlgoGUI Name="NFInterpolator" PosX="4500.33" PosY="3853.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="2">
-                <NFAlgoGUI Name="NFRoiFilter" PosX="4765.48" PosY="3536.91" />
+                <NFAlgoGUI Name="NFRoiFilter" PosX="4775.67" PosY="4005.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="3">
-                <NFAlgoGUI Name="NFRoiFilter" PosX="5443.77" PosY="3442.2" />
+                <NFAlgoGUI Name="NFRoiFilter" PosX="5433.67" PosY="3846" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="9">
-                <NFAlgoGUI Name="NFProfStatistics" PosX="4773.01" PosY="3665.53" />
+                <NFAlgoGUI Name="NFProfStatistics" PosX="4777.33" PosY="4084" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="10">
-                <NFAlgoGUI Name="NFProfStatistics" PosX="5446.46" PosY="3558.96" />
+                <NFAlgoGUI Name="NFProfStatistics" PosX="5433" PosY="4023.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="12">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="5086.11" PosY="3537.18" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="5101" PosY="4010" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="13">
-                <NFAlgoGUI Name="NFTopoInfo" PosX="5207.86" PosY="3350.87" />
+                <NFAlgoGUI Name="NFTopoInfo" PosX="5167.67" PosY="3736.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="14">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="5450.7" PosY="3355.86" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="5436" PosY="3738.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="15">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="5092.08" PosY="4005.01" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="5013.33" PosY="4291.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="16">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5090.12" PosY="4166.96" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5014" PosY="4381.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="17">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="5484.73" PosY="4173.3" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="4855.33" PosY="4465" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="18">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="5188.94" PosY="3712.02" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="5101" PosY="4091" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="19">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5212.52" PosY="3850.67" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5263" PosY="4204" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="20">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="5647.4" PosY="3857.64" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="5619.33" PosY="4204" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="21">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="5464.73" PosY="3668.66" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="5435.33" PosY="4345.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="22">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="5657.45" PosY="4038.27" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="5132.34" PosY="4469.66" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="23">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="5496.04" PosY="3911.31" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="5440" PosY="4472.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="26">
-                <NFAlgoGUI Name="NFRoiFilter" PosX="4139" PosY="5039" />
+                <NFAlgoGUI Name="NFRoiFilter" PosX="4271.67" PosY="5326.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="27">
-                <NFAlgoGUI Name="NFRoiFilter" PosX="4429.99" PosY="5030.67" />
+                <NFAlgoGUI Name="NFRoiFilter" PosX="4432" PosY="5330.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="28">
-                <NFAlgoGUI Name="NFRoiFilter" PosX="4601.67" PosY="5029.34" />
+                <NFAlgoGUI Name="NFRoiFilter" PosX="4606.33" PosY="5428" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="29">
-                <NFAlgoGUI Name="NFRoiFilter" PosX="4781.67" PosY="5038.67" />
+                <NFAlgoGUI Name="NFRoiFilter" PosX="4779" PosY="5548.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="30">
-                <NFAlgoGUI Name="NFProfStatistics" PosX="4140.33" PosY="5706" />
+                <NFAlgoGUI Name="NFProfStatistics" PosX="4269" PosY="5714" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="31">
-                <NFAlgoGUI Name="NFProfStatistics" PosX="4436" PosY="5551.33" />
+                <NFAlgoGUI Name="NFProfStatistics" PosX="4432.67" PosY="5568" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="32">
-                <NFAlgoGUI Name="NFProfStatistics" PosX="4602" PosY="5583" />
+                <NFAlgoGUI Name="NFProfStatistics" PosX="4603.33" PosY="5572.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="33">
-                <NFAlgoGUI Name="NFProfStatistics" PosX="4780.67" PosY="5638" />
+                <NFAlgoGUI Name="NFProfStatistics" PosX="4778" PosY="5642" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="37">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="4438" PosY="5834" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="4435" PosY="5840" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="38">
                 <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="4603.06" PosY="5781.33" />
@@ -1928,49 +1697,52 @@
                 <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="4783" PosY="5722.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="41">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="3371.66" PosY="4239.34" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="4806.33" PosY="5328" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="42">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="3667.33" PosY="4183" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="4953.33" PosY="5427.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="43">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="3671.67" PosY="4019.01" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="5103.33" PosY="5552.34" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="44">
-                <NFAlgoGUI Name="NFTopoInfo" PosX="3378.96" PosY="4064.87" />
+                <NFAlgoGUI Name="NFTopoInfo" PosX="5226.29" PosY="5130.86" />
+            </NFComplexAlgoNodeGUI>
+            <NFComplexAlgoNodeGUI Index="45">
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="4710.67" PosY="5130.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="48">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="4489.34" PosY="5998.66" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="4434.67" PosY="5937.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="49">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="4733" PosY="6093.33" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="4602.67" PosY="6030.66" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="50">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="5002.33" PosY="6216" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="4780" PosY="6126.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="51">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="4775.01" PosY="3754" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="4775.33" PosY="4171.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="52">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="5648.56" PosY="3561.69" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="5606.46" PosY="4028.51" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="53">
-                <NFAlgoGUI Name="NFRemoveLinearProfile" PosX="3977.44" PosY="3917.49" />
+                <NFAlgoGUI Name="NFRemoveLinearProfile" PosX="4504.74" PosY="4876.19" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="54">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="4368.9" PosY="3755.81" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarMul&gt;" PosX="4572.59" PosY="4369.96" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="55">
-                <NFAlgoGUI Name="NFTopoGnuplotProfile" PosX="6135.97" PosY="4893.71" />
+                <NFAlgoGUI Name="NFTopoGnuplotProfile" PosX="6131.97" PosY="4888.71" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="56">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarCreateVector&gt;" PosX="6139.95" PosY="5560.08" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarCreateVector&gt;" PosX="6138.95" PosY="5578.08" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="57">
                 <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="6139" PosY="5472.2" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="59">
-                <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="6142.33" PosY="5383.75" />
+                <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="6139.66" PosY="5398.42" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="60">
                 <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="6780.61" PosY="6112.96" />
@@ -2005,35 +1777,47 @@
             <NFComplexAlgoNodeGUI Index="72">
                 <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="6784.12" PosY="5653.8" />
             </NFComplexAlgoNodeGUI>
+            <NFComplexAlgoNodeGUI Index="73">
+                <NFAlgoGUI Name="NFParameterMultiplexer" PosX="5218.66" PosY="5025.33" />
+            </NFComplexAlgoNodeGUI>
+            <NFComplexAlgoNodeGUI Index="74">
+                <NFAlgoGUI Name="NFParameterMultiplexer" PosX="5261.33" PosY="5332" />
+            </NFComplexAlgoNodeGUI>
+            <NFComplexAlgoNodeGUI Index="75">
+                <NFAlgoGUI Name="NFParameterMultiplexer" PosX="5428" PosY="5429.33" />
+            </NFComplexAlgoNodeGUI>
+            <NFComplexAlgoNodeGUI Index="76">
+                <NFAlgoGUI Name="NFParameterMultiplexer" PosX="5586.66" PosY="5549.33" />
+            </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="77">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5856.01" PosY="5143.01" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5841.34" PosY="5150.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="78">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5855" PosY="5302.66" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5841.33" PosY="5301.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="79">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5857.66" PosY="5470.65" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5849.33" PosY="5478.66" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="80">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5857.34" PosY="5381.33" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5846.67" PosY="5401.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="81">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5860.33" PosY="5231.33" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5838.66" PosY="5228" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="82">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5857.34" PosY="5073.34" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5830.67" PosY="5074.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="83">
-                <NFAlgoGUI Name="NFGetUserTmpDir" PosX="6342.34" PosY="4889.48" />
+                <NFAlgoGUI Name="NFGetUserTmpDir" PosX="6339.67" PosY="4890.81" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="84">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarCreateVector&gt;" PosX="5580.67" PosY="5911.33" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarCreateVector&gt;" PosX="4870.67" PosY="6653.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="85">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarCreateVector&gt;" PosX="5642.66" PosY="4558.67" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarCreateVector&gt;" PosX="5649.33" PosY="4562.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="86">
-                <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="5642.67" PosY="4633.33" />
+                <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="5644" PosY="4637.33" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="87">
                 <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="5645.34" PosY="4717.33" />
@@ -2042,91 +1826,55 @@
                 <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="5642.67" PosY="4809.34" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="89">
-                <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="5848.33" PosY="6222.33" />
+                <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="4858.66" PosY="6404" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="90">
-                <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="5699.34" PosY="6092" />
+                <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="4864" PosY="6482.67" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="91">
-                <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="5692" PosY="5991.99" />
+                <NFAlgoGUI Name="NFParameterTernaryOperation&lt;Functor::NFVarSetVectorElement&gt;" PosX="4866.66" PosY="6563.99" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="92">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5351.91" PosY="6223.2" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="4585.3" PosY="6407.2" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="93">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5344.49" PosY="5999.68" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="4224.17" PosY="6563.07" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoNodeGUI Index="94">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="5353.02" PosY="6093.19" />
-            </NFComplexAlgoNodeGUI>
-            <NFComplexAlgoNodeGUI Index="95">
-                <NFAlgoGUI Name="NFThresholdHeights" PosX="3679.33" PosY="4336.67" />
-            </NFComplexAlgoNodeGUI>
-            <NFComplexAlgoNodeGUI Index="96">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="3090" PosY="4337.34" />
-            </NFComplexAlgoNodeGUI>
-            <NFComplexAlgoNodeGUI Index="97">
-                <NFAlgoGUI Name="NFProfileGetUnmaskedSections" PosX="3679.33" PosY="4442" />
-            </NFComplexAlgoNodeGUI>
-            <NFComplexAlgoNodeGUI Index="99">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarGetVectorElement&gt;" PosX="3082.67" PosY="4434.01" />
-            </NFComplexAlgoNodeGUI>
-            <NFComplexAlgoNodeGUI Index="100">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarGetVectorElement&gt;" PosX="3675.99" PosY="4545.34" />
-            </NFComplexAlgoNodeGUI>
-            <NFComplexAlgoNodeGUI Index="101">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="3143.32" PosY="4540" />
-            </NFComplexAlgoNodeGUI>
-            <NFComplexAlgoNodeGUI Index="102">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="3066.81" PosY="5433.88" />
-            </NFComplexAlgoNodeGUI>
-            <NFComplexAlgoNodeGUI Index="103">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="3664" PosY="4672.67" />
-            </NFComplexAlgoNodeGUI>
-            <NFComplexAlgoNodeGUI Index="104">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="3288" PosY="5300.66" />
-            </NFComplexAlgoNodeGUI>
-            <NFComplexAlgoNodeGUI Index="105">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarSub&gt;" PosX="3478" PosY="5141.34" />
-            </NFComplexAlgoNodeGUI>
-            <NFComplexAlgoNodeGUI Index="108">
-                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarDiv&gt;" PosX="4616.32" PosY="4068.15" />
-            </NFComplexAlgoNodeGUI>
-            <NFComplexAlgoNodeGUI Index="110">
-                <NFAlgoGUI Name="NFInterpolator" PosX="4764" PosY="3226" />
+                <NFAlgoGUI Name="NFParameterOperation&lt;Functor::NFVarAdd&gt;" PosX="4378.69" PosY="6483.86" />
             </NFComplexAlgoNodeGUI>
             <NFComplexAlgoTopoOutput Index="0">
-                <NFAlgoGUI PosX="3845.8" PosY="3825.82" />
+                <NFAlgoGUI PosX="4586.33" PosY="4002.33" />
             </NFComplexAlgoTopoOutput>
             <NFComplexAlgoTopoOutput Index="1">
-                <NFAlgoGUI PosX="4635.41" PosY="3616.85" />
+                <NFAlgoGUI PosX="5618" PosY="3844" />
             </NFComplexAlgoTopoOutput>
             <NFComplexAlgoTopoOutput Index="2">
-                <NFAlgoGUI PosX="5913.46" PosY="3440.83" />
+                <NFAlgoGUI PosX="4369.22" PosY="4878.43" />
             </NFComplexAlgoTopoOutput>
             <NFComplexAlgoTopoOutput Index="3">
-                <NFAlgoGUI PosX="3909.44" PosY="4478.23" />
+                <NFAlgoGUI PosX="4487.67" PosY="5429.66" />
             </NFComplexAlgoTopoOutput>
             <NFComplexAlgoTopoOutput Index="4">
-                <NFAlgoGUI PosX="4908.4" PosY="5173.9" />
-            </NFComplexAlgoTopoOutput>
-            <NFComplexAlgoTopoOutput Index="5">
-                <NFAlgoGUI PosX="4679.06" PosY="5207.82" />
-            </NFComplexAlgoTopoOutput>
-            <NFComplexAlgoTopoOutput Index="6">
-                <NFAlgoGUI PosX="4516.67" PosY="5212.67" />
+                <NFAlgoGUI PosX="4995" PosY="5663.67" />
             </NFComplexAlgoTopoOutput>
             <NFComplexAlgoTopoInput Index="0">
-                <NFAlgoGUI PosX="5205.16" PosY="3225.59" />
+                <NFAlgoGUI PosX="5165.33" PosY="3630.33" />
             </NFComplexAlgoTopoInput>
             <NFComplexAlgoParamInput Name="DataLabel">
                 <NFAlgoGUI PosX="6133.71" PosY="4810.45" />
             </NFComplexAlgoParamInput>
-            <NFComplexAlgoParamInput Name="Distance From Max">
-                <NFAlgoGUI PosX="2889.33" PosY="4337.33" />
+            <NFComplexAlgoParamInput Name="ROI1_Offset [um]">
+                <NFAlgoGUI PosX="5261.34" PosY="5254.66" />
             </NFComplexAlgoParamInput>
-            <NFComplexAlgoParamInput Name="ImageWidth [Pix]">
-                <NFAlgoGUI PosX="6127.75" PosY="4678.41" />
+            <NFComplexAlgoParamInput Name="ROI2_Offset [um]">
+                <NFAlgoGUI PosX="5426.66" PosY="5362" />
+            </NFComplexAlgoParamInput>
+            <NFComplexAlgoParamInput Name="ROI3_Offset [um]">
+                <NFAlgoGUI PosX="5583" PosY="5474.34" />
+            </NFComplexAlgoParamInput>
+            <NFComplexAlgoParamInput Name="ROILength [um]">
+                <NFAlgoGUI PosX="5218.33" PosY="4947.67" />
             </NFComplexAlgoParamInput>
             <NFComplexAlgoParamInput Name="Title">
                 <NFAlgoGUI PosX="6132.33" PosY="4743.67" />
@@ -2135,28 +1883,28 @@
                 <NFAlgoGUI PosX="6337.25" PosY="4806.89" />
             </NFComplexAlgoParamInput>
             <NFComplexAlgoParamInput Name="WorkingDirectory">
-                <NFAlgoGUI PosX="6334.68" PosY="4732.3" />
+                <NFAlgoGUI PosX="6336.01" PosY="4749.63" />
             </NFComplexAlgoParamInput>
             <NFComplexAlgoParamOutput Name="MeanROI1">
-                <NFAlgoGUI PosX="4770.6" PosY="3861.76" />
+                <NFAlgoGUI PosX="4775.01" PosY="4269.34" />
             </NFComplexAlgoParamOutput>
             <NFComplexAlgoParamOutput Name="MeanROI2">
-                <NFAlgoGUI PosX="5949.42" PosY="3561.08" />
+                <NFAlgoGUI PosX="5896.79" PosY="4029.55" />
             </NFComplexAlgoParamOutput>
             <NFComplexAlgoParamOutput Name="PosMeanROI1">
-                <NFAlgoGUI PosX="5965.54" PosY="4172.63" />
+                <NFAlgoGUI PosX="4851.34" PosY="4565.33" />
             </NFComplexAlgoParamOutput>
             <NFComplexAlgoParamOutput Name="PosMeanROI2">
-                <NFAlgoGUI PosX="5957.99" PosY="3860.2" />
+                <NFAlgoGUI PosX="5905" PosY="4204" />
             </NFComplexAlgoParamOutput>
             <NFComplexAlgoParamOutput Name="StepHeight1">
-                <NFAlgoGUI PosX="4517" PosY="5905.99" />
+                <NFAlgoGUI PosX="4436" PosY="6208.99" />
             </NFComplexAlgoParamOutput>
             <NFComplexAlgoParamOutput Name="StepHeight2">
-                <NFAlgoGUI PosX="4727.01" PosY="5851.67" />
+                <NFAlgoGUI PosX="4605.01" PosY="6206.67" />
             </NFComplexAlgoParamOutput>
             <NFComplexAlgoParamOutput Name="StepHeight3">
-                <NFAlgoGUI PosX="4954.33" PosY="5791.67" />
+                <NFAlgoGUI PosX="4781.33" PosY="6219.67" />
             </NFComplexAlgoParamOutput>
         </NFComplexAlgoGUIDescription>
     </NFComplexEvaluation>

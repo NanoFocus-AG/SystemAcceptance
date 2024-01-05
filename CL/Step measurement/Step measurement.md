@@ -13,7 +13,7 @@
 |System: |  CL |Calibration instruction:|    |
 |Type|   CL | Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |System number:| @PARAM{"Name":"Serial"}@|||
-|Customer:| @PARAM{"Name":"Customer"}@|||
+|Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: | @PARAM{"Name":"Typ/Type","Precision":12}@ |||
 |Standard: |@PARAM{"Name":"Stufennormal","Precision":12}@|||
 

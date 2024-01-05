@@ -96,7 +96,7 @@
                         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">20</NFVariant>
                     </NFParameter>
                     <NFParameter Name="Minimum Slope">
-                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0.040000000000000000208</NFVariant>
+                        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">0.010000000000000000208</NFVariant>
                     </NFParameter>
                     <NFParameter Name="Nominal Height">
                         <NFVariant Type="double" Unit="%" UnitMultiplicator="1" UnitExponent="1">0</NFVariant>
