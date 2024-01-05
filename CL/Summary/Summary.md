@@ -1,5 +1,5 @@
 <!--   EvalAlgoName=NFTopoInfo -->
- ||
+||
 |-:|
 |![](logo.png)|
 
@@ -12,8 +12,8 @@
 ||||
 |-|-|-|
 |System|   CL | @PARAM{"Name":"Serial"}@ |
-|Sensor| CL    |    @PARAM{"Name":"Typ/Type","Precision":12}@| 
- |Customer| @PARAM{"Name":"Customer"}@||
+|Sensor| CL    | @PARAM{"Name":"Lens"}@  /  @PARAM{"Name":"Typ/Type","Precision":12}@| 
+|Customer| @PARAM{"Name":"Manufacturer"}@||
 
 <span id="output">
 </span>

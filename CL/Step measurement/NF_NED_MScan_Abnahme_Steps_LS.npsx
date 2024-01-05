@@ -3,11 +3,20 @@
     <NFParameter Name="DataLabel">
         <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1"></NFVariant>
     </NFParameter>
-    <NFParameter Name="Distance From Max">
-        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">100</NFVariant>
-    </NFParameter>
     <NFParameter Name="ImageWidth [Pix]">
         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">700</NFVariant>
+    </NFParameter>
+    <NFParameter Name="ROI1_Offset [um]">
+        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">10000.00000000000000000000</NFVariant>
+    </NFParameter>
+    <NFParameter Name="ROI2_Offset [um]">
+        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">19250.00000000000000000000</NFVariant>
+    </NFParameter>
+    <NFParameter Name="ROI3_Offset [um]">
+        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">28000.00000000000000000000</NFVariant>
+    </NFParameter>
+    <NFParameter Name="ROILength [um]">
+        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">5500.00000000000000000000</NFVariant>
     </NFParameter>
     <NFParameter Name="Title">
         <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1"></NFVariant>

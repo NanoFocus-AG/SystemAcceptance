@@ -10,10 +10,10 @@
         <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1"></NFVariant>
     </NFParameter>
     <NFParameter Name="GaussCutOff [um]">
-        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">25</NFVariant>
+        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">25.00000000000000000000</NFVariant>
     </NFParameter>
     <NFParameter Name="HeightThreshold [um]">
-        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">-0.3499999999999999778</NFVariant>
+        <NFVariant Type="double" Unit="m" UnitMultiplicator="1e-06" UnitExponent="1">-0.34999999999999997780</NFVariant>
     </NFParameter>
     <NFParameter Name="ImageWidth [Pix]">
         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">400</NFVariant>

@@ -4,13 +4,13 @@
         <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1"></NFVariant>
     </NFParameter>
     <NFParameter Name="GaussSigma [um]">
-        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">25</NFVariant>
+        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">25.00000000000000000000</NFVariant>
     </NFParameter>
     <NFParameter Name="ImageWidth [Pix]">
         <NFVariant Type="int" Unit="" UnitMultiplicator="1" UnitExponent="1">700</NFVariant>
     </NFParameter>
     <NFParameter Name="MedianRadius [Pix]">
-        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">3</NFVariant>
+        <NFVariant Type="double" Unit="" UnitMultiplicator="1" UnitExponent="1">3.00000000000000000000</NFVariant>
     </NFParameter>
     <NFParameter Name="Title">
         <NFVariant Type="char" Unit="" UnitMultiplicator="1" UnitExponent="1"></NFVariant>
