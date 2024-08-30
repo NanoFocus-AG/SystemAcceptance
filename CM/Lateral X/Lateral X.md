@@ -23,7 +23,7 @@
 
 ||
 |:-:|
-|@IMAGE{"Name":"Height","Topo":2,"Width":300}@|
+|@IMAGE{"Name":"Height","Topo":2,"Width":311}@|
 |@IMAGE{"Name":"Profile","Topo":1,"Width":600}@|
 
  
@@ -34,7 +34,7 @@
 ||||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |                  |unit|nominal value | tolerance +/- | actual value | result|
-|lateral distance| µm|   @PARAM{"Name":"Soll","Set":1}@   |   @PARAM{"Name":"delta_AbbMaßstab","Precision":12}@ | @PARAM{"Name":"Sum Gap Lateral Width","Precision":5}@  | <span id="control"> Ok</span>|
+|lateral distance| µm|   @PARAM{"Name":"Soll","Set":1}@   |   @PARAM{"Name":"delta_AbbMaßstab","Precision":3}@ | @PARAM{"Name":"Sum Gap Lateral Width","Precision":3}@  | <span id="control"> Ok</span>|
  
 
 __Unit location:__ @PARAM{"Name":"Location"}@
