@@ -3,14 +3,14 @@
 
 ---
 
-# Software Applikation für die Systemabnahme
+# Software Applikation fÃ¼r die Systemabnahme
 
 
  
 
 Bei Softwarestart werden die Reiterkarten aus einer  vorhandenen Ordnerstruktur dynamisch erzeugt. 
 Dies geschieht sofern sich in einem Ordner eine Vorlagedatei mit der Endung *.md befindet. 
-Die Reiterkarte trägt die Beschriftung des  zugehörigen  Ordners. So ist es mögliche Abnahmen dynamisch hinzuzufügen.
+Die Reiterkarte trÃ¤gt die Beschriftung des  zugehÃ¶rigen  Ordners. So ist es mÃ¶gliche Abnahmen dynamisch hinzuzufÃ¼gen.
 
 
 ||
@@ -18,12 +18,12 @@ Die Reiterkarte trägt die Beschriftung des  zugehörigen  Ordners. So ist es mögl
 |![](Unbenannt9.PNG)|
 |Abb.1 Ordnerstruktur Abnahme CP Systeme|
 
-Der Order für die entsprechende Abnahme behinhaltet folgende Dateien.
+Der Order fÃ¼r die entsprechende Abnahme behinhaltet folgende Dateien.
 
 |Art|Endung|Bemerkung|
 |-|-|-|
 |Template|*.md|zentrale Steuerdatei, legt den Inhalt und das Layout fest|
-|Stylesheet|*.css| Schriftgrößen , Farben etc.|
+|Stylesheet|*.css| SchriftgrÃ¶ÃŸen , Farben etc.|
 |Auswertealgo|*.ned| |
 |Eingabeparameter|*.npsx||
 |Bilddateien| *.png , *.jpg| Logos, sonstige Bilder|
@@ -40,7 +40,7 @@ Der Order für die entsprechende Abnahme behinhaltet folgende Dateien.
 
 ###  Kalibriernormale 
 
-Für jede Systemabnahmen  CM , CP , CL  werden die Normale in csv Dateien verwaltet.    
+FÃ¼r jede Systemabnahmen  CM , CP , CL  werden die Normale in csv Dateien verwaltet.    
 Die enthaltenen Daten enstprechen denen aus Excel bekannte Tabellen.
 
 ||
@@ -50,7 +50,7 @@ Die enthaltenen Daten enstprechen denen aus Excel bekannte Tabellen.
 
 ### Sensoren 
 
-Für jede Systemabnahmen  CM , CP , CL  werden die Sensoren in csv Dateien verwaltet.    
+FÃ¼r jede Systemabnahmen  CM , CP , CL  werden die Sensoren in csv Dateien verwaltet.    
 Die enthaltenen Daten enstprechen denen aus Excel bekannte Tabellen.
 
 
@@ -65,31 +65,31 @@ Die enthaltenen Daten enstprechen denen aus Excel bekannte Tabellen.
 ## Interaktionsmodell System Abnahme
 
 
-### Tab für die entsprechende Auswertung auswählen 
+### Tab fÃ¼r die entsprechende Auswertung auswÃ¤hlen 
 
 ![](Unbenannt2.PNG)
 
 
-### Load Schaltfläche 
+### Load SchaltflÃ¤che 
 
 #### 1.Messdaten laden
 ![](Unbenannt4.PNG)
 
-####  2. Art des Kalibrierniormals wählen
+####  2. Art des Kalibrierniormals wÃ¤hlen
 ||
 |:-:|
 |![](Unbenannt5.PNG)| 
-|Kalibiernormale werden in csv Dateien verwaltet.  Für jede Art gibt es eine  csv Datei. Die Zeilen innerhalb der csv Datei repräsentieren ein spezielles Normal.|
+|Kalibiernormale werden in csv Dateien verwaltet.  FÃ¼r jede Art gibt es eine  csv Datei. Die Zeilen innerhalb der csv Datei reprÃ¤sentieren ein spezielles Normal.|
 
 
 
-#### 3. Typ des Normals wählen
+#### 3. Typ des Normals wÃ¤hlen
 ||
 |:-:|
 |![](Unbenannt6.PNG)|
 |Alle Typen  aus der csv Datei (siehe 1.) werden hier in einer Auswahlliste angezeigt.|
 
-#### 4. Typ des Sensors wählen
+#### 4. Typ des Sensors wÃ¤hlen
 ||
 |:-:|
 |![](Unbenannt7.PNG)|
