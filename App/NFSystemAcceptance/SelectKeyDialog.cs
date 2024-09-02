@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NFSystemAcceptance
@@ -20,7 +14,7 @@ namespace NFSystemAcceptance
             TopLevel = true;
             comboBox1.DataSource = data;
 
-            btnOk.Click += (sender, args) => { this.Close(); };
+            btnOk.Click += (sender, args) => { Close(); };
 
             comboBox1.SelectedIndexChanged += (sender,args) =>
             {
@@ -35,7 +29,7 @@ namespace NFSystemAcceptance
             comboBox1.SelectedIndex = 0;
 
             label1.Text = description;
-            this.Text = "Select " + description; 
+            Text = "Select " + description; 
         }
     }
 }

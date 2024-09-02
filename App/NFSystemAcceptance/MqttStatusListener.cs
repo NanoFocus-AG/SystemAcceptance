@@ -6,7 +6,7 @@ using uPLibrary.Networking.M2Mqtt.Messages;
 
 namespace NFSystemAcceptance
 {
-    public delegate void OnNewFileEventHandler(string  fullFile);
+    public delegate void OnNewFileEventHandler(string fullFile);
 
     class MqttStatusListener
     {
@@ -27,7 +27,7 @@ namespace NFSystemAcceptance
                 {
                     MQTTClient.Disconnect();
                 }
-                 isConnected = false;
+                isConnected = false;
             }
             catch (ApplicationException ex)
             {
@@ -49,14 +49,15 @@ namespace NFSystemAcceptance
 
         }
 
-        public bool  Connected
+        public bool Connected
         {
 
-            get{
+            get
+            {
                 return isConnected;
             }
         }
-      
+
 
         private void InitMqttConnect(string ipAdress)
         {
@@ -88,7 +89,7 @@ namespace NFSystemAcceptance
 
 
                     System.Diagnostics.Debug.WriteLine("  MQTTClient connection failed reason " + reason[code]);
-                   
+
                 }
 
 
@@ -96,19 +97,19 @@ namespace NFSystemAcceptance
             catch (ApplicationException ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
-               
+
             }
 
             catch (uPLibrary.Networking.M2Mqtt.Exceptions.MqttClientException ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
-              
+
             }
 
             catch (uPLibrary.Networking.M2Mqtt.Exceptions.MqttConnectionException ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
-             
+
             }
 
         }
@@ -130,7 +131,7 @@ namespace NFSystemAcceptance
         }
 
 
-  private MqttClient MQTTClient;
+        private MqttClient MQTTClient;
         private bool isConnected;
 
     }

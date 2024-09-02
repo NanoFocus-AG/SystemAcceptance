@@ -45,7 +45,7 @@ namespace NFSystemAcceptance
             string algoName = defaultAlgoName;
             try
             {
-                string fileContents = System.IO.File.ReadAllText(filename);
+                string fileContents = File.ReadAllText(filename);
 
 
                 Regex rx = new Regex(@"<!--.*EvalAlgoName=(\w*).*>", RegexOptions.Compiled);
@@ -55,7 +55,6 @@ namespace NFSystemAcceptance
                     algoName = matches[0].Groups[1].Value;
                 }
              
-            
             }
             catch (Exception)
             {
@@ -68,13 +67,15 @@ namespace NFSystemAcceptance
 
         public void InitalizeBrowserEngine()
         {
+            //WorkloadPath = new DirectoryInfo("c:\\Program Data");
             WorkloadPath = new DirectoryInfo("c:\\Program Data");
           
             CefSettings settings = new CefSettings();
 
             // Initialize cef with the provided settings
             CefSharp.Cef.Initialize(settings);
-            CefSharp.Cef.EnableHighDPISupport();
+            //CefSharp.Cef.EnableHighDPISupport(); // Not needed as this is enabled by deault in Chromium.
+            
 
             mBrowserEngine = new ChromiumWebBrowser("");
 
@@ -94,8 +95,6 @@ namespace NFSystemAcceptance
             cxBound.State = false;
             mBrowserEngine.JavascriptObjectRepository.Register("cxBound", cxBound, false,null);
 
-
-
         }
         public mainForm(Dictionary<string, DirectoryInfo> tabInfo, string rootPath)
         {
@@ -114,7 +113,7 @@ namespace NFSystemAcceptance
             CreateTabStructure(tabInfo);
 
         
-            this.Text += " " + rootPath;
+            Text += " " + rootPath;
 
             this.rootPath = rootPath;
 
@@ -126,20 +125,16 @@ namespace NFSystemAcceptance
                 this.UIThread(delegate
                 {
 
-                    if (System.IO.File.Exists(fname))
+                    if (File.Exists(fname))
                     {
                         ExecutePipeline(fname);
                     }
                 });
 
-
-
-
-
             };
 
 
-           this.FormClosing += (Object sender, FormClosingEventArgs args) =>
+           FormClosing += (Object sender, FormClosingEventArgs args) =>
            {
                CefSharp.Cef.Shutdown();
                StatusListener.Close();
@@ -150,9 +145,6 @@ namespace NFSystemAcceptance
         private void CreateTabStructure(Dictionary<string, DirectoryInfo> tabInfo)
         {
             tabDirInfo = tabInfo;
-
-                     
-
 
             foreach (var element in tabDirInfo)
             {
@@ -166,7 +158,6 @@ namespace NFSystemAcceptance
                 panels.Add(panelName, new tabPanel(panelName));
                 tabControl.TabPages[tabPageName].Controls.Add(panels[panelName]);
 
-
             }
 
 
@@ -174,7 +165,7 @@ namespace NFSystemAcceptance
             {
                 try
                 {
-                    this.toolStripStatusLabel1.Text = "";
+                    toolStripStatusLabel1.Text = "";
 
                     string Name = tabControl.SelectedTab.Name + ".p1";
                     panels[Name].setBrowserEngine(mBrowserEngine);
@@ -196,20 +187,16 @@ namespace NFSystemAcceptance
                         string projectPath = tabDirInfo[project].FullName + "\\";
                         PrintPdf(projectPath, project);
 
-
                     }
                     else
                     {
                         mBrowserEngine.Load("<html><head></head><body></body></html>");
                     }
 
-
-
                     panels[Name].OnGenerate -= OnExecutePipeline;
                     panels[Name].OnGenerate += OnExecutePipeline;
                     panels[Name].OnHelp -= OnHelp;
                     panels[Name].OnHelp += OnHelp;
-
 
                 }
                 catch (Exception)
@@ -310,7 +297,6 @@ namespace NFSystemAcceptance
             
             ExecutePipeline();
           
-
         }
         private void ExecutePipeline(string fileName ="")
         {
@@ -336,10 +322,8 @@ namespace NFSystemAcceptance
             var algos = tabDirInfo[project].GetFiles("*.ned");
             if (algos.Length > 0)
             {
-                de.nanofocus.NFEval.NFEval_I_CS810x64.NFLoadPlugins(tabDirInfo[project].FullName);
+                NFEval_I_CS810x64.NFLoadPlugins(tabDirInfo[project].FullName);
             }
-
-                                                
 
             if (fileName == "")
             {
@@ -367,14 +351,13 @@ namespace NFSystemAcceptance
                 fileNames[0] = fileName;
             }
             //-----------------------------------------------------------------------------------------------------------------
-
             
             specsDlg.ShowDialog();
 
             string algoName = parseTemplateFile((projectPath + project + ".md"), project);
             eval = new NFEvaluationPointer(factory.getObjectByName(algoName).get());
 
-            if (eval.get() == null) throw new System.IO.IOException("not");
+            if (eval.get() == null) throw new IOException("not");
 
             preader.setSource(projectPath + algoName + ".npsx");
             bool suc = preader.read();
@@ -400,9 +383,7 @@ namespace NFSystemAcceptance
                 foreach (var file in fileNames)
                 {
 
-
                     var actualFilename = file;
-
 
                     toolStripStatusLabel1.Text += actualFilename + " | ";
                     Application.DoEvents();
@@ -546,11 +527,12 @@ namespace NFSystemAcceptance
                 if (System.IO.File.Exists(filename) == true) System.IO.File.Delete(filename);
                 // print to pdf
                 CefSharp.PdfPrintSettings settings = new CefSharp.PdfPrintSettings();
-                settings.BackgroundsEnabled = true;
+                //settings.BackgroundsEnabled = true; // Deprecated
+                settings.PrintBackground = true;
 
                 settings.MarginType = CefSharp.CefPdfPrintMarginType.Custom;
                 settings.Landscape = false;
-                settings.ScaleFactor = 100;
+                //settings.ScaleFactor = 100;
                 settings.MarginLeft = 60;
                 settings.MarginTop = 36;
                 settings.MarginRight = 40;
@@ -633,7 +615,6 @@ namespace NFSystemAcceptance
  
         }
 
-        
         void PrintFiles(List<string> files, string systemNo="")
         {
 
@@ -737,8 +718,6 @@ namespace NFSystemAcceptance
             //specsDlg.ShowDialog();
         }
 
-
-        
     }
 
     static class mainFormExtensions

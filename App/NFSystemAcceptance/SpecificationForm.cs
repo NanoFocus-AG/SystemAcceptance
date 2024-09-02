@@ -7,50 +7,51 @@ namespace NFSystemAcceptance
     public partial class SpecificationForm : Form
     {
         class ParamName
-    {
-        public ParamName(string input)
         {
-            Name = input;
-            DisplayName = toAnsi(input);
+            public ParamName(string input)
+            {
+                Name = input;
+                DisplayName = toAnsi(input);
+            }
+            public string Name
+            {
+                get;
+                set;
+            }
+
+            public string DisplayName
+            {
+                get;
+                set;
+            }
+
+            private string toAnsi(string input)
+            {
+                // Create  different encodings.
+                System.Text.Encoding unicode = System.Text.Encoding.Unicode;
+                System.Text.Encoding utf8 = System.Text.Encoding.UTF8;
+                System.Text.Encoding ansi = System.Text.Encoding.GetEncoding(28591);
+
+                // Convert the string into a byte array.
+                byte[] uBytes = unicode.GetBytes(input);
+                byte[] utf8byte = System.Text.Encoding.Convert(unicode, utf8, uBytes);
+
+                // Perform the conversion from one encoding to the other.
+                byte[] ansibytes = System.Text.Encoding.Convert(utf8, ansi, utf8byte);
+
+                ansibytes = System.Text.Encoding.Convert(utf8, ansi, ansibytes);
+
+                // Convert the new byte[] into a char[] and then into a string.
+                char[] ansiChars =
+                    new char[ansi.GetCharCount(ansibytes, 0, ansibytes.Length)];
+
+                ansi.GetChars(ansibytes, 0, ansibytes.Length, ansiChars, 0);
+
+                string ansiString = new string(ansiChars);
+
+                return ansiString;
+            }
         }
-        public string Name
-        { get;
-            set;
-        }
-
-        public string DisplayName
-        {
-            get;
-            set;
-        }
-
-        private string toAnsi(string input)
-        {
-            // Create  different encodings.
-            System.Text.Encoding unicode = System.Text.Encoding.Unicode;
-            System.Text.Encoding utf8 = System.Text.Encoding.UTF8;
-            System.Text.Encoding ansi = System.Text.Encoding.GetEncoding(28591);
-
-            // Convert the string into a byte array.
-            byte[] uBytes = unicode.GetBytes(input);
-            byte[] utf8byte = System.Text.Encoding.Convert(unicode, utf8, uBytes);
-
-            // Perform the conversion from one encoding to the other.
-            byte[] ansibytes = System.Text.Encoding.Convert(utf8, ansi, utf8byte);
-
-            ansibytes = System.Text.Encoding.Convert(utf8, ansi, ansibytes);
-
-            // Convert the new byte[] into a char[] and then into a string.
-            char[] ansiChars =
-                new char[ansi.GetCharCount(ansibytes, 0, ansibytes.Length)];
-
-            ansi.GetChars(ansibytes, 0, ansibytes.Length, ansiChars, 0);
-
-            string ansiString = new string(ansiChars);
-
-            return ansiString;
-        }
-    }
         private NFParameterSetPointer standardType;
 
         private NFParameterSetPointer sensorType;
@@ -69,12 +70,12 @@ namespace NFSystemAcceptance
         private System.IO.DirectoryInfo standardsPath;
         private System.IO.DirectoryInfo sensorPath;
         public string Standard;
-       
+
 
         public SpecificationForm(string rootPath)
         {
             InitializeComponent();
-            
+
 
             button1.Click += (sender, args) =>
             {
@@ -84,17 +85,17 @@ namespace NFSystemAcceptance
 
 
 
-            standardsPath = new System.IO.DirectoryInfo(rootPath+"\\Standards");
+            standardsPath = new System.IO.DirectoryInfo(rootPath + "\\Standards");
 
             if (standardsPath.Exists == false) return;
 
             var standardSpecs = standardsPath.GetFiles("*.csv");
-            
+
             if (standardSpecs.Length > 0)
             {
                 cmbListOfStandards.DataSource = standardSpecs;
                 cmbListOfStandards.SelectedItem = standardSpecs[0];
-             
+
                 preader.setSource(standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem);
                 bool readSuccess = preader.read();
                 if (false == readSuccess)
@@ -115,7 +116,7 @@ namespace NFSystemAcceptance
               {
                   if (cmbListOfStandards.SelectedItem != null)
                   {
-                       
+
                       preader.setSource(standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem);
                       bool readSuccess = preader.read();
                       if (false == readSuccess)
@@ -144,8 +145,6 @@ namespace NFSystemAcceptance
 
                 standardParameter = new NFParameterSetPointer(v.getParameterSet());
 
-
-
             };
 
             // ---------------------------------------------------------------
@@ -157,7 +156,7 @@ namespace NFSystemAcceptance
 
             foreach (var sen in sensorSpecs)
             {
-                
+
                 preader.setSource(sensorPath.FullName + "\\" + sen);
                 bool success = preader.read();
                 if (success == true)
@@ -167,10 +166,10 @@ namespace NFSystemAcceptance
                 else
                 {
                     MessageBox.Show("could not read " + sensorPath.FullName + "\\" + sen);
-                     
+
                 }
             }
-            
+
 
             var sensorTypelist = sensorType.getParameterNames();
             if (sensorTypelist.Count > 0)
@@ -178,7 +177,6 @@ namespace NFSystemAcceptance
                 cmbSensor.DataSource = new List<string>(sensorTypelist);
                 cmbSensor.SelectedItem = sensorTypelist[0];
 
-                
                 NFVariant v = sensorType.getParameter(cmbSensor.SelectedItem.ToString());
                 sensorParameter = new NFParameterSetPointer(v.getParameterSet());
 
@@ -193,17 +191,11 @@ namespace NFSystemAcceptance
                 NFVariant v = sensorType.getParameter(selection);
 
                 sensorParameter = new NFParameterSetPointer(v.getParameterSet());
-
-
-
             };
-
 
 
             //   tester
             {
-
-
                 testerParameter = NFParameterSet.New();
                 testerParameter.setParameter("Tester Name", new NFVariant(txtTester.Text));
                 testerParameter.setParameter("Location", new NFVariant(txtLocation.Text));
@@ -212,9 +204,8 @@ namespace NFSystemAcceptance
                 testerParameter.setParameter("Humidity", new NFVariant(txtHumidity.Text));
 
 
-
-
-                txtTester.TextChanged += (sender, args)=>{
+                txtTester.TextChanged += (sender, args) =>
+                {
 
                     testerParameter.setParameter("Tester Name", new NFVariant(txtTester.Text));
                 };
@@ -225,15 +216,15 @@ namespace NFSystemAcceptance
                 };
 
                 txtCustomer.TextChanged += (sender, args) =>
-                { 
-                                     
+                {
+
                     testerParameter.setParameter("Customer", new NFVariant(txtCustomer.Text));
                 };
 
                 txtTemperature.TextChanged += (sender, args) =>
                 {
 
-                    testerParameter.setParameter("Temperature", new NFVariant(txtTemperature.Text ));
+                    testerParameter.setParameter("Temperature", new NFVariant(txtTemperature.Text));
                 };
 
                 txtHumidity.TextChanged += (sender, args) =>
@@ -278,27 +269,22 @@ namespace NFSystemAcceptance
                 }
                 else
                 {
-                   
                     stagesParameter = NFParameterSet.New();
                     cmbStages.Enabled = false;
-                    
+
                 }
-              
+
             }
 
-
-
-
-
             cmbListOfStandards.SelectedIndex = 0;
-           
+
             cmbSensor.SelectedIndex = 0;
 
         }
 
         private void ParameterSetAsDataSource(NFParameterSetPointer p, ComboBox cmb)
         {
-            
+
             List<string> paramNameList = new List<string>(p.getParameterNames());
             List<ParamName> dataSource = new List<ParamName>();
 
@@ -348,10 +334,6 @@ namespace NFSystemAcceptance
             return ansiString;
         }
     }
-
-
-
-  
 
 }
 
