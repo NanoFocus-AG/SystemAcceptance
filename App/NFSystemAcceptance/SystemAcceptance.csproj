@@ -293,7 +293,12 @@
     <None Include="Resources\msprint-Piktogramm.JPG" />
     <None Include="Resources\mscan-Piktogramm.JPG" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\NFOpenFileDialog\NFOpenFileDialog\NFOpenFileDialog.csproj">
+      <Project>{c3eb443d-0049-4843-ba06-3066a16de9ce}</Project>
+      <Name>NFOpenFileDialog</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

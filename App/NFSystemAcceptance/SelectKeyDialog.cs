@@ -132,7 +132,6 @@ namespace NFSystemAcceptance
             {
                 list.Add(panel);
             }
-            //label1.Text = "System Type";
             Text = "Select " + "System Type";
         }
 

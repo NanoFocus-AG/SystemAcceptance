@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using NFOpenFileDialog;
 
 namespace NFSystemAcceptance
 {
@@ -128,7 +129,6 @@ namespace NFSystemAcceptance
                         ExecutePipeline(fname);
                     }
                 });
-
             };
         }
 
@@ -148,7 +148,6 @@ namespace NFSystemAcceptance
                 tabControl.TabPages[tabPageName].Controls.Add(panels[panelName]);
             }
 
-
             tabControl.Selected += (sender, args) =>
             {
                 try
@@ -163,7 +162,6 @@ namespace NFSystemAcceptance
                         Uri url = new Uri("file://" + tabDirInfo[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
 
                         mBrowserEngine.Load(url.AbsolutePath);
-
 
                         while (mBrowserEngine.IsLoading)
                         {
@@ -184,7 +182,6 @@ namespace NFSystemAcceptance
                     panels[Name].OnGenerate += OnExecutePipeline;
                     panels[Name].OnHelp -= OnHelp;
                     panels[Name].OnHelp += OnHelp;
-
                 }
                 catch (Exception)
                 {
@@ -292,7 +289,6 @@ namespace NFSystemAcceptance
             project = tabControl.SelectedTab.Name;
             string projectPath = tabDirInfo[project].FullName + "\\";
 
-
             /*
              * Load all plugins  inside the current folder. either ned or dll  
              * 
@@ -308,19 +304,23 @@ namespace NFSystemAcceptance
                 /*
                  * select the data file via dialog 
                  */
-                OpenFileDialog dlg = new OpenFileDialog();
+                //OpenFileDialog dlg = new OpenFileDialog();
 
-                dlg.FilterIndex = 2;
-                dlg.RestoreDirectory = true;
-                dlg.Multiselect = true;
-                dlg.Title = "Please Select  File(s) ";
+                //dlg.FilterIndex = 2;
+                //dlg.RestoreDirectory = true;
+                //dlg.Multiselect = true;
+                //dlg.Title = "Please Select  File(s) ";
 
+                //var result = dlg.ShowDialog();
 
-                var result = dlg.ShowDialog();
+                //if (result != DialogResult.OK) return;
 
-                if (result != DialogResult.OK) return;
+                //fileNames = dlg.FileNames;
+                //fileName = dlg.FileName; //
 
-                fileNames = dlg.FileNames;
+                NFFileDialogBox dlg = new NFFileDialogBox();
+                dlg.ShowDialog();
+                fileNames = dlg.Filenames;
             }
             else
             {
@@ -359,15 +359,12 @@ namespace NFSystemAcceptance
             /// Start:  do computation 
             Task task = Task.Run(() =>
             {
-
                 foreach (var file in fileNames)
                 {
-
                     var actualFilename = file;
 
                     toolStripStatusLabel1.Text += actualFilename + " | ";
                     Application.DoEvents();
-
 
                     NFFileReaderPointer reader = NFFileReader.New();
                     reader.setFileName(actualFilename);
@@ -382,7 +379,6 @@ namespace NFSystemAcceptance
                     {
                         systemNumber = "000";
                     }
-
 
                     if (eval.getNumberOfInputTopos() == 1)
                     {
@@ -407,8 +403,6 @@ namespace NFSystemAcceptance
                         {
                             MessageBox.Show("Error on evaluation");
                             toolStripStatusLabel1.Text += "Error on evaluation ";
-
-
                         }
                         cxBound.State = true;
 
@@ -476,8 +470,6 @@ namespace NFSystemAcceptance
                         }
                         toolStripStatusLabel1.Text += ".";
                         Application.DoEvents();
-
-
 
                     }
                     toolStripStatusLabel1.Text += "Evaluating Done ";

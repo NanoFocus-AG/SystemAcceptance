@@ -31,8 +31,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.browserPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnGeneratePage = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
+            this.btnGeneratePage = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -70,15 +70,6 @@
             this.panel2.Size = new System.Drawing.Size(167, 524);
             this.panel2.TabIndex = 1;
             // 
-            // btnGeneratePage
-            // 
-            this.btnGeneratePage.Location = new System.Drawing.Point(16, 27);
-            this.btnGeneratePage.Name = "btnGeneratePage";
-            this.btnGeneratePage.Size = new System.Drawing.Size(122, 32);
-            this.btnGeneratePage.TabIndex = 0;
-            this.btnGeneratePage.Text = "Generate Page";
-            this.btnGeneratePage.UseVisualStyleBackColor = true;
-            // 
             // btnHelp
             // 
             this.btnHelp.Location = new System.Drawing.Point(16, 474);
@@ -87,6 +78,15 @@
             this.btnHelp.TabIndex = 1;
             this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = true;
+            // 
+            // btnGeneratePage
+            // 
+            this.btnGeneratePage.Location = new System.Drawing.Point(16, 27);
+            this.btnGeneratePage.Name = "btnGeneratePage";
+            this.btnGeneratePage.Size = new System.Drawing.Size(122, 32);
+            this.btnGeneratePage.TabIndex = 0;
+            this.btnGeneratePage.Text = "Generate Page";
+            this.btnGeneratePage.UseVisualStyleBackColor = true;
             // 
             // tabPanel
             // 

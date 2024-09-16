@@ -32,5 +32,7 @@ namespace NFSystemAcceptance
         {
             browserPanel.Controls.Add(browserControl);
         }
+
+       
     }
 }
