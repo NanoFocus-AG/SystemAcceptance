@@ -80,7 +80,7 @@ namespace NFSystemAcceptance
             button1.Click += (sender, args) =>
             {
 
-                this.Close();
+                Close();
             };
 
 
@@ -96,7 +96,9 @@ namespace NFSystemAcceptance
                 cmbListOfStandards.DataSource = standardSpecs;
                 cmbListOfStandards.SelectedItem = standardSpecs[0];
 
+                string test = standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem;
                 preader.setSource(standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem);
+                
                 bool readSuccess = preader.read();
                 if (false == readSuccess)
                 {
@@ -113,26 +115,26 @@ namespace NFSystemAcceptance
             }
 
             cmbListOfStandards.SelectedIndexChanged += (sender, args) =>
-              {
-                  if (cmbListOfStandards.SelectedItem != null)
-                  {
+            {
+                if (cmbListOfStandards.SelectedItem != null)
+                {
 
-                      preader.setSource(standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem);
-                      bool readSuccess = preader.read();
-                      if (false == readSuccess)
-                      {
-                          MessageBox.Show("could not read " + cmbListOfStandards.SelectedItem);
-                          return;
-                      }
-                      standardType = preader.getParameterSet();
-                      ParameterSetAsDataSource(standardType, cmbStandard);
+                    preader.setSource(standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem);
+                    bool readSuccess = preader.read();
+                    if (false == readSuccess)
+                    {
+                        MessageBox.Show("could not read " + cmbListOfStandards.SelectedItem);
+                        return;
+                    }
+                    standardType = preader.getParameterSet();
+                    ParameterSetAsDataSource(standardType, cmbStandard);
 
-                      Standard = cmbStandard.SelectedValue.ToString();
-                      NFVariant v = standardType.getParameter(Standard);
-                      standardParameter = new NFParameterSetPointer(v.getParameterSet());
-                  }
+                    Standard = cmbStandard.SelectedValue.ToString();
+                    NFVariant v = standardType.getParameter(Standard);
+                    standardParameter = new NFParameterSetPointer(v.getParameterSet());
+                }
 
-              };
+            };
 
             //--------------------------------------------------------------
 
@@ -177,6 +179,7 @@ namespace NFSystemAcceptance
                 cmbSensor.DataSource = new List<string>(sensorTypelist);
                 cmbSensor.SelectedItem = sensorTypelist[0];
 
+
                 NFVariant v = sensorType.getParameter(cmbSensor.SelectedItem.ToString());
                 sensorParameter = new NFParameterSetPointer(v.getParameterSet());
 
@@ -191,11 +194,14 @@ namespace NFSystemAcceptance
                 NFVariant v = sensorType.getParameter(selection);
 
                 sensorParameter = new NFParameterSetPointer(v.getParameterSet());
+
             };
+
 
 
             //   tester
             {
+
                 testerParameter = NFParameterSet.New();
                 testerParameter.setParameter("Tester Name", new NFVariant(txtTester.Text));
                 testerParameter.setParameter("Location", new NFVariant(txtLocation.Text));
@@ -204,8 +210,9 @@ namespace NFSystemAcceptance
                 testerParameter.setParameter("Humidity", new NFVariant(txtHumidity.Text));
 
 
-                txtTester.TextChanged += (sender, args) =>
-                {
+
+
+                txtTester.TextChanged += (sender, args) => {
 
                     testerParameter.setParameter("Tester Name", new NFVariant(txtTester.Text));
                 };
@@ -269,12 +276,14 @@ namespace NFSystemAcceptance
                 }
                 else
                 {
+
                     stagesParameter = NFParameterSet.New();
                     cmbStages.Enabled = false;
 
                 }
 
             }
+
 
             cmbListOfStandards.SelectedIndex = 0;
 
@@ -334,6 +343,10 @@ namespace NFSystemAcceptance
             return ansiString;
         }
     }
+
+
+
+
 
 }
 

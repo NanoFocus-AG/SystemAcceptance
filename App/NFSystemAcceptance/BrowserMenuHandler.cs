@@ -65,10 +65,11 @@ namespace NFSystemAcceptance
 
             if (commandId == CefMenuCommand.UserFirst)
             {
-                CefSharp.PdfPrintSettings settings = new CefSharp.PdfPrintSettings();
-                settings.BackgroundsEnabled = true;
+                PdfPrintSettings settings = new PdfPrintSettings();
+                //settings.BackgroundsEnabled = true;
+                settings.PrintBackground = true;
 
-                settings.MarginType = CefSharp.CefPdfPrintMarginType.Default;
+                settings.MarginType = CefPdfPrintMarginType.Default;
                 settings.Landscape = false;
                 //settings.ScaleFactor = 100;
 

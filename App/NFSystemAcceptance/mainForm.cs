@@ -1,14 +1,17 @@
-﻿using CefSharp.WinForms;
+﻿using CefSharp;
+using CefSharp.WinForms;
 using de.nanofocus.NFEval;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace NFSystemAcceptance
 {
@@ -16,26 +19,22 @@ namespace NFSystemAcceptance
 
     public partial class mainForm : Form
     {
+        SelectKeyDialog skDialog = new SelectKeyDialog();
+        MqttStatusListener StatusListener = new MqttStatusListener();
         private string rootPath;
         private string project;
         private ChromiumWebBrowser mBrowserEngine;
-        private System.IO.DirectoryInfo WorkloadPath;
+        private DirectoryInfo WorkloadPath;
 
         private Dictionary<string, tabPanel> panels = new Dictionary<string, tabPanel>();
         private Dictionary<string, DirectoryInfo> tabDirInfo = new Dictionary<string, DirectoryInfo>();
-
 
         private NFTopographyPointer topo;
         private NFEvaluationPointer eval;
         private NFEvaluationFactoryPointer factory = NFEvaluationFactory.New();
         private NFEvalDox evalDox;
-
-
         private string systemNumber = "";
-
         private SpecificationForm specsDlg;
-
-
         private List<string> pdfDocs = new List<string>();
 
         private CXBoundObject cxBound;
@@ -46,20 +45,15 @@ namespace NFSystemAcceptance
             try
             {
                 string fileContents = File.ReadAllText(filename);
-
-
                 Regex rx = new Regex(@"<!--.*EvalAlgoName=(\w*).*>", RegexOptions.Compiled);
                 MatchCollection matches = rx.Matches(fileContents);
                 if (matches.Count > 0)
                 {
                     algoName = matches[0].Groups[1].Value;
                 }
-             
             }
             catch (Exception)
             {
-
-
             };
 
             return algoName;
@@ -76,7 +70,6 @@ namespace NFSystemAcceptance
             CefSharp.Cef.Initialize(settings);
             //CefSharp.Cef.EnableHighDPISupport(); // Not needed as this is enabled by deault in Chromium.
             
-
             mBrowserEngine = new ChromiumWebBrowser("");
 
             BrowserEngineMenuHandler menu = new BrowserEngineMenuHandler();
@@ -94,17 +87,27 @@ namespace NFSystemAcceptance
             cxBound = new CXBoundObject();
             cxBound.State = false;
             mBrowserEngine.JavascriptObjectRepository.Register("cxBound", cxBound, false,null);
-
         }
-        public mainForm(Dictionary<string, DirectoryInfo> tabInfo, string rootPath)
+       
+        public mainForm()
         {
-
+            skDialog.StartInfo += SkDialog_StartInfo;
+            skDialog.RootPathInfo += SkDialog_RootPathInfo;
+            skDialog.Show();
+           
             topo = NFTopography.New();
-
             InitializeDox();
-
             InitializeComponent();
             InitalizeBrowserEngine();
+        }
+
+        private void SkDialog_RootPathInfo(object sender, string e)
+        {
+            rootPath = e.ToString();
+        }
+
+        private void SkDialog_StartInfo(object sender, Dictionary<string, DirectoryInfo> tabInfo)
+        {
             string panelName = tabPage1.Name + ".p1";
             panels.Add(panelName, new tabPanel(panelName));
             tabControl.TabPages[tabPage1.Name].Controls.Add(panels[panelName]);
@@ -112,19 +115,14 @@ namespace NFSystemAcceptance
             tabControl.TabPages.Remove(tabPage1);
             CreateTabStructure(tabInfo);
 
-        
             Text += " " + rootPath;
 
-            this.rootPath = rootPath;
+            //this.rootPath = rootPath;
 
-
-            MqttStatusListener StatusListener = new MqttStatusListener();
             StatusListener.OnNewFileEvent += (string fname) =>
             {
-
                 this.UIThread(delegate
                 {
-
                     if (File.Exists(fname))
                     {
                         ExecutePipeline(fname);
@@ -132,14 +130,6 @@ namespace NFSystemAcceptance
                 });
 
             };
-
-
-           FormClosing += (Object sender, FormClosingEventArgs args) =>
-           {
-               CefSharp.Cef.Shutdown();
-               StatusListener.Close();
-
-           };
         }
 
         private void CreateTabStructure(Dictionary<string, DirectoryInfo> tabInfo)
@@ -149,7 +139,6 @@ namespace NFSystemAcceptance
             foreach (var element in tabDirInfo)
             {
                 string tabPageName = element.Key;
-
                 var p = new TabPage(tabPageName);
                 p.Name = tabPageName;
                 p.Text = tabPageName;
@@ -157,7 +146,6 @@ namespace NFSystemAcceptance
                 string panelName = tabPageName + ".p1";
                 panels.Add(panelName, new tabPanel(panelName));
                 tabControl.TabPages[tabPageName].Controls.Add(panels[panelName]);
-
             }
 
 
@@ -165,7 +153,7 @@ namespace NFSystemAcceptance
             {
                 try
                 {
-                    toolStripStatusLabel1.Text = "";
+                    this.toolStripStatusLabel1.Text = "";
 
                     string Name = tabControl.SelectedTab.Name + ".p1";
                     panels[Name].setBrowserEngine(mBrowserEngine);
@@ -177,7 +165,7 @@ namespace NFSystemAcceptance
                         mBrowserEngine.Load(url.AbsolutePath);
 
 
-                        while(mBrowserEngine.IsLoading)
+                        while (mBrowserEngine.IsLoading)
                         {
                             System.Threading.Thread.Sleep(10);
                         }
@@ -186,7 +174,6 @@ namespace NFSystemAcceptance
                         project = tabControl.SelectedTab.Name;
                         string projectPath = tabDirInfo[project].FullName + "\\";
                         PrintPdf(projectPath, project);
-
                     }
                     else
                     {
@@ -201,14 +188,10 @@ namespace NFSystemAcceptance
                 }
                 catch (Exception)
                 {
-
-
                 }
-
             };
 
             SelectFirstTabPage();
-
         }
 
         private void SelectFirstTabPage()
@@ -269,7 +252,6 @@ namespace NFSystemAcceptance
             {
                 MessageBox.Show("Error on help creation");
                 toolStripStatusLabel1.Text += "Error on help creation";
-               
             }
 
 
@@ -282,22 +264,18 @@ namespace NFSystemAcceptance
                 toolStripStatusLabel1.Text += ".";
 
                 Application.DoEvents();
-
             }
             else
             {
                 MessageBox.Show("Help not available");
             }
-
-
         }
 
         private void OnExecutePipeline(Object sender, EventArgs arg)
         {
-            
             ExecutePipeline();
-          
         }
+
         private void ExecutePipeline(string fileName ="")
         {
             NFEvaluationPointer topoStatistic =  new NFEvaluationPointer(factory.getObjectByName("NFTopoStatistic").get());  ;
@@ -332,7 +310,6 @@ namespace NFSystemAcceptance
                  */
                 OpenFileDialog dlg = new OpenFileDialog();
 
-
                 dlg.FilterIndex = 2;
                 dlg.RestoreDirectory = true;
                 dlg.Multiselect = true;
@@ -354,10 +331,13 @@ namespace NFSystemAcceptance
             
             specsDlg.ShowDialog();
 
-            string algoName = parseTemplateFile((projectPath + project + ".md"), project);
+            string algoName = parseTemplateFile(projectPath + project + ".md", project);
             eval = new NFEvaluationPointer(factory.getObjectByName(algoName).get());
 
-            if (eval.get() == null) throw new IOException("not");
+            if (eval.get() == null)
+            {
+                throw new IOException("not");
+            }
 
             preader.setSource(projectPath + algoName + ".npsx");
             bool suc = preader.read();
@@ -394,7 +374,14 @@ namespace NFSystemAcceptance
                     int rc = reader.evaluate();
 
                     topo = reader.getOutputTopo();
-                    systemNumber = topo.getMetaData().getParameter("Serial").getString();
+                    if (topo.getMetaData().containsParameter("Serial"))
+                    {
+                        systemNumber = topo.getMetaData().getParameter("Serial").getString();
+                    }
+                    else
+                    {
+                        systemNumber = "000";
+                    }
 
 
                     if (eval.getNumberOfInputTopos() == 1)
@@ -524,13 +511,13 @@ namespace NFSystemAcceptance
             try
             {
                 string filename = projectPath + projectName + ".pdf";
-                if (System.IO.File.Exists(filename) == true) System.IO.File.Delete(filename);
+                 if (File.Exists(filename) == true) File.Delete(filename);
                 // print to pdf
-                CefSharp.PdfPrintSettings settings = new CefSharp.PdfPrintSettings();
+                PdfPrintSettings settings = new PdfPrintSettings();
                 //settings.BackgroundsEnabled = true; // Deprecated
                 settings.PrintBackground = true;
 
-                settings.MarginType = CefSharp.CefPdfPrintMarginType.Custom;
+                settings.MarginType = CefPdfPrintMarginType.Custom;
                 settings.Landscape = false;
                 //settings.ScaleFactor = 100;
                 settings.MarginLeft = 60;
@@ -544,9 +531,10 @@ namespace NFSystemAcceptance
 
 
                 PDFCallback printCallback = new PDFCallback();
-                mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, null);
+                //mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, null);
+                mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, printCallback);
 
-                System.Threading.Thread.Sleep(400);
+                System.Threading.Thread.Sleep(4400);
 
                 toolStripStatusLabel1.Text += "  Printing Done";
             }
@@ -667,7 +655,7 @@ namespace NFSystemAcceptance
             }
             // Add the page counter.
             // Make a font and a brush to draw the page counter.
-            XFont font = new XFont("Calibri", 9);
+            XFont font = new XFont("Arial", 9, XFontStyleEx.Regular);
             XBrush brush = XBrushes.Black;
 
             string noPages = outputDocument.Pages.Count.ToString();
@@ -675,7 +663,8 @@ namespace NFSystemAcceptance
             {
                 PdfPage page = outputDocument.Pages[i];
                 // Make a layout rectangle.
-                XRect layoutRectangle = new XRect(0/*X*/, page.Height - 1.5*font.Height/*Y*/, page.Width/*Width*/, font.Height/*Height*/);
+                //XRect layoutRectangle = new XRect(0/*X*/, page.Height - 1.5 * font.Height/*Y*/, page.Width/*Width*/, font.Height/*Height*/);
+                XRect layoutRectangle = new XRect(0, page.Height - 1.5 * font.Height, page.Width, font.Height);
 
                 using (XGraphics gfx = XGraphics.FromPdfPage(page))
                 {
@@ -685,16 +674,19 @@ namespace NFSystemAcceptance
                         brush,
                         layoutRectangle,
                         XStringFormats.Center);
+                    string filename = rootPath + systemNo + ".pdf";
+                    outputDocument.Save(filename);
                 }
             }
                 try
                 {
                 // Save the document...
-                string filename = rootPath + "\\SystemAcceptance_"+ systemNo + ".pdf";
+                string filename = rootPath + "\\SystemAcceptance_" + systemNo + ".pdf";
+                //string filename = rootPath + systemNo + ".pdf";
                 if (outputDocument.PageCount > 0)
                 {
                     outputDocument.Save(filename);
-                    System.Diagnostics.Process.Start(filename);
+                    Process.Start(filename);
                 }
 
 
@@ -702,7 +694,7 @@ namespace NFSystemAcceptance
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + outputDocument.PageCount.ToString());
             }
         }
 
@@ -718,6 +710,13 @@ namespace NFSystemAcceptance
             //specsDlg.ShowDialog();
         }
 
+        private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
+                CefSharp.Cef.Shutdown();
+                StatusListener.Close();
+
+        }
     }
 
     static class mainFormExtensions
@@ -879,14 +878,12 @@ namespace NFSystemAcceptance
             {
                 sis.Add(file.FullName);
             }
-            SelectKeyDialog frmSelect = new SelectKeyDialog(sis, "Sis File");
+            SelectKeyDialog frmSelect = new SelectKeyDialog();
 
             frmSelect.ShowDialog();
 
-
-
             {
-                string fileContents = System.IO.File.ReadAllText(frmSelect.SelectedKey);
+                string fileContents = File.ReadAllText(frmSelect.SelectedKey);
 
                 var pattern = @"<I3 n=""HeightScaleFactor"">(.*)</I3>";
 
@@ -925,10 +922,10 @@ namespace NFSystemAcceptance
 
                     var newContent = Regex.Replace(fileContents, pattern2, replace); //"$1"+ heightScaleFactor.ToString()+"$3");
 
-                    System.IO.File.WriteAllText(frmSelect.SelectedKey, newContent);
+                    File.WriteAllText(frmSelect.SelectedKey, newContent);
 
 
-                    var p64 = System.Environment.GetEnvironmentVariable("NFEVAL_DIR_64");
+                    var p64 = Environment.GetEnvironmentVariable("NFEVAL_DIR_64");
                     
 
                     if (new DirectoryInfo(p64 + "\\log").Exists == true)
