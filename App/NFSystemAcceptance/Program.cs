@@ -30,15 +30,11 @@ namespace NFSystemAcceptance
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new SelectKeyDialog());
             Application.Run(new mainForm());
 
-            de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalDestroy();
+            //de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalDestroy();
         }
-        public static void SplashForm()
-        {
-            Application.Run(new SelectKeyDialog());
-        }
+        
         private static int SetEnviromentVariables()
         {
             int ret = 0;

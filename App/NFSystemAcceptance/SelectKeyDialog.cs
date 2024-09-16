@@ -98,10 +98,8 @@ namespace NFSystemAcceptance
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
-            
         }
 
         private void OnStartEvent(Dictionary<string, DirectoryInfo> dict)
@@ -197,6 +195,7 @@ namespace NFSystemAcceptance
             }
             toolStripStatusLabel1.Text = "System Type:  ";
         }
+
         private void Btn_Click(object sender, EventArgs e)
         {
             string btnName = (sender as Button).Name;

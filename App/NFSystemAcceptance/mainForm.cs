@@ -316,11 +316,16 @@ namespace NFSystemAcceptance
                 //if (result != DialogResult.OK) return;
 
                 //fileNames = dlg.FileNames;
-                //fileName = dlg.FileName; //
 
                 NFFileDialogBox dlg = new NFFileDialogBox();
                 dlg.ShowDialog();
                 fileNames = dlg.Filenames;
+                if (dlg.Filenames == null)
+                {
+                    fileNames = new string[1];
+                    fileNames[0] = fileName;
+                }
+               
             }
             else
             {
@@ -328,7 +333,10 @@ namespace NFSystemAcceptance
                 fileNames[0] = fileName;
             }
             //-----------------------------------------------------------------------------------------------------------------
-            
+            foreach (var item in fileNames)
+            {
+                Console.WriteLine(item);
+            }
             specsDlg.ShowDialog();
 
             string algoName = parseTemplateFile(projectPath + project + ".md", project);
@@ -707,7 +715,7 @@ namespace NFSystemAcceptance
            
                 CefSharp.Cef.Shutdown();
                 StatusListener.Close();
-
+            de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalDestroy();
         }
     }
 
