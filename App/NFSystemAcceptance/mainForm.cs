@@ -64,13 +64,13 @@ namespace NFSystemAcceptance
         {
             //WorkloadPath = new DirectoryInfo("c:\\Program Data");
             WorkloadPath = new DirectoryInfo("c:\\Program Data");
-          
+
             CefSettings settings = new CefSettings();
 
             // Initialize cef with the provided settings
-            CefSharp.Cef.Initialize(settings);
+            Cef.Initialize(settings);
             //CefSharp.Cef.EnableHighDPISupport(); // Not needed as this is enabled by deault in Chromium.
-            
+
             mBrowserEngine = new ChromiumWebBrowser("");
 
             BrowserEngineMenuHandler menu = new BrowserEngineMenuHandler();
@@ -87,15 +87,15 @@ namespace NFSystemAcceptance
 
             cxBound = new CXBoundObject();
             cxBound.State = false;
-            mBrowserEngine.JavascriptObjectRepository.Register("cxBound", cxBound, false,null);
+            mBrowserEngine.JavascriptObjectRepository.Register("cxBound", cxBound, false, null);
         }
-       
+
         public mainForm()
         {
             skDialog.StartInfo += SkDialog_StartInfo;
             skDialog.RootPathInfo += SkDialog_RootPathInfo;
             skDialog.Show();
-           
+
             topo = NFTopography.New();
             InitializeDox();
             InitializeComponent();
@@ -118,7 +118,7 @@ namespace NFSystemAcceptance
 
             Text += " " + rootPath;
 
-            //this.rootPath = rootPath;
+            //rootPath = rootPath;
 
             StatusListener.OnNewFileEvent += (string fname) =>
             {
@@ -273,9 +273,9 @@ namespace NFSystemAcceptance
             ExecutePipeline();
         }
 
-        private void ExecutePipeline(string fileName ="")
+        private void ExecutePipeline(string fileName = "")
         {
-            NFEvaluationPointer topoStatistic =  new NFEvaluationPointer(factory.getObjectByName("NFTopoStatistic").get());  ;
+            NFEvaluationPointer topoStatistic = new NFEvaluationPointer(factory.getObjectByName("NFTopoStatistic").get());
             NFParameterSetPointer statisticParameter = NFParameterSet.New();
             NFParameterSetPointer inputParameter = NFParameterSet.New();
             NFParameterSetReaderPointer preader = NFParameterSetReader.New();
@@ -325,7 +325,6 @@ namespace NFSystemAcceptance
                     fileNames = new string[1];
                     fileNames[0] = fileName;
                 }
-               
             }
             else
             {
@@ -361,9 +360,9 @@ namespace NFSystemAcceptance
             eval.setParameter("Working Dir", v);
             eval.setParameter("Working Directory", v);
             int topoIndex = 0;
-           
+
             Progress.ProgressBar progressBar = new Progress.ProgressBar();
-              
+
             /// Start:  do computation 
             Task task = Task.Run(() =>
             {
@@ -467,7 +466,6 @@ namespace NFSystemAcceptance
                         {
                             MessageBox.Show("Error on document creation");
                             toolStripStatusLabel1.Text += "Error on document creation ";
-                           
                         }
 
                         if (File.Exists(projectPath + project + ".html"))
@@ -478,7 +476,6 @@ namespace NFSystemAcceptance
                         }
                         toolStripStatusLabel1.Text += ".";
                         Application.DoEvents();
-
                     }
                     toolStripStatusLabel1.Text += "Evaluating Done ";
                     topoIndex++;
@@ -488,12 +485,12 @@ namespace NFSystemAcceptance
                 pwriter.setDestination(projectPath + algoName + ".npsx");
                 pwriter.write();
 
-                System.Threading.Thread.Sleep(400);
+                Thread.Sleep(400);
                 cxBound.State = false;
 
                 Task t = Task.Run(() =>
                 {
-                    PrintPdf(projectPath,project);
+                    PrintPdf(projectPath, project);
 
                     ExecuteSummary();
 
@@ -503,15 +500,15 @@ namespace NFSystemAcceptance
 
                 progressBar.Stop();
             });
-            
-            }
+
+        }
 
         private void PrintPdf(string projectPath, string projectName)
         {
             try
             {
                 string filename = projectPath + projectName + ".pdf";
-                 if (File.Exists(filename) == true) File.Delete(filename);
+                if (File.Exists(filename) == true) File.Delete(filename);
                 // print to pdf
                 PdfPrintSettings settings = new PdfPrintSettings();
                 //settings.BackgroundsEnabled = true; // Deprecated
@@ -525,10 +522,8 @@ namespace NFSystemAcceptance
                 settings.MarginRight = 40;
                 settings.MarginBottom = 36;
 
-
                 pdfDocs.Remove(filename);
                 pdfDocs.Add(filename);
-
 
                 PDFCallback printCallback = new PDFCallback();
                 //mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, null);
@@ -540,7 +535,6 @@ namespace NFSystemAcceptance
             }
             catch (Exception)
             {
-
                 toolStripStatusLabel1.Text += "  Printing  Failed";
             }
         }
@@ -573,7 +567,6 @@ namespace NFSystemAcceptance
                 toolStripStatusLabel1.Text += "Error on document creation";
                 return;
             }
-
         }
 
         private void ExecuteCertificate()
@@ -600,22 +593,19 @@ namespace NFSystemAcceptance
                 toolStripStatusLabel1.Text += "Error on document creation";
                 return;
             }
- 
         }
 
-        void PrintFiles(List<string> files, string systemNo="")
+        void PrintFiles(List<string> files, string systemNo = "")
         {
-
             int certificateIndex = files.FindIndex(x => x.Contains("Certificate"));
-            if(certificateIndex !=0 && certificateIndex > 0)
+            if (certificateIndex != 0 && certificateIndex > 0)
             {
-
                 var tmp = files[0];
                 files[0] = files[certificateIndex];
                 files[certificateIndex] = tmp;
             }
             int summaryIndex = files.FindIndex(x => x.Contains("Summary"));
-            
+
             if (summaryIndex != 1 && summaryIndex > 0)
             {
                 var tmp = files[1];
@@ -625,7 +615,7 @@ namespace NFSystemAcceptance
 
             List<PdfDocument> pdfdocs = new List<PdfDocument>();
 
-            foreach(var file in files)
+            foreach (var file in files)
             {
                 if (File.Exists(file))
                 {
@@ -635,22 +625,18 @@ namespace NFSystemAcceptance
 
             // Create the output document
             PdfDocument outputDocument = new PdfDocument();
-                    
+
             outputDocument.PageLayout = PdfPageLayout.SinglePage;
-            
+
             foreach (var doc in pdfdocs)
             {
-
                 for (int idx = 0; idx < doc.PageCount; idx++)
                 {
-                   
                     PdfPage page = doc.PageCount > idx ?
                       doc.Pages[idx] : new PdfPage();
 
-
                     // Add both pages to the output document
                     page = outputDocument.AddPage(page);
-                    
                 }
             }
             // Add the page counter.
@@ -678,8 +664,8 @@ namespace NFSystemAcceptance
                     outputDocument.Save(filename);
                 }
             }
-                try
-                {
+            try
+            {
                 // Save the document...
                 string filename = rootPath + "\\SystemAcceptance_" + systemNo + ".pdf";
                 //string filename = rootPath + systemNo + ".pdf";
@@ -688,12 +674,9 @@ namespace NFSystemAcceptance
                     outputDocument.Save(filename);
                     Process.Start(filename);
                 }
-
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message + outputDocument.PageCount.ToString());
             }
         }
@@ -706,15 +689,13 @@ namespace NFSystemAcceptance
         private void mainForm_Shown(object sender, EventArgs e)
         {
             specsDlg = new SpecificationForm(rootPath);
-
             //specsDlg.ShowDialog();
         }
 
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-           
-                CefSharp.Cef.Shutdown();
-                StatusListener.Close();
+            Cef.Shutdown();
+            StatusListener.Close();
             de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalDestroy();
         }
     }
@@ -735,7 +716,6 @@ namespace NFSystemAcceptance
 
     public class CXBoundObject
     {
-
         public bool State
         { get; set; }
         public void setHeightScaleFactor(string msg, ref double value, ref double tolerance)
@@ -752,15 +732,12 @@ namespace NFSystemAcceptance
 
             mHeightScaleFactor = value;
 
-
-
             if (value < 1.0 - tolerance || value > 1.0 + tolerance)
             {
-                var result = MessageBox.Show("Height scale factor \n" + mHeightScaleFactor.ToString("F5") + "\n is out of tolerance"  +  "\n should be used for msprint system ?", "Confirm - Out Of Tolerance - ", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                var result = MessageBox.Show("Height scale factor \n" + mHeightScaleFactor.ToString("F5") + "\n is out of tolerance" + "\n should be used for msprint system ?", "Confirm - Out Of Tolerance - ", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 
                 if (result == DialogResult.No) return;
             }
-         
 
             string hicosSprint = msprintRoot + "\\bin\\config\\NFHicosSensor.npsx";
 
@@ -769,41 +746,34 @@ namespace NFSystemAcceptance
             double hs = mHeightScaleFactor;
 
             var sisList = new System.IO.DirectoryInfo(setUpSisFolder).GetFiles("*.sis");
-           
+
             try
             {
-              
+
                 hs = updateSIS(sisList);
 
             }
             catch (System.Exception)
             {
-
             }
             try
             {
-
                 FileInfo[] listNPSX = new FileInfo[2];
                 listNPSX[0] = new FileInfo(hicosSprint);
 
-                var  p64 =  System.Environment.GetEnvironmentVariable("NFEVAL_DIR_64");
+                var p64 = System.Environment.GetEnvironmentVariable("NFEVAL_DIR_64");
                 listNPSX[1] = new FileInfo(p64 + "\\config\\NFHicosSensor.npsx");
 
-                hs = updateNPSX(listNPSX,hs);
+                hs = updateNPSX(listNPSX, hs);
             }
             catch (Exception)
             {
- 
             }
-          
-
-             
         }
 
-        private  double updateNPSX(FileInfo[] fileList,double hs)
+        private double updateNPSX(FileInfo[] fileList, double hs)
         {
             double newHeightScaleFactor = 1;
-
 
             List<double> factors = new List<double>();
             foreach (var file in fileList)
@@ -824,7 +794,6 @@ namespace NFSystemAcceptance
 
                     factors.Add(actualHeightScaleFactor);
                 }
-
             }
 
 
@@ -843,8 +812,6 @@ namespace NFSystemAcceptance
                 {
                     var p = reader.getParameterSet();
 
-
-
                     newHeightScaleFactor = hs;
 
                     p.setParameter("Init/LinTab/HeightScaleFactor", new NFVariant(newHeightScaleFactor));
@@ -853,11 +820,10 @@ namespace NFSystemAcceptance
                     writer.setDestination(file.FullName);
                     writer.setParameterSet(p);
                     success = writer.write();
-                    if(false == success)
+                    if (false == success)
                     {
                         /// to do : message to user 
                         /// 
-                       
                     }
                 }
                 else
@@ -869,10 +835,10 @@ namespace NFSystemAcceptance
             return newHeightScaleFactor;
         }
 
-        private double updateSIS(FileInfo[] fileList )
+        private double updateSIS(FileInfo[] fileList)
         {
             double newHeightScaleFactor = mHeightScaleFactor;
-           
+
             List<string> sis = new List<string>();
             foreach (var file in fileList)
             {
@@ -926,11 +892,11 @@ namespace NFSystemAcceptance
 
 
                     var p64 = Environment.GetEnvironmentVariable("NFEVAL_DIR_64");
-                    
+
 
                     if (new DirectoryInfo(p64 + "\\log").Exists == true)
                     {
-                        using (StreamWriter file = File.AppendText(p64  +  @"\\log\\HeightScaleFactor.log"))
+                        using (StreamWriter file = File.AppendText(p64 + @"\\log\\HeightScaleFactor.log"))
                         {
                             file.WriteLine("-----------------------------------------------------------------------------------------");
                             file.WriteLine(DateTime.Now.ToShortDateString() + "  " + DateTime.Now.ToLongTimeString());
@@ -940,8 +906,6 @@ namespace NFSystemAcceptance
 
                         }
                     }
-
-
                 }
                 else
                 {
@@ -953,13 +917,13 @@ namespace NFSystemAcceptance
         }
 
 
-     
+
         public double getHeightScaleFactor()
         {
             return mHeightScaleFactor;
         }
 
-        private  double mHeightScaleFactor;
+        private double mHeightScaleFactor;
     }
 
 

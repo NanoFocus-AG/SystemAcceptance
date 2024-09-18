@@ -41,11 +41,10 @@ namespace NFSystemAcceptance
 
         List<Panel> list = new List<Panel>();
 
-       
+
         private void PrepareApp()
         {
             de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalInit();
-
             try
             {
                 string repositoryPath = "C:\\ProgramData\\NanoFocus\\SystemAcceptance\\";
@@ -82,9 +81,9 @@ namespace NFSystemAcceptance
                         if (files.Length != 0)
                         {
                             tabInfo.Add(dirInfo.Name, dirInfo);
-
                         }
                     }
+                    OnRootpathEvent(rootDir.FullName);
                 }
                 else
                 {
@@ -93,7 +92,6 @@ namespace NFSystemAcceptance
                 if (tabInfo.Count == 0)
                 {
                     throw new Exception("No Templates available");
-
                 }
             }
             catch (Exception ex)
@@ -150,7 +148,7 @@ namespace NFSystemAcceptance
 
         private void SelectKeyDialog_Load(object sender, EventArgs e)
         {
-            this.CenterToParent();
+            CenterToParent();
             bgWorker.DoWork += new DoWorkEventHandler(BgWorker_DoWork);
             bgWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BgWorker_RunWorkerCompleted);
             StartProgress();
@@ -241,7 +239,6 @@ namespace NFSystemAcceptance
                         break;
                 }
             }
-
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -255,8 +252,7 @@ namespace NFSystemAcceptance
             else
             {
                 OnStartEvent(tabInfo);
-                OnRootpathEvent(rootDir.FullName);
-
+                //OnRootpathEvent(rootDir.FullName);
                 Close();
             }
         }
