@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemAcceptance", "NFSystemAcceptance\SystemAcceptance.csproj", "{4FC775AC-21AD-4CD4-ADF5-759AA735FE0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFSystemAcceptance", "NFSystemAcceptance\NFSystemAcceptance.csproj", "{4FC775AC-21AD-4CD4-ADF5-759AA735FE0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFOpenFileDialog", "..\..\NFOpenFileDialog\NFOpenFileDialog\NFOpenFileDialog.csproj", "{C3EB443D-0049-4843-BA06-3066A16DE9CE}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SystemAcceptance", "SystemAcceptance\SystemAcceptance.vdproj", "{87357641-8613-446D-8921-857A4F30C54A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,12 @@ Global
 		{C3EB443D-0049-4843-BA06-3066A16DE9CE}.Release|x64.Build.0 = Release|x64
 		{C3EB443D-0049-4843-BA06-3066A16DE9CE}.Release|x86.ActiveCfg = Release|Any CPU
 		{C3EB443D-0049-4843-BA06-3066A16DE9CE}.Release|x86.Build.0 = Release|Any CPU
+		{87357641-8613-446D-8921-857A4F30C54A}.Debug|Any CPU.ActiveCfg = Debug
+		{87357641-8613-446D-8921-857A4F30C54A}.Debug|x64.ActiveCfg = Debug
+		{87357641-8613-446D-8921-857A4F30C54A}.Debug|x86.ActiveCfg = Debug
+		{87357641-8613-446D-8921-857A4F30C54A}.Release|Any CPU.ActiveCfg = Release
+		{87357641-8613-446D-8921-857A4F30C54A}.Release|x64.ActiveCfg = Release
+		{87357641-8613-446D-8921-857A4F30C54A}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

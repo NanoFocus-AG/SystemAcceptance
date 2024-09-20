@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using NFOpenFileDialog;
+using ProgressMatrixLibrary;
+using System.Drawing;
 
 namespace NFSystemAcceptance
 {
@@ -63,7 +65,7 @@ namespace NFSystemAcceptance
         public void InitalizeBrowserEngine()
         {
             //WorkloadPath = new DirectoryInfo("c:\\Program Data");
-            WorkloadPath = new DirectoryInfo("c:\\Program Data");
+            WorkloadPath = new DirectoryInfo("c:\\Program Data\\");
 
             CefSettings settings = new CefSettings();
 
@@ -92,19 +94,20 @@ namespace NFSystemAcceptance
 
         public mainForm()
         {
+            InitializeComponent();
             skDialog.StartInfo += SkDialog_StartInfo;
             skDialog.RootPathInfo += SkDialog_RootPathInfo;
-            skDialog.Show();
+            //skDialog.Show();
 
             topo = NFTopography.New();
             InitializeDox();
-            InitializeComponent();
             InitalizeBrowserEngine();
         }
 
         private void SkDialog_RootPathInfo(object sender, string e)
         {
             rootPath = e.ToString();
+            specsDlg = new SpecificationForm(rootPath);
         }
 
         private void SkDialog_StartInfo(object sender, Dictionary<string, DirectoryInfo> tabInfo)
@@ -152,22 +155,27 @@ namespace NFSystemAcceptance
             {
                 try
                 {
-                    this.toolStripStatusLabel1.Text = "";
+                    Console.WriteLine(tabControl.SelectedTab);
+                    if (tabControl.SelectedTab.Name == "Certificate")
+                    {
+                        // To do: the <Generate Page> Button on the Tabs <Certificate> and <Summary>
+                    }
+                    toolStripStatusLabel1.Text = "";
 
                     string Name = tabControl.SelectedTab.Name + ".p1";
                     panels[Name].setBrowserEngine(mBrowserEngine);
-
+                   
                     if (File.Exists(tabDirInfo[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
                     {
                         Uri url = new Uri("file://" + tabDirInfo[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
 
                         mBrowserEngine.Load(url.AbsolutePath);
-
+                       
                         while (mBrowserEngine.IsLoading)
                         {
-                            System.Threading.Thread.Sleep(10);
+                            Thread.Sleep(10);
                         }
-                        System.Threading.Thread.Sleep(100);
+                        Thread.Sleep(100);
 
                         project = tabControl.SelectedTab.Name;
                         string projectPath = tabDirInfo[project].FullName + "\\";
@@ -182,6 +190,8 @@ namespace NFSystemAcceptance
                     panels[Name].OnGenerate += OnExecutePipeline;
                     panels[Name].OnHelp -= OnHelp;
                     panels[Name].OnHelp += OnHelp;
+
+                   
                 }
                 catch (Exception)
                 {
@@ -189,13 +199,15 @@ namespace NFSystemAcceptance
             };
 
             SelectFirstTabPage();
+
+           
         }
 
         private void SelectFirstTabPage()
         {
             var tp = tabControl.TabPages[0];
             tabControl.SelectedTab = tp;
-
+           
             string name = tabControl.SelectedTab.Name + ".p1";
             panels[name].setBrowserEngine(mBrowserEngine);
 
@@ -361,8 +373,9 @@ namespace NFSystemAcceptance
             eval.setParameter("Working Directory", v);
             int topoIndex = 0;
 
-            Progress.ProgressBar progressBar = new Progress.ProgressBar();
+            //Progress.ProgressBar progressBar = new Progress.ProgressBar();
 
+            
             /// Start:  do computation 
             Task task = Task.Run(() =>
             {
@@ -498,7 +511,8 @@ namespace NFSystemAcceptance
 
                 });
 
-                progressBar.Stop();
+                //progressBar.Stop();
+                //progressMatrixControl.StopProgress();
             });
 
         }
@@ -688,7 +702,8 @@ namespace NFSystemAcceptance
 
         private void mainForm_Shown(object sender, EventArgs e)
         {
-            specsDlg = new SpecificationForm(rootPath);
+            skDialog.Show();
+            //specsDlg = new SpecificationForm(rootPath);
             //specsDlg.ShowDialog();
         }
 

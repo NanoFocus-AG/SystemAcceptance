@@ -166,6 +166,9 @@
     <Reference Include="PdfSharp.WPFonts, Version=6.1.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.6.1.1\lib\netstandard2.0\PdfSharp.WPFonts.dll</HintPath>
     </Reference>
+    <Reference Include="ProgressMatrix">
+      <HintPath>..\..\..\ProgressMatrixControl\bin\Release\ProgressMatrix.dll</HintPath>
+    </Reference>
     <Reference Include="ProgressODoom, Version=1.0.6117.26918, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ProgressODoom.1.0.6117.26918\lib\net20\ProgressODoom.dll</HintPath>
     </Reference>

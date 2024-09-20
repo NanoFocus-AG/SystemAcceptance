@@ -11,6 +11,7 @@ using System.IO;
 using System.Threading;
 using CefSharp.DevTools.Input;
 using System.Runtime.InteropServices;
+using ProgressMatrixLibrary;
 
 namespace NFSystemAcceptance
 {
@@ -116,17 +117,20 @@ namespace NFSystemAcceptance
             progressBarEx2.Hide();
             TopLevel = true;
 
-            foreach (Button btn in Controls.OfType<Button>())
+            foreach (Button btn in mainPanel.Controls.OfType<Button>())
             {
-                if (btn != null && btn.Name != "btnOk")
+                if (btn != null && btn.Name != "btnOk" && btn.Name != "exitButton")
                 {
                     btn.MouseEnter += Btn_MouseEnter;
                     btn.Click += Btn_Click;
                 }
             }
-            foreach (Panel panel in Controls.OfType<Panel>())
+            foreach (Panel panel in mainPanel.Controls.OfType<Panel>())
             {
-                list.Add(panel);
+                if (panel != null && panel.Name != "titlebarPanel")
+                {
+                    list.Add(panel);
+                }
             }
             Text = "Select " + "System Type";
         }
@@ -154,6 +158,18 @@ namespace NFSystemAcceptance
             StartProgress();
             bgWorker.RunWorkerAsync();
             bgWorker.WorkerReportsProgress = true;
+
+            // Test ProgressMatrix
+            //ProgressMatrixControl progressMatrixControl = new ProgressMatrixControl();
+            //progressMatrixControl.Width = 100;
+            //progressMatrixControl.Height = 100;
+            //Point point = new Point();
+            //point.X = (mainPanel. Width - progressMatrixControl.Width) / 2;
+            //point.Y = (mainPanel.Height - progressMatrixControl.Height) / 2;
+            //progressMatrixControl.Location = point;
+            //progressMatrixControl.Style = ProgressMatrixControl.ProgressStyle.Classic;
+            //mainPanel.Controls.Add(progressMatrixControl);
+            //progressMatrixControl.ProgressAnimation();
         }
 
         private void BgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -255,6 +271,7 @@ namespace NFSystemAcceptance
                 //OnRootpathEvent(rootDir.FullName);
                 Close();
             }
+            
         }
 
         #region Drag Form on MouseDown
@@ -286,6 +303,18 @@ namespace NFSystemAcceptance
         }
         #endregion
 
+        private void SelectKeyDialog_Shown(object sender, EventArgs e)
+        {
+            Focus();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (!IsDisposed)
+            {
+                Application.Exit();
+            }
+        }
     }
 
 }
