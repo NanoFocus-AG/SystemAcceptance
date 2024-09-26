@@ -4,7 +4,7 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 
 
-namespace NFSystemAcceptance
+namespace SystemAcceptance
 {
     public delegate void OnNewFileEventHandler(string fullFile);
 

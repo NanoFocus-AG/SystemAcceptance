@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace NFSystemAcceptance
+namespace SystemAcceptance
 {
 
 
@@ -16,8 +16,8 @@ namespace NFSystemAcceptance
         public tabPanel(string name)
         {
             InitializeComponent();
-            this.Dock = DockStyle.Fill;
-            this.Name = name;
+            Dock = DockStyle.Fill;
+            Name = name;
             btnGeneratePage.Click += (sender, args) =>
             {
                 if(null!= OnGenerate) OnGenerate(sender, args);
@@ -33,6 +33,9 @@ namespace NFSystemAcceptance
             browserPanel.Controls.Add(browserControl);
         }
 
-       
+        public void setProgressMatrix(Control progressControl)
+        {
+            browserPanel.Controls.Add(progressControl);
+        }
     }
 }

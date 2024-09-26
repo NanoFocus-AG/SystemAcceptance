@@ -1,4 +1,4 @@
-﻿namespace NFSystemAcceptance
+﻿namespace SystemAcceptance
 {
     partial class SelectKeyDialog
     {
@@ -50,16 +50,18 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.Label();
             this.titlebarPanel = new System.Windows.Forms.Panel();
             this.exitButton = new System.Windows.Forms.Button();
             this.Title = new System.Windows.Forms.Label();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.mainPanel.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.titlebarPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,9 +70,9 @@
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOk.Location = new System.Drawing.Point(526, 185);
+            this.btnOk.Location = new System.Drawing.Point(528, 230);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(73, 37);
+            this.btnOk.Size = new System.Drawing.Size(74, 32);
             this.btnOk.TabIndex = 5;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
@@ -96,12 +98,12 @@
             // 
             // button2
             // 
-            this.button2.BackgroundImage = global::NFSystemAcceptance.Properties.Resources.mscan_Piktogramm;
+            this.button2.BackgroundImage = global::SystemAcceptance.Properties.Resources.mscan_Piktogramm;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button2.FlatAppearance.BorderSize = 4;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.SystemColors.Control;
-            this.button2.Location = new System.Drawing.Point(155, 51);
+            this.button2.Location = new System.Drawing.Point(156, 77);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(80, 80);
             this.button2.TabIndex = 1;
@@ -110,12 +112,12 @@
             // 
             // button4
             // 
-            this.button4.BackgroundImage = global::NFSystemAcceptance.Properties.Resources.msprint_Piktogramm;
+            this.button4.BackgroundImage = global::SystemAcceptance.Properties.Resources.msprint_Piktogramm;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button4.FlatAppearance.BorderSize = 4;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.SystemColors.Control;
-            this.button4.Location = new System.Drawing.Point(375, 54);
+            this.button4.Location = new System.Drawing.Point(376, 80);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(80, 80);
             this.button4.TabIndex = 3;
@@ -125,12 +127,12 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.BackgroundImage = global::NFSystemAcceptance.Properties.Resources.msurf_Piktogramm;
+            this.button1.BackgroundImage = global::SystemAcceptance.Properties.Resources.msurf_Piktogramm;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button1.FlatAppearance.BorderSize = 4;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(45, 49);
+            this.button1.Location = new System.Drawing.Point(46, 75);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(80, 80);
             this.button1.TabIndex = 0;
@@ -139,12 +141,12 @@
             // 
             // button5
             // 
-            this.button5.BackgroundImage = global::NFSystemAcceptance.Properties.Resources.msurf_Piktogramm;
+            this.button5.BackgroundImage = global::SystemAcceptance.Properties.Resources.msurf_Piktogramm;
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button5.FlatAppearance.BorderSize = 4;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.SystemColors.Control;
-            this.button5.Location = new System.Drawing.Point(485, 54);
+            this.button5.Location = new System.Drawing.Point(486, 80);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(80, 80);
             this.button5.TabIndex = 4;
@@ -153,12 +155,12 @@
             // 
             // button3
             // 
-            this.button3.BackgroundImage = global::NFSystemAcceptance.Properties.Resources.msprint_Piktogramm;
+            this.button3.BackgroundImage = global::SystemAcceptance.Properties.Resources.msprint_Piktogramm;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button3.FlatAppearance.BorderSize = 4;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.SystemColors.Control;
-            this.button3.Location = new System.Drawing.Point(265, 53);
+            this.button3.Location = new System.Drawing.Point(266, 79);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(80, 80);
             this.button3.TabIndex = 2;
@@ -169,7 +171,7 @@
             // 
             this.progressBarEx2.BackgroundPainter = this.plainBackgroundPainter2;
             this.progressBarEx2.BorderPainter = this.plainBorderPainter2;
-            this.progressBarEx2.Location = new System.Drawing.Point(155, 228);
+            this.progressBarEx2.Location = new System.Drawing.Point(146, 7);
             this.progressBarEx2.MarqueePercentage = 25;
             this.progressBarEx2.MarqueeSpeed = 30;
             this.progressBarEx2.MarqueeStep = 5;
@@ -188,7 +190,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(45, 135);
+            this.panel1.Location = new System.Drawing.Point(46, 161);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(80, 27);
             this.panel1.TabIndex = 21;
@@ -206,7 +208,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(155, 135);
+            this.panel2.Location = new System.Drawing.Point(156, 161);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(80, 27);
             this.panel2.TabIndex = 23;
@@ -224,7 +226,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(265, 135);
+            this.panel3.Location = new System.Drawing.Point(266, 161);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(80, 27);
             this.panel3.TabIndex = 23;
@@ -242,7 +244,7 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.label4);
-            this.panel4.Location = new System.Drawing.Point(375, 135);
+            this.panel4.Location = new System.Drawing.Point(376, 161);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(80, 27);
             this.panel4.TabIndex = 23;
@@ -259,8 +261,9 @@
             // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.Color.Transparent;
             this.panel5.Controls.Add(this.label5);
-            this.panel5.Location = new System.Drawing.Point(485, 135);
+            this.panel5.Location = new System.Drawing.Point(486, 161);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(80, 27);
             this.panel5.TabIndex = 23;
@@ -277,35 +280,60 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.BackColor = System.Drawing.Color.Transparent;
             this.mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mainPanel.Controls.Add(this.panel6);
             this.mainPanel.Controls.Add(this.panel5);
             this.mainPanel.Controls.Add(this.titlebarPanel);
             this.mainPanel.Controls.Add(this.panel4);
-            this.mainPanel.Controls.Add(this.toolStripStatusLabel1);
             this.mainPanel.Controls.Add(this.panel3);
             this.mainPanel.Controls.Add(this.btnOk);
             this.mainPanel.Controls.Add(this.panel2);
-            this.mainPanel.Controls.Add(this.progressBarEx2);
             this.mainPanel.Controls.Add(this.panel1);
             this.mainPanel.Controls.Add(this.button1);
             this.mainPanel.Controls.Add(this.button3);
             this.mainPanel.Controls.Add(this.button2);
             this.mainPanel.Controls.Add(this.button5);
             this.mainPanel.Controls.Add(this.button4);
+            this.mainPanel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(612, 253);
+            this.mainPanel.Size = new System.Drawing.Size(615, 300);
             this.mainPanel.TabIndex = 24;
             this.mainPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel6_MouseDown);
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.toolStripStatusLabel1);
+            this.panel6.Controls.Add(this.progressBarEx2);
+            this.panel6.Location = new System.Drawing.Point(-1, 268);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(615, 30);
+            this.panel6.TabIndex = 24;
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.AutoSize = true;
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.toolStripStatusLabel1.Location = new System.Drawing.Point(11, 5);
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(77, 17);
+            this.toolStripStatusLabel1.TabIndex = 21;
+            this.toolStripStatusLabel1.Text = "StatusLabel";
             // 
             // titlebarPanel
             // 
             this.titlebarPanel.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.titlebarPanel.Controls.Add(this.exitButton);
             this.titlebarPanel.Controls.Add(this.Title);
-            this.titlebarPanel.Location = new System.Drawing.Point(-1, 1);
+            this.titlebarPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titlebarPanel.Location = new System.Drawing.Point(0, 0);
             this.titlebarPanel.Name = "titlebarPanel";
-            this.titlebarPanel.Size = new System.Drawing.Size(612, 30);
+            this.titlebarPanel.Size = new System.Drawing.Size(613, 30);
             this.titlebarPanel.TabIndex = 23;
             this.titlebarPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel7_MouseDown);
             // 
@@ -323,6 +351,8 @@
             this.exitButton.Text = "X";
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.button6_Click);
+            this.exitButton.MouseEnter += new System.EventHandler(this.exitButton_MouseEnter);
+            this.exitButton.MouseLeave += new System.EventHandler(this.exitButton_MouseLeave);
             // 
             // Title
             // 
@@ -337,23 +367,12 @@
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Title.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Title_MouseDown);
             // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.AutoSize = true;
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripStatusLabel1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.toolStripStatusLabel1.Location = new System.Drawing.Point(3, 228);
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(68, 15);
-            this.toolStripStatusLabel1.TabIndex = 21;
-            this.toolStripStatusLabel1.Text = "StatusLabel";
-            // 
             // SelectKeyDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(612, 253);
+            this.ClientSize = new System.Drawing.Size(615, 300);
             this.Controls.Add(this.mainPanel);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -372,7 +391,8 @@
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.mainPanel.ResumeLayout(false);
-            this.mainPanel.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.titlebarPanel.ResumeLayout(false);
             this.titlebarPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -405,5 +425,6 @@
         private System.Windows.Forms.Label Title;
         private System.Windows.Forms.Panel titlebarPanel;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Panel panel6;
     }
 }

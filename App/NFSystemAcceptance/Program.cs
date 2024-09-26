@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NFSystemAcceptance
+namespace SystemAcceptance
 {
     static class Program
     {
@@ -32,7 +32,7 @@ namespace NFSystemAcceptance
 
             Application.Run(new mainForm());
 
-            //de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalDestroy();
+            de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalDestroy();
         }
         
         private static int SetEnviromentVariables()

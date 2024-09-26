@@ -1,4 +1,4 @@
-﻿namespace NFSystemAcceptance
+﻿namespace SystemAcceptance
 {
     partial class tabPanel
     {
@@ -54,6 +54,7 @@
             // 
             // browserPanel
             // 
+            this.browserPanel.BackColor = System.Drawing.SystemColors.Control;
             this.browserPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.browserPanel.Location = new System.Drawing.Point(3, 3);
             this.browserPanel.Name = "browserPanel";
@@ -62,9 +63,9 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Add(this.btnHelp);
             this.panel2.Controls.Add(this.btnGeneratePage);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(663, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(167, 524);
@@ -72,7 +73,8 @@
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(16, 474);
+            this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHelp.Location = new System.Drawing.Point(16, 479);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(122, 32);
             this.btnHelp.TabIndex = 1;
@@ -81,7 +83,8 @@
             // 
             // btnGeneratePage
             // 
-            this.btnGeneratePage.Location = new System.Drawing.Point(16, 27);
+            this.btnGeneratePage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGeneratePage.Location = new System.Drawing.Point(16, 14);
             this.btnGeneratePage.Name = "btnGeneratePage";
             this.btnGeneratePage.Size = new System.Drawing.Size(122, 32);
             this.btnGeneratePage.TabIndex = 0;

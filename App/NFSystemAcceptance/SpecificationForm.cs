@@ -1,7 +1,9 @@
 ﻿using de.nanofocus.NFEval;
 using System.Collections.Generic;
 using System.Windows.Forms;
-namespace NFSystemAcceptance
+using System.IO;
+
+namespace SystemAcceptance
 {
 
     public partial class SpecificationForm : Form
@@ -67,34 +69,53 @@ namespace NFSystemAcceptance
 
         NFParameterSetReaderPointer preader = NFParameterSetReader.New();
 
-        private System.IO.DirectoryInfo standardsPath;
-        private System.IO.DirectoryInfo sensorPath;
+        private DirectoryInfo standardsPath;
+        private DirectoryInfo sensorPath;
         public string Standard;
 
 
-        public SpecificationForm(string rootPath)
+        public SpecificationForm(string rootPath, string selectedTab)
         {
             InitializeComponent();
 
+            string sTab = selectedTab;
 
             button1.Click += (sender, args) =>
             {
-
                 Close();
             };
 
 
-
-            standardsPath = new System.IO.DirectoryInfo(rootPath + "\\Standards");
+            standardsPath = new DirectoryInfo(rootPath + "\\Standards");
 
             if (standardsPath.Exists == false) return;
 
-            var standardSpecs = standardsPath.GetFiles("*.csv");
+            FileInfo[] standardSpecs = standardsPath.GetFiles("*.csv");
 
             if (standardSpecs.Length > 0)
             {
                 cmbListOfStandards.DataSource = standardSpecs;
-                cmbListOfStandards.SelectedItem = standardSpecs[0];
+
+                switch (sTab)
+                {
+                    case "Depth A1":
+                        cmbListOfStandards.SelectedItem = standardSpecs[3];
+                        break;
+                    case "Depth A2":
+                        cmbListOfStandards.SelectedItem = standardSpecs[4];
+                        break;
+                    case "Flatness":
+                        cmbListOfStandards.SelectedItem = standardSpecs[0];
+                        break;
+                    case "Roughness":
+                        cmbListOfStandards.SelectedItem= standardSpecs[2];
+                        break;
+
+                    default:
+                        break;
+                        
+                }
+                //cmbListOfStandards.SelectedItem = standardSpecs[0]; // <=====
 
                 string test = standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem;
                 preader.setSource(standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem);
@@ -111,7 +132,6 @@ namespace NFSystemAcceptance
                 Standard = cmbStandard.SelectedValue.ToString();
                 NFVariant v = standardType.getParameter(Standard);
                 standardParameter = new NFParameterSetPointer(v.getParameterSet());
-
             }
 
             cmbListOfStandards.SelectedIndexChanged += (sender, args) =>
@@ -133,7 +153,6 @@ namespace NFSystemAcceptance
                     NFVariant v = standardType.getParameter(Standard);
                     standardParameter = new NFParameterSetPointer(v.getParameterSet());
                 }
-
             };
 
             //--------------------------------------------------------------
@@ -146,12 +165,11 @@ namespace NFSystemAcceptance
                 NFVariant v = standardType.getParameter(Standard);
 
                 standardParameter = new NFParameterSetPointer(v.getParameterSet());
-
             };
 
             // ---------------------------------------------------------------
 
-            sensorPath = new System.IO.DirectoryInfo(rootPath + "\\sensors");
+            sensorPath = new DirectoryInfo(rootPath + "\\sensors");
 
             var sensorSpecs = sensorPath.GetFiles("*.csv");
             sensorType = NFParameterSet.New();
@@ -182,7 +200,6 @@ namespace NFSystemAcceptance
 
                 NFVariant v = sensorType.getParameter(cmbSensor.SelectedItem.ToString());
                 sensorParameter = new NFParameterSetPointer(v.getParameterSet());
-
             }
 
 
@@ -196,8 +213,6 @@ namespace NFSystemAcceptance
                 sensorParameter = new NFParameterSetPointer(v.getParameterSet());
 
             };
-
-
 
             //   tester
             {
@@ -276,14 +291,11 @@ namespace NFSystemAcceptance
                 }
                 else
                 {
-
                     stagesParameter = NFParameterSet.New();
                     cmbStages.Enabled = false;
-
                 }
 
             }
-
 
             cmbListOfStandards.SelectedIndex = 0;
 
@@ -313,7 +325,7 @@ namespace NFSystemAcceptance
 
         private void SpecificationForm_Load(object sender, System.EventArgs e)
         {
-
+           
         }
 
         private string toAnsi(string input)
@@ -343,12 +355,7 @@ namespace NFSystemAcceptance
             return ansiString;
         }
 
-        
     }
-
-
-
-
 
 }
 

@@ -15,22 +15,30 @@ using System.Threading;
 using NFOpenFileDialog;
 using ProgressMatrixLibrary;
 using System.Drawing;
+using System.Linq;
+using Button = System.Windows.Forms.Button;
+using System.ComponentModel;
+using ProgressODoom;
 
-namespace NFSystemAcceptance
+namespace SystemAcceptance
 {
 
 
     public partial class mainForm : Form
     {
+        private ProgressMatrixControl progressMatrixControl;
+
         SelectKeyDialog skDialog = new SelectKeyDialog();
         MqttStatusListener StatusListener = new MqttStatusListener();
+        TabPage tabPage;
+
         private string rootPath;
         private string project;
         private ChromiumWebBrowser mBrowserEngine;
         private DirectoryInfo WorkloadPath;
 
-        private Dictionary<string, tabPanel> panels = new Dictionary<string, tabPanel>();
-        private Dictionary<string, DirectoryInfo> tabDirInfo = new Dictionary<string, DirectoryInfo>();
+        private Dictionary<string, tabPanel> panelsDict = new Dictionary<string, tabPanel>();
+        private Dictionary<string, DirectoryInfo> tabDirInfoDict = new Dictionary<string, DirectoryInfo>();
 
         private NFTopographyPointer topo;
         private NFEvaluationPointer eval;
@@ -64,6 +72,7 @@ namespace NFSystemAcceptance
 
         public void InitalizeBrowserEngine()
         {
+           
             //WorkloadPath = new DirectoryInfo("c:\\Program Data");
             WorkloadPath = new DirectoryInfo("c:\\Program Data\\");
 
@@ -74,7 +83,7 @@ namespace NFSystemAcceptance
             //CefSharp.Cef.EnableHighDPISupport(); // Not needed as this is enabled by deault in Chromium.
 
             mBrowserEngine = new ChromiumWebBrowser("");
-
+            
             BrowserEngineMenuHandler menu = new BrowserEngineMenuHandler();
             mBrowserEngine.MenuHandler = menu;
 
@@ -90,32 +99,51 @@ namespace NFSystemAcceptance
             cxBound = new CXBoundObject();
             cxBound.State = false;
             mBrowserEngine.JavascriptObjectRepository.Register("cxBound", cxBound, false, null);
+
+            
         }
 
+        private void InitProgressMatrix()
+        {
+          
+            progressMatrixControl = new ProgressMatrixControl();
+            progressMatrixControl.Size = new Size(100, 100);
+            progressMatrixControl.BackColor = Color.Black;
+            progressMatrixControl.Location = new Point(tabControl.SelectedTab.Width - progressMatrixControl.Width / 2,
+               tabControl.SelectedTab.Height - progressMatrixControl.Height / 2);
+
+            progressMatrixControl.Style = ProgressMatrixControl.ProgressStyle.Classic;
+            progressMatrixControl.BackColor = Color.Black;
+            mBrowserEngine.Controls.Add(progressMatrixControl);
+            progressMatrixControl.Hide();
+        }
         public mainForm()
         {
             InitializeComponent();
             skDialog.StartInfo += SkDialog_StartInfo;
             skDialog.RootPathInfo += SkDialog_RootPathInfo;
-            //skDialog.Show();
-
+            
             topo = NFTopography.New();
             InitializeDox();
             InitalizeBrowserEngine();
+            InitProgressMatrix();
+            toolStripStatusLabel1.Text = "";
+            toolStripStatusLabel2.Text = "";
         }
 
+       
         private void SkDialog_RootPathInfo(object sender, string e)
         {
             rootPath = e.ToString();
-            specsDlg = new SpecificationForm(rootPath);
+            //specsDlg = new SpecificationForm(rootPath, project);
         }
 
         private void SkDialog_StartInfo(object sender, Dictionary<string, DirectoryInfo> tabInfo)
         {
             string panelName = tabPage1.Name + ".p1";
-            panels.Add(panelName, new tabPanel(panelName));
-            tabControl.TabPages[tabPage1.Name].Controls.Add(panels[panelName]);
-            panels[panelName].setBrowserEngine(mBrowserEngine);
+            panelsDict.Add(panelName, new tabPanel(panelName));
+            tabControl.TabPages[tabPage1.Name].Controls.Add(panelsDict[panelName]);
+            panelsDict[panelName].setBrowserEngine(mBrowserEngine);
             tabControl.TabPages.Remove(tabPage1);
             CreateTabStructure(tabInfo);
 
@@ -137,9 +165,10 @@ namespace NFSystemAcceptance
 
         private void CreateTabStructure(Dictionary<string, DirectoryInfo> tabInfo)
         {
-            tabDirInfo = tabInfo;
+           
+            tabDirInfoDict = tabInfo;
 
-            foreach (var element in tabDirInfo)
+            foreach (var element in tabDirInfoDict)
             {
                 string tabPageName = element.Key;
                 var p = new TabPage(tabPageName);
@@ -147,60 +176,166 @@ namespace NFSystemAcceptance
                 p.Text = tabPageName;
                 tabControl.TabPages.Add(p);
                 string panelName = tabPageName + ".p1";
-                panels.Add(panelName, new tabPanel(panelName));
-                tabControl.TabPages[tabPageName].Controls.Add(panels[panelName]);
+                panelsDict.Add(panelName, new tabPanel(panelName));
+                tabControl.TabPages[tabPageName].Controls.Add(panelsDict[panelName]);
+            }
+
+            TabPage tp = tabControl.SelectedTab;
+            tabPage = tabControl.SelectedTab;
+            if (tp.Text == "Certificate" || tp.Text == "Summary")
+            {
+                BeginInvoke(new Action(() =>{HideButtons(tp);}));
+            }
+            else
+            {
+                BeginInvoke(new Action(() =>{ShowButtons(tp);}));
             }
 
             tabControl.Selected += (sender, args) =>
             {
+                tabPage = tabControl.SelectedTab;
+                Console.WriteLine(tabPage.Text);
+                project = tabControl.SelectedTab.Name;
+
+                if (tabPage.Text == "Certificate" || tabPage.Text == "Summary")
+                {
+                    BeginInvoke(new Action(() =>{HideButtons(tabPage); }));
+                }
+                else
+                {
+                    BeginInvoke(new Action(() => { ShowButtons(tabPage); }));
+                }
+
                 try
                 {
-                    Console.WriteLine(tabControl.SelectedTab);
-                    if (tabControl.SelectedTab.Name == "Certificate")
-                    {
-                        // To do: the <Generate Page> Button on the Tabs <Certificate> and <Summary>
-                    }
                     toolStripStatusLabel1.Text = "";
-
+                    toolStripStatusLabel2.Text = "";
                     string Name = tabControl.SelectedTab.Name + ".p1";
-                    panels[Name].setBrowserEngine(mBrowserEngine);
-                   
-                    if (File.Exists(tabDirInfo[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
+                    panelsDict[Name].setBrowserEngine(mBrowserEngine);
+                    
+                    if (File.Exists(tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
                     {
-                        Uri url = new Uri("file://" + tabDirInfo[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
+                        Uri url = new Uri("file://" + tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
 
                         mBrowserEngine.Load(url.AbsolutePath);
-                       
                         while (mBrowserEngine.IsLoading)
                         {
                             Thread.Sleep(10);
                         }
                         Thread.Sleep(100);
 
-                        project = tabControl.SelectedTab.Name;
-                        string projectPath = tabDirInfo[project].FullName + "\\";
-                        PrintPdf(projectPath, project);
+                        
+                        string projectPath = tabDirInfoDict[project].FullName + "\\";
+
+                        Task.Run(() => PrintPdf(projectPath, project));
+                       
                     }
                     else
                     {
                         mBrowserEngine.Load("<html><head></head><body></body></html>");
                     }
 
-                    panels[Name].OnGenerate -= OnExecutePipeline;
-                    panels[Name].OnGenerate += OnExecutePipeline;
-                    panels[Name].OnHelp -= OnHelp;
-                    panels[Name].OnHelp += OnHelp;
+                    panelsDict[Name].OnGenerate -= OnExecutePipeline;
+                    panelsDict[Name].OnGenerate += OnExecutePipeline;
+                    panelsDict[Name].OnHelp -= OnHelp;
+                    panelsDict[Name].OnHelp += OnHelp;
 
-                   
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    throw ex;
                 }
             };
 
             SelectFirstTabPage();
+        }
 
-           
+        private void HideButtons(TabPage tabPage)
+        {
+            TabPage tp = tabPage;
+            Control.ControlCollection c = tp.Controls;
+            foreach (Control ctrl in c)
+            {
+                if (ctrl is UserControl)
+                {
+                    foreach (Panel pn in ctrl.Controls)
+                    {
+                        foreach (Control ct in pn.Controls)
+                        {
+                            foreach (Button btn in ct.Controls.OfType<Button>())
+                            {
+                                btn.Visible = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ShowButtons(TabPage tabPage)
+        {
+            TabPage tp = tabPage;
+            Control.ControlCollection c = tp.Controls;
+            foreach (Control ctrl in c)
+            {
+                if (ctrl is UserControl)
+                {
+                    foreach (Panel pn in ctrl.Controls)
+                    {
+                        foreach (Control ct in pn.Controls)
+                        {
+                            foreach (Button btn in ct.Controls.OfType<Button>())
+                            {
+                                btn.Visible = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DisableButtonsOnProgress(TabPage tabPage)
+        {
+            TabPage tp = tabPage;
+            Control.ControlCollection c = tp.Controls;
+            foreach (Control ctrl in c)
+            {
+                if (ctrl is UserControl)
+                {
+                    foreach (Panel pn in ctrl.Controls)
+                    {
+                        foreach (Control ct in pn.Controls)
+                        {
+                            foreach (Button btn in ct.Controls.OfType<Button>())
+                            {
+                                btn.Enabled = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void EnableButtonOnProgress(TabPage tabPage)
+        {
+            TabPage tp = tabPage;
+            Control.ControlCollection c = tp.Controls;
+            foreach (Control ctrl in c)
+            {
+                if (ctrl is UserControl)
+                {
+                    foreach (Panel pn in ctrl.Controls)
+                    {
+                        foreach (Control ct in pn.Controls)
+                        {
+                            foreach (Button btn in ct.Controls.OfType<Button>())
+                            {
+                                btn.Enabled = true;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void SelectFirstTabPage()
@@ -209,23 +344,27 @@ namespace NFSystemAcceptance
             tabControl.SelectedTab = tp;
            
             string name = tabControl.SelectedTab.Name + ".p1";
-            panels[name].setBrowserEngine(mBrowserEngine);
+            panelsDict[name].setBrowserEngine(mBrowserEngine);
+           
 
-            if (File.Exists(tabDirInfo[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
+            if (File.Exists(tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
             {
-                Uri Url = new Uri("file://" + tabDirInfo[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
+                Uri Url = new Uri("file://" + tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
 
                 mBrowserEngine.Load(Url.AbsolutePath);
+               
             }
             else
             {
                 mBrowserEngine.Load("<html><head></head><body></body></html>");
             }
-            panels[name].OnGenerate -= OnExecutePipeline;
-            panels[name].OnGenerate += OnExecutePipeline;
 
-            panels[name].OnHelp -= OnHelp;
-            panels[name].OnHelp += OnHelp;
+            panelsDict[name].OnGenerate -= OnExecutePipeline;
+            panelsDict[name].OnGenerate += OnExecutePipeline;
+
+            panelsDict[name].OnHelp -= OnHelp;
+            panelsDict[name].OnHelp += OnHelp;
+
         }
 
         private void InitializeDox()
@@ -237,10 +376,10 @@ namespace NFSystemAcceptance
             evalDox.setParameter("ColorPaletteBar", new NFVariant("NFTopoToColor<NFColorFunctors::NFTopoHeightPixelToHSVRainbowFunctor>"));
         }
 
-        private void OnHelp(Object sender, EventArgs arg)
+        private void OnHelp(object sender, EventArgs arg)
         {
             project = tabControl.SelectedTab.Name;
-            string projectPath = tabDirInfo[project].FullName + "\\";
+            string projectPath = tabDirInfoDict[project].FullName + "\\";
 
             NFTopographyPointer t = NFTopography.New();
             t.create(512, 512);
@@ -260,7 +399,7 @@ namespace NFSystemAcceptance
             if (rc != 0)
             {
                 MessageBox.Show("Error on help creation");
-                toolStripStatusLabel1.Text += "Error on help creation";
+                toolStripStatusLabel1.Text = "Error on help creation";
             }
 
 
@@ -270,7 +409,7 @@ namespace NFSystemAcceptance
 
                 mBrowserEngine.Load(url.AbsolutePath);
 
-                toolStripStatusLabel1.Text += ".";
+                toolStripStatusLabel1.Text = ".";
 
                 Application.DoEvents();
             }
@@ -280,7 +419,7 @@ namespace NFSystemAcceptance
             }
         }
 
-        private void OnExecutePipeline(Object sender, EventArgs arg)
+        private void OnExecutePipeline(object sender, EventArgs arg)
         {
             ExecutePipeline();
         }
@@ -299,29 +438,29 @@ namespace NFSystemAcceptance
             Application.DoEvents();
 
             project = tabControl.SelectedTab.Name;
-            string projectPath = tabDirInfo[project].FullName + "\\";
+            string projectPath = tabDirInfoDict[project].FullName + "\\";
 
             /*
              * Load all plugins  inside the current folder. either ned or dll  
              * 
              */
-            var algos = tabDirInfo[project].GetFiles("*.ned");
+
+            var algos = tabDirInfoDict[project].GetFiles("*.ned");
             if (algos.Length > 0)
             {
-                NFEval_I_CS810x64.NFLoadPlugins(tabDirInfo[project].FullName);
+                NFEval_I_CS810x64.NFLoadPlugins(tabDirInfoDict[project].FullName);
             }
 
             if (fileName == "")
             {
-                /*
-                 * select the data file via dialog 
-                 */
                 //OpenFileDialog dlg = new OpenFileDialog();
+
 
                 //dlg.FilterIndex = 2;
                 //dlg.RestoreDirectory = true;
                 //dlg.Multiselect = true;
                 //dlg.Title = "Please Select  File(s) ";
+
 
                 //var result = dlg.ShowDialog();
 
@@ -330,24 +469,34 @@ namespace NFSystemAcceptance
                 //fileNames = dlg.FileNames;
 
                 NFFileDialogBox dlg = new NFFileDialogBox();
-                dlg.ShowDialog();
+                var result = dlg.ShowDialog();
+                if (result != DialogResult.OK)
+                {
+                    return;
+                }
                 fileNames = dlg.Filenames;
+                fileName = dlg.FileName;
                 if (dlg.Filenames == null)
                 {
                     fileNames = new string[1];
                     fileNames[0] = fileName;
+                    
                 }
+               
             }
             else
             {
                 fileNames = new string[1];
                 fileNames[0] = fileName;
             }
+
             //-----------------------------------------------------------------------------------------------------------------
-            foreach (var item in fileNames)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in fileNames)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            specsDlg = new SpecificationForm(rootPath, project);
             specsDlg.ShowDialog();
 
             string algoName = parseTemplateFile(projectPath + project + ".md", project);
@@ -374,8 +523,8 @@ namespace NFSystemAcceptance
             int topoIndex = 0;
 
             //Progress.ProgressBar progressBar = new Progress.ProgressBar();
+           
 
-            
             /// Start:  do computation 
             Task task = Task.Run(() =>
             {
@@ -383,7 +532,8 @@ namespace NFSystemAcceptance
                 {
                     var actualFilename = file;
 
-                    toolStripStatusLabel1.Text += actualFilename + " | ";
+                    //toolStripStatusLabel1.Text += actualFilename + " | ";
+                    toolStripStatusLabel2.Text = actualFilename;
                     Application.DoEvents();
 
                     NFFileReaderPointer reader = NFFileReader.New();
@@ -422,7 +572,7 @@ namespace NFSystemAcceptance
                         if (rc != 0)
                         {
                             MessageBox.Show("Error on evaluation");
-                            toolStripStatusLabel1.Text += "Error on evaluation ";
+                            toolStripStatusLabel1.Text = "Error on evaluation ";
                         }
                         cxBound.State = true;
 
@@ -478,7 +628,7 @@ namespace NFSystemAcceptance
                         if (rc != 0)
                         {
                             MessageBox.Show("Error on document creation");
-                            toolStripStatusLabel1.Text += "Error on document creation ";
+                            toolStripStatusLabel1.Text = "Error on document creation ";
                         }
 
                         if (File.Exists(projectPath + project + ".html"))
@@ -487,10 +637,10 @@ namespace NFSystemAcceptance
 
                             mBrowserEngine.Load(url.AbsolutePath);
                         }
-                        toolStripStatusLabel1.Text += ".";
+                        toolStripStatusLabel1.Text = ".";
                         Application.DoEvents();
                     }
-                    toolStripStatusLabel1.Text += "Evaluating Done ";
+                    toolStripStatusLabel1.Text = "Evaluating Done ";
                     topoIndex++;
                 }
 
@@ -503,53 +653,87 @@ namespace NFSystemAcceptance
 
                 Task t = Task.Run(() =>
                 {
-                    PrintPdf(projectPath, project);
+
+                    _ = PrintPdf(projectPath, project);
 
                     ExecuteSummary();
 
                     ExecuteCertificate();
-
                 });
 
                 //progressBar.Stop();
-                //progressMatrixControl.StopProgress();
+               
             });
-
         }
 
-        private void PrintPdf(string projectPath, string projectName)
+        private async Task PrintPdf(string projectPath, string projectName)
         {
+
+            toolStripStatusLabel1.Text = "";
+            toolStripStatusLabel2.Text = "";
             try
             {
+                BeginInvoke(new Action(() =>
+                {
+                    DisableButtonsOnProgress(tabPage);
+                    toolStripStatusLabel1.Text = "Printing pdf..";
+                    progressMatrixControl.Show();
+                    progressMatrixControl.ProgressAnimation();
+                }));
+
                 string filename = projectPath + projectName + ".pdf";
                 if (File.Exists(filename) == true) File.Delete(filename);
-                // print to pdf
+                //// print to pdf
                 PdfPrintSettings settings = new PdfPrintSettings();
                 //settings.BackgroundsEnabled = true; // Deprecated
                 settings.PrintBackground = true;
 
                 settings.MarginType = CefPdfPrintMarginType.Custom;
                 settings.Landscape = false;
-                //settings.ScaleFactor = 100;
-                settings.MarginLeft = 60;
-                settings.MarginTop = 36;
-                settings.MarginRight = 40;
-                settings.MarginBottom = 36;
+                //settings.Scale = 100;
+                //settings.MarginLeft = 60;
+                //settings.MarginTop = 36;
+                //settings.MarginRight = 40;
+                //settings.MarginBottom = 36;
 
                 pdfDocs.Remove(filename);
                 pdfDocs.Add(filename);
 
-                PDFCallback printCallback = new PDFCallback();
+                //PDFCallback printCallback = new PDFCallback();
                 //mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, null);
-                mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, printCallback);
+                //mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, printCallback);
+                mBrowserEngine.GetBrowserHost().PrintToPdf(filename, settings, null);
+                //mBrowserEngine.GetBrowserHost().Print();
+                //mBrowserEngine.Print(); // Print
 
-                System.Threading.Thread.Sleep(4400);
+                //bool success = await mBrowserEngine.PrintToPdfAsync(filename, new PdfPrintSettings
+                //{
+                //    MarginType = CefPdfPrintMarginType.Custom,
+                //    Landscape = false,
+                //    Scale = 100,
+                //    //MarginBottom = 36,
+                //    //MarginTop = 36,
+                //    //MarginLeft = 60,
+                //    //MarginRight = 40,
+                //    //PaperWidth = 210,
+                //    //PaperHeight = 290
+                //});
 
-                toolStripStatusLabel1.Text += "  Printing Done";
+                //Thread.Sleep(4400);
+                await Task.Delay(3000);
+                BeginInvoke(new Action(() =>
+                {
+                    toolStripStatusLabel1.Text = "Printing Done ";
+                    toolStripStatusLabel2.Text = filename;
+                    progressMatrixControl.StopProgress();
+                    progressMatrixControl.Hide();
+                   EnableButtonOnProgress(tabPage);
+
+                }));
             }
             catch (Exception)
             {
-                toolStripStatusLabel1.Text += "  Printing  Failed";
+                toolStripStatusLabel1.Text = "  Printing  Failed";
             }
         }
 
@@ -558,11 +742,12 @@ namespace NFSystemAcceptance
 
         private void ExecuteSummary()
         {
+           
             string project = "Summary";
 
-            if (false == tabDirInfo.ContainsKey(project)) return;
+            if (false == tabDirInfoDict.ContainsKey(project)) return;
 
-            string projectPath = tabDirInfo[project].FullName + "\\";
+            string projectPath = tabDirInfoDict[project].FullName + "\\";
 
             evalDox.setNumberOfInputTopos(1);
 
@@ -578,17 +763,19 @@ namespace NFSystemAcceptance
             if (rc != 0)
             {
                 MessageBox.Show("Error on document creation");
-                toolStripStatusLabel1.Text += "Error on document creation";
+                toolStripStatusLabel1.Text = "Error on document creation";
                 return;
             }
+          
         }
 
         private void ExecuteCertificate()
         {
+           
             string project = "Certificate";
-            if (false == tabDirInfo.ContainsKey(project)) return;
+            if (false == tabDirInfoDict.ContainsKey(project)) return;
 
-            string projectPath = tabDirInfo[project].FullName + "\\";
+            string projectPath = tabDirInfoDict[project].FullName + "\\";
 
             evalDox.setNumberOfInputTopos(1);
 
@@ -607,10 +794,20 @@ namespace NFSystemAcceptance
                 toolStripStatusLabel1.Text += "Error on document creation";
                 return;
             }
+        
         }
 
-        void PrintFiles(List<string> files, string systemNo = "")
+        private async Task PrintFiles(List<string> files, string systemNo = "")
         {
+            BeginInvoke(new Action(() =>
+            {
+                DisableButtonsOnProgress(tabPage);
+                toolStripStatusLabel1.Text = "Saving pdf files..";
+                toolStripStatusLabel2.Text = "";
+                progressMatrixControl.Show();
+                progressMatrixControl.ProgressAnimation();
+            }));
+
             int certificateIndex = files.FindIndex(x => x.Contains("Certificate"));
             if (certificateIndex != 0 && certificateIndex > 0)
             {
@@ -638,9 +835,10 @@ namespace NFSystemAcceptance
             }
 
             // Create the output document
-            PdfDocument outputDocument = new PdfDocument();
-
-            outputDocument.PageLayout = PdfPageLayout.SinglePage;
+            PdfDocument outputDocument = new PdfDocument
+            {
+                PageLayout = PdfPageLayout.SinglePage
+            };
 
             foreach (var doc in pdfdocs)
             {
@@ -686,8 +884,17 @@ namespace NFSystemAcceptance
                 if (outputDocument.PageCount > 0)
                 {
                     outputDocument.Save(filename);
-                    Process.Start(filename);
+                    //Process.Start(filename);
                 }
+                await Task.Delay(1000);
+                BeginInvoke(new Action(() =>
+                {
+                    toolStripStatusLabel1.Text = "File saved: ";
+                    toolStripStatusLabel2.Text = filename;
+                    progressMatrixControl.StopProgress();
+                    progressMatrixControl.Hide();
+                    EnableButtonOnProgress(tabPage);
+                }));
             }
             catch (Exception ex)
             {
@@ -697,21 +904,33 @@ namespace NFSystemAcceptance
 
         private void printToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            PrintFiles(pdfDocs, systemNumber);
+            Task.Run(()=> PrintFiles(pdfDocs, systemNumber));
         }
 
         private void mainForm_Shown(object sender, EventArgs e)
         {
             skDialog.Show();
-            //specsDlg = new SpecificationForm(rootPath);
-            //specsDlg.ShowDialog();
         }
 
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Cef.Shutdown();
             StatusListener.Close();
-            de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalDestroy();
+            //NFEvalCSHelpers.NFEvalDestroy();
+        }
+
+       
+        private void toolStripStatusLabel2_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(toolStripStatusLabel2.Text))
+            {
+                Process.Start("msedge.exe", toolStripStatusLabel2.Text);
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 

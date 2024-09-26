@@ -1,7 +1,7 @@
 ﻿using CefSharp;
 using System.Windows.Forms;
 
-namespace NFSystemAcceptance
+namespace SystemAcceptance
 {
 
     /*

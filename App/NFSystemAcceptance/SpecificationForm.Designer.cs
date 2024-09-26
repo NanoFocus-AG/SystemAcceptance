@@ -1,4 +1,4 @@
-﻿namespace NFSystemAcceptance
+﻿namespace SystemAcceptance
 {
     partial class SpecificationForm
     {

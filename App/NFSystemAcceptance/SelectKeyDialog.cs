@@ -13,7 +13,7 @@ using CefSharp.DevTools.Input;
 using System.Runtime.InteropServices;
 using ProgressMatrixLibrary;
 
-namespace NFSystemAcceptance
+namespace SystemAcceptance
 {
     public partial class SelectKeyDialog : Form
     {
@@ -40,8 +40,8 @@ namespace NFSystemAcceptance
         public DirectoryInfo rootDir;
         BackgroundWorker bgWorker = new BackgroundWorker();
 
-        List<Panel> list = new List<Panel>();
-
+        List<Panel> PanelList = new List<Panel>();
+        List<Label> LabelList = new List<Label>();
 
         private void PrepareApp()
         {
@@ -129,9 +129,17 @@ namespace NFSystemAcceptance
             {
                 if (panel != null && panel.Name != "titlebarPanel")
                 {
-                    list.Add(panel);
+                    PanelList.Add(panel);
+                }
+                foreach (Label lbl in panel.Controls.OfType<Label>())
+                {
+                    if (lbl != null)
+                    {
+                        LabelList.Add(lbl);
+                    }
                 }
             }
+           
             Text = "Select " + "System Type";
         }
 
@@ -158,18 +166,6 @@ namespace NFSystemAcceptance
             StartProgress();
             bgWorker.RunWorkerAsync();
             bgWorker.WorkerReportsProgress = true;
-
-            // Test ProgressMatrix
-            //ProgressMatrixControl progressMatrixControl = new ProgressMatrixControl();
-            //progressMatrixControl.Width = 100;
-            //progressMatrixControl.Height = 100;
-            //Point point = new Point();
-            //point.X = (mainPanel. Width - progressMatrixControl.Width) / 2;
-            //point.Y = (mainPanel.Height - progressMatrixControl.Height) / 2;
-            //progressMatrixControl.Location = point;
-            //progressMatrixControl.Style = ProgressMatrixControl.ProgressStyle.Classic;
-            //mainPanel.Controls.Add(progressMatrixControl);
-            //progressMatrixControl.ProgressAnimation();
         }
 
         private void BgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -216,9 +212,13 @@ namespace NFSystemAcceptance
             string btnTag = (sender as Button).Tag.ToString();
             if (btnName != "btnOk")
             {
-                foreach (var item in list)
+                foreach (var item in PanelList)
                 {
                     item.BackColor = Color.Transparent;
+                }
+                foreach (Label lbl in LabelList)
+                {
+                    lbl.ForeColor = SystemColors.ControlText;
                 }
                 toolStripStatusLabel1.BackColor = Color.Transparent;
                 toolStripStatusLabel1.Text = "System Type:  " + (sender as Button).Tag.ToString();
@@ -228,27 +228,32 @@ namespace NFSystemAcceptance
                     case "button1":
                         //toolStripStatusLabel1.Text = "  µSurf - CM";
                         label1.Text = btnTag;
-                        panel1.BackColor = Color.LightSeaGreen;
+                        label1.ForeColor = Color.White;
+                        panel1.BackColor = Color.SlateGray;
                         break;
                     case "button2":
                         //toolStripStatusLabel1.Text = "  µScan - CP";
                         label2.Text = btnTag;
-                        panel2.BackColor = Color.LightSeaGreen;
+                        label2.ForeColor = Color.White;
+                        panel2.BackColor = Color.SlateGray;
                         break;
                     case "button3":
                         //toolStripStatusLabel1.Text = "  µScan - CL";
                         label3.Text = btnTag;
-                        panel3.BackColor = Color.LightSeaGreen;
+                        label3.ForeColor = Color.White;
+                        panel3.BackColor = Color.SlateGray;
                         break;
                     case "button4":
                         //toolStripStatusLabel1.Text = "  µSprint - CX";
                         label4.Text = btnTag;
-                        panel4.BackColor = Color.LightSeaGreen;
+                        label4.ForeColor = Color.White;
+                        panel4.BackColor = Color.SlateGray;
                         break;
                     case "button5":
                         //toolStripStatusLabel1.Text = "  WI"; 
                         label5.Text = btnTag;
-                        panel5.BackColor = Color.LightSeaGreen;
+                        label5.ForeColor = Color.White;
+                        panel5.BackColor = Color.SlateGray;
                         break;
                     default:
                         toolStripStatusLabel1.Text = "";
@@ -314,6 +319,16 @@ namespace NFSystemAcceptance
             {
                 Application.Exit();
             }
+        }
+
+        private void exitButton_MouseEnter(object sender, EventArgs e)
+        {
+            exitButton.BackColor = Color.Red;
+        }
+
+        private void exitButton_MouseLeave(object sender, EventArgs e)
+        {
+            exitButton.BackColor = SystemColors.MenuHighlight;
         }
     }
 
