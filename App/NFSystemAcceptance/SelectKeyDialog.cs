@@ -219,6 +219,7 @@ namespace SystemAcceptance
             string btnTag = (sender as Button).Tag.ToString();
             if (btnName != "btnOk")
             {
+                SetSystem(btnTag);
                 foreach (var item in PanelList)
                 {
                     item.BackColor = Color.Transparent;
@@ -234,35 +235,35 @@ namespace SystemAcceptance
                 {
                     case "button1":
                         //toolStripStatusLabel1.Text = "  µSurf - CM";
-                        SetSystem(btnTag);
+                        //SetSystem(btnTag);
                         label1.Text = btnTag;
                         label1.ForeColor = Color.White;
                         panel1.BackColor = Color.SlateGray;
                         break;
                     case "button2":
                         //toolStripStatusLabel1.Text = "  µScan - CP";
-                        SetSystem(btnTag);
+                        //SetSystem(btnTag);
                         label2.Text = btnTag;
                         label2.ForeColor = Color.White;
                         panel2.BackColor = Color.SlateGray;
                         break;
                     case "button3":
                         //toolStripStatusLabel1.Text = "  µScan - CL";
-                        SetSystem(btnTag);
+                        //SetSystem(btnTag);
                         label3.Text = btnTag;
                         label3.ForeColor = Color.White;
                         panel3.BackColor = Color.SlateGray;
                         break;
                     case "button4":
                         //toolStripStatusLabel1.Text = "  µSprint - CX";
-                        SetSystem(btnTag);
+                        //SetSystem(btnTag);
                         label4.Text = btnTag;
                         label4.ForeColor = Color.White;
                         panel4.BackColor = Color.SlateGray;
                         break;
                     case "button5":
                         //toolStripStatusLabel1.Text = "  WI"; 
-                        SetSystem(btnTag);
+                        //SetSystem(btnTag);
                         label5.Text = btnTag;
                         label5.ForeColor = Color.White;
                         panel5.BackColor = Color.SlateGray;

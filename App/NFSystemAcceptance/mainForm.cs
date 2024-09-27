@@ -699,10 +699,10 @@ namespace SystemAcceptance
                 pdfDocs.Remove(filename);
                 pdfDocs.Add(filename);
 
-                //PDFCallback printCallback = new PDFCallback();
+                PDFCallback printCallback = new PDFCallback();
                 //mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, null);
-                //mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, printCallback);
-                mBrowserEngine.GetBrowserHost().PrintToPdf(filename, settings, null);
+                mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, printCallback);
+                //mBrowserEngine.GetBrowserHost().PrintToPdf(filename, settings, null);
                 //mBrowserEngine.GetBrowserHost().Print();
                 //mBrowserEngine.Print(); // Print
 
@@ -720,7 +720,7 @@ namespace SystemAcceptance
                 //});
 
                 //Thread.Sleep(4400);
-                await Task.Delay(3000);
+                await Task.Delay(13000);
                 BeginInvoke(new Action(() =>
                 {
                     toolStripStatusLabel1.Text = "Printing Done ";
