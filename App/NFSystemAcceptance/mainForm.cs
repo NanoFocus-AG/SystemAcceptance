@@ -798,6 +798,7 @@ namespace SystemAcceptance
         }
 
         private async Task PrintFiles(List<string> files, string systemNo = "")
+        //private void PrintFiles(List<string> files, string systemNo = "")
         {
             BeginInvoke(new Action(() =>
             {
@@ -834,13 +835,14 @@ namespace SystemAcceptance
                 }
             }
 
+
             // Create the output document
             PdfDocument outputDocument = new PdfDocument
             {
                 PageLayout = PdfPageLayout.SinglePage
             };
 
-            foreach (var doc in pdfdocs)
+            foreach (PdfDocument doc in pdfdocs)
             {
                 for (int idx = 0; idx < doc.PageCount; idx++)
                 {
@@ -872,8 +874,6 @@ namespace SystemAcceptance
                         brush,
                         layoutRectangle,
                         XStringFormats.Center);
-                    string filename = rootPath + systemNo + ".pdf";
-                    outputDocument.Save(filename);
                 }
             }
             try
@@ -884,8 +884,9 @@ namespace SystemAcceptance
                 if (outputDocument.PageCount > 0)
                 {
                     outputDocument.Save(filename);
-                    //Process.Start(filename);
+                    Process.Start(filename);
                 }
+
                 await Task.Delay(1000);
                 BeginInvoke(new Action(() =>
                 {
@@ -904,7 +905,8 @@ namespace SystemAcceptance
 
         private void printToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Task.Run(()=> PrintFiles(pdfDocs, systemNumber));
+            Task.Run(() => PrintFiles(pdfDocs, systemNumber));
+            //PrintFiles(pdfDocs, systemNumber);
         }
 
         private void mainForm_Shown(object sender, EventArgs e)
