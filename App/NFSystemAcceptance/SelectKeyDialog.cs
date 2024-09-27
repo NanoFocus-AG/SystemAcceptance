@@ -38,6 +38,8 @@ namespace SystemAcceptance
         List<string> dataList = new List<string>();
         public Dictionary<string, DirectoryInfo> tabInfo = new Dictionary<string, DirectoryInfo>();
         public DirectoryInfo rootDir;
+        private string RepositoryPath;
+        private string SelectedSystem;
         BackgroundWorker bgWorker = new BackgroundWorker();
 
         List<Panel> PanelList = new List<Panel>();
@@ -48,17 +50,17 @@ namespace SystemAcceptance
             de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalInit();
             try
             {
-                string repositoryPath = "C:\\ProgramData\\NanoFocus\\SystemAcceptance\\";
+                RepositoryPath = "C:\\ProgramData\\NanoFocus\\SystemAcceptance\\";
 
                 IEnumerable<string> dirList = null;
-                if (Directory.Exists(repositoryPath)) dirList = Directory.EnumerateDirectories(repositoryPath);
+                if (Directory.Exists(RepositoryPath)) dirList = Directory.EnumerateDirectories(RepositoryPath);
 
-                if (Directory.Exists(repositoryPath) == false || dirList.Count() == 0)
+                if (Directory.Exists(RepositoryPath) == false || dirList.Count() == 0)
                 {
-                    throw new Exception("No Templates in folder " + repositoryPath);
+                    throw new Exception("No Templates in folder " + RepositoryPath);
                 }
 
-                DirectoryInfo dir = new DirectoryInfo(repositoryPath);
+                DirectoryInfo dir = new DirectoryInfo(RepositoryPath);
 
                 DirectoryInfo[] sub = dir.GetDirectories();
 
@@ -69,35 +71,40 @@ namespace SystemAcceptance
                         dataList.Add(item.Name);
                     }
                 }
-                string system = "CM";
-                rootDir = new DirectoryInfo(repositoryPath + system);
-                if (true == Directory.Exists(repositoryPath + system))
-                {
-                    DirectoryInfo[] subDirs = rootDir.GetDirectories();
-
-                    foreach (DirectoryInfo dirInfo in subDirs)
-                    {
-                        var files = dirInfo.GetFiles("*.md");
-
-                        if (files.Length != 0)
-                        {
-                            tabInfo.Add(dirInfo.Name, dirInfo);
-                        }
-                    }
-                    OnRootpathEvent(rootDir.FullName);
-                }
-                else
-                {
-                    throw new Exception((repositoryPath + system).ToString() + " does not exist");
-                }
-                if (tabInfo.Count == 0)
-                {
-                    throw new Exception("No Templates available");
-                }
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void SetSystem(string sys)
+        {
+            //string system = "CM";
+            rootDir = new DirectoryInfo(RepositoryPath + sys);
+            if (true == Directory.Exists(RepositoryPath + sys))
+            {
+                DirectoryInfo[] subDirs = rootDir.GetDirectories();
+
+                foreach (DirectoryInfo dirInfo in subDirs)
+                {
+                    var files = dirInfo.GetFiles("*.md");
+
+                    if (files.Length != 0)
+                    {
+                        tabInfo.Add(dirInfo.Name, dirInfo);
+                    }
+                }
+                OnRootpathEvent(rootDir.FullName);
+            }
+            else
+            {
+                throw new Exception((RepositoryPath + sys).ToString() + " does not exist");
+            }
+            if (tabInfo.Count == 0)
+            {
+                throw new Exception("No Templates available");
             }
         }
 
@@ -227,30 +234,35 @@ namespace SystemAcceptance
                 {
                     case "button1":
                         //toolStripStatusLabel1.Text = "  µSurf - CM";
+                        SetSystem(btnTag);
                         label1.Text = btnTag;
                         label1.ForeColor = Color.White;
                         panel1.BackColor = Color.SlateGray;
                         break;
                     case "button2":
                         //toolStripStatusLabel1.Text = "  µScan - CP";
+                        SetSystem(btnTag);
                         label2.Text = btnTag;
                         label2.ForeColor = Color.White;
                         panel2.BackColor = Color.SlateGray;
                         break;
                     case "button3":
                         //toolStripStatusLabel1.Text = "  µScan - CL";
+                        SetSystem(btnTag);
                         label3.Text = btnTag;
                         label3.ForeColor = Color.White;
                         panel3.BackColor = Color.SlateGray;
                         break;
                     case "button4":
                         //toolStripStatusLabel1.Text = "  µSprint - CX";
+                        SetSystem(btnTag);
                         label4.Text = btnTag;
                         label4.ForeColor = Color.White;
                         panel4.BackColor = Color.SlateGray;
                         break;
                     case "button5":
                         //toolStripStatusLabel1.Text = "  WI"; 
+                        SetSystem(btnTag);
                         label5.Text = btnTag;
                         label5.ForeColor = Color.White;
                         panel5.BackColor = Color.SlateGray;
