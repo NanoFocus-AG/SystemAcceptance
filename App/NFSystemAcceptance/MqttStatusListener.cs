@@ -86,12 +86,9 @@ namespace SystemAcceptance
                           "Connection refused, not authorized"
                     };
 
-
-
                     System.Diagnostics.Debug.WriteLine("  MQTTClient connection failed reason " + reason[code]);
 
                 }
-
 
             }
             catch (ApplicationException ex)

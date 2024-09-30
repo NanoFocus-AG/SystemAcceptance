@@ -518,7 +518,10 @@ namespace SystemAcceptance
                     var actualFilename = file;
 
                     //toolStripStatusLabel1.Text += actualFilename + " | ";
-                    toolStripStatusLabel2.Text = actualFilename;
+                    BeginInvoke(new Action(() =>
+                    {
+                        toolStripStatusLabel2.Text = actualFilename;
+                    }));
                     Application.DoEvents();
 
                     NFFileReaderPointer reader = NFFileReader.New();

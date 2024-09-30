@@ -82,6 +82,11 @@ namespace SystemAcceptance
         private void SetSystem(string sys)
         {
             //string system = "CM";
+            if (rootDir != null)
+            {
+                rootDir = null;
+            }
+            tabInfo.Clear();
             rootDir = new DirectoryInfo(RepositoryPath + sys);
             if (true == Directory.Exists(RepositoryPath + sys))
             {
@@ -93,10 +98,11 @@ namespace SystemAcceptance
 
                     if (files.Length != 0)
                     {
+
                         tabInfo.Add(dirInfo.Name, dirInfo);
                     }
                 }
-                OnRootpathEvent(rootDir.FullName);
+
             }
             else
             {
@@ -219,6 +225,7 @@ namespace SystemAcceptance
             string btnTag = (sender as Button).Tag.ToString();
             if (btnName != "btnOk")
             {
+
                 SetSystem(btnTag);
                 foreach (var item in PanelList)
                 {
@@ -286,7 +293,7 @@ namespace SystemAcceptance
             else
             {
                 OnStartEvent(tabInfo);
-                //OnRootpathEvent(rootDir.FullName);
+                OnRootpathEvent(rootDir.FullName);
                 Close();
             }
             
