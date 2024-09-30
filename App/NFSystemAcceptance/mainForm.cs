@@ -441,7 +441,7 @@ namespace SystemAcceptance
             Application.DoEvents();
 
             project = tabControl.SelectedTab.Name;
-            string projectPath = tabDirInfoDict[project].FullName + @"\\";
+            string projectPath = tabDirInfoDict[project].FullName + "\\";
 
             /*
              * Load all plugins  inside the current folder. either ned or dll  
@@ -527,7 +527,10 @@ namespace SystemAcceptance
                     NFFileReaderPointer reader = NFFileReader.New();
                     reader.setFileName(actualFilename);
                     int rc = reader.evaluate();
-
+                    if (rc != 0)
+                    {
+                        MessageBox.Show("Couldn't read the file!");
+                    }
                     topo = reader.getOutputTopo();
                     if (topo.getMetaData().containsParameter("Serial"))
                     {
@@ -920,7 +923,7 @@ namespace SystemAcceptance
         { get; set; }
         public void setHeightScaleFactor(string msg, ref double value, ref double tolerance)
         {
-            const string msprintRoot = @"c:\\msprint";
+            const string msprintRoot = "c:\\msprint";
 
             if (State == false) return;
 
@@ -939,9 +942,9 @@ namespace SystemAcceptance
                 if (result == DialogResult.No) return;
             }
 
-            string hicosSprint = msprintRoot + @"\\bin\\config\\NFHicosSensor.npsx";
+            string hicosSprint = msprintRoot + "\\bin\\config\\NFHicosSensor.npsx";
 
-            string setUpSisFolder = msprintRoot + @"\\Config";
+            string setUpSisFolder = msprintRoot + "\\Config";
 
             double hs = mHeightScaleFactor;
 
@@ -962,7 +965,7 @@ namespace SystemAcceptance
                 listNPSX[0] = new FileInfo(hicosSprint);
 
                 var p64 = Environment.GetEnvironmentVariable("NFEVAL_DIR_64");
-                listNPSX[1] = new FileInfo(p64 + @"\\config\\NFHicosSensor.npsx");
+                listNPSX[1] = new FileInfo(p64 + "\\config\\NFHicosSensor.npsx");
 
                 hs = updateNPSX(listNPSX, hs);
             }
