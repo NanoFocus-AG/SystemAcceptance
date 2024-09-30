@@ -19,6 +19,8 @@ using System.Linq;
 using Button = System.Windows.Forms.Button;
 using System.ComponentModel;
 using ProgressODoom;
+using System.Security.Permissions;
+using System.Security;
 
 namespace SystemAcceptance
 {
@@ -182,6 +184,7 @@ namespace SystemAcceptance
 
             TabPage tp = tabControl.SelectedTab;
             tabPage = tabControl.SelectedTab;
+
             if (tp.Text == "Certificate" || tp.Text == "Summary")
             {
                 BeginInvoke(new Action(() =>{HideButtons(tp);}));
@@ -225,7 +228,7 @@ namespace SystemAcceptance
                         Thread.Sleep(100);
 
                         
-                        string projectPath = tabDirInfoDict[project].FullName + "\\";
+                        string projectPath = tabDirInfoDict[project].FullName + @"\\";
 
                         Task.Run(() => PrintPdf(projectPath, project));
                        
@@ -379,7 +382,7 @@ namespace SystemAcceptance
         private void OnHelp(object sender, EventArgs arg)
         {
             project = tabControl.SelectedTab.Name;
-            string projectPath = tabDirInfoDict[project].FullName + "\\";
+            string projectPath = tabDirInfoDict[project].FullName + @"\\";
 
             NFTopographyPointer t = NFTopography.New();
             t.create(512, 512);
@@ -438,7 +441,7 @@ namespace SystemAcceptance
             Application.DoEvents();
 
             project = tabControl.SelectedTab.Name;
-            string projectPath = tabDirInfoDict[project].FullName + "\\";
+            string projectPath = tabDirInfoDict[project].FullName + @"\\";
 
             /*
              * Load all plugins  inside the current folder. either ned or dll  
@@ -453,21 +456,7 @@ namespace SystemAcceptance
 
             if (fileName == "")
             {
-                //OpenFileDialog dlg = new OpenFileDialog();
-
-
-                //dlg.FilterIndex = 2;
-                //dlg.RestoreDirectory = true;
-                //dlg.Multiselect = true;
-                //dlg.Title = "Please Select  File(s) ";
-
-
-                //var result = dlg.ShowDialog();
-
-                //if (result != DialogResult.OK) return;
-
-                //fileNames = dlg.FileNames;
-
+               
                 NFFileDialogBox dlg = new NFFileDialogBox();
                 var result = dlg.ShowDialog();
                 if (result != DialogResult.OK)
@@ -491,11 +480,7 @@ namespace SystemAcceptance
             }
 
             //-----------------------------------------------------------------------------------------------------------------
-            //foreach (var item in fileNames)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
+           
             specsDlg = new SpecificationForm(rootPath, project);
             specsDlg.ShowDialog();
 
@@ -682,10 +667,12 @@ namespace SystemAcceptance
                 }));
 
                 string filename = projectPath + projectName + ".pdf";
+
+                //Process.Start(filename);
+               
                 if (File.Exists(filename) == true) File.Delete(filename);
                 //// print to pdf
                 PdfPrintSettings settings = new PdfPrintSettings();
-                //settings.BackgroundsEnabled = true; // Deprecated
                 settings.PrintBackground = true;
 
                 settings.MarginType = CefPdfPrintMarginType.Custom;
@@ -702,25 +689,8 @@ namespace SystemAcceptance
                 PDFCallback printCallback = new PDFCallback();
                 //mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, null);
                 mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, printCallback);
-                //mBrowserEngine.GetBrowserHost().PrintToPdf(filename, settings, null);
-                //mBrowserEngine.GetBrowserHost().Print();
-                //mBrowserEngine.Print(); // Print
-
-                //bool success = await mBrowserEngine.PrintToPdfAsync(filename, new PdfPrintSettings
-                //{
-                //    MarginType = CefPdfPrintMarginType.Custom,
-                //    Landscape = false,
-                //    Scale = 100,
-                //    //MarginBottom = 36,
-                //    //MarginTop = 36,
-                //    //MarginLeft = 60,
-                //    //MarginRight = 40,
-                //    //PaperWidth = 210,
-                //    //PaperHeight = 290
-                //});
-
-                //Thread.Sleep(4400);
-                await Task.Delay(13000);
+               
+                await Task.Delay(3000);
                 BeginInvoke(new Action(() =>
                 {
                     toolStripStatusLabel1.Text = "Printing Done ";
@@ -766,7 +736,6 @@ namespace SystemAcceptance
                 toolStripStatusLabel1.Text = "Error on document creation";
                 return;
             }
-          
         }
 
         private void ExecuteCertificate()
@@ -794,7 +763,6 @@ namespace SystemAcceptance
                 toolStripStatusLabel1.Text += "Error on document creation";
                 return;
             }
-        
         }
 
         private async Task PrintFiles(List<string> files, string systemNo = "")
@@ -926,7 +894,7 @@ namespace SystemAcceptance
         {
             if (!string.IsNullOrEmpty(toolStripStatusLabel2.Text))
             {
-                Process.Start("msedge.exe", toolStripStatusLabel2.Text);
+                Process.Start(toolStripStatusLabel2.Text.Trim());
             }
         }
 
