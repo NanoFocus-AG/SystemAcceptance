@@ -17,10 +17,6 @@ using ProgressMatrixLibrary;
 using System.Drawing;
 using System.Linq;
 using Button = System.Windows.Forms.Button;
-using System.ComponentModel;
-using ProgressODoom;
-using System.Security.Permissions;
-using System.Security;
 
 namespace SystemAcceptance
 {
@@ -562,8 +558,8 @@ namespace SystemAcceptance
 
                         if (rc != 0)
                         {
-                            MessageBox.Show("Error on evaluation");
-                            toolStripStatusLabel1.Text = "Error on evaluation ";
+                            MessageBox.Show("Error on evaluation. Wrong system selected !");
+                            toolStripStatusLabel1.Text = "Error on evaluation. Wrong system selected!";
                         }
                         cxBound.State = true;
 
@@ -802,7 +798,6 @@ namespace SystemAcceptance
                     pdfdocs.Add(PdfReader.Open(file, PdfDocumentOpenMode.Import));
                 }
             }
-
 
             // Create the output document
             PdfDocument outputDocument = new PdfDocument
