@@ -675,14 +675,8 @@ namespace SystemAcceptance
                 PdfPrintSettings settings = new PdfPrintSettings();
                 settings.PrintBackground = true;
 
-                settings.MarginType = CefPdfPrintMarginType.Custom;
-                settings.Landscape = false;
-                //settings.Scale = 100;
-                //settings.MarginLeft = 60;
-                //settings.MarginTop = 36;
-                //settings.MarginRight = 40;
-                //settings.MarginBottom = 36;
-
+                settings.MarginType = CefPdfPrintMarginType.Default;
+            
                 pdfDocs.Remove(filename);
                 pdfDocs.Add(filename);
 
@@ -917,14 +911,13 @@ namespace SystemAcceptance
         }
     }
 
-
     public class CXBoundObject
     {
         public bool State
         { get; set; }
         public void setHeightScaleFactor(string msg, ref double value, ref double tolerance)
         {
-            const string msprintRoot = "c:\\msprint";
+            const string msprintRoot = @"c:\\msprint";
 
             if (State == false) return;
 
@@ -943,9 +936,9 @@ namespace SystemAcceptance
                 if (result == DialogResult.No) return;
             }
 
-            string hicosSprint = msprintRoot + "\\bin\\config\\NFHicosSensor.npsx";
+            string hicosSprint = msprintRoot + @"\\bin\\config\\NFHicosSensor.npsx";
 
-            string setUpSisFolder = msprintRoot + "\\Config";
+            string setUpSisFolder = msprintRoot + @"\\Config";
 
             double hs = mHeightScaleFactor;
 
@@ -957,7 +950,7 @@ namespace SystemAcceptance
                 hs = updateSIS(sisList);
 
             }
-            catch (System.Exception)
+            catch (Exception)
             {
             }
             try
@@ -965,8 +958,8 @@ namespace SystemAcceptance
                 FileInfo[] listNPSX = new FileInfo[2];
                 listNPSX[0] = new FileInfo(hicosSprint);
 
-                var p64 = System.Environment.GetEnvironmentVariable("NFEVAL_DIR_64");
-                listNPSX[1] = new FileInfo(p64 + "\\config\\NFHicosSensor.npsx");
+                var p64 = Environment.GetEnvironmentVariable("NFEVAL_DIR_64");
+                listNPSX[1] = new FileInfo(p64 + @"\\config\\NFHicosSensor.npsx");
 
                 hs = updateNPSX(listNPSX, hs);
             }
