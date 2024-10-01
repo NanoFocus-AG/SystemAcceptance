@@ -32,6 +32,7 @@ namespace SystemAcceptance
 
         public event EventHandler<Dictionary<string, DirectoryInfo>> StartInfo;
         public event EventHandler<string> RootPathInfo;
+        public event EventHandler<string> SelectedSystem;
 
         bool splash = true;
         public string SelectedKey = string.Empty;
@@ -39,7 +40,6 @@ namespace SystemAcceptance
         public Dictionary<string, DirectoryInfo> tabInfo = new Dictionary<string, DirectoryInfo>();
         public DirectoryInfo rootDir;
         private string RepositoryPath;
-        private string SelectedSystem;
         BackgroundWorker bgWorker = new BackgroundWorker();
 
         List<Panel> PanelList = new List<Panel>();
@@ -119,6 +119,10 @@ namespace SystemAcceptance
         private void OnRootpathEvent(string rootpath)
         {
             RootPathInfo?.Invoke(this, rootpath);
+        }
+        private void OnSelectedSystem(string system)
+        {
+            SelectedSystem?.Invoke(this, system);
         }
         public SelectKeyDialog()
         {
@@ -290,6 +294,7 @@ namespace SystemAcceptance
             }
             else
             {
+                OnSelectedSystem(SelectedKey);
                 OnStartEvent(tabInfo);
                 OnRootpathEvent(rootDir.FullName);
                 Close();

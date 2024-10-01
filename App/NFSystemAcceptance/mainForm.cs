@@ -117,6 +117,7 @@ namespace SystemAcceptance
             InitializeComponent();
             skDialog.StartInfo += SkDialog_StartInfo;
             skDialog.RootPathInfo += SkDialog_RootPathInfo;
+            skDialog.SelectedSystem += SkDialog_SelectedSystem;
             
             topo = NFTopography.New();
             InitializeDox();
@@ -124,6 +125,11 @@ namespace SystemAcceptance
             InitProgressMatrix();
             toolStripStatusLabel1.Text = "";
             toolStripStatusLabel2.Text = "";
+        }
+
+        private void SkDialog_SelectedSystem(object sender, string e)
+        {
+            Text = "SystemAcceptance" + " : " + skDialog.SelectedKey;
         }
 
         private void SkDialog_RootPathInfo(object sender, string e)
@@ -866,6 +872,7 @@ namespace SystemAcceptance
         private void mainForm_Shown(object sender, EventArgs e)
         {
             skDialog.Show();
+            
         }
 
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -888,6 +895,8 @@ namespace SystemAcceptance
         {
             Application.Exit();
         }
+
+       
     }
 
     static class mainFormExtensions

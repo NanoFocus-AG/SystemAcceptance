@@ -140,7 +140,6 @@
             this.MinimumSize = new System.Drawing.Size(1105, 645);
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SystemAcceptance";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainForm_FormClosing);
             this.Shown += new System.EventHandler(this.mainForm_Shown);
