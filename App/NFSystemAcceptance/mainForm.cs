@@ -97,13 +97,10 @@ namespace SystemAcceptance
             cxBound = new CXBoundObject();
             cxBound.State = false;
             mBrowserEngine.JavascriptObjectRepository.Register("cxBound", cxBound, false, null);
-
-            
         }
 
         private void InitProgressMatrix()
         {
-          
             progressMatrixControl = new ProgressMatrixControl();
             progressMatrixControl.Size = new Size(100, 100);
             progressMatrixControl.BackColor = Color.Black;
@@ -129,11 +126,9 @@ namespace SystemAcceptance
             toolStripStatusLabel2.Text = "";
         }
 
-       
         private void SkDialog_RootPathInfo(object sender, string e)
         {
             rootPath = e.ToString();
-            //specsDlg = new SpecificationForm(rootPath, project);
         }
 
         private void SkDialog_StartInfo(object sender, Dictionary<string, DirectoryInfo> tabInfo)
@@ -354,7 +349,7 @@ namespace SystemAcceptance
             }
             else
             {
-                mBrowserEngine.Load("<html><head></head><body></body></html>");
+                mBrowserEngine.LoadHtml("<html><head></head><body></body></html>");
             }
 
             panelsDict[name].OnGenerate -= OnExecutePipeline;
@@ -451,7 +446,6 @@ namespace SystemAcceptance
 
             if (fileName == "")
             {
-               
                 NFFileDialogBox dlg = new NFFileDialogBox();
                 var result = dlg.ShowDialog();
                 if (result != DialogResult.OK)
@@ -464,9 +458,7 @@ namespace SystemAcceptance
                 {
                     fileNames = new string[1];
                     fileNames[0] = fileName;
-                    
                 }
-               
             }
             else
             {
