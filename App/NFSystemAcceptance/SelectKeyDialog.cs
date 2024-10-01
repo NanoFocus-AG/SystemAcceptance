@@ -98,11 +98,9 @@ namespace SystemAcceptance
 
                     if (files.Length != 0)
                     {
-
                         tabInfo.Add(dirInfo.Name, dirInfo);
                     }
                 }
-
             }
             else
             {

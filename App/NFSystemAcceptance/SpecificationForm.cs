@@ -90,36 +90,14 @@ namespace SystemAcceptance
 
             if (standardsPath.Exists == false) return;
 
-            FileInfo[] standardSpecs = standardsPath.GetFiles("*.csv");
+            var standardSpecs = standardsPath.GetFiles("*.csv");
 
             if (standardSpecs.Length > 0)
             {
                 cmbListOfStandards.DataSource = standardSpecs;
+                cmbListOfStandards.SelectedItem = standardSpecs[0];
 
-                switch (sTab)
-                {
-                    case "Depth A1":
-                        cmbListOfStandards.SelectedItem = standardSpecs[3];
-                        break;
-                    case "Depth A2":
-                        cmbListOfStandards.SelectedItem = standardSpecs[4];
-                        break;
-                    case "Flatness":
-                        cmbListOfStandards.SelectedItem = standardSpecs[0];
-                        break;
-                    case "Roughness":
-                        cmbListOfStandards.SelectedItem= standardSpecs[2];
-                        break;
-
-                    default:
-                        break;
-                        
-                }
-                //cmbListOfStandards.SelectedItem = standardSpecs[0]; // <=====
-
-                string test = standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem;
                 preader.setSource(standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem);
-                
                 bool readSuccess = preader.read();
                 if (false == readSuccess)
                 {
@@ -134,16 +112,16 @@ namespace SystemAcceptance
                 standardParameter = new NFParameterSetPointer(v.getParameterSet());
             }
 
+
             cmbListOfStandards.SelectedIndexChanged += (sender, args) =>
             {
                 if (cmbListOfStandards.SelectedItem != null)
                 {
-
                     preader.setSource(standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem);
                     bool readSuccess = preader.read();
                     if (false == readSuccess)
                     {
-                        MessageBox.Show("could not read " + cmbListOfStandards.SelectedItem);
+                        MessageBox.Show("Could not read " + cmbListOfStandards.SelectedItem);
                         return;
                     }
                     standardType = preader.getParameterSet();
@@ -159,7 +137,6 @@ namespace SystemAcceptance
 
             cmbStandard.SelectedIndexChanged += (sender, args) =>
             {
-
                 Standard = cmbStandard.SelectedValue.ToString();
 
                 NFVariant v = standardType.getParameter(Standard);
@@ -186,7 +163,6 @@ namespace SystemAcceptance
                 else
                 {
                     MessageBox.Show("could not read " + sensorPath.FullName + "\\" + sen);
-
                 }
             }
 
@@ -197,7 +173,6 @@ namespace SystemAcceptance
                 cmbSensor.DataSource = new List<string>(sensorTypelist);
                 cmbSensor.SelectedItem = sensorTypelist[0];
 
-
                 NFVariant v = sensorType.getParameter(cmbSensor.SelectedItem.ToString());
                 sensorParameter = new NFParameterSetPointer(v.getParameterSet());
             }
@@ -205,27 +180,21 @@ namespace SystemAcceptance
 
             cmbSensor.SelectedIndexChanged += (sender, args) =>
             {
-
                 var selection = cmbSensor.SelectedItem.ToString();
 
                 NFVariant v = sensorType.getParameter(selection);
 
                 sensorParameter = new NFParameterSetPointer(v.getParameterSet());
-
             };
 
             //   tester
             {
-
                 testerParameter = NFParameterSet.New();
                 testerParameter.setParameter("Tester Name", new NFVariant(txtTester.Text));
                 testerParameter.setParameter("Location", new NFVariant(txtLocation.Text));
                 testerParameter.setParameter("Customer", new NFVariant(txtCustomer.Text));
                 testerParameter.setParameter("Temperature", new NFVariant(txtTemperature.Text));
                 testerParameter.setParameter("Humidity", new NFVariant(txtHumidity.Text));
-
-
-
 
                 txtTester.TextChanged += (sender, args) => {
 
@@ -305,7 +274,6 @@ namespace SystemAcceptance
 
         private void ParameterSetAsDataSource(NFParameterSetPointer p, ComboBox cmb)
         {
-
             List<string> paramNameList = new List<string>(p.getParameterNames());
             List<ParamName> dataSource = new List<ParamName>();
 

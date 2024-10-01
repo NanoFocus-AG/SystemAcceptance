@@ -222,7 +222,6 @@ namespace SystemAcceptance
                             Thread.Sleep(10);
                         }
                         Thread.Sleep(100);
-
                         
                         string projectPath = tabDirInfoDict[project].FullName + @"\\";
 
