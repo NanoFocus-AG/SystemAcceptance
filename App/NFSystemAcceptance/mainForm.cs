@@ -231,7 +231,7 @@ namespace SystemAcceptance
                     }
                     else
                     {
-                        mBrowserEngine.Load("<html><head></head><body></body></html>");
+                        mBrowserEngine.LoadHtml("<html><head></head><body></body></html>");
                     }
 
                     panelsDict[Name].OnGenerate -= OnExecutePipeline;
