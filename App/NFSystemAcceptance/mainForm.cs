@@ -45,6 +45,8 @@ namespace SystemAcceptance
         private string systemNumber = "";
         private SpecificationForm specsDlg;
         private List<string> pdfDocs = new List<string>();
+        private int ProgressLocX;
+        private int ProgressLocY;
 
         private CXBoundObject cxBound;
 
@@ -104,8 +106,10 @@ namespace SystemAcceptance
             progressMatrixControl = new ProgressMatrixControl();
             progressMatrixControl.Size = new Size(100, 100);
             progressMatrixControl.BackColor = Color.Black;
-            progressMatrixControl.Location = new Point(tabControl.SelectedTab.Width - progressMatrixControl.Width / 2,
-               tabControl.SelectedTab.Height - progressMatrixControl.Height / 2);
+          
+            ProgressLocX = (Width - progressMatrixControl.Width) / 2;
+            ProgressLocY = (Height - progressMatrixControl.Height) / 2;
+            progressMatrixControl.Location = new Point(ProgressLocX, ProgressLocY);
 
             progressMatrixControl.Style = ProgressMatrixControl.ProgressStyle.Classic;
             progressMatrixControl.BackColor = Color.Black;
@@ -164,9 +168,7 @@ namespace SystemAcceptance
 
         private void CreateTabStructure(Dictionary<string, DirectoryInfo> tabInfo)
         {
-           
             tabDirInfoDict = tabInfo;
-
             foreach (var element in tabDirInfoDict)
             {
                 string tabPageName = element.Key;
@@ -227,11 +229,10 @@ namespace SystemAcceptance
                         string projectPath = tabDirInfoDict[project].FullName + @"\\";
 
                         Task.Run(() => PrintPdf(projectPath, project));
-                       
                     }
                     else
                     {
-                        mBrowserEngine.LoadHtml("<html><head></head><body></body></html>");
+                        mBrowserEngine.LoadHtml("<html>\r\n<head>\r\n<style>\r\nh1 {text-align: center;}\r\n</style>\r\n</head>\r\n<body>\r\n<h1>...</h1>\r\n</body>\r\n</html>");
                     }
 
                     panelsDict[Name].OnGenerate -= OnExecutePipeline;
@@ -501,8 +502,12 @@ namespace SystemAcceptance
             int topoIndex = 0;
 
             //Progress.ProgressBar progressBar = new Progress.ProgressBar();
-           
 
+            BeginInvoke(new Action(() =>
+            {
+                progressMatrixControl.Show();
+                progressMatrixControl.ProgressAnimation();
+            }));
             /// Start:  do computation 
             Task task = Task.Run(() =>
             {
@@ -513,6 +518,7 @@ namespace SystemAcceptance
                     //toolStripStatusLabel1.Text += actualFilename + " | ";
                     BeginInvoke(new Action(() =>
                     {
+                       
                         toolStripStatusLabel2.Text = actualFilename;
                     }));
                     Application.DoEvents();
@@ -637,16 +643,17 @@ namespace SystemAcceptance
 
                 Task t = Task.Run(() =>
                 {
-
                     _ = PrintPdf(projectPath, project);
-
                     ExecuteSummary();
-
                     ExecuteCertificate();
                 });
 
                 //progressBar.Stop();
-               
+                BeginInvoke(new Action(() =>
+                {
+                    progressMatrixControl.StopProgress();
+                    progressMatrixControl.Hide();
+                }));
             });
         }
 
@@ -705,7 +712,6 @@ namespace SystemAcceptance
 
         private void ExecuteSummary()
         {
-           
             string project = "Summary";
 
             if (false == tabDirInfoDict.ContainsKey(project)) return;
@@ -733,7 +739,6 @@ namespace SystemAcceptance
 
         private void ExecuteCertificate()
         {
-           
             string project = "Certificate";
             if (false == tabDirInfoDict.ContainsKey(project)) return;
 
@@ -896,7 +901,12 @@ namespace SystemAcceptance
             Application.Exit();
         }
 
-       
+        private void mainForm_Resize(object sender, EventArgs e)
+        {
+            ProgressLocX = (Width - progressMatrixControl.Width)/2;
+            ProgressLocY = (Height - progressMatrixControl.Height)/2;
+            progressMatrixControl.Location = new Point(ProgressLocX, ProgressLocY);
+        }
     }
 
     static class mainFormExtensions

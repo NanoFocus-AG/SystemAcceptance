@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace SystemAcceptance
 {
@@ -72,7 +73,7 @@ namespace SystemAcceptance
         private DirectoryInfo standardsPath;
         private DirectoryInfo sensorPath;
         public string Standard;
-
+        private FileInfo fileInfo;
 
         public SpecificationForm(string rootPath, string selectedTab)
         {
@@ -87,21 +88,53 @@ namespace SystemAcceptance
 
 
             standardsPath = new DirectoryInfo(rootPath + "\\Standards");
+            var standardJS = new DirectoryInfo(rootPath + "\\" + sTab);
+            FileInfo[] standardSpecs;// = new FileInfo(standardsPath.FullName);
+            string csvFile = string.Empty;
 
             if (standardsPath.Exists == false) return;
 
-            var standardSpecs = standardsPath.GetFiles("*.csv");
+            string standardsJsonFile = standardJS.FullName + "\\" + "Standards.json";
+            if (!File.Exists(standardsJsonFile))
+            {
+                MessageBox.Show("'Standards.json' file not found!");
+                label10.Text = "not found!";
+                foreach (Control ctrl in Controls)
+                {
+                    if (ctrl.Name != "button1")
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
+                return;
+            }
+            else
+            {
+                Dictionary<string, string> stdTypeDict = new Dictionary<string, string>();
+                string std = File.ReadAllText(standardsJsonFile);
+                stdTypeDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(std);
+                foreach (var item in stdTypeDict)
+                {
+                    string sKey = item.Key;
+                    string sValue = item.Value;
+                    if (sKey == sTab)
+                    {
+                        csvFile = sValue;
+                        label10.Text = sValue;
+                    }
+                }
+            }
+            standardSpecs = standardsPath.GetFiles(csvFile);
 
             if (standardSpecs.Length > 0)
             {
-                cmbListOfStandards.DataSource = standardSpecs;
-                cmbListOfStandards.SelectedItem = standardSpecs[0];
+                fileInfo = standardSpecs[0];
+                preader.setSource(fileInfo.FullName);
 
-                preader.setSource(standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem);
                 bool readSuccess = preader.read();
                 if (false == readSuccess)
                 {
-                    MessageBox.Show("coul not read " + cmbListOfStandards.SelectedItem);
+                    MessageBox.Show("Could not read " + fileInfo.FullName);
                     return;
                 }
                 standardType = preader.getParameterSet();
@@ -112,27 +145,23 @@ namespace SystemAcceptance
                 standardParameter = new NFParameterSetPointer(v.getParameterSet());
             }
 
-
-            cmbListOfStandards.SelectedIndexChanged += (sender, args) =>
+            if (standardSpecs.Length > 0)
             {
-                if (cmbListOfStandards.SelectedItem != null)
+
+                bool readSuccess = preader.read();
+                if (false == readSuccess)
                 {
-                    preader.setSource(standardsPath.FullName + "\\" + cmbListOfStandards.SelectedItem);
-                    bool readSuccess = preader.read();
-                    if (false == readSuccess)
-                    {
-                        MessageBox.Show("Could not read " + cmbListOfStandards.SelectedItem);
-                        return;
-                    }
-                    standardType = preader.getParameterSet();
-                    ParameterSetAsDataSource(standardType, cmbStandard);
-
-                    Standard = cmbStandard.SelectedValue.ToString();
-                    NFVariant v = standardType.getParameter(Standard);
-                    standardParameter = new NFParameterSetPointer(v.getParameterSet());
+                    MessageBox.Show("Could not read " + fileInfo.FullName);
+                    return;
                 }
-            };
+                standardType = preader.getParameterSet();
+                ParameterSetAsDataSource(standardType, cmbStandard);
 
+                Standard = cmbStandard.SelectedValue.ToString();
+                NFVariant v = standardType.getParameter(Standard);
+                standardParameter = new NFParameterSetPointer(v.getParameterSet());
+            }
+         
             //--------------------------------------------------------------
 
             cmbStandard.SelectedIndexChanged += (sender, args) =>
@@ -196,7 +225,8 @@ namespace SystemAcceptance
                 testerParameter.setParameter("Temperature", new NFVariant(txtTemperature.Text));
                 testerParameter.setParameter("Humidity", new NFVariant(txtHumidity.Text));
 
-                txtTester.TextChanged += (sender, args) => {
+                txtTester.TextChanged += (sender, args) =>
+                {
 
                     testerParameter.setParameter("Tester Name", new NFVariant(txtTester.Text));
                 };
@@ -228,7 +258,6 @@ namespace SystemAcceptance
             // TO DO : stages
 
             {
-
                 preader.setSource(rootPath + "\\Stages.csv");
                 bool success = preader.read();
                 if (success == true)
@@ -256,20 +285,15 @@ namespace SystemAcceptance
 
                         stagesParameter = new NFParameterSetPointer(vv.getParameterSet());
                     };
-
                 }
                 else
                 {
                     stagesParameter = NFParameterSet.New();
                     cmbStages.Enabled = false;
                 }
-
             }
 
-            cmbListOfStandards.SelectedIndex = 0;
-
             cmbSensor.SelectedIndex = 0;
-
         }
 
         private void ParameterSetAsDataSource(NFParameterSetPointer p, ComboBox cmb)
@@ -293,7 +317,7 @@ namespace SystemAcceptance
 
         private void SpecificationForm_Load(object sender, System.EventArgs e)
         {
-           
+
         }
 
         private string toAnsi(string input)

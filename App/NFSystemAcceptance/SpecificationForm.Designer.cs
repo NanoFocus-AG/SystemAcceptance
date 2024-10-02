@@ -34,7 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbSensor = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmbListOfStandards = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbTester = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,12 +48,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtHumidity = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmbStandard
             // 
             this.cmbStandard.FormattingEnabled = true;
-            this.cmbStandard.Location = new System.Drawing.Point(76, 124);
+            this.cmbStandard.Location = new System.Drawing.Point(80, 124);
             this.cmbStandard.Margin = new System.Windows.Forms.Padding(4);
             this.cmbStandard.Name = "cmbStandard";
             this.cmbStandard.Size = new System.Drawing.Size(309, 24);
@@ -62,10 +62,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(292, 568);
+            this.button1.Location = new System.Drawing.Point(284, 582);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(93, 34);
+            this.button1.Size = new System.Drawing.Size(105, 34);
             this.button1.TabIndex = 6;
             this.button1.Text = "Ok";
             this.button1.UseVisualStyleBackColor = true;
@@ -83,7 +83,7 @@
             // cmbSensor
             // 
             this.cmbSensor.FormattingEnabled = true;
-            this.cmbSensor.Location = new System.Drawing.Point(77, 208);
+            this.cmbSensor.Location = new System.Drawing.Point(80, 208);
             this.cmbSensor.Margin = new System.Windows.Forms.Padding(4);
             this.cmbSensor.Name = "cmbSensor";
             this.cmbSensor.Size = new System.Drawing.Size(308, 24);
@@ -99,24 +99,16 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Sensor Specification";
             // 
-            // cmbListOfStandards
-            // 
-            this.cmbListOfStandards.FormattingEnabled = true;
-            this.cmbListOfStandards.Location = new System.Drawing.Point(77, 48);
-            this.cmbListOfStandards.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbListOfStandards.Name = "cmbListOfStandards";
-            this.cmbListOfStandards.Size = new System.Drawing.Size(308, 24);
-            this.cmbListOfStandards.TabIndex = 0;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(81, 28);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(80, 40);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 16);
+            this.label3.Size = new System.Drawing.Size(111, 18);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Standard Type";
+            this.label3.Text = "Standard Type: ";
             // 
             // cmbTester
             // 
@@ -149,7 +141,7 @@
             // cmbStages
             // 
             this.cmbStages.FormattingEnabled = true;
-            this.cmbStages.Location = new System.Drawing.Point(77, 289);
+            this.cmbStages.Location = new System.Drawing.Point(80, 289);
             this.cmbStages.Margin = new System.Windows.Forms.Padding(4);
             this.cmbStages.Name = "cmbStages";
             this.cmbStages.Size = new System.Drawing.Size(308, 24);
@@ -232,12 +224,23 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "Humidity  %";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(190, 40);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 18);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "label10";
+            // 
             // SpecificationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 654);
             this.ControlBox = false;
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.txtHumidity);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtTemperature);
@@ -252,7 +255,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbTester);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cmbListOfStandards);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbSensor);
             this.Controls.Add(this.label1);
@@ -264,7 +266,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SpecificationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "SpecificationForm";
+            this.Text = "Specification";
             this.Load += new System.EventHandler(this.SpecificationForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -278,7 +280,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbSensor;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbListOfStandards;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbTester;
         private System.Windows.Forms.Label label4;
@@ -293,5 +294,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtHumidity;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
