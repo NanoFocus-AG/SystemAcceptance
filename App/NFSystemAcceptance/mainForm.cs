@@ -681,9 +681,9 @@ namespace SystemAcceptance
                 PdfPrintSettings settings = new PdfPrintSettings();
                 settings.MarginType = CefPdfPrintMarginType.Custom;
                 settings.PrintBackground = true;
-                settings.MarginTop = 2;
+                settings.MarginTop = 0.4;
                 settings.MarginRight = 1.0;
-                settings.MarginBottom = 2;
+                settings.MarginBottom = 0.4;
                 settings.MarginLeft = 1.0;
 
 
