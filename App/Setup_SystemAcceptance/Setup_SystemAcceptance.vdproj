@@ -33,6 +33,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0394BBA091634F84902A32D3513BBE31"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_05439C4EB465411E9F73009C63BCE7C1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -106,6 +112,12 @@
         "Entry"
         {
         "MsmKey" = "8:_0A3F43963A5E4768860B4816941A72C7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0C27341C117F4EB9B8B5BA83AA44EA12"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -561,6 +573,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_351D2B14D90EFA5CE89D8A68BD33C5DA"
+        "OwnerKey" = "8:_CC3602A6487366169C7D81B5356FDBC0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3520F11713C541E5B3B50A384BD71423"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -621,6 +639,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3B0F845BF4B49972267C42D683E5C78E"
+        "OwnerKey" = "8:_CC3602A6487366169C7D81B5356FDBC0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3B0F845BF4B49972267C42D683E5C78E"
+        "OwnerKey" = "8:_35C5F043283F48578074D2490C773EE5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3B46E7E4419C42A2A987F7A27A9F913D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -639,6 +669,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3CF72A12B4D14C08B0CB5FA0A48E5A90"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3D5E88117DEC40148013EE09005D4636"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -646,6 +682,12 @@
         "Entry"
         {
         "MsmKey" = "8:_3DA583FCCD0548BEA753E97A81D52D31"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3DF182CB67264C318703B4592AAF4EC5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -813,6 +855,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4E9E7CA556CC4BC1958109D397BA323E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4F0E3BF97C3F4F46AD847281A973577D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -832,6 +880,12 @@
         "Entry"
         {
         "MsmKey" = "8:_4F2E613D38284006959D53B439ADBAEC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4F9EB6E8FB1F43F7A9370CEE3C437FB9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -881,6 +935,12 @@
         {
         "MsmKey" = "8:_50D5C91B236B62BA8CB7AB9F8D40EEC2"
         "OwnerKey" = "8:_12F62A5E3EDC893A0E6C18D4A4660E7F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_50D5C91B236B62BA8CB7AB9F8D40EEC2"
+        "OwnerKey" = "8:_854FB23EB019C81BB5C52D2F220569F8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -975,6 +1035,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_56251D8B2008441AB9F6AA86A477B011"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5627C4DC4C23414D9D8AF7F132D19969"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1017,6 +1083,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_612CE1A090F245B79B9B71A028923610"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_61C942D0201F4A8F8491C2675E75DEBF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1047,6 +1119,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_66053B1F0E5B4A08A9513227307791DC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_672E127773874CF382A5BCC0F2E43DAA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1059,6 +1137,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_687E01D0F93E4F45BDA8EA3BE882C27D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6B8A5E25626448DD8172BF78C1B247B3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1066,6 +1150,12 @@
         "Entry"
         {
         "MsmKey" = "8:_6BDFEC2065DE4192AA4B9912237A2D7D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6C10A263A0FC4394B8D5D8300B63788B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1125,6 +1215,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_712604FA5DADC80A0648DCD3A68C612A"
+        "OwnerKey" = "8:_3B0F845BF4B49972267C42D683E5C78E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_72FB78C49B4944A2BF5A50A56934561C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1138,6 +1234,12 @@
         "Entry"
         {
         "MsmKey" = "8:_73719EFF87FA4191BDEE5375BC94F6BA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_73D1B21856B749CBA7A2DA5719C36136"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1167,7 +1269,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_763C14B9CAC84BBC9751436B7D77EB84"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7DE798595758437AA1B4640C2DE5DE1E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7EEB482E501D4023B72727B131AA006D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1197,13 +1311,37 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_828749AB797A4B17B5FB0C0980A26612"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_82DA00099418408AAB2C3963B58B10FF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_854FB23EB019C81BB5C52D2F220569F8"
+        "OwnerKey" = "8:_35C5F043283F48578074D2490C773EE5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_854FB23EB019C81BB5C52D2F220569F8"
+        "OwnerKey" = "8:_3B0F845BF4B49972267C42D683E5C78E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_85625E6BA2CE46F88F43F1F97F93A8C3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_856388D8456D4494AAE58ECFE5321E64"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1228,6 +1366,12 @@
         "Entry"
         {
         "MsmKey" = "8:_86F78804A0CB48AA9DCA50C58FE99CF5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8785703BF1B840198CC427DF7EF66426"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1288,6 +1432,12 @@
         "Entry"
         {
         "MsmKey" = "8:_9086B8145E1C4742BA885251EE6C2CBE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9218AD221EAF4DCBAC1D23D0CB71C3C1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1383,6 +1533,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9BE3396A621A4F0994E41DB156D64FA5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9C25506DCEE14CB29840F02EF87FA020"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1396,6 +1552,12 @@
         "Entry"
         {
         "MsmKey" = "8:_9CED2A6F54E64CEF86AD3D9888C7B169"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9D8A5019206748E1B9F2F74B9CA1DD7D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1438,7 +1600,7 @@
         "Entry"
         {
         "MsmKey" = "8:_A3D5F49955B7D54C56BDBB3C72BA8254"
-        "OwnerKey" = "8:_491A5452AE08F5CEFC6E34A2230553D0"
+        "OwnerKey" = "8:_E840D02F4002061D2030980481AD05A6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1462,7 +1624,7 @@
         "Entry"
         {
         "MsmKey" = "8:_A3D5F49955B7D54C56BDBB3C72BA8254"
-        "OwnerKey" = "8:_E840D02F4002061D2030980481AD05A6"
+        "OwnerKey" = "8:_491A5452AE08F5CEFC6E34A2230553D0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1509,6 +1671,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A65EB60F63084E31A1218DF92AF4D92C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A8D0837FC85EF6549D9CF0712A247112"
         "OwnerKey" = "8:_35C5F043283F48578074D2490C773EE5"
         "MsmSig" = "8:_UNDEFINED"
@@ -1533,8 +1701,14 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_AA79538AB6644CD6927406FB94A3CAB0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_AAAC7DB32EE37B76C74A928BB6BCCFFC"
-        "OwnerKey" = "8:_54517EB4492C67D28791FC9388009041"
+        "OwnerKey" = "8:_E840D02F4002061D2030980481AD05A6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1552,7 +1726,7 @@
         "Entry"
         {
         "MsmKey" = "8:_AAAC7DB32EE37B76C74A928BB6BCCFFC"
-        "OwnerKey" = "8:_E840D02F4002061D2030980481AD05A6"
+        "OwnerKey" = "8:_54517EB4492C67D28791FC9388009041"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1581,7 +1755,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_AD907AE4764D452F8FA7A4F48E25350C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_ADBEC712F4EE4CBAA38F167CA0B3503A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AE568BC42CA3409EAB07FF82A860815A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1767,6 +1953,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C0147B004B214A84B8F8BBF3608E9CCF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C16B664029C7403D9258E6E706FCFCCC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1805,6 +1997,12 @@
         {
         "MsmKey" = "8:_C8E45582B8C24CDA8FDD7E9CE76D45A3"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C9CFA701227F95882DB39C7BA2837969"
+        "OwnerKey" = "8:_35C5F043283F48578074D2490C773EE5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1851,6 +2049,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CC3602A6487366169C7D81B5356FDBC0"
+        "OwnerKey" = "8:_35C5F043283F48578074D2490C773EE5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CC5B97894E5B48B59E54574013BBD3AF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_CC89D4869AC64C4A82CD63AC01B23925"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1876,6 +2086,12 @@
         "Entry"
         {
         "MsmKey" = "8:_D0D46E5F0DF8480E95EF6EDEC5020D99"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D0ED08916B274BEAAF4770678597D7F6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1965,6 +2181,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D8572AA771AE4F1091EF14F46B660F8F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D8B43C69BC3F423584C2AE5A8B6CA104"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D8D3BC6C94E64A4AA830C725102DD2AD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2019,7 +2247,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_DDF3A2C8C2D74E00A44C07A6C48FEFDE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E02237BF1A27445EA5512EF460ADF8CD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E07E046C534448DD9619BB934DAEEECC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2049,6 +2289,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E317AE35397444B49DA85A5091F16DA3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E59DFE33EEC24A4AA01013AB97AF01F6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2074,7 +2320,7 @@
         "Entry"
         {
         "MsmKey" = "8:_E840D02F4002061D2030980481AD05A6"
-        "OwnerKey" = "8:_54517EB4492C67D28791FC9388009041"
+        "OwnerKey" = "8:_3B0F845BF4B49972267C42D683E5C78E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2105,6 +2351,12 @@
         {
         "MsmKey" = "8:_E840D02F4002061D2030980481AD05A6"
         "OwnerKey" = "8:_F931EC929237EEE639972DE046C69AEE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E840D02F4002061D2030980481AD05A6"
+        "OwnerKey" = "8:_54517EB4492C67D28791FC9388009041"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2200,6 +2452,12 @@
         "Entry"
         {
         "MsmKey" = "8:_F50E074171A5432B96A22DBB097409D1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F552DF4EF01D48A5BCBF2D5CB189A0BE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2308,6 +2566,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C9CFA701227F95882DB39C7BA2837969"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_89F3DD4D44821AEF430DABA783B59E5C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2344,24 +2608,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E840D02F4002061D2030980481AD05A6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_34B63B180CB5523CD0DE5783F1A5F35E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AAAC7DB32EE37B76C74A928BB6BCCFFC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_3077EB4BF8C36C3115D1144D8B246D54"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2381,12 +2627,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_491A5452AE08F5CEFC6E34A2230553D0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A3D5F49955B7D54C56BDBB3C72BA8254"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2423,6 +2663,42 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_EAAECAE4F096485CE3E24A0EEE5E2A51"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CC3602A6487366169C7D81B5356FDBC0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3B0F845BF4B49972267C42D683E5C78E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E840D02F4002061D2030980481AD05A6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A3D5F49955B7D54C56BDBB3C72BA8254"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_34B63B180CB5523CD0DE5783F1A5F35E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_AAAC7DB32EE37B76C74A928BB6BCCFFC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2608,6 +2884,26 @@
             "TargetName" = "8:Stufennormal.csv"
             "Tag" = "8:"
             "Folder" = "8:_61889C3A58AE48B9AF36F984FE4E1F25"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0394BBA091634F84902A32D3513BBE31"
+            {
+            "SourcePath" = "8:..\\..\\CL\\Straightness of X-axis\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_B6A203244B7D498D80203DDB2A275913"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2868,6 +3164,26 @@
             "TargetName" = "8:NF_NED_MScan_Abnahme_GX_LS.npsx"
             "Tag" = "8:"
             "Folder" = "8:_81A959ACC875438FB0BAD36AE96C55FB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0C27341C117F4EB9B8B5BA83AA44EA12"
+            {
+            "SourcePath" = "8:..\\..\\CM\\Lateral Y\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_E1A4D133E24D4626AACD5A1CEE813A8E"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4492,6 +4808,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3B0F845BF4B49972267C42D683E5C78E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Svg, Version=3.4.0.0, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3B0F845BF4B49972267C42D683E5C78E"
+                    {
+                    "Name" = "8:Svg.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Svg.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4F1A66576C7A4476BCD6CED52A496857"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3B46E7E4419C42A2A987F7A27A9F913D"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\WI\\Lateral Y\\Lateralnormal.npsx"
@@ -4552,6 +4899,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3CF72A12B4D14C08B0CB5FA0A48E5A90"
+            {
+            "SourcePath" = "8:..\\..\\CX\\Linearity Error\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_EBD750B6E98F47178D2E968AB5DE6F4D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3D5E88117DEC40148013EE09005D4636"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CP\\Linearity Error\\logo.png"
@@ -4578,6 +4945,26 @@
             "TargetName" = "8:Lateralnormal.csv"
             "Tag" = "8:"
             "Folder" = "8:_F5D0330A3DAA4517A63D45A34F943269"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3DF182CB67264C318703B4592AAF4EC5"
+            {
+            "SourcePath" = "8:..\\..\\CP\\Straightness of X-axis\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_9E2A073C50BE4B1F9EEB830A6822F9D4"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5034,6 +5421,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4E9E7CA556CC4BC1958109D397BA323E"
+            {
+            "SourcePath" = "8:..\\..\\CM\\Roughness\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_3C9BAB31CF534BE5BEA30EFD1996658F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4F0E3BF97C3F4F46AD847281A973577D"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CL\\Certificate\\Certificate.md"
@@ -5100,6 +5507,26 @@
             "TargetName" = "8:Step measurement.md"
             "Tag" = "8:"
             "Folder" = "8:_CDF44FD708CD434680BF9DB0BE878508"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4F9EB6E8FB1F43F7A9370CEE3C437FB9"
+            {
+            "SourcePath" = "8:..\\..\\CX\\Depth A2\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_D7F17CAACA0342ED91D968F65817874F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5376,6 +5803,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_56251D8B2008441AB9F6AA86A477B011"
+            {
+            "SourcePath" = "8:..\\..\\CM\\Lighting\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_2B9801989ECF4B96A8B8DC266A4BC2B4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5627C4DC4C23414D9D8AF7F132D19969"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\WI\\Depth A1\\grooveA1.npsx"
@@ -5507,6 +5954,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_612CE1A090F245B79B9B71A028923610"
+            {
+            "SourcePath" = "8:..\\..\\CM\\Depth A1\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_A30E6E40C40248389CB19D32418A2089"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_61C942D0201F4A8F8491C2675E75DEBF"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CX\\Depth A1\\Depth A1.md"
@@ -5607,6 +6074,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_66053B1F0E5B4A08A9513227307791DC"
+            {
+            "SourcePath" = "8:..\\..\\CP\\Depth Measurement\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_CC55ACE6B3DD4AC993458ABB94847C3F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_672E127773874CF382A5BCC0F2E43DAA"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CM\\Lighting\\logo.png"
@@ -5647,6 +6134,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_687E01D0F93E4F45BDA8EA3BE882C27D"
+            {
+            "SourcePath" = "8:..\\..\\WI\\Flatness\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_8A0202F5457E4367A11301E80B63206C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6B8A5E25626448DD8172BF78C1B247B3"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CX\\FlatBumps\\NF_Bumpnormal_crop.ned"
@@ -5673,6 +6180,26 @@
             "TargetName" = "8:NFTopoInfo.npsx"
             "Tag" = "8:"
             "Folder" = "8:_B22CC40DA1264DDD9F1271BC1024497F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6C10A263A0FC4394B8D5D8300B63788B"
+            {
+            "SourcePath" = "8:..\\..\\CX\\Noise\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_A7DB412551524B8DBB07393E5AA7094E"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5938,6 +6465,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_73D1B21856B749CBA7A2DA5719C36136"
+            {
+            "SourcePath" = "8:..\\..\\CP\\Linearity Error\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_FF90CBA80687487CB1F1BDD90640FE5F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7454DB71564A4EF187C410BA0C982D9A"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CL\\Straightness of Y-axis\\NF_NED_MScan_Abnahme_GY_LS.ned"
@@ -6018,12 +6565,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_763C14B9CAC84BBC9751436B7D77EB84"
+            {
+            "SourcePath" = "8:..\\..\\CP\\Roughness\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_DB21790E0D2442DFBFEA79790D0C62E6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7DE798595758437AA1B4640C2DE5DE1E"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\WI\\Lighting\\Lighting.md"
             "TargetName" = "8:Lighting.md"
             "Tag" = "8:"
             "Folder" = "8:_9C5A83333AF64CDBAB7B6788C080076F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7EEB482E501D4023B72727B131AA006D"
+            {
+            "SourcePath" = "8:..\\..\\WI\\Depth A2\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_022D0FE75D4641808B8C7E3487379487"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6140,6 +6727,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_828749AB797A4B17B5FB0C0980A26612"
+            {
+            "SourcePath" = "8:..\\..\\CM\\Depth A2\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_B0AAEE209C1F46AF9E84E51BACB68579"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_82DA00099418408AAB2C3963B58B10FF"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CP\\Linearity Error\\Linearity Error.css"
@@ -6160,12 +6767,63 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_854FB23EB019C81BB5C52D2F220569F8"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:ExCSS, Version=4.2.6.0, Culture=neutral, PublicKeyToken=bdbe16be9b936b9a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_854FB23EB019C81BB5C52D2F220569F8"
+                    {
+                    "Name" = "8:ExCSS.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:ExCSS.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4F1A66576C7A4476BCD6CED52A496857"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_85625E6BA2CE46F88F43F1F97F93A8C3"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CM\\Lateral Y\\Lateralnormal.ned"
             "TargetName" = "8:Lateralnormal.ned"
             "Tag" = "8:"
             "Folder" = "8:_E1A4D133E24D4626AACD5A1CEE813A8E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_856388D8456D4494AAE58ECFE5321E64"
+            {
+            "SourcePath" = "8:..\\..\\CP\\Straightness of Y-axis\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_35E6D0918265443ABA3BB8EC2E5A4B69"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6246,6 +6904,26 @@
             "TargetName" = "8:Readme.md"
             "Tag" = "8:"
             "Folder" = "8:_EDCAF4ABCFD8412684AC744ED9FF23C3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8785703BF1B840198CC427DF7EF66426"
+            {
+            "SourcePath" = "8:..\\..\\CP\\Step measurement\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_1F6F49318351403C922A007F8BC4A6EB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6457,6 +7135,26 @@
             "TargetName" = "8:Tester.csv"
             "Tag" = "8:"
             "Folder" = "8:_A67DAFCDDEF3424AAF915A25A62335C1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9218AD221EAF4DCBAC1D23D0CB71C3C1"
+            {
+            "SourcePath" = "8:..\\..\\CX\\Straightness of X-axis\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_D7D911FEE1AF4A028D2984BDC65111FA"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6771,6 +7469,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9BE3396A621A4F0994E41DB156D64FA5"
+            {
+            "SourcePath" = "8:..\\..\\WI\\Roughness\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_6D974751CC924A55AFCD0F6045EB75B6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9C25506DCEE14CB29840F02EF87FA020"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CL\\Straightness of X-axis\\NF_NED_MScan_Abnahme_GX_LS.npsx"
@@ -6817,6 +7535,26 @@
             "TargetName" = "8:Ebenheit.ned"
             "Tag" = "8:"
             "Folder" = "8:_8A0202F5457E4367A11301E80B63206C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9D8A5019206748E1B9F2F74B9CA1DD7D"
+            {
+            "SourcePath" = "8:..\\..\\WI\\Depth A1\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_D3907560C3F042109CD128B8F964FA3B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7133,6 +7871,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A65EB60F63084E31A1218DF92AF4D92C"
+            {
+            "SourcePath" = "8:..\\..\\CM\\Lateral X\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_D7B69E1EB5474D5C98426E022615B35D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A8D0837FC85EF6549D9CF0712A247112"
             {
             "AssemblyRegister" = "3:1"
@@ -7190,6 +7948,26 @@
             "TargetName" = "8:Stages.csv"
             "Tag" = "8:"
             "Folder" = "8:_BDF44D26F62346319764196F7083A232"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AA79538AB6644CD6927406FB94A3CAB0"
+            {
+            "SourcePath" = "8:..\\..\\CX\\Straightness of X-axis\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_D7D911FEE1AF4A028D2984BDC65111FA"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7315,12 +8093,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD907AE4764D452F8FA7A4F48E25350C"
+            {
+            "SourcePath" = "8:..\\..\\CX\\FlatBumps\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_8417A3F501EB4BD8B95D66B74270109B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ADBEC712F4EE4CBAA38F167CA0B3503A"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CX\\Certificate\\NFTopoInfo.npsx"
             "TargetName" = "8:NFTopoInfo.npsx"
             "Tag" = "8:"
             "Folder" = "8:_1F92BFED1F94424C8112A474841EB061"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AE568BC42CA3409EAB07FF82A860815A"
+            {
+            "SourcePath" = "8:..\\..\\CL\\Depth Measurement\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_B85E720B2BAC4FB194110C2CCDD2997C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7928,6 +8746,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C0147B004B214A84B8F8BBF3608E9CCF"
+            {
+            "SourcePath" = "8:..\\..\\CL\\Step measurement\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_CDF44FD708CD434680BF9DB0BE878508"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C16B664029C7403D9258E6E706FCFCCC"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CP\\Depth Measurement\\NF_NED_MScan_Abnahme_Tiefe_PS.ned"
@@ -8066,6 +8904,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C9CFA701227F95882DB39C7BA2837969"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_C9CFA701227F95882DB39C7BA2837969"
+                    {
+                    "Name" = "8:Newtonsoft.Json.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Newtonsoft.Json.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4F1A66576C7A4476BCD6CED52A496857"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CA7D948A7162406B90CAEA3C44B51DA9"
@@ -8208,6 +9077,57 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CC3602A6487366169C7D81B5356FDBC0"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:NFOpenFileDialog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_CC3602A6487366169C7D81B5356FDBC0"
+                    {
+                    "Name" = "8:NFOpenFileDialog.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:NFOpenFileDialog.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4F1A66576C7A4476BCD6CED52A496857"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CC5B97894E5B48B59E54574013BBD3AF"
+            {
+            "SourcePath" = "8:..\\..\\CX\\ScanShift\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_1325B27CA7BD49B6ADF155B564036707"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CC89D4869AC64C4A82CD63AC01B23925"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CX\\Summary\\logo.png"
@@ -8294,6 +9214,26 @@
             "TargetName" = "8:NF_NED_MScan_Abnahme_Rauheit_LS.npsx"
             "Tag" = "8:"
             "Folder" = "8:_CF984684587C4F91983BE8722AB5AA6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D0ED08916B274BEAAF4770678597D7F6"
+            {
+            "SourcePath" = "8:..\\..\\WI\\Lighting\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_9C5A83333AF64CDBAB7B6788C080076F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -8519,6 +9459,46 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D8572AA771AE4F1091EF14F46B660F8F"
+            {
+            "SourcePath" = "8:..\\..\\CX\\Depth A1\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_82512236645E455981B55607D2CE5567"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D8B43C69BC3F423584C2AE5A8B6CA104"
+            {
+            "SourcePath" = "8:..\\..\\CL\\Roughness\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_CF984684587C4F91983BE8722AB5AA6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D8D3BC6C94E64A4AA830C725102DD2AD"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CM\\Lateral Y\\Lateralnormal.npsx"
@@ -8670,12 +9650,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DDF3A2C8C2D74E00A44C07A6C48FEFDE"
+            {
+            "SourcePath" = "8:..\\..\\WI\\Lateral Y\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_A59C4374ADB44AD5BFE3941F3F3DE89A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E02237BF1A27445EA5512EF460ADF8CD"
             {
             "SourcePath" = "8:C:\\data\\SystemAcceptanceData\\CX\\FlatBumps\\FlatBumps.css"
             "TargetName" = "8:FlatBumps.css"
             "Tag" = "8:"
             "Folder" = "8:_8417A3F501EB4BD8B95D66B74270109B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E07E046C534448DD9619BB934DAEEECC"
+            {
+            "SourcePath" = "8:..\\..\\CL\\Straightness of Y-axis\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_81A959ACC875438FB0BAD36AE96C55FB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -8719,6 +9739,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E317AE35397444B49DA85A5091F16DA3"
+            {
+            "SourcePath" = "8:..\\..\\CM\\Flatness\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_820636D04B124CCEB4E35054034B992A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E59DFE33EEC24A4AA01013AB97AF01F6"
@@ -9140,6 +10180,26 @@
             "TargetName" = "8:Abnahme_Rauheit.npsx"
             "Tag" = "8:"
             "Folder" = "8:_3C9BAB31CF534BE5BEA30EFD1996658F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F552DF4EF01D48A5BCBF2D5CB189A0BE"
+            {
+            "SourcePath" = "8:..\\..\\WI\\Lateral X\\Standards.json"
+            "TargetName" = "8:Standards.json"
+            "Tag" = "8:"
+            "Folder" = "8:_784C34CF516D48BC935786EA36B8CB40"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -10725,7 +11785,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_35C5F043283F48578074D2490C773EE5"
             {
-            "SourcePath" = "8:..\\NFSystemAcceptance\\obj\\x64\\Release\\SystemAcceptance.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4F1A66576C7A4476BCD6CED52A496857"
