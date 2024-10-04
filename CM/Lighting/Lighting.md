@@ -4,7 +4,7 @@
 |-:|
 |![](logo.png)|
 
-## Lighting
+### Lighting
 
  
 
@@ -16,24 +16,24 @@
 |System number:| @PARAM{"Name":"Serial"}@|||
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@|||
-|Obj.Number:| @PARAM{"Name":"LensSerial"}@ |   ||
-|Standard: |@PARAM{"Name":"Ebenheitsnormal","Precision":12}@|||
+|Obj.Number:| @PARAM{"Name":"LensSerial"}@|||
+|Standard: |@PARAM{"Name":"Ebenheitsnormal"}@|||
 
  
 
- ||
-|:-:|
-|@IMAGE{"Name":"Intensity","Topo":1,"Width":400}@|
 ||
+|:-:|
+|@IMAGE{"Name":"Intensity","Topo":1,"Width":250}@|
+
  
  
  
 ### Evaluation
 
-|||||||
-|:-:|:-:|:-:|:-:|:-:|:-:|
+
 | |unit|nominal value < | tolerance +/- | actual value| status|
-| Homogenity   | % | @PARAM{"Name":"min_Ausleuchtung","Precision":6}@  |     |  @PARAM{"Name":"Homogenity","Precision":3}@ | <span id="control"> Ok</span>|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| Homogenity   | % | @PARAM{"Name":"min_Ausleuchtung","Precision":6}@  |     |  @PARAM{"Name":"Homogenity","Precision":2}@ | <span id="control"> Ok</span>|
  
 
 __Unit location:__ @PARAM{"Name":"Location"}@
