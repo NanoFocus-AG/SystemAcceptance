@@ -5,7 +5,7 @@
 |-:|
 |![](logo.png)|
 
-## Flatness
+### Flatness
 
  
 
@@ -22,19 +22,17 @@
 
  
 
-||
-|:-:|
-|@IMAGE{"Name":"Height","Topo":1,"Width":300}@|
-|@IMAGE{"Name":"Profile","Topo":1,"Width":700}@|
+|||
+|:-:|:-:|
+|@IMAGE{"Name":"Height","Topo":1,"Width":250}@|@IMAGE{"Name":"Profile","Topo":1,"Width":450}@|
 
  
  
  
 ### Evaluation
 
-|||||||
-|:-:|:-:|:-:|:-:|:-:|:-:|
 | |unit|nominal value <| tolerance +/- | actual value| status|
+|:-:|:-:|:-:|:-:|:-:|:-:|
 | Flatness   | µm| @PARAM{"Name":"max_Ebenheit","Precision":6}@ |     |  @PARAM{"Name":"Sz","Precision":6}@ | <span id="control"> Ok</span>|
 | RMS| µm| - |    @PARAM{"Name":"Toleranz","Precision":6}@ |  @PARAM{"Name":"Sq","Precision":6}@ | <span id="controlRMS"> Ok</span>|
  
