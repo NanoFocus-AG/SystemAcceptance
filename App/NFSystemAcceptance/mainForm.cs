@@ -679,10 +679,14 @@ namespace SystemAcceptance
                 if (File.Exists(filename) == true) File.Delete(filename);
                 //// print to pdf
                 PdfPrintSettings settings = new PdfPrintSettings();
+                settings.MarginType = CefPdfPrintMarginType.Custom;
                 settings.PrintBackground = true;
+                settings.MarginTop = 2;
+                settings.MarginRight = 1.0;
+                settings.MarginBottom = 2;
+                settings.MarginLeft = 1.0;
 
-                settings.MarginType = CefPdfPrintMarginType.Default;
-            
+
                 pdfDocs.Remove(filename);
                 pdfDocs.Add(filename);
 
