@@ -222,6 +222,12 @@
       <DependentUpon>mainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MqttStatusListener.cs" />
+    <Compile Include="PdfOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PdfOptions.Designer.cs">
+      <DependentUpon>PdfOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Progress\Progress.cs">
       <SubType>Form</SubType>
@@ -248,6 +254,9 @@
     </Compile>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PdfOptions.resx">
+      <DependentUpon>PdfOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Progress\Progress.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">

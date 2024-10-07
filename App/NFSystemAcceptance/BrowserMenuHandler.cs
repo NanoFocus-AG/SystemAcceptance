@@ -1,4 +1,5 @@
 ﻿using CefSharp;
+using System;
 using System.Windows.Forms;
 
 namespace SystemAcceptance
@@ -107,6 +108,7 @@ namespace SystemAcceptance
 
     class PDFCallback : IPrintToPdfCallback
     {
+        public event EventHandler<bool> PrintFinished;
         //
         public bool IsDisposed
         {
@@ -121,7 +123,10 @@ namespace SystemAcceptance
 
         public void OnPdfPrintFinished(string path, bool ok)
         {
-            
+            if (ok)
+            {
+                PrintFinished?.Invoke(this,ok);
+            }
         }
     }
 }

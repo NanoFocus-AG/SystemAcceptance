@@ -17,6 +17,7 @@ using ProgressMatrixLibrary;
 using System.Drawing;
 using System.Linq;
 using Button = System.Windows.Forms.Button;
+using Newtonsoft.Json;
 
 namespace SystemAcceptance
 {
@@ -47,8 +48,14 @@ namespace SystemAcceptance
         private List<string> pdfDocs = new List<string>();
         private int ProgressLocX;
         private int ProgressLocY;
+        
 
         private CXBoundObject cxBound;
+        PdfOptions PdfOptions;
+        private double MarginTop { get;  set; }
+        private double MarginBottom { get;  set; }
+        private double MarginLeft { get;  set; }
+        private double MarginRight { get;  set; }
 
         string parseTemplateFile(string filename, string defaultAlgoName)
         {
@@ -228,7 +235,15 @@ namespace SystemAcceptance
                         
                         string projectPath = tabDirInfoDict[project].FullName + @"\\";
 
-                        Task.Run(() => PrintPdf(projectPath, project));
+                        //Task.Run(() => PrintPdf(projectPath, project));
+                        BeginInvoke(new Action(() =>
+                        {
+                            DisableButtonsOnProgress(tabPage);
+                            toolStripStatusLabel1.Text = "Printing pdf..";
+                            progressMatrixControl.Show();
+                            progressMatrixControl.ProgressAnimation();
+                        }));
+                        PrintPdf(projectPath, project);
                     }
                     else
                     {
@@ -643,7 +658,8 @@ namespace SystemAcceptance
 
                 Task t = Task.Run(() =>
                 {
-                    _ = PrintPdf(projectPath, project);
+                    //_ = PrintPdf(projectPath, project);
+                    PrintPdf(projectPath, project);
                     ExecuteSummary();
                     ExecuteCertificate();
                 });
@@ -657,20 +673,18 @@ namespace SystemAcceptance
             });
         }
 
-        private async Task PrintPdf(string projectPath, string projectName)
+        //private async Task PrintPdf(string projectPath, string projectName)
+        private void PrintPdf(string projectPath, string projectName)
         {
-
+            string AppDataPath = "C:\\ProgramData\\NanoFocus\\SystemAcceptance\\";
+            string jsonFile = "PdfOptions.json";
+            string path = AppDataPath + jsonFile;
+            LoadPDFsettings(path);
             toolStripStatusLabel1.Text = "";
             toolStripStatusLabel2.Text = "";
             try
             {
-                BeginInvoke(new Action(() =>
-                {
-                    DisableButtonsOnProgress(tabPage);
-                    toolStripStatusLabel1.Text = "Printing pdf..";
-                    progressMatrixControl.Show();
-                    progressMatrixControl.ProgressAnimation();
-                }));
+               
 
                 string filename = projectPath + projectName + ".pdf";
 
@@ -681,34 +695,49 @@ namespace SystemAcceptance
                 PdfPrintSettings settings = new PdfPrintSettings();
                 settings.MarginType = CefPdfPrintMarginType.Custom;
                 settings.PrintBackground = true;
-                settings.MarginTop = 0.4;
-                settings.MarginRight = 1.0;
-                settings.MarginBottom = 0.4;
-                settings.MarginLeft = 1.0;
 
+                //settings.MarginTop = 0.4;
+                //settings.MarginRight = 1.0;
+                //settings.MarginBottom = 0.4;
+                //settings.MarginLeft = 1.0;
+
+                settings.MarginTop = MarginTop;
+                settings.MarginBottom = MarginBottom;
+                settings.MarginLeft = MarginLeft;
+                settings.MarginRight = MarginRight;
 
                 pdfDocs.Remove(filename);
                 pdfDocs.Add(filename);
 
                 PDFCallback printCallback = new PDFCallback();
+
                 //mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, null);
+                printCallback.PrintFinished += PrintCallback_PrintFinished;
                 mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, printCallback);
-               
-                await Task.Delay(3000);
+                //await Task.Delay(100);
                 BeginInvoke(new Action(() =>
                 {
-                    toolStripStatusLabel1.Text = "Printing Done ";
-                    toolStripStatusLabel2.Text = filename;
-                    progressMatrixControl.StopProgress();
-                    progressMatrixControl.Hide();
-                   EnableButtonOnProgress(tabPage);
-
+                toolStripStatusLabel2.Text = filename;
                 }));
             }
             catch (Exception)
             {
                 toolStripStatusLabel1.Text = "  Printing  Failed";
             }
+        }
+
+        private void PrintCallback_PrintFinished(object sender, bool e)
+        {
+           
+            BeginInvoke(new Action(() =>
+            {
+                toolStripStatusLabel1.Text = "Printing Done ";
+                
+                progressMatrixControl.StopProgress();
+                progressMatrixControl.Hide();
+                EnableButtonOnProgress(tabPage);
+
+            }));
         }
 
         /// End
@@ -881,7 +910,42 @@ namespace SystemAcceptance
         private void mainForm_Shown(object sender, EventArgs e)
         {
             skDialog.Show();
-            
+            PdfOptions = new PdfOptions();
+            PdfOptions.OptionsChanged += PdfOptions_OptionsChanged;
+        }
+
+        private void LoadPDFsettings(string filename)
+        {
+            string file = File.ReadAllText(filename);
+            Dictionary<string, double> MarginsDict = new Dictionary<string, double>();
+            MarginsDict = JsonConvert.DeserializeObject<Dictionary<string, double>>(file);
+            double toInches = 25.4;
+            foreach (var item in MarginsDict)
+            {
+                string key = item.Key;
+                double value = item.Value;
+                switch (key)
+                {
+                    case "MarginTop":
+                        MarginTop = value / toInches;
+                        break;
+                    case "MarginBottom":
+                        MarginBottom = value / toInches;
+                        break;
+                    case "MarginLeft":
+                        MarginLeft = value / toInches;
+                        break;
+                    case "MarginRight":
+                        MarginRight = value / toInches;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        private void PdfOptions_OptionsChanged(object sender, string e)
+        {
+            LoadPDFsettings(e.ToString());
         }
 
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -910,6 +974,13 @@ namespace SystemAcceptance
             ProgressLocX = (Width - progressMatrixControl.Width)/2;
             ProgressLocY = (Height - progressMatrixControl.Height)/2;
             progressMatrixControl.Location = new Point(ProgressLocX, ProgressLocY);
+        }
+
+      
+        private void pDFOptionsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            PdfOptions pdfOptions = new PdfOptions();
+            pdfOptions.ShowDialog();
         }
     }
 
