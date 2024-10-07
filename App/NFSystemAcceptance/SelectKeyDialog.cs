@@ -12,6 +12,7 @@ using System.Threading;
 using CefSharp.DevTools.Input;
 using System.Runtime.InteropServices;
 using ProgressMatrixLibrary;
+using SystemAcceptance.Properties;
 
 namespace SystemAcceptance
 {
@@ -51,6 +52,14 @@ namespace SystemAcceptance
             try
             {
                 RepositoryPath = "C:\\ProgramData\\NanoFocus\\SystemAcceptance\\";
+                string optionsFile = RepositoryPath + "PdfOptions.json";
+                if (!File.Exists(optionsFile))
+                {
+                    File.Create(optionsFile);
+                    Settings.Default.OptionsPath = optionsFile;
+                    Settings.Default.Save();
+                    Settings.Default.Upgrade();
+                }
 
                 IEnumerable<string> dirList = null;
                 if (Directory.Exists(RepositoryPath)) dirList = Directory.EnumerateDirectories(RepositoryPath);

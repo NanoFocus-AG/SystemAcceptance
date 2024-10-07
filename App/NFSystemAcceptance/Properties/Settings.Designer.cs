@@ -40,5 +40,17 @@ namespace SystemAcceptance.Properties {
                 return ((bool)(this["UseGitRepo"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OptionsPath {
+            get {
+                return ((string)(this["OptionsPath"]));
+            }
+            set {
+                this["OptionsPath"] = value;
+            }
+        }
     }
 }

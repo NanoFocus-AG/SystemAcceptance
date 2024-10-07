@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using SystemAcceptance.Properties;
 
 namespace SystemAcceptance
 {
@@ -16,8 +17,7 @@ namespace SystemAcceptance
     {
         public event EventHandler<string> OptionsChanged;
 
-        string AppDataPath = "C:\\ProgramData\\NanoFocus\\SystemAcceptance\\";
-        static string jsonFile = "PdfOptions.json";
+       
         string path;
         Dictionary<string, decimal> optionsDict = new Dictionary<string, decimal>();
         private double MTop { get; set; }
@@ -64,18 +64,14 @@ namespace SystemAcceptance
 
         private void PdfOptions_Load(object sender, EventArgs e)
         {
-
             Control.ControlCollection controlCollection = groupBox1.Controls;
             string file;// = File.ReadAllText(path);
 
-            if (!Directory.Exists(AppDataPath))
-            {
-                Directory.CreateDirectory(AppDataPath);
-            }
+
+            path = Settings.Default.OptionsPath;
             if (!File.Exists(path))
             {
                 SetDefault();
-                path = AppDataPath + jsonFile;
                 using (File.Create(path))
                 {
                     
@@ -93,6 +89,13 @@ namespace SystemAcceptance
             else
             {
                 file = File.ReadAllText(path);
+                if (new FileInfo(path).Length == 0)
+                {
+                    SetDefault();
+                }
+                else
+                {
+
                 optionsDict = JsonConvert.DeserializeObject<Dictionary<string, decimal>>(file);
                 foreach (NumericUpDown control in controlCollection.OfType<NumericUpDown>())
                 {
@@ -102,6 +105,7 @@ namespace SystemAcceptance
                         control.Value = optionsDict[control.Name];
                     }
                 }
+                }
             }
 
             CenterToParent();
@@ -110,6 +114,16 @@ namespace SystemAcceptance
         private void NupDown_KeyPress(object sender, KeyPressEventArgs e)
         {
           
+        }
+
+        private void MarginLeft_ValueChanged(object sender, EventArgs e)
+        {
+            MarginRight.Value = MarginLeft.Value;
+        }
+
+        private void MarginRight_ValueChanged(object sender, EventArgs e)
+        {
+            MarginLeft.Value = MarginRight.Value;
         }
     }
 }

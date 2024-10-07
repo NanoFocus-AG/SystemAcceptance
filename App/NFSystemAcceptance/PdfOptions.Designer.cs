@@ -31,6 +31,10 @@
             this.MarginTop = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.topLbl = new System.Windows.Forms.Label();
@@ -38,10 +42,6 @@
             this.MarginLeft = new System.Windows.Forms.NumericUpDown();
             this.bottomLbl = new System.Windows.Forms.Label();
             this.MarginBottom = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.MarginTop)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MarginRight)).BeginInit();
@@ -54,6 +54,11 @@
             this.MarginTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MarginTop.Location = new System.Drawing.Point(77, 43);
             this.MarginTop.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MarginTop.Maximum = new decimal(new int[] {
+            508,
+            0,
+            0,
+            65536});
             this.MarginTop.Name = "MarginTop";
             this.MarginTop.Size = new System.Drawing.Size(66, 21);
             this.MarginTop.TabIndex = 0;
@@ -94,6 +99,42 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Page Margins";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(356, 93);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 15);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "mm";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(356, 45);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 15);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "mm";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(150, 93);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 15);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "mm";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(150, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 15);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "mm";
             // 
             // label1
             // 
@@ -139,18 +180,30 @@
             this.MarginRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MarginRight.Location = new System.Drawing.Point(283, 89);
             this.MarginRight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MarginRight.Maximum = new decimal(new int[] {
+            508,
+            0,
+            0,
+            65536});
             this.MarginRight.Name = "MarginRight";
             this.MarginRight.Size = new System.Drawing.Size(66, 21);
             this.MarginRight.TabIndex = 7;
+            this.MarginRight.ValueChanged += new System.EventHandler(this.MarginRight_ValueChanged);
             // 
             // MarginLeft
             // 
             this.MarginLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MarginLeft.Location = new System.Drawing.Point(283, 39);
             this.MarginLeft.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MarginLeft.Maximum = new decimal(new int[] {
+            508,
+            0,
+            0,
+            65536});
             this.MarginLeft.Name = "MarginLeft";
             this.MarginLeft.Size = new System.Drawing.Size(66, 21);
             this.MarginLeft.TabIndex = 6;
+            this.MarginLeft.ValueChanged += new System.EventHandler(this.MarginLeft_ValueChanged);
             // 
             // bottomLbl
             // 
@@ -170,45 +223,14 @@
             this.MarginBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MarginBottom.Location = new System.Drawing.Point(77, 90);
             this.MarginBottom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MarginBottom.Maximum = new decimal(new int[] {
+            508,
+            0,
+            0,
+            65536});
             this.MarginBottom.Name = "MarginBottom";
             this.MarginBottom.Size = new System.Drawing.Size(66, 21);
             this.MarginBottom.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(150, 45);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 15);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "mm";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(150, 93);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 15);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "mm";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(356, 45);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 15);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "mm";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(356, 93);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 15);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "mm";
             // 
             // PdfOptions
             // 

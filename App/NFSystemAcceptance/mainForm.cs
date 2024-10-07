@@ -676,10 +676,10 @@ namespace SystemAcceptance
         //private async Task PrintPdf(string projectPath, string projectName)
         private void PrintPdf(string projectPath, string projectName)
         {
-            string AppDataPath = "C:\\ProgramData\\NanoFocus\\SystemAcceptance\\";
-            string jsonFile = "PdfOptions.json";
-            string path = AppDataPath + jsonFile;
-            LoadPDFsettings(path);
+            
+            string jsonFile = Properties.Settings.Default.OptionsPath;
+            
+            LoadPDFsettings(jsonFile);
             toolStripStatusLabel1.Text = "";
             toolStripStatusLabel2.Text = "";
             try
@@ -917,29 +917,40 @@ namespace SystemAcceptance
         private void LoadPDFsettings(string filename)
         {
             string file = File.ReadAllText(filename);
-            Dictionary<string, double> MarginsDict = new Dictionary<string, double>();
-            MarginsDict = JsonConvert.DeserializeObject<Dictionary<string, double>>(file);
-            double toInches = 25.4;
-            foreach (var item in MarginsDict)
+            if (new FileInfo(filename).Length == 0)
             {
-                string key = item.Key;
-                double value = item.Value;
-                switch (key)
+                MarginTop = 0;
+                MarginBottom = 0;
+                MarginLeft = 1;
+                MarginRight = 1;
+            }
+            else
+            {
+
+                Dictionary<string, double> MarginsDict = new Dictionary<string, double>();
+                MarginsDict = JsonConvert.DeserializeObject<Dictionary<string, double>>(file);
+                double toInches = 25.4;
+                foreach (var item in MarginsDict)
                 {
-                    case "MarginTop":
-                        MarginTop = value / toInches;
-                        break;
-                    case "MarginBottom":
-                        MarginBottom = value / toInches;
-                        break;
-                    case "MarginLeft":
-                        MarginLeft = value / toInches;
-                        break;
-                    case "MarginRight":
-                        MarginRight = value / toInches;
-                        break;
-                    default:
-                        break;
+                    string key = item.Key;
+                    double value = item.Value;
+                    switch (key)
+                    {
+                        case "MarginTop":
+                            MarginTop = value / toInches;
+                            break;
+                        case "MarginBottom":
+                            MarginBottom = value / toInches;
+                            break;
+                        case "MarginLeft":
+                            MarginLeft = value / toInches;
+                            break;
+                        case "MarginRight":
+                            MarginRight = value / toInches;
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
