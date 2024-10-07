@@ -304,14 +304,12 @@
             // 
             // panel6
             // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.toolStripStatusLabel1);
             this.panel6.Controls.Add(this.progressBarEx2);
             this.panel6.Location = new System.Drawing.Point(-1, 268);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(615, 30);
+            this.panel6.Size = new System.Drawing.Size(615, 31);
             this.panel6.TabIndex = 24;
             // 
             // toolStripStatusLabel1

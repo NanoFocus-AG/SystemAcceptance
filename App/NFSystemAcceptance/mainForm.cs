@@ -80,7 +80,6 @@ namespace SystemAcceptance
         public void InitalizeBrowserEngine()
         {
            
-            //WorkloadPath = new DirectoryInfo("c:\\Program Data");
             WorkloadPath = new DirectoryInfo("c:\\Program Data\\");
 
             CefSettings settings = new CefSettings();
@@ -123,6 +122,7 @@ namespace SystemAcceptance
             mBrowserEngine.Controls.Add(progressMatrixControl);
             progressMatrixControl.Hide();
         }
+
         public mainForm()
         {
             InitializeComponent();
@@ -171,6 +171,7 @@ namespace SystemAcceptance
                     }
                 });
             };
+            Activate();
         }
 
         private void CreateTabStructure(Dictionary<string, DirectoryInfo> tabInfo)
@@ -684,8 +685,6 @@ namespace SystemAcceptance
             toolStripStatusLabel2.Text = "";
             try
             {
-               
-
                 string filename = projectPath + projectName + ".pdf";
 
                 //Process.Start(filename);
@@ -712,12 +711,12 @@ namespace SystemAcceptance
                 PDFCallback printCallback = new PDFCallback();
 
                 //mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, null);
-                printCallback.PrintFinished += PrintCallback_PrintFinished;
                 mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, printCallback);
+                printCallback.PrintFinished += PrintCallback_PrintFinished;
                 //await Task.Delay(100);
                 BeginInvoke(new Action(() =>
                 {
-                toolStripStatusLabel2.Text = filename;
+                    toolStripStatusLabel2.Text = filename;
                 }));
             }
             catch (Exception)
@@ -926,7 +925,6 @@ namespace SystemAcceptance
             }
             else
             {
-
                 Dictionary<string, double> MarginsDict = new Dictionary<string, double>();
                 MarginsDict = JsonConvert.DeserializeObject<Dictionary<string, double>>(file);
                 double toInches = 25.4;

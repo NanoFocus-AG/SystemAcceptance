@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using SystemAcceptance.Properties;
@@ -17,7 +12,7 @@ namespace SystemAcceptance
     {
         public event EventHandler<string> OptionsChanged;
 
-       
+
         string path;
         Dictionary<string, decimal> optionsDict = new Dictionary<string, decimal>();
         private double MTop { get; set; }
@@ -28,7 +23,6 @@ namespace SystemAcceptance
         public PdfOptions()
         {
             InitializeComponent();
-            
         }
 
         private void SetDefault()
@@ -67,15 +61,11 @@ namespace SystemAcceptance
             Control.ControlCollection controlCollection = groupBox1.Controls;
             string file;// = File.ReadAllText(path);
 
-
             path = Settings.Default.OptionsPath;
             if (!File.Exists(path))
             {
                 SetDefault();
-                using (File.Create(path))
-                {
-                    
-                }
+                using (File.Create(path)){}
 
                 foreach (NumericUpDown control in controlCollection.OfType<NumericUpDown>())
                 {
@@ -95,27 +85,20 @@ namespace SystemAcceptance
                 }
                 else
                 {
-
-                optionsDict = JsonConvert.DeserializeObject<Dictionary<string, decimal>>(file);
-                foreach (NumericUpDown control in controlCollection.OfType<NumericUpDown>())
-                {
-                    if (optionsDict.ContainsKey(control.Name))
+                    optionsDict = JsonConvert.DeserializeObject<Dictionary<string, decimal>>(file);
+                    foreach (NumericUpDown control in controlCollection.OfType<NumericUpDown>())
                     {
-
-                        control.Value = optionsDict[control.Name];
+                        if (optionsDict.ContainsKey(control.Name))
+                        {
+                            control.Value = optionsDict[control.Name];
+                        }
                     }
                 }
-                }
             }
-
             CenterToParent();
         }
 
-        private void NupDown_KeyPress(object sender, KeyPressEventArgs e)
-        {
-          
-        }
-
+       
         private void MarginLeft_ValueChanged(object sender, EventArgs e)
         {
             MarginRight.Value = MarginLeft.Value;
@@ -125,5 +108,7 @@ namespace SystemAcceptance
         {
             MarginLeft.Value = MarginRight.Value;
         }
+
+       
     }
 }
