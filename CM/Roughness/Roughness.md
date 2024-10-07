@@ -4,9 +4,9 @@
 |-:|
 |![](logo.png)|
 
-## Roughness
+### Roughness
 
- 
+
 
 
 |||||
@@ -17,22 +17,22 @@
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@|||
 |Obj.Number:| @PARAM{"Name":"LensSerial"}@|||
-|Standard: |@PARAM{"Name":"Rauhnormal","Precision":12}@|||
+|Standard: |@PARAM{"Name":"Rauhnormal" }@|||
 
  
 
-||
-|:-:|
-|@IMAGE{"Name":"Profile","Topo":1,"Width":650}@|
+|||
+|:-:|:-:|
+|@IMAGE{"Name":"Profile","Topo":1,"Width":450}@| @IMAGE{"Name":"Height","Topo":0,"Width":250}@|
 
  
  
 ### Evaluation
-||||||||
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+
 | |unit   |nominal   | tolerance   +/- | actual  | status|
-| Ra   | µm | @PARAM{"Name":"Ra Soll","Precision":6}@ |    <span id="Ratol"></span> |  @PARAM{"Name":"Ra","Precision":3}@ | <span id="controlRa"></span>|
-| Rz   | µm| @PARAM{"Name":"Rz Soll","Precision":6}@  |   <span id="Rztol"></span>  |  @PARAM{"Name":"Rz","Precision":3}@ | <span id="controlRz"> </span>|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Ra   | µm | @PARAM{"Name":"Ra Soll","Precision":6}@ | <span id="Ratol"></span> |  @PARAM{"Name":"Ra","Precision":3}@ | <span id="controlRa"></span>|
+| Rz   | µm| @PARAM{"Name":"Rz Soll","Precision":6}@  | <span id="Rztol"></span>  |  @PARAM{"Name":"Rz","Precision":3}@ | <span id="controlRz"> </span>|
  
  
 
