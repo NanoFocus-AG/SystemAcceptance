@@ -3,15 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel;
-using System.Data;
 using System.Windows.Forms;
 using System.IO;
-using System.Threading;
-using CefSharp.DevTools.Input;
 using System.Runtime.InteropServices;
-using ProgressMatrixLibrary;
 using SystemAcceptance.Properties;
 
 namespace SystemAcceptance
@@ -80,7 +75,6 @@ namespace SystemAcceptance
                         dataList.Add(item.Name);
                     }
                 }
-                
             }
             catch (Exception ex)
             {

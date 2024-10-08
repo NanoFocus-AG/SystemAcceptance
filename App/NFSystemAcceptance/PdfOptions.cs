@@ -12,7 +12,6 @@ namespace SystemAcceptance
     {
         public event EventHandler<string> OptionsChanged;
 
-
         string path;
         Dictionary<string, decimal> optionsDict = new Dictionary<string, decimal>();
         private double MTop { get; set; }
@@ -109,6 +108,5 @@ namespace SystemAcceptance
             MarginLeft.Value = MarginRight.Value;
         }
 
-       
     }
 }

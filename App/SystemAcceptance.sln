@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemAcceptance", "NFSyste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFOpenFileDialog", "..\..\NFOpenFileDialog\NFOpenFileDialog\NFOpenFileDialog.csproj", "{C3EB443D-0049-4843-BA06-3066A16DE9CE}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_SystemAcceptance", "Setup_SystemAcceptance\Setup_SystemAcceptance.vdproj", "{8738200E-43A1-4613-B6E3-FDC71624BBAA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,12 +41,6 @@ Global
 		{C3EB443D-0049-4843-BA06-3066A16DE9CE}.Release|x64.Build.0 = Release|x64
 		{C3EB443D-0049-4843-BA06-3066A16DE9CE}.Release|x86.ActiveCfg = Release|Any CPU
 		{C3EB443D-0049-4843-BA06-3066A16DE9CE}.Release|x86.Build.0 = Release|Any CPU
-		{8738200E-43A1-4613-B6E3-FDC71624BBAA}.Debug|Any CPU.ActiveCfg = Debug
-		{8738200E-43A1-4613-B6E3-FDC71624BBAA}.Debug|x64.ActiveCfg = Debug
-		{8738200E-43A1-4613-B6E3-FDC71624BBAA}.Debug|x86.ActiveCfg = Debug
-		{8738200E-43A1-4613-B6E3-FDC71624BBAA}.Release|Any CPU.ActiveCfg = Release
-		{8738200E-43A1-4613-B6E3-FDC71624BBAA}.Release|x64.ActiveCfg = Release
-		{8738200E-43A1-4613-B6E3-FDC71624BBAA}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,6 +3,7 @@ SetCompressorDictSize 64
 Unicode true
 !include "MUI2.nsh"
 
+
 ; All users / current user page
 !define MULTIUSER_EXECUTIONLEVEL Highest
 !define MULTIUSER_MUI
@@ -13,7 +14,8 @@ Unicode true
 ; MUI 1.67 compatible ------
 ;!include "MUI2.nsh"
 !define MUI_COMPONENTSPAGE_SMALLDESC ;No value
-!define MUI_UI "m:\tools\NSIS\Contrib\UIs\modern.exe" ;Value
+;!define MUI_UI ".\Contrib\UIs\modern.exe" ;Value
+!define MUI_UI "C:\NSIS\Contrib\UIs\modern.exe" ;Value
 !define MUI_INSTFILESPAGE_COLORS "000000 FFFFFF" ;Two colors
 
 
@@ -40,38 +42,18 @@ OutFile  "Setup_SystemAcceptance.exe"
 
 Section "-BasisInstallation" SEC01
 
+SetShellVarContext all
+AccessControl::GrantOnFile "$APPDATA\Folder" "(S-1-5-32-545)" "FullAccess"
 
 SetOutPath $INSTDIR
-File /r  /x *.pdb NFSystemCalibration\bin\x64\Release\*.*
+File /r  /x *.pdb NFSystemAcceptance\bin\x64\Release\*.*
+;File /r  /x *.pdb C:\Users\koci\source\repos\SystemAcceptance\App\NFSystemAcceptance\bin\x64\Release\*.*
 
-CreateDirectory  $INSTDIR\Ausleuchtung
-SetOutPath $INSTDIR\Ausleuchtung
-File /r  /x *.png  /x *.pdf /x *.html Ausleuchtung\*.* 
-
-CreateDirectory  $INSTDIR\Ebenheit
-SetOutPath $INSTDIR\Ebenheit
-File /r  /x *.png  /x *.pdf /x *.html Ebenheit\*.* 
- 
- 
-CreateDirectory  $INSTDIR\LateralnormalX
-SetOutPath $INSTDIR\LateralnormalX
-File /r  /x *.png  /x *.pdf /x *.html LateralnormalX\*.* 
- 
- 
- CreateDirectory  $INSTDIR\LateralnormalY
-SetOutPath $INSTDIR\LateralnormalY
-File /r  /x *.png  /x *.pdf /x *.html LateralnormalY\*.* 
- 
- 
-  CreateDirectory  $INSTDIR\Sensors
-SetOutPath $INSTDIR\Sensors
-File /r  /x *.png  /x *.pdf /x *.html Sensors\*.* 
- 
- 
- 
-  CreateDirectory  $INSTDIR\Standards
-SetOutPath $INSTDIR\Standards
-File /r  /x *.png  /x *.pdf /x *.html Standards\*.* 
+CreateDirectory $LocalAppData\Nanofocus\SystemAcceptance
+SetOutPath $LocalAppData\Nanofocus\SystemAcceptance\*.*
+;File /r "C:\Users\koci\Desktop\sysacc\*.*"
+;File /r "..\testFolder\*.*"
+File /r /x *.git /x *.gitignore /x App "..\*.*"
  
  
 SectionEnd

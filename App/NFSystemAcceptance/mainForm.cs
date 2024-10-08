@@ -48,14 +48,14 @@ namespace SystemAcceptance
         private List<string> pdfDocs = new List<string>();
         private int ProgressLocX;
         private int ProgressLocY;
-        
+
 
         private CXBoundObject cxBound;
         PdfOptions PdfOptions;
-        private double MarginTop { get;  set; }
-        private double MarginBottom { get;  set; }
-        private double MarginLeft { get;  set; }
-        private double MarginRight { get;  set; }
+        private double MarginTop { get; set; }
+        private double MarginBottom { get; set; }
+        private double MarginLeft { get; set; }
+        private double MarginRight { get; set; }
 
         string parseTemplateFile(string filename, string defaultAlgoName)
         {
@@ -79,7 +79,7 @@ namespace SystemAcceptance
 
         public void InitalizeBrowserEngine()
         {
-           
+
             WorkloadPath = new DirectoryInfo("c:\\Program Data\\");
 
             CefSettings settings = new CefSettings();
@@ -89,7 +89,7 @@ namespace SystemAcceptance
             //CefSharp.Cef.EnableHighDPISupport(); // Not needed as this is enabled by deault in Chromium.
 
             mBrowserEngine = new ChromiumWebBrowser("");
-            
+
             BrowserEngineMenuHandler menu = new BrowserEngineMenuHandler();
             mBrowserEngine.MenuHandler = menu;
 
@@ -112,7 +112,7 @@ namespace SystemAcceptance
             progressMatrixControl = new ProgressMatrixControl();
             progressMatrixControl.Size = new Size(100, 100);
             progressMatrixControl.BackColor = Color.Black;
-          
+
             ProgressLocX = (Width - progressMatrixControl.Width) / 2;
             ProgressLocY = (Height - progressMatrixControl.Height) / 2;
             progressMatrixControl.Location = new Point(ProgressLocX, ProgressLocY);
@@ -129,7 +129,7 @@ namespace SystemAcceptance
             skDialog.StartInfo += SkDialog_StartInfo;
             skDialog.RootPathInfo += SkDialog_RootPathInfo;
             skDialog.SelectedSystem += SkDialog_SelectedSystem;
-            
+
             topo = NFTopography.New();
             InitializeDox();
             InitalizeBrowserEngine();
@@ -194,11 +194,11 @@ namespace SystemAcceptance
 
             if (tp.Text == "Certificate" || tp.Text == "Summary")
             {
-                BeginInvoke(new Action(() =>{HideButtons(tp);}));
+                BeginInvoke(new Action(() => { HideButtons(tp); }));
             }
             else
             {
-                BeginInvoke(new Action(() =>{ShowButtons(tp);}));
+                BeginInvoke(new Action(() => { ShowButtons(tp); }));
             }
 
             tabControl.Selected += (sender, args) =>
@@ -209,7 +209,7 @@ namespace SystemAcceptance
 
                 if (tabPage.Text == "Certificate" || tabPage.Text == "Summary")
                 {
-                    BeginInvoke(new Action(() =>{HideButtons(tabPage); }));
+                    BeginInvoke(new Action(() => { HideButtons(tabPage); }));
                 }
                 else
                 {
@@ -222,7 +222,7 @@ namespace SystemAcceptance
                     toolStripStatusLabel2.Text = "";
                     string Name = tabControl.SelectedTab.Name + ".p1";
                     panelsDict[Name].setBrowserEngine(mBrowserEngine);
-                    
+
                     if (File.Exists(tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
                     {
                         Uri url = new Uri("file://" + tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
@@ -233,7 +233,7 @@ namespace SystemAcceptance
                             Thread.Sleep(10);
                         }
                         Thread.Sleep(100);
-                        
+
                         string projectPath = tabDirInfoDict[project].FullName + @"\\";
 
                         //Task.Run(() => PrintPdf(projectPath, project));
@@ -358,17 +358,16 @@ namespace SystemAcceptance
         {
             var tp = tabControl.TabPages[0];
             tabControl.SelectedTab = tp;
-           
+
             string name = tabControl.SelectedTab.Name + ".p1";
             panelsDict[name].setBrowserEngine(mBrowserEngine);
-           
+
 
             if (File.Exists(tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
             {
                 Uri Url = new Uri("file://" + tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
 
                 mBrowserEngine.Load(Url.AbsolutePath);
-               
             }
             else
             {
@@ -380,7 +379,6 @@ namespace SystemAcceptance
 
             panelsDict[name].OnHelp -= OnHelp;
             panelsDict[name].OnHelp += OnHelp;
-
         }
 
         private void InitializeDox()
@@ -490,7 +488,7 @@ namespace SystemAcceptance
             }
 
             //-----------------------------------------------------------------------------------------------------------------
-           
+
             specsDlg = new SpecificationForm(rootPath, project);
             specsDlg.ShowDialog();
 
@@ -534,7 +532,7 @@ namespace SystemAcceptance
                     //toolStripStatusLabel1.Text += actualFilename + " | ";
                     BeginInvoke(new Action(() =>
                     {
-                       
+
                         toolStripStatusLabel2.Text = actualFilename;
                     }));
                     Application.DoEvents();
@@ -677,9 +675,9 @@ namespace SystemAcceptance
         //private async Task PrintPdf(string projectPath, string projectName)
         private void PrintPdf(string projectPath, string projectName)
         {
-            
+
             string jsonFile = Properties.Settings.Default.OptionsPath;
-            
+
             LoadPDFsettings(jsonFile);
             toolStripStatusLabel1.Text = "";
             toolStripStatusLabel2.Text = "";
@@ -688,7 +686,7 @@ namespace SystemAcceptance
                 string filename = projectPath + projectName + ".pdf";
 
                 //Process.Start(filename);
-               
+
                 if (File.Exists(filename) == true) File.Delete(filename);
                 //// print to pdf
                 PdfPrintSettings settings = new PdfPrintSettings();
@@ -727,11 +725,11 @@ namespace SystemAcceptance
 
         private void PrintCallback_PrintFinished(object sender, bool e)
         {
-           
+
             BeginInvoke(new Action(() =>
             {
                 toolStripStatusLabel1.Text = "Printing Done ";
-                
+
                 progressMatrixControl.StopProgress();
                 progressMatrixControl.Hide();
                 EnableButtonOnProgress(tabPage);
@@ -964,7 +962,7 @@ namespace SystemAcceptance
             //NFEvalCSHelpers.NFEvalDestroy();
         }
 
-       
+
         private void toolStripStatusLabel2_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(toolStripStatusLabel2.Text))
@@ -980,12 +978,12 @@ namespace SystemAcceptance
 
         private void mainForm_Resize(object sender, EventArgs e)
         {
-            ProgressLocX = (Width - progressMatrixControl.Width)/2;
-            ProgressLocY = (Height - progressMatrixControl.Height)/2;
+            ProgressLocX = (Width - progressMatrixControl.Width) / 2;
+            ProgressLocY = (Height - progressMatrixControl.Height) / 2;
             progressMatrixControl.Location = new Point(ProgressLocX, ProgressLocY);
         }
 
-      
+
         private void pDFOptionsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             PdfOptions pdfOptions = new PdfOptions();
