@@ -53,7 +53,9 @@ CreateDirectory $LocalAppData\Nanofocus\SystemAcceptance
 SetOutPath $LocalAppData\Nanofocus\SystemAcceptance\*.*
 ;File /r "C:\Users\koci\Desktop\sysacc\*.*"
 ;File /r "..\testFolder\*.*"
-File /r /x *.git /x *.gitignore /x App "..\*.*"
+File /r /x *.git /x *.gitignore /x App /x *.pdf /x *.html /x *.svg "..\*.*"
+
+
  
  
 SectionEnd
