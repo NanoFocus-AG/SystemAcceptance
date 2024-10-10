@@ -50,13 +50,13 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.deutschRb = new System.Windows.Forms.RadioButton();
+            this.englishRb = new System.Windows.Forms.RadioButton();
             this.panel6 = new System.Windows.Forms.Panel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.Label();
             this.titlebarPanel = new System.Windows.Forms.Panel();
             this.exitButton = new System.Windows.Forms.Button();
             this.Title = new System.Windows.Forms.Label();
-            this.englishRb = new System.Windows.Forms.RadioButton();
-            this.deutschRb = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -306,6 +306,30 @@
             this.mainPanel.TabIndex = 24;
             this.mainPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel6_MouseDown);
             // 
+            // deutschRb
+            // 
+            this.deutschRb.Appearance = System.Windows.Forms.Appearance.Button;
+            this.deutschRb.AutoSize = true;
+            this.deutschRb.Location = new System.Drawing.Point(111, 230);
+            this.deutschRb.Name = "deutschRb";
+            this.deutschRb.Size = new System.Drawing.Size(64, 27);
+            this.deutschRb.TabIndex = 26;
+            this.deutschRb.Text = "Deutsch";
+            this.deutschRb.UseVisualStyleBackColor = true;
+            this.deutschRb.CheckedChanged += new System.EventHandler(this.deutschRb_CheckedChanged);
+            // 
+            // englishRb
+            // 
+            this.englishRb.Appearance = System.Windows.Forms.Appearance.Button;
+            this.englishRb.AutoSize = true;
+            this.englishRb.Location = new System.Drawing.Point(46, 230);
+            this.englishRb.Name = "englishRb";
+            this.englishRb.Size = new System.Drawing.Size(59, 27);
+            this.englishRb.TabIndex = 25;
+            this.englishRb.Text = "English";
+            this.englishRb.UseVisualStyleBackColor = true;
+            this.englishRb.CheckedChanged += new System.EventHandler(this.englishRb_CheckedChanged);
+            // 
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -368,28 +392,6 @@
             this.Title.Text = "Select System Type";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Title.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Title_MouseDown);
-            // 
-            // englishRb
-            // 
-            this.englishRb.AutoSize = true;
-            this.englishRb.Location = new System.Drawing.Point(46, 214);
-            this.englishRb.Name = "englishRb";
-            this.englishRb.Size = new System.Drawing.Size(67, 21);
-            this.englishRb.TabIndex = 25;
-            this.englishRb.Text = "English";
-            this.englishRb.UseVisualStyleBackColor = true;
-            this.englishRb.CheckedChanged += new System.EventHandler(this.englishRb_CheckedChanged);
-            // 
-            // deutschRb
-            // 
-            this.deutschRb.AutoSize = true;
-            this.deutschRb.Location = new System.Drawing.Point(46, 241);
-            this.deutschRb.Name = "deutschRb";
-            this.deutschRb.Size = new System.Drawing.Size(72, 21);
-            this.deutschRb.TabIndex = 26;
-            this.deutschRb.Text = "Deutsch";
-            this.deutschRb.UseVisualStyleBackColor = true;
-            this.deutschRb.CheckedChanged += new System.EventHandler(this.deutschRb_CheckedChanged);
             // 
             // SelectKeyDialog
             // 

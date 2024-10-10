@@ -92,7 +92,7 @@ namespace SystemAcceptance
             //CefSharp.Cef.EnableHighDPISupport(); // Not needed as this is enabled by deault in Chromium.
 
             mBrowserEngine = new ChromiumWebBrowser("");
-
+            
             BrowserEngineMenuHandler menu = new BrowserEngineMenuHandler();
             mBrowserEngine.MenuHandler = menu;
 
@@ -226,11 +226,14 @@ namespace SystemAcceptance
                     toolStripStatusLabel2.Text = "";
                     string Name = tabControl.SelectedTab.Name + ".p1";
                     panelsDict[Name].setBrowserEngine(mBrowserEngine);
+                    string projectPath = tabDirInfoDict[project].FullName + "\\";
+                    string fullURL = tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html";
 
-                    if (File.Exists(tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
+                    if (File.Exists(fullURL))
                     {
-                        Uri url = new Uri("file://" + tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
+                        Uri url = new Uri("file://" + fullURL);
 
+                        //mBrowserEngine.Load(url.AbsolutePath);
                         mBrowserEngine.Load(url.AbsolutePath);
                         while (mBrowserEngine.IsLoading)
                         {
@@ -238,7 +241,7 @@ namespace SystemAcceptance
                         }
                         Thread.Sleep(100);
 
-                        string projectPath = tabDirInfoDict[project].FullName + "\\";
+                        
 
                         //Task.Run(() => PrintPdf(projectPath, project));
                         BeginInvoke(new Action(() =>
@@ -270,6 +273,7 @@ namespace SystemAcceptance
             SelectFirstTabPage();
         }
 
+        #region Show/Hide Buttons
         private void HideButtons(TabPage tabPage)
         {
             TabPage tp = tabPage;
@@ -357,6 +361,7 @@ namespace SystemAcceptance
                 }
             }
         }
+        #endregion
 
         private void SelectFirstTabPage()
         {
@@ -367,7 +372,7 @@ namespace SystemAcceptance
 
                 string name = tabControl.SelectedTab.Name + ".p1";
                 panelsDict[name].setBrowserEngine(mBrowserEngine);
-
+                mBrowserEngine.Refresh();
 
                 if (File.Exists(tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
                 {
