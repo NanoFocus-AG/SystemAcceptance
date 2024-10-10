@@ -4,7 +4,7 @@
 ||
 |-:|
 |![](logo.png)|
-### Lateral Y
+## Lateral Y
 
  
 
@@ -17,21 +17,23 @@
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@|||
 |Obj.Number:| @PARAM{"Name":"LensSerial"}@|||
-|Standard: |@PARAM{"Name":"Lateralnormal"}@|||
+|Standard: |@PARAM{"Name":"Lateralnormal","Precision":12}@|||
 
  
-|||
-|:-:||
-|@IMAGE{"Name":"Height","Topo":2,"Width":250}@|@IMAGE{"Name":"Profile","Topo":1,"Width":450}@|
+||
+|:-:|
+|@IMAGE{"Name":"Height","Topo":2,"Width":300}@|
+|@IMAGE{"Name":"Profile","Topo":1,"Width":700}@|
 
  
  
 
 ### Evaluation
 
-| |unit|nominal value | tolerance +/- | actual value| result|
+||||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|  lateral distance| µm| @PARAM{"Name":"Soll","Precision":3}@  |   @PARAM{"Name":"delta_AbbMaßstab","Precision":3}@ | @PARAM{"Name":"Sum Gap Lateral Width","Precision":3}@  | <span id="control"> Ok </span>|
+| |unit|nominal value | tolerance +/- | actual value| result|
+|  lateral distance| µm| @PARAM{"Name":"Soll","Precision":12}@  |   @PARAM{"Name":"delta_AbbMaßstab","Precision":12}@ | @PARAM{"Name":"Sum Gap Lateral Width","Precision":5}@  | <span id="control"> Ok </span>|
  
 
 

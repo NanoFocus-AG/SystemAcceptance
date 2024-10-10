@@ -4,7 +4,7 @@
 |-:|
 |![](logo.png)|
 
-## Lateral X
+## Lateral X - Deutsch
 
  
 
