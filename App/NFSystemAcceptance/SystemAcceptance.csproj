@@ -338,7 +338,7 @@
   </Target>
   <Import Project="..\packages\CefSharp.Common.129.0.110\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.129.0.110\build\CefSharp.Common.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Release "C:\NSIS\makensis.exe" "$(SolutionDir)\Installer.nsi"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>
