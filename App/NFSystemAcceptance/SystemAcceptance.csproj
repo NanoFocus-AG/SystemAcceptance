@@ -219,6 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrowserMenuHandler.cs" />
+    <Compile Include="FileHelper.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -337,6 +338,7 @@
   </Target>
   <Import Project="..\packages\CefSharp.Common.129.0.110\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.129.0.110\build\CefSharp.Common.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\NSIS\makensis.exe" "$(SolutionDir)\Installer.nsi"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

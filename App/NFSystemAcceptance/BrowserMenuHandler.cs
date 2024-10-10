@@ -123,9 +123,18 @@ namespace SystemAcceptance
 
         public void OnPdfPrintFinished(string path, bool ok)
         {
-            if (ok)
+            try
             {
-                PrintFinished?.Invoke(this,ok);
+                if (ok)
+                {
+                    PrintFinished?.Invoke(this, ok);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

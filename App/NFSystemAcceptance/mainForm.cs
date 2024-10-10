@@ -18,10 +18,10 @@ using System.Drawing;
 using System.Linq;
 using Button = System.Windows.Forms.Button;
 using Newtonsoft.Json;
+using SystemAcceptance.Properties;
 
 namespace SystemAcceptance
 {
-
 
     public partial class mainForm : Form
     {
@@ -29,6 +29,9 @@ namespace SystemAcceptance
 
         SelectKeyDialog skDialog = new SelectKeyDialog();
         MqttStatusListener StatusListener = new MqttStatusListener();
+        PDFCallback printCallback = new PDFCallback();
+
+       
         TabPage tabPage;
 
         private string rootPath;
@@ -48,7 +51,7 @@ namespace SystemAcceptance
         private List<string> pdfDocs = new List<string>();
         private int ProgressLocX;
         private int ProgressLocY;
-
+        private string language;
 
         private CXBoundObject cxBound;
         PdfOptions PdfOptions;
@@ -146,6 +149,7 @@ namespace SystemAcceptance
         private void SkDialog_RootPathInfo(object sender, string e)
         {
             rootPath = e.ToString();
+            language = Settings.Default.Language;
         }
 
         private void SkDialog_StartInfo(object sender, Dictionary<string, DirectoryInfo> tabInfo)
@@ -234,7 +238,7 @@ namespace SystemAcceptance
                         }
                         Thread.Sleep(100);
 
-                        string projectPath = tabDirInfoDict[project].FullName + @"\\";
+                        string projectPath = tabDirInfoDict[project].FullName + "\\";
 
                         //Task.Run(() => PrintPdf(projectPath, project));
                         BeginInvoke(new Action(() =>
@@ -249,13 +253,13 @@ namespace SystemAcceptance
                     else
                     {
                         mBrowserEngine.LoadHtml("<html>\r\n<head>\r\n<style>\r\nh1 {text-align: center;}\r\n</style>\r\n</head>\r\n<body>\r\n<h1>...</h1>\r\n</body>\r\n</html>");
+                        //mBrowserEngine.LoadHtml("<html><head></head><body></body></html>");
                     }
 
                     panelsDict[Name].OnGenerate -= OnExecutePipeline;
                     panelsDict[Name].OnGenerate += OnExecutePipeline;
                     panelsDict[Name].OnHelp -= OnHelp;
                     panelsDict[Name].OnHelp += OnHelp;
-
                 }
                 catch (Exception ex)
                 {
@@ -356,29 +360,38 @@ namespace SystemAcceptance
 
         private void SelectFirstTabPage()
         {
-            var tp = tabControl.TabPages[0];
-            tabControl.SelectedTab = tp;
-
-            string name = tabControl.SelectedTab.Name + ".p1";
-            panelsDict[name].setBrowserEngine(mBrowserEngine);
-
-
-            if (File.Exists(tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
+            try
             {
-                Uri Url = new Uri("file://" + tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
+                var tp = tabControl.TabPages[0];
+                tabControl.SelectedTab = tp;
 
-                mBrowserEngine.Load(Url.AbsolutePath);
+                string name = tabControl.SelectedTab.Name + ".p1";
+                panelsDict[name].setBrowserEngine(mBrowserEngine);
+
+
+                if (File.Exists(tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
+                {
+                    Uri Url = new Uri("file://" + tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
+
+                    mBrowserEngine.Load(Url.AbsolutePath);
+                }
+                else
+                {
+                    mBrowserEngine.LoadHtml("<html><head></head><body></body></html>");
+                }
+
+                panelsDict[name].OnGenerate -= OnExecutePipeline;
+                panelsDict[name].OnGenerate += OnExecutePipeline;
+
+                panelsDict[name].OnHelp -= OnHelp;
+                panelsDict[name].OnHelp += OnHelp;
             }
-            else
+            catch (Exception ex)
             {
-                mBrowserEngine.LoadHtml("<html><head></head><body></body></html>");
+
+                MessageBox.Show(ex.Message);
             }
-
-            panelsDict[name].OnGenerate -= OnExecutePipeline;
-            panelsDict[name].OnGenerate += OnExecutePipeline;
-
-            panelsDict[name].OnHelp -= OnHelp;
-            panelsDict[name].OnHelp += OnHelp;
+            
         }
 
         private void InitializeDox()
@@ -438,6 +451,8 @@ namespace SystemAcceptance
             ExecutePipeline();
         }
 
+        
+       
         private void ExecutePipeline(string fileName = "")
         {
             NFEvaluationPointer topoStatistic = new NFEvaluationPointer(factory.getObjectByName("NFTopoStatistic").get());
@@ -458,6 +473,11 @@ namespace SystemAcceptance
              * Load all plugins  inside the current folder. either ned or dll  
              * 
              */
+
+            // Check if Language exists
+            
+            string mdFile = FileHelper.SearchForLanguages(projectPath, language, project + ".md");
+
 
             var algos = tabDirInfoDict[project].GetFiles("*.ned");
             if (algos.Length > 0)
@@ -492,7 +512,9 @@ namespace SystemAcceptance
             specsDlg = new SpecificationForm(rootPath, project);
             specsDlg.ShowDialog();
 
-            string algoName = parseTemplateFile(projectPath + project + ".md", project);
+
+            //string algoName = parseTemplateFile(projectPath + project + ".md", project); // <=== Check for Language here ?
+            string algoName = parseTemplateFile(mdFile, project); // <=== Check for Language here ?
             eval = new NFEvaluationPointer(factory.getObjectByName(algoName).get());
 
             if (eval.get() == null)
@@ -622,7 +644,8 @@ namespace SystemAcceptance
                         evalDox.setInputParameterSet(statisticParameter, psetIndex);
                         psetIndex++;
 
-                        evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
+                        //evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
+                        evalDox.setParameter("Input", new NFVariant(mdFile));
 
                         evalDox.setParameter("StyleSheet", new NFVariant(projectPath + project + ".css"));
 
@@ -706,11 +729,11 @@ namespace SystemAcceptance
                 pdfDocs.Remove(filename);
                 pdfDocs.Add(filename);
 
-                PDFCallback printCallback = new PDFCallback();
-
+                
                 //mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, null);
                 mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, printCallback);
-                printCallback.PrintFinished += PrintCallback_PrintFinished;
+
+
                 //await Task.Delay(100);
                 BeginInvoke(new Action(() =>
                 {
@@ -747,12 +770,16 @@ namespace SystemAcceptance
             if (false == tabDirInfoDict.ContainsKey(project)) return;
 
             string projectPath = tabDirInfoDict[project].FullName + "\\";
+            // Check if Language exists
+            //string language = Settings.Default.Language;
+            string mdFile = FileHelper.SearchForLanguages(projectPath, language, project + ".md");
 
             evalDox.setNumberOfInputTopos(1);
 
             evalDox.setInputTopo(topo, 0);
 
-            evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
+            //evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
+            evalDox.setParameter("Input", new NFVariant(mdFile));
 
             evalDox.setParameter("StyleSheet", new NFVariant(projectPath + project + ".css"));
 
@@ -773,12 +800,16 @@ namespace SystemAcceptance
             if (false == tabDirInfoDict.ContainsKey(project)) return;
 
             string projectPath = tabDirInfoDict[project].FullName + "\\";
+            // Check if Language exists
+            //string language = Settings.Default.Language;
+            string mdFile = FileHelper.SearchForLanguages(projectPath, language, project + ".md");
 
             evalDox.setNumberOfInputTopos(1);
 
             evalDox.setInputTopo(topo, 0);
 
-            evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
+            //evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
+            evalDox.setParameter("Input", new NFVariant(mdFile));
 
             evalDox.setParameter("StyleSheet", new NFVariant(projectPath + project + ".css"));
 
@@ -909,10 +940,14 @@ namespace SystemAcceptance
             skDialog.Show();
             PdfOptions = new PdfOptions();
             PdfOptions.OptionsChanged += PdfOptions_OptionsChanged;
+            printCallback.PrintFinished += PrintCallback_PrintFinished;
         }
 
         private void LoadPDFsettings(string filename)
         {
+            try
+            {
+
             string file = File.ReadAllText(filename);
             if (new FileInfo(filename).Length == 0)
             {
@@ -949,6 +984,12 @@ namespace SystemAcceptance
                     }
                 }
             }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         private void PdfOptions_OptionsChanged(object sender, string e)
         {
@@ -959,6 +1000,11 @@ namespace SystemAcceptance
         {
             Cef.Shutdown();
             StatusListener.Close();
+            PdfOptions.OptionsChanged -= PdfOptions_OptionsChanged;
+            printCallback.PrintFinished -= PrintCallback_PrintFinished;
+            skDialog.StartInfo -= SkDialog_StartInfo;
+            skDialog.RootPathInfo -= SkDialog_RootPathInfo;
+            skDialog.SelectedSystem -= SkDialog_SelectedSystem;
             //NFEvalCSHelpers.NFEvalDestroy();
         }
 

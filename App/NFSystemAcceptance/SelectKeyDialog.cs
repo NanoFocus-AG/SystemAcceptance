@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
 using SystemAcceptance.Properties;
+using Newtonsoft.Json;
+using Microsoft.Extensions.Options;
 
 namespace SystemAcceptance
 {
@@ -29,6 +31,8 @@ namespace SystemAcceptance
         public event EventHandler<Dictionary<string, DirectoryInfo>> StartInfo;
         public event EventHandler<string> RootPathInfo;
         public event EventHandler<string> SelectedSystem;
+        private string lang;
+        public string Language { get { return lang; } }
 
         bool splash = true;
         public string SelectedKey = string.Empty;
@@ -41,6 +45,26 @@ namespace SystemAcceptance
         List<Panel> PanelList = new List<Panel>();
         List<Label> LabelList = new List<Label>();
 
+        public enum SelectedLanguage
+        {
+            EN = 0,
+            DE = 1
+        }
+
+        private bool CheckLanguageStatus()
+        {
+            string en = Settings.Default.Language;
+            if (en != null && en != "DE")
+            {
+                englishRb.Checked = true;
+                return true;
+            }
+            else
+            {
+                deutschRb.Checked = true;
+                return false;
+            }
+        }
         private void PrepareApp()
         {
             de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalInit();
@@ -50,7 +74,17 @@ namespace SystemAcceptance
                 string optionsFile = RepositoryPath + "PdfOptions.json";
                 if (!File.Exists(optionsFile))
                 {
-                    File.Create(optionsFile);
+                    Dictionary<string, decimal> options = new Dictionary<string, decimal>()
+                    {
+                        ["MarginTop"] = 10,
+                        ["MarginRight"] = 25,
+                        ["MarginLeft"] = 25,
+                        ["MarginBottom"] = 10
+                    };
+                    string jsFile = JsonConvert.SerializeObject(options, Formatting.Indented);
+
+                    File.WriteAllText(optionsFile, jsFile);
+
                     Settings.Default.OptionsPath = optionsFile;
                     Settings.Default.Save();
                     Settings.Default.Upgrade();
@@ -95,9 +129,11 @@ namespace SystemAcceptance
             {
                 DirectoryInfo[] subDirs = rootDir.GetDirectories();
 
+              
                 foreach (DirectoryInfo dirInfo in subDirs)
                 {
-                    var files = dirInfo.GetFiles("*.md");
+                    //var files = dirInfo.GetFiles("*.md");
+                    FileInfo[] files = dirInfo.GetFiles("*.md", SearchOption.AllDirectories);
 
                     if (files.Length != 0)
                     {
@@ -131,7 +167,7 @@ namespace SystemAcceptance
         {
             SelectedKey = "";
             InitializeComponent();
-
+            CheckLanguageStatus();
             progressBarEx2.Hide();
             TopLevel = true;
 
@@ -355,6 +391,22 @@ namespace SystemAcceptance
         private void exitButton_MouseLeave(object sender, EventArgs e)
         {
             exitButton.BackColor = SystemColors.MenuHighlight;
+        }
+
+        private void englishRb_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.Language = SelectedLanguage.EN.ToString();
+            Settings.Default.Save();
+            Settings.Default.Upgrade();
+            lang = Settings.Default.Language.ToString();
+        }
+
+        private void deutschRb_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.Language = SelectedLanguage.DE.ToString();
+            Settings.Default.Save();    
+            Settings.Default.Upgrade();
+            lang = Settings.Default.Language.ToString();
         }
     }
 
