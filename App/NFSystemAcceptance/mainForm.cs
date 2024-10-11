@@ -251,6 +251,8 @@ namespace SystemAcceptance
                             progressMatrixControl.Show();
                             progressMatrixControl.ProgressAnimation();
                         }));
+
+
                         PrintPdf(projectPath, project);
                     }
                     else
@@ -373,7 +375,6 @@ namespace SystemAcceptance
                 string name = tabControl.SelectedTab.Name + ".p1";
                 panelsDict[name].setBrowserEngine(mBrowserEngine);
                 mBrowserEngine.Refresh();
-
                 if (File.Exists(tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
                 {
                     Uri Url = new Uri("file://" + tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
@@ -704,7 +705,7 @@ namespace SystemAcceptance
         private void PrintPdf(string projectPath, string projectName)
         {
 
-            string jsonFile = Properties.Settings.Default.OptionsPath;
+            string jsonFile = Settings.Default.OptionsPath;
 
             LoadPDFsettings(jsonFile);
             toolStripStatusLabel1.Text = "";
