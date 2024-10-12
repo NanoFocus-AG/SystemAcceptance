@@ -6,7 +6,7 @@
 |-:|
 |![](logo.png)|
 
-## Depth
+### Depth
 
 
 
@@ -18,36 +18,27 @@
 |Customer:| @PARAM{"Name":"Manufacturer"}@|||
 |Objective Lens: |@PARAM{"Name":"Lens"}@|||
 |Obj.Number:| @PARAM{"Name":"LensSerial"}@|||
-|Standard: |@PARAM{"Name":"Tiefeneinstellnormal","Precision":12}@|||
+|Standard: |@PARAM{"Name":"Tiefeneinstellnormal"}@|||
 
  
 
 
-||
-|:-:|
-|@IMAGE{"Name":"Profile","Topo":1,"Width":700}@|
-
-
-//|@IMAGE{"Name":"Height","Topo":1,"Width":350}@
+|||
+|:-:|:-:|
+|@IMAGE{"Name":"Profile","Topo":1,"Width":450}@|@IMAGE{"Name":"Height","Topo":1,"Width":250}@
 
  
 
 
 ### Evaluation
 
-|||||||
-|-|-|-|-|-|-|
 ||unit|nominal value|target value| tolerance +/-| status |
-|Depth | µm| @PARAM{"Name":"Soll","Precision":12}@|  @PARAM{"Name":"d","Precision":5}@|  @PARAM{"Name":"delta_Tiefe","Precision":5}@| <span id="control"> Ok</span>|
- 
-
---- 
-
-|||||||
 |-|-|-|-|-|-|
-||unit|nominal value|average value| standard deviation| status |
-|Depth | µm| @PARAM{"Name":"Soll","Precision":12}@|  <span id="average"> </span>|  <span id="sigma"> </span>| <span id="control_repeat"> Ok</span>|
+|Depth | µm| @PARAM{"Name":"Soll","Precision":4}@|  @PARAM{"Name":"d","Precision":3}@|  @PARAM{"Name":"delta_Tiefe","Precision":3}@| <span id="control"> Ok</span>|
  
+
+ 
+
 
 
 __Unit location:__ @PARAM{"Name":"Location"}@
@@ -56,12 +47,20 @@ __Date:__ @YEAR@-@MONTH@-@DAY@
 
 __Tester:__ @PARAM{"Name":"Tester Name"}@
 
---- 
+
+|||||||
+|-|-|-|-|-|-|
+||unit|nominal value|average value| standard deviation| status |
+|Depth | µm| @PARAM{"Name":"Soll","Precision":4}@|  <span id="average"> </span>|  <span id="sigma"> </span>| <span id="control_repeat"> Ok</span>|
+ 
+
 
 
 <div id="sumresults">  </div>
 
+ 
 <script src="../../SystemAcceptance.js"> </script>
+
 <script>
 
 var PARAM = @PJSON{"Set":0}@;

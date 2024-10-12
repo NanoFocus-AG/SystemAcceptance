@@ -1,7 +1,8 @@
 <style type="text/css" >
 @media screen,print {
 body  {
-        margin: auto;
+        width : 70%;
+        margin: 0 auto;
         padding-right: 1em;
         padding-left: 1em;
         max-width: 84em; 
@@ -19,7 +20,8 @@ body  {
  
 p{
 	 text-align: justify;
-      font-size: 100%;
+     font-size: 0.9em;
+	 line-height: 0.6; /* Adjust line spacing here */
  }
 
 h1, h2, h3, h4, h5, h6,p {
@@ -29,7 +31,9 @@ h1, h2, h3, h4, h5, h6,p {
    
 table {
           border-collapse: collapse;
-          width: 100%;
+          width: 90%;
+          font-size: 0.96em;
+		  margin: 0 auto;
           
           }
 
@@ -43,10 +47,12 @@ tr:nth-child(even) {
 
 }
 
+
+
 .table2{
-     
+    
     border-collapse: collapse;
-    width: 100%;
+    line-height: 0.6; /* Adjust line spacing here */
 }
 
 
@@ -54,6 +60,23 @@ tr:nth-child(even) {
    background-color: #ffffff;
 }
 
+
+ .table3{
+     
+   
+}
+
+
+
+.table4{
+   width: 80%;
+   font-size: 1em;
+   padding-bottom: 5em;
+   border: 1px solid;
+   td,th {
+     border: 1px solid;
+   } 
+}
 
 }
 @media print   {
@@ -70,8 +93,9 @@ tr:nth-child(even) {
         quotes: "\201E" "\201C" "\201A" "\2018";
 		line-height: 100%;
 		width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
+        margin: 0 auto !important;
+        padding: 1em !important;
+		
     }
 	
      pre, blockquote
@@ -84,6 +108,7 @@ tr:nth-child(even) {
 h1, h2, h3, h4, h5, h6 {
         page-break-after: avoid;
     }
+    
     
     
     
