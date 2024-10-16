@@ -241,8 +241,6 @@ namespace SystemAcceptance
                         }
                         Thread.Sleep(100);
 
-                        
-
                         //Task.Run(() => PrintPdf(projectPath, project));
                         BeginInvoke(new Action(() =>
                         {
@@ -519,8 +517,8 @@ namespace SystemAcceptance
             specsDlg.ShowDialog();
 
 
-            //string algoName = parseTemplateFile(projectPath + project + ".md", project); // <=== Check for Language here ?
-            string algoName = parseTemplateFile(mdFile, project); // <=== Check for Language here ?
+            //string algoName = parseTemplateFile(projectPath + project + ".md", project);
+            string algoName = parseTemplateFile(mdFile, project); 
             eval = new NFEvaluationPointer(factory.getObjectByName(algoName).get());
 
             if (eval.get() == null)

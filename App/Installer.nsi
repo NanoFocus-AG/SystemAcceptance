@@ -55,15 +55,15 @@ SetOutPath $LocalAppData\Nanofocus\SystemAcceptance\*.*
 ;File /r "..\testFolder\*.*"
 File /r /x *.git /x *.gitignore /x App /x *.pdf /x *.html /x *.svg "..\*.*"
 
-
- 
+ WriteUninstaller $INSTDIR\Uninstaller.exe
  
 SectionEnd
 
 Section Uninstall
 
-  Delete  $INSTDIR\*.*
-  RMDir $INSTDIR
+  Delete  "$INSTDIR\*.*"
+  
+  RMDir /r "$INSTDIR"
 
 SectionEnd
   
