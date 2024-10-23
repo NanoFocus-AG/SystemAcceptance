@@ -31,7 +31,7 @@ namespace SystemAcceptance
         MqttStatusListener StatusListener = new MqttStatusListener();
         PDFCallback printCallback = new PDFCallback();
 
-       
+
         TabPage tabPage;
 
         private string rootPath;
@@ -92,7 +92,7 @@ namespace SystemAcceptance
             //CefSharp.Cef.EnableHighDPISupport(); // Not needed as this is enabled by deault in Chromium.
 
             mBrowserEngine = new ChromiumWebBrowser("");
-            
+
             BrowserEngineMenuHandler menu = new BrowserEngineMenuHandler();
             mBrowserEngine.MenuHandler = menu;
 
@@ -395,7 +395,6 @@ namespace SystemAcceptance
 
                 MessageBox.Show(ex.Message);
             }
-            
         }
 
         private void InitializeDox()
@@ -455,8 +454,6 @@ namespace SystemAcceptance
             ExecutePipeline();
         }
 
-        
-       
         private void ExecutePipeline(string fileName = "")
         {
             NFEvaluationPointer topoStatistic = new NFEvaluationPointer(factory.getObjectByName("NFTopoStatistic").get());
@@ -479,7 +476,7 @@ namespace SystemAcceptance
              */
 
             // Check if Language exists
-            
+
             string mdFile = FileHelper.SearchForLanguages(projectPath, language, project + ".md");
 
 
@@ -518,7 +515,7 @@ namespace SystemAcceptance
 
 
             //string algoName = parseTemplateFile(projectPath + project + ".md", project);
-            string algoName = parseTemplateFile(mdFile, project); 
+            string algoName = parseTemplateFile(mdFile, project);
             eval = new NFEvaluationPointer(factory.getObjectByName(algoName).get());
 
             if (eval.get() == null)
@@ -733,8 +730,6 @@ namespace SystemAcceptance
                 pdfDocs.Remove(filename);
                 pdfDocs.Add(filename);
 
-                
-                //mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, null);
                 mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, printCallback);
 
 
@@ -952,42 +947,42 @@ namespace SystemAcceptance
             try
             {
 
-            string file = File.ReadAllText(filename);
-            if (new FileInfo(filename).Length == 0)
-            {
-                MarginTop = 0;
-                MarginBottom = 0;
-                MarginLeft = 1;
-                MarginRight = 1;
-            }
-            else
-            {
-                Dictionary<string, double> MarginsDict = new Dictionary<string, double>();
-                MarginsDict = JsonConvert.DeserializeObject<Dictionary<string, double>>(file);
-                double toInches = 25.4;
-                foreach (var item in MarginsDict)
+                string file = File.ReadAllText(filename);
+                if (new FileInfo(filename).Length == 0)
                 {
-                    string key = item.Key;
-                    double value = item.Value;
-                    switch (key)
+                    MarginTop = 0;
+                    MarginBottom = 0;
+                    MarginLeft = 1;
+                    MarginRight = 1;
+                }
+                else
+                {
+                    Dictionary<string, double> MarginsDict = new Dictionary<string, double>();
+                    MarginsDict = JsonConvert.DeserializeObject<Dictionary<string, double>>(file);
+                    double toInches = 25.4;
+                    foreach (var item in MarginsDict)
                     {
-                        case "MarginTop":
-                            MarginTop = value / toInches;
-                            break;
-                        case "MarginBottom":
-                            MarginBottom = value / toInches;
-                            break;
-                        case "MarginLeft":
-                            MarginLeft = value / toInches;
-                            break;
-                        case "MarginRight":
-                            MarginRight = value / toInches;
-                            break;
-                        default:
-                            break;
+                        string key = item.Key;
+                        double value = item.Value;
+                        switch (key)
+                        {
+                            case "MarginTop":
+                                MarginTop = value / toInches;
+                                break;
+                            case "MarginBottom":
+                                MarginBottom = value / toInches;
+                                break;
+                            case "MarginLeft":
+                                MarginLeft = value / toInches;
+                                break;
+                            case "MarginRight":
+                                MarginRight = value / toInches;
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
-            }
             }
             catch (Exception)
             {
