@@ -936,7 +936,7 @@ namespace SystemAcceptance
 
         private void mainForm_Shown(object sender, EventArgs e)
         {
-            skDialog.Show();
+            skDialog.Show(this);
             PdfOptions = new PdfOptions();
             PdfOptions.OptionsChanged += PdfOptions_OptionsChanged;
             printCallback.PrintFinished += PrintCallback_PrintFinished;

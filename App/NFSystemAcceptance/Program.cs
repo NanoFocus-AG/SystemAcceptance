@@ -29,35 +29,40 @@ namespace SystemAcceptance
             SetEnviromentVariables();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.Run(new mainForm());
 
             de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalDestroy();
         }
-        
+
         private static int SetEnviromentVariables()
         {
             int ret = 0;
             try
             {
-                string PluginPath = Environment.GetEnvironmentVariable("NFEVAL_PLUGIN_DIRS",EnvironmentVariableTarget.Machine);
-                
-                if(PluginPath.Length == 0)
+                string PluginPath = Environment.GetEnvironmentVariable("NFEVAL_PLUGIN_DIRS", EnvironmentVariableTarget.Machine);
+
+                if (PluginPath.Length == 0)
                 {
 
                 }
                 string addedPath = "c:\\Program Files\\Nanofocus\\evaluation\\Plugins;" + PluginPath;
                 Environment.SetEnvironmentVariable("NFEVAL_PLUGIN_DIRS", addedPath, EnvironmentVariableTarget.Process);
-            
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Problem during environment initialization " + ex.Message); 
+                MessageBox.Show("Problem during environment initialization " + ex.Message);
             }
 
             return ret;
         }
-     
+
+        // https://stackoverflow.com/a/4851425
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(e.ExceptionObject.ToString());
+            Environment.Exit(1);
+        }
         class CopyDir
         {
             public static void CopyAll(DirectoryInfo source, DirectoryInfo target)

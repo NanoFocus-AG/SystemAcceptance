@@ -148,17 +148,17 @@ row.insertCell().textContent =  result;
 document.getElementById("sumresults").appendChild(table);
 
 
-let btn = document.createElement("button");
-btn.id ="b1";
-btn.innerHTML = "Reset Table";
-btn.onclick = function () {
+//let btn = document.createElement("button");
+//btn.id ="b1";
+//btn.innerHTML = "Reset Table";
+//btn.onclick = function () {
 
 
   //sessionStorage.setItem(key,0);
   //window.location.reload(true);
-};
+//};
 
-document.getElementById("sumresults").appendChild(btn);
+//document.getElementById("sumresults").appendChild(btn);
 
 
 let btn2 = document.createElement("button");

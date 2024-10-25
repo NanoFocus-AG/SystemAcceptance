@@ -406,6 +406,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SelectKeyDialog";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SystemSelect";
             this.TopMost = true;
