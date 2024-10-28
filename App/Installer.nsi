@@ -88,10 +88,12 @@ Section "-BasisInstallation" instfiles
 
 	SetShellVarContext all
 	AccessControl::GrantOnFile "$APPDATA\Folder" "(S-1-5-32-545)" "FullAccess"
-
+	
+	
 	SetOutPath $INSTDIR
 	File /r  /x *.pdb NFSystemAcceptance\bin\x64\Release\*.*
-
+	SetShellVarContext current
+	CreateShortCut "$DESKTOP\SystemAcceptance.lnk" "$INSTDIR\SystemAcceptance.exe"
 	
 
 	WriteUninstaller $INSTDIR\Uninstaller.exe
@@ -137,11 +139,17 @@ SectionGroupEnd
 Section Uninstall
 	SetShellVarContext all
 	AccessControl::GrantOnFile "$APPDATA\Folder" "(S-1-5-32-545)" "FullAccess"
+	
+	; Delete Desktop Shortcut
+	SetShellVarContext current
+	Delete "$DESKTOP\SystemAcceptance.lnk"
+	
 	Delete  "$INSTDIR\*.*"
 	  
 	;Delete Data files inside ProgramData
 	Delete "$LocalAppData\Nanofocus\SystemAcceptance\*.*"
-	  
+	
+	
 	;Delete SystemAcceptance Directoy
 	RMDir /r "$INSTDIR"
 	  
