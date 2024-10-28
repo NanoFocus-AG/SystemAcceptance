@@ -1023,9 +1023,9 @@ namespace SystemAcceptance
 
         private void mainForm_Resize(object sender, EventArgs e)
         {
-            //ProgressLocX = (Width - progressMatrixControl.Width) / 2;
-            //ProgressLocY = (Height - progressMatrixControl.Height) / 2;
-            //progressMatrixControl.Location = new Point(ProgressLocX, ProgressLocY);
+            ProgressLocX = (Width - progressMatrixControl.Width) / 2;
+            ProgressLocY = (Height - progressMatrixControl.Height) / 2;
+            progressMatrixControl.Location = new Point(ProgressLocX, ProgressLocY);
         }
 
 

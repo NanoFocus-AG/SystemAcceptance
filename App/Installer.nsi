@@ -10,6 +10,7 @@ Unicode true
 ; All users / current user page
 !define MULTIUSER_EXECUTIONLEVEL Highest
 !define MULTIUSER_MUI
+
 ;!define MULTIUSER_INSTALLMODE_COMMANDLINE
 
 !include "MultiUser.nsh"
@@ -42,7 +43,7 @@ Caption "$(^Name)  - Generated: ${__DATE__}"
 
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "German"
-
+SetOverwrite on
 Page Custom SelectLogo
 Page instfiles
 var dialog
@@ -94,15 +95,19 @@ Section "-BasisInstallation" instfiles
 	File /r  /x *.pdb NFSystemAcceptance\bin\x64\Release\*.*
 	SetShellVarContext current
 	CreateShortCut "$DESKTOP\SystemAcceptance.lnk" "$INSTDIR\SystemAcceptance.exe"
+	SetShellVarContext current
+	CreateShortCut "$SMPROGRAMS\SystemAcceptance.lnk" "$INSTDIR\SystemAcceptance.exe"
+	
 	
 
-	WriteUninstaller $INSTDIR\Uninstaller.exe
+	WriteUninstaller $INSTDIR\Uninstall_SystemAcceptance.exe
  
 SectionEnd
 
 SectionGroup "ProgramData files"
     Section "Systems"
-        
+    SetShellVarContext all
+	AccessControl::GrantOnFile "$APPDATA\Folder" "(S-1-5-32-545)" "FullAccess"    
 	CreateDirectory $LocalAppData\Nanofocus\SystemAcceptance
 	SetOutPath $LocalAppData\Nanofocus\SystemAcceptance
 	File /r /x *.git /x *.gitignore /x App /x *.pdf /x *.html /x *.svg "..\*.*"
@@ -143,16 +148,22 @@ Section Uninstall
 	; Delete Desktop Shortcut
 	SetShellVarContext current
 	Delete "$DESKTOP\SystemAcceptance.lnk"
+	SetShellVarContext current
+	Delete "$SMPROGRAMS\SystemAcceptance.lnk"
+	
 	
 	Delete  "$INSTDIR\*.*"
 	  
 	;Delete Data files inside ProgramData
+	SetShellVarContext all
+	AccessControl::GrantOnFile "$APPDATA\Folder" "(S-1-5-32-545)" "FullAccess"
 	Delete "$LocalAppData\Nanofocus\SystemAcceptance\*.*"
 	
 	
 	;Delete SystemAcceptance Directoy
 	RMDir /r "$INSTDIR"
-	  
+	  SetShellVarContext all
+	AccessControl::GrantOnFile "$APPDATA\Folder" "(S-1-5-32-545)" "FullAccess"
 	;Delete SystemAcceptance ProgramData Directory
 	RMDir /r "$LocalAppData\Nanofocus\SystemAcceptance"
 
