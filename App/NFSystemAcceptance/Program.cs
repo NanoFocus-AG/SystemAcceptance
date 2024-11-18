@@ -29,7 +29,7 @@ namespace SystemAcceptance
             SetEnviromentVariables();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.Run(new mainForm());
 
             de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalDestroy();
@@ -58,11 +58,11 @@ namespace SystemAcceptance
         }
 
         // https://stackoverflow.com/a/4851425
-        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            MessageBox.Show(e.ExceptionObject.ToString());
-            Environment.Exit(1);
-        }
+        //static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        //{
+        //    MessageBox.Show(e.ExceptionObject.ToString());
+        //    Environment.Exit(1);
+        //}
         class CopyDir
         {
             public static void CopyAll(DirectoryInfo source, DirectoryInfo target)

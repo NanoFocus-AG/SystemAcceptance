@@ -208,7 +208,7 @@ namespace SystemAcceptance
             tabControl.Selected += (sender, args) =>
             {
                 tabPage = tabControl.SelectedTab;
-                Console.WriteLine(tabPage.Text);
+                //Console.WriteLine(tabPage.Text);
                 project = tabControl.SelectedTab.Name;
 
                 if (tabPage.Text == "Certificate" || tabPage.Text == "Summary")
@@ -508,9 +508,21 @@ namespace SystemAcceptance
                 fileNames[0] = fileName;
             }
 
+            // Check if selsected file is .fits or .nms
+            string extFile = Path.GetExtension(fileNames[0]);
+            bool isFitsFile = false;
+            if (extFile != ".fits")
+            {
+                isFitsFile = false;
+            }
+            else
+            {
+                isFitsFile = true ;
+            }
+
             //-----------------------------------------------------------------------------------------------------------------
 
-            specsDlg = new SpecificationForm(rootPath, project);
+            specsDlg = new SpecificationForm(rootPath, project, isFitsFile, fileName);
             specsDlg.ShowDialog();
 
 
@@ -577,6 +589,16 @@ namespace SystemAcceptance
                         systemNumber = "000";
                     }
 
+                    //List<string> list = topo.getMetaData().getParameterNames().ToList();
+                    //list.ForEach(i => Console.WriteLine(i));
+
+                    if (topo.getMetaData().containsParameter("Lens"))
+                    {
+                        string sensor = topo.getMetaData().getParameter("Lens").valueToString();
+                        //Console.WriteLine("From Main " + sensor);
+                    }
+
+
                     if (eval.getNumberOfInputTopos() == 1)
                     {
                         eval.setInputTopo(topo, 0);
@@ -626,8 +648,8 @@ namespace SystemAcceptance
                         {
                             evalDox.setInputParameterSet(specsDlg.sensorParameter, psetIndex);
                             psetIndex++;
-
                         }
+                       
                         if (specsDlg.testerParameter != null)
                         {
                             evalDox.setInputParameterSet(specsDlg.testerParameter, psetIndex);
@@ -1023,9 +1045,7 @@ namespace SystemAcceptance
 
         private void mainForm_Resize(object sender, EventArgs e)
         {
-            ProgressLocX = (Width - progressMatrixControl.Width) / 2;
-            ProgressLocY = (Height - progressMatrixControl.Height) / 2;
-            progressMatrixControl.Location = new Point(ProgressLocX, ProgressLocY);
+            //progressMatrixControl.Location = new Point((Width - ProgressLocX) /2, (Height - ProgressLocY) /2);
         }
 
 
@@ -1034,6 +1054,8 @@ namespace SystemAcceptance
             PdfOptions pdfOptions = new PdfOptions();
             pdfOptions.ShowDialog();
         }
+
+       
     }
 
     static class mainFormExtensions

@@ -12,21 +12,21 @@
 
 |||||
 |-|-|-|-|
-|__System:__ |MarSurf CM |__Calibration instruction:__| VDI/VDE 2655 Part 1.2|
-|__Type__| MarSurf CM explorer| __Certificate number:__ |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
-|__System number:__| @PARAM{"Name":"Serial"}@|__Standard:__ |@PARAM{"Name":"Tiefeneinstellnormal","Precision":12}@|
-|__Customer:__| @PARAM{"Name":"Manufacturer"}@|||
-|__Objective Lens:__ |@PARAM{"Name":"Lens"}@|||
-|__Obj.Number:__| @PARAM{"Name":"LensSerial"}@|||
-||||
-
+|__System:__|  CM |__Calibration instruction:__| VDI/VDE 2655 Part 1.2|
+|__Type__|   @PARAM{"Name":"Model"}@|__Certificate number:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
+|__System number:__| @PARAM{"Name":"Serial"}@|__Standard:__|@PARAM{"Name":"Tiefeneinstellnormal","Precision":12}@|
+|__Customer:__| @PARAM{"Name":"Manufacturer"}@|__Unit location:__ | @PARAM{"Name":"Location"}@|
+|__Lens:__|@PARAM{"Name":"LensSerialNumber"}@|__Date:__ | @YEAR@-@MONTH@-@DAY@ |
+|||||
+|||||
+|||||
  
  
 
 
 |||
 |:-:|:-:|
-|@IMAGE{"Name":"Profile","Topo":1,"Width":500}@|@IMAGE{"Name":"Height","Topo":1,"Width":220}@|
+|@IMAGE{"Name":"Height","Topo":1,"Width":220}@|@IMAGE{"Name":"Profile","Topo":1,"Width":500}@|
 
  
 
@@ -108,6 +108,7 @@ range = Math.max(...values) - Math.min(...values);
 var result = checkResult((mean*-1), nominal, tolerance);
 
 row = table.insertRow();  // DOM method for creating table rows
+row.insertCell().textContent =  "";
 row.insertCell().textContent =  "Unit";
 row.insertCell().textContent =  "Nominal";
 row.insertCell().textContent =  "Measured";
@@ -119,6 +120,7 @@ row.insertCell().textContent =  "Result";
 
 
 row = table.insertRow();  // DOM method for creating table rows
+row.insertCell().textContent =  "Depth";
 row.insertCell().textContent =  "µm";
 row.insertCell().textContent =  nominal.toFixed(3);
 row.insertCell().textContent =  mean.toFixed(3)*-1;
@@ -163,7 +165,7 @@ document.getElementById("sumresults").appendChild(table);
 
 let btn2 = document.createElement("button");
 btn2.id ="b1";
-btn2.innerHTML = "Clear Storage";
+btn2.innerHTML = "Clear Values";
 btn2.onclick = function () {
 	values.length = 0;
 	mean = 0.0;
@@ -172,16 +174,18 @@ btn2.onclick = function () {
 	table.deleteRow(2);
   sessionStorage.clear();
 };
-document.getElementById("sumresults").appendChild(btn2);
+var Result = {"value":0,"nominal":0,"status":"","timestamp":0};
+Result["value"] = mean.toFixed(3)*-1 ;
+Result["nominal"] = nominal.toFixed(3) ;
+Result["status"] = result ;
+Result["timestamp"] = Date.now();
 
+document.getElementById("sumresults").appendChild(btn2);
+sessionStorage.setItem(document.title+"Depth A1 ", JSON.stringify(Result));
 
 </script>
 
-__Unit location:__ @PARAM{"Name":"Location"}@
 
-__Date:__ @YEAR@-@MONTH@-@DAY@ 
-
-__Tester:__ @PARAM{"Name":"Creator"}@
 
 --- 
 

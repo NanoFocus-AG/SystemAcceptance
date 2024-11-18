@@ -1,44 +1,44 @@
-<!--   EvalAlgoName=Lateralnormal -->
+<!--   EvalAlgoName=LateralnormalX -->
 
 ||
 |-:|
 |![](logo.png)|
 
-### Lateral X
+## Lateral X
 
  
 
 
 |||||
 |-|-|-|-|
-|System: |  CM |Calibration instruction:| VDI/VDE 2655 Part 1.2|
-|Type|   CM explorer| Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
-|System number:| @PARAM{"Name":"Serial"}@|||
-|Customer:| @PARAM{"Name":"Manufacturer"}@|||
-|Objective Lens: |@PARAM{"Name":"Lens"}@|||
-|Obj.Number:| @PARAM{"Name":"LensSerial"}@|||
-|Standard: |@PARAM{"Name":"Lateralnormal"}@|||
+|__System:__|  CM |__Calibration instruction:__| VDI/VDE 2655 Part 1.2|
+|__Type__|   @PARAM{"Name":"Model"}@|__Certificate number:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
+|__System number:__| @PARAM{"Name":"Serial"}@|__Standard:__|@PARAM{"Name":"Lateralnormal","Precision":12}@|
+|__Customer:__| @PARAM{"Name":"Manufacturer"}@|__Unit location:__ | @PARAM{"Name":"Location"}@|
+|__Lens:__|@PARAM{"Name":"LensSerialNumber"}@|__Date:__ | @YEAR@-@MONTH@-@DAY@ |
+|||||
+|||||
+|||||
+
+
 
  
 
 |||
-|-:|:-|
-|@IMAGE{"Name":"Height","Topo":2,"Width":250}@|@IMAGE{"Name":"Profile","Topo":1,"Width":450}@|
+|:-:|:-:|
+|@IMAGE{"Name":"Height","Topo":1,"Width":220}@|@IMAGE{"Name":"Profile","Topo":2,"Width":500}@|
+
  
  
 ### Evaluation
 
  
-||unit|nominal value | tolerance +/- | actual value | result|
-||:-:|:-:|:-:|:-:|:-:|:-:|:-:|           
-|lateral distance| µm|   @PARAM{"Name":"Soll","Set":1}@   |   @PARAM{"Name":"delta_AbbMaßstab","Precision":3}@ | @PARAM{"Name":"Sum Gap Lateral Width","Precision":3}@  | <span id="control"> Ok</span>|
+||||||||
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|                  |unit|nominal value | measured | tolerance +/- | result|
+|Lateral distance| µm|   @PARAM{"Name":"Soll","Set":1}@   |    @PARAM{"Name":"Rsm","Precision":4}@  |@PARAM{"Name":"delta_AbbMaßstab","Precision":3}@ | <span id="control"> Ok</span>|
  
-
-__Unit location:__ @PARAM{"Name":"Location"}@
-
-__Date:__ @YEAR@-@MONTH@-@DAY@ 
-
-__Tester:__ @PARAM{"Name":"Tester Name"}@
+---
 
 
 
@@ -53,7 +53,7 @@ var META = @MJSON{"Set":0}@;
 
  var Result = {"value":0,"nominal":0,"status":"","timestamp":0};
 
-var value =   @PARAM{"Name":"Sum Gap Lateral Width","Precision":3}@;
+var value =   @PARAM{"Name":"Rsm","Precision":3}@;
 var nominal = @PARAM{"Name":"Soll","Precision":6}@;
 var tolerance = @PARAM{"Name":"delta_AbbMaßstab","Precision":12}@;
 var status = ""; 
@@ -73,7 +73,7 @@ Result["value"] = value ;
 Result["nominal"] = nominal ;
 Result["status"] = status ;
 Result["timestamp"] = Date.now();
-sessionStorage.setItem(document.title+"Result", JSON.stringify(Result));
+sessionStorage.setItem(document.title+"Lateral X ", JSON.stringify(Result));
 
 
 </script>

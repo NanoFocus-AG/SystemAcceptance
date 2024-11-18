@@ -34,7 +34,6 @@ namespace SystemAcceptance
                 //throw new System.NotImplementedException();
             }
 
-
         }
 
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
@@ -80,8 +79,6 @@ namespace SystemAcceptance
 
                 string filename = dlg.FileName;
                 browser.GetHost().PrintToPdf(filename, settings, new OnPrint());
-
-
             }
 
             if (commandId == CefMenuCommand.UserFirst + 3)
@@ -90,7 +87,6 @@ namespace SystemAcceptance
 
                 browserControl.GetBrowser().Reload();
             }
-
 
             return false;
         }

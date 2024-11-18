@@ -339,6 +339,6 @@
   <Import Project="..\packages\CefSharp.Common.129.0.110\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.129.0.110\build\CefSharp.Common.targets')" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Release "C:\NSIS\makensis.exe" "$(SolutionDir)\Installer.nsi"
-</PostBuildEvent>
+if $(ConfigurationName) == Release copy /Y "$(SolutionDir)Setup_SystemAcceptance.exe" "C:\Users\koci\Desktop\SysAcceptance_Last_Release"</PostBuildEvent>
   </PropertyGroup>
 </Project>

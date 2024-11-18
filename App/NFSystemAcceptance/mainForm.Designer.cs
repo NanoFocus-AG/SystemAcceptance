@@ -34,12 +34,12 @@
             this.printToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pDFOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pDFOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -86,6 +86,13 @@
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // pDFOptionsToolStripMenuItem
+            // 
+            this.pDFOptionsToolStripMenuItem.Name = "pDFOptionsToolStripMenuItem";
+            this.pDFOptionsToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.pDFOptionsToolStripMenuItem.Text = "PDF Options";
+            this.pDFOptionsToolStripMenuItem.Click += new System.EventHandler(this.pDFOptionsToolStripMenuItem_Click_1);
             // 
             // statusStrip1
             // 
@@ -137,13 +144,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // pDFOptionsToolStripMenuItem
-            // 
-            this.pDFOptionsToolStripMenuItem.Name = "pDFOptionsToolStripMenuItem";
-            this.pDFOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.pDFOptionsToolStripMenuItem.Text = "PDF Options";
-            this.pDFOptionsToolStripMenuItem.Click += new System.EventHandler(this.pDFOptionsToolStripMenuItem_Click_1);
             // 
             // mainForm
             // 

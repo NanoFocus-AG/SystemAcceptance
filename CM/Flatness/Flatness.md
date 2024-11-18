@@ -5,46 +5,57 @@
 |-:|
 |![](logo.png)|
 
-### Flatness
+## Flatness
 
  
 
 
 |||||
 |-|-|-|-|
-|System: |  CM |Calibration instruction:| VDI/VDE 2655 Part 1.2|
-|Type|  CM explorer| Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
-|System number:| @PARAM{"Name":"Serial"}@|||
-|Customer:| @PARAM{"Name":"Manufacturer"}@|||
-|Objective Lens: |@PARAM{"Name":"Lens"}@|||
-|Obj.Number:| @PARAM{"Name":"LensSerial"}@|||
-|Standard: |@PARAM{"Name":"Ebenheitsnormal","Precision":12}@|||
+|__System:__|  CM |__Calibration instruction:__| VDI/VDE 2655 Part 1.2|
+|__Type__|   @PARAM{"Name":"Model"}@|__Certificate number:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
+|__System number:__| @PARAM{"Name":"Serial"}@|__Standard:__|@PARAM{"Name":"Ebenheitsnormal","Precision":12}@|
+|__Customer:__| @PARAM{"Name":"Manufacturer"}@|__Unit location:__ | @PARAM{"Name":"Location"}@|
+|__Lens:__|@PARAM{"Name":"LensSerialNumber"}@|__Date:__ | @YEAR@-@MONTH@-@DAY@ |
+|||||
+|||||
+|||||
 
  
 
 |||
 |:-:|:-:|
-|@IMAGE{"Name":"Height","Topo":1,"Width":250}@|@IMAGE{"Name":"Profile","Topo":1,"Width":450}@|
+|@IMAGE{"Name":"Height","Topo":1,"Width":220}@|@IMAGE{"Name":"Profile","Topo":1,"Width":500}@|
 
  
  
  
 ### Evaluation
 
-| |unit|nominal value <| tolerance +/- | actual value| status|
+|||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|
-| Flatness   | µm| @PARAM{"Name":"max_Ebenheit","Precision":6}@ |     |  @PARAM{"Name":"Sz","Precision":6}@ | <span id="control"> Ok</span>|
-| RMS| µm| - |    @PARAM{"Name":"Toleranz","Precision":6}@ |  @PARAM{"Name":"Sq","Precision":6}@ | <span id="controlRMS"> Ok</span>|
+| |unit|nominal value <| measured | tolerance +/-| status|
+| Flatness   | µm|   @PARAM{"Name":"max_Ebenheit","Precision":6}@   |  @PARAM{"Name":"Sz","Precision":6}@| - | <span id="control"> Ok</span>|
+| RMS| µm| - |      @PARAM{"Name":"Sq","Precision":6}@ |- | <span id="controlRMS"> Ok</span>|
  
 
 
-__Unit location:__ @PARAM{"Name":"Location"}@
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
+||
 
-__Date:__ @YEAR@-@MONTH@-@DAY@ 
 
-__Tester:__ @PARAM{"Name":"Tester Name"}@
-
- 
+ ---
 
  
 
@@ -78,7 +89,7 @@ Result["value"] = value ;
 Result["nominal"] = nominal ;
 Result["status"] = status ;
 Result["timestamp"] = Date.now();
-sessionStorage.setItem(document.title+"Result", JSON.stringify(Result));
+sessionStorage.setItem(document.title+"Flatness", JSON.stringify(Result));
 
 </script>
 

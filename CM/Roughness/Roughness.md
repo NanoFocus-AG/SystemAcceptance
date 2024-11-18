@@ -4,43 +4,41 @@
 |-:|
 |![](logo.png)|
 
-### Roughness
+## Roughness
 
-
+ 
 
 
 |||||
 |-|-|-|-|
-|System: |  CM |Calibration instruction:| VDI/VDE 2655 Part 1.2|
-|Type|   CM explorer| Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
-|System number:| @PARAM{"Name":"Serial"}@|||
-|Customer:| @PARAM{"Name":"Manufacturer"}@|||
-|Objective Lens: |@PARAM{"Name":"Lens"}@|||
-|Obj.Number:| @PARAM{"Name":"LensSerial"}@|||
-|Standard: |@PARAM{"Name":"Rauhnormal" }@|||
+|__System:__|  CM |__Calibration instruction:__| VDI/VDE 2655 Part 1.2|
+|__Type__|   @PARAM{"Name":"Model"}@|__Certificate number:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
+|__System number:__| @PARAM{"Name":"Serial"}@|__Standard:__|@PARAM{"Name":"Rauhnormal","Precision":12}@|
+|__Customer:__| @PARAM{"Name":"Manufacturer"}@|__Unit location:__ | @PARAM{"Name":"Location"}@|
+|__Lens:__|@PARAM{"Name":"LensSerialNumber"}@|__Date:__ | @YEAR@-@MONTH@-@DAY@ |
+|||||
+|||||
+|||||
+
 
  
 
-|||
-|:-:|:-:|
-|@IMAGE{"Name":"Profile","Topo":1,"Width":450}@| @IMAGE{"Name":"Height","Topo":0,"Width":250}@|
+||
+|:-:|
+|@IMAGE{"Name":"Profile","Topo":3,"Width":650}@|
+<span id="Pic"></span>
 
  
  
 ### Evaluation
-
-| |unit   |nominal   | tolerance   +/- | actual  | status|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| Ra   | µm | @PARAM{"Name":"Ra Soll","Precision":6}@ | <span id="Ratol"></span> |  @PARAM{"Name":"Ra","Precision":3}@ | <span id="controlRa"></span>|
-| Rz   | µm| @PARAM{"Name":"Rz Soll","Precision":6}@  | <span id="Rztol"></span>  |  @PARAM{"Name":"Rz","Precision":3}@ | <span id="controlRz"> </span>|
+|||||||||
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+||CutOff |unit |nominal value   | measured  | tolerance   +/- | status|
+| Ra |@PARAM{"Name":"lambda_c","Precision":12}@  | µm | @PARAM{"Name":"Ra Soll","Precision":3}@ |  <span id="Ra"></span> |    <span id="Ratol"></span> | <span id="controlRa"></span>|
+| Rz |@PARAM{"Name":"lambda_c","Precision":12}@  | µm| @PARAM{"Name":"Rz Soll","Precision":3}@  |   <span id="Rz"></span> |  <span id="Rztol"></span>  | <span id="controlRz"> </span>|
  
- 
+---
 
-__Unit location:__ @PARAM{"Name":"Location"}@
-
-__Date:__ @YEAR@-@MONTH@-@DAY@ 
-
-__Tester:__ @PARAM{"Name":"Tester Name"}@
 
  
 
@@ -50,21 +48,37 @@ __Tester:__ @PARAM{"Name":"Tester Name"}@
 
 var PARAM = @PJSON{"Set":0}@;
 var META = @MJSON{"Set":0}@;
- 
-var  dRa =  @PARAM{"Name":"delta_Ra"}@;
-var  dRz =  @PARAM{"Name":"delta_Rz"}@;
-var Ra_tol = @PARAM{"Name":"Ra Soll"}@ * dRa ;
-var Rz_tol = @PARAM{"Name":"Rz Soll"}@ * dRz ;
+
+var cutoff 	= @PARAM{"Name":"lambda_c","Precision":12}@
+var Ra08 	= @PARAM{"Name":"Ra08","Precision":6}@;
+var Ra025	= @PARAM{"Name":"Ra025","Precision":6}@;
+var Rz08 	= @PARAM{"Name":"Rz08","Precision":6}@;
+var Rz025 	= @PARAM{"Name":"Rz025","Precision":6}@;
+var  dRa 	= @PARAM{"Name":"delta_Ra"}@;
+var  dRz 	= @PARAM{"Name":"delta_Rz"}@;
+var Ra_tol 	= @PARAM{"Name":"Ra Soll"}@ * dRa ;
+var Rz_tol 	= @PARAM{"Name":"Rz Soll"}@ * dRz ;
 
 document.getElementById("Ratol").innerHTML = Ra_tol.toPrecision(3);
 document.getElementById("Rztol").innerHTML = Rz_tol.toPrecision(3);
 
 var status = "";
  
+if(cutoff = 250)
+{
+document.getElementById("Ra").innerHTML = Ra025.toPrecision(3);
+document.getElementById("Rz").innerHTML = Rz025.toPrecision(3);
+document.getElementById("Pic").innerHTML = @IMAGE{"Name":"Profile","Topo":3,"Width":650}@;"<img src='images/icons/tick.png' class='mark'>"
+document.getElementById("Pic").innerHTML = "<img src='Roughness_650_2_0_prf.svg' style='display: block; margin: 0 auto'>";
+}
+else
+{
+document.getElementById("Ra").innerHTML = Ra08.toPrecision(3);
+document.getElementById("Rz").innerHTML = Rz08.toPrecision(3);
+document.getElementById("Pic").innerHTML = "<img src='Roughness_650_3_0_prf.svg' style='display: block; margin: 0 auto'>";
+} 
  
- 
- 
-var value = PARAM["Ra"].value;
+var value = document.getElementById("Ra").innerHTML;
 var nominal =  @PARAM{"Name":"Ra Soll"}@;
 if(value < nominal-Ra_tol || value > nominal+Ra_tol) 
 {
@@ -83,13 +97,13 @@ Result["value"] = value ;
 Result["nominal"] = nominal ;
 Result["status"] = status ;
 Result["timestamp"] = Date.now();
-sessionStorage.setItem(document.title+"Result_Ra", JSON.stringify(Result));
+sessionStorage.setItem(document.title+"Roughness Ra", JSON.stringify(Result));
  
   
  
  
  
-value= PARAM["Rz"].value;
+value= document.getElementById("Rz").innerHTML;
 nominal =  @PARAM{"Name":"Rz Soll"}@;
 if( value < nominal-Rz_tol || value > nominal+Rz_tol) 
 {
@@ -104,7 +118,7 @@ Result["value"] = value ;
 Result["nominal"] = nominal ;
 Result["status"] = status ;
 Result["timestamp"] = Date.now();
-sessionStorage.setItem(document.title+"Result_Rz", JSON.stringify(Result));
+sessionStorage.setItem(document.title+"Roughness Rz", JSON.stringify(Result));
 
 </script>
 

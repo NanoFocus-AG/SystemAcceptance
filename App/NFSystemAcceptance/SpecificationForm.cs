@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
 
 namespace SystemAcceptance
 {
@@ -59,6 +61,7 @@ namespace SystemAcceptance
 
         private NFParameterSetPointer sensorType;
 
+
         private NFParameterSetPointer testerType;
         private NFParameterSetPointer stagesType;
 
@@ -73,9 +76,11 @@ namespace SystemAcceptance
         private DirectoryInfo standardsPath;
         private DirectoryInfo sensorPath;
         public string Standard;
+        private string Sensor;
+
         private FileInfo fileInfo;
 
-        public SpecificationForm(string rootPath, string selectedTab)
+        public SpecificationForm(string rootPath, string selectedTab, bool isFits, string file)
         {
             InitializeComponent();
 
@@ -86,6 +91,14 @@ namespace SystemAcceptance
                 Close();
             };
 
+            if (isFits)
+            {
+                cmbSensor.Enabled = false;
+            }
+            else
+            {
+                cmbSensor.Enabled = true;
+            }
 
             standardsPath = new DirectoryInfo(rootPath + "\\Standards");
             var standardJS = new DirectoryInfo(rootPath + "\\" + sTab);
@@ -161,12 +174,15 @@ namespace SystemAcceptance
                 NFVariant v = standardType.getParameter(Standard);
                 standardParameter = new NFParameterSetPointer(v.getParameterSet());
             }
-         
+
             //--------------------------------------------------------------
 
             cmbStandard.SelectedIndexChanged += (sender, args) =>
             {
                 Standard = cmbStandard.SelectedValue.ToString();
+                Properties.Settings.Default.LastSelectedStandard = Standard;
+                Properties.Settings.Default.Save();
+                Properties.Settings.Default.Upgrade();
 
                 NFVariant v = standardType.getParameter(Standard);
 
@@ -174,7 +190,8 @@ namespace SystemAcceptance
             };
 
             // ---------------------------------------------------------------
-
+            //if (!isFits)
+            //{
             sensorPath = new DirectoryInfo(rootPath + "\\sensors");
 
             var sensorSpecs = sensorPath.GetFiles("*.csv");
@@ -182,7 +199,6 @@ namespace SystemAcceptance
 
             foreach (var sen in sensorSpecs)
             {
-
                 preader.setSource(sensorPath.FullName + "\\" + sen);
                 bool success = preader.read();
                 if (success == true)
@@ -195,12 +211,67 @@ namespace SystemAcceptance
                 }
             }
 
+            // ========================================================== If .Fits ==========================================================
+            if (isFits)
+            {
+                NFTopographyPointer topo;
+                string actualFilename = file;
+                NFFileReaderPointer reader = NFFileReader.New();
+                reader.setFileName(actualFilename);
+                int rc = reader.evaluate();
+                if (rc != 0)
+                {
+                    MessageBox.Show("Couldn't read the file!");
+                }
+                topo = reader.getOutputTopo();
 
-            var sensorTypelist = sensorType.getParameterNames();
+                if (topo != null)
+                {
+                    if (topo.getMetaData().containsParameter("Lens"))
+                    {
+                        string sensor = topo.getMetaData().getParameter("Lens").valueToString();
+                        if (sensor.Contains("_"))
+                        {
+                            string s = string.Concat(sensor.TakeWhile((c) => c != '_'));
+                            Console.WriteLine(s);
+                            Sensor = s;
+                        }
+                        else if (sensor.Contains(" "))
+                        {
+                            string s = string.Concat(sensor.TakeWhile((c) => c != ' '));
+                            Console.WriteLine(s);
+                            Sensor = s;
+                        }
+                        else
+                        {
+                            Sensor = sensor;
+                        }
+                        //Console.WriteLine(sensor);
+                    }
+                }
+            }
+            //===============================================================================================================================
+
+
+            NFParameterNameListType sensorTypelist = sensorType.getParameterNames();
             if (sensorTypelist.Count > 0)
             {
                 cmbSensor.DataSource = new List<string>(sensorTypelist);
-                cmbSensor.SelectedItem = sensorTypelist[0];
+                if (isFits)
+                {
+                    foreach (string sensorType in sensorTypelist)
+                    {
+                        if (!string.IsNullOrEmpty(Sensor) && Sensor.Contains(sensorType))
+                        {
+                            Console.WriteLine($"{sensorType}");
+                            cmbSensor.SelectedItem = sensorType;
+                        }
+                    }
+                }
+                else
+                {
+                    cmbSensor.SelectedItem = sensorTypelist[0];
+                }
 
                 NFVariant v = sensorType.getParameter(cmbSensor.SelectedItem.ToString());
                 sensorParameter = new NFParameterSetPointer(v.getParameterSet());
@@ -215,6 +286,7 @@ namespace SystemAcceptance
 
                 sensorParameter = new NFParameterSetPointer(v.getParameterSet());
             };
+            //}
 
             //   tester
             {
@@ -293,7 +365,7 @@ namespace SystemAcceptance
                 }
             }
 
-            cmbSensor.SelectedIndex = 0;
+            //cmbSensor.SelectedIndex = 0;
         }
 
         private void ParameterSetAsDataSource(NFParameterSetPointer p, ComboBox cmb)
@@ -311,7 +383,23 @@ namespace SystemAcceptance
                 cmb.DataSource = dataSource;
                 cmb.DisplayMember = "DisplayName";
                 cmb.ValueMember = "Name";
-                cmb.SelectedItem = dataSource[0];
+                if (!string.IsNullOrEmpty(Properties.Settings.Default.LastSelectedStandard))
+                {
+                    string s = Properties.Settings.Default.LastSelectedStandard;
+                    foreach (var item in dataSource)
+                    {
+                        if (s == item.Name)
+                        {
+                            cmb.SelectedValue = s;
+
+                        }
+                    }
+                }
+                else
+                {
+                    //cmb.SelectedItem = dataSource[0];
+                    cmb.SelectedValue = dataSource[0].ToString();
+                }
             }
         }
 
