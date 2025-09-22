@@ -1,39 +1,44 @@
 ﻿using CefSharp;
 using CefSharp.WinForms;
 using de.nanofocus.NFEval;
+using Newtonsoft.Json;
+using NFOpenFileDialog;
+using NLog;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
+using ProgressMatrixLibrary;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading;
-using NFOpenFileDialog;
-using ProgressMatrixLibrary;
-using System.Drawing;
-using System.Linq;
-using Button = System.Windows.Forms.Button;
-using Newtonsoft.Json;
 using SystemAcceptance.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Button = System.Windows.Forms.Button;
 
 namespace SystemAcceptance
 {
 
     public partial class mainForm : Form
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private const string AppStarted = " |==============================> SystemAcceptance Started ";
         private ProgressMatrixControl progressMatrixControl;
 
         SelectKeyDialog skDialog = new SelectKeyDialog();
         MqttStatusListener StatusListener = new MqttStatusListener();
         PDFCallback printCallback = new PDFCallback();
 
-
         TabPage tabPage;
-
+        private int hoveredIndex = -1;
         private string rootPath;
         private string project;
         private ChromiumWebBrowser mBrowserEngine;
@@ -49,8 +54,7 @@ namespace SystemAcceptance
         private string systemNumber = "";
         private SpecificationForm specsDlg;
         private List<string> pdfDocs = new List<string>();
-        private int ProgressLocX;
-        private int ProgressLocY;
+
         private string language;
 
         private CXBoundObject cxBound;
@@ -73,16 +77,16 @@ namespace SystemAcceptance
                     algoName = matches[0].Groups[1].Value;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-            };
-
+                logger.Error(ex);
+            }
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} {algoName}");
             return algoName;
         }
 
         public void InitalizeBrowserEngine()
         {
-
             WorkloadPath = new DirectoryInfo("c:\\Program Data\\");
 
             CefSettings settings = new CefSettings();
@@ -108,48 +112,51 @@ namespace SystemAcceptance
             cxBound = new CXBoundObject();
             cxBound.State = false;
             mBrowserEngine.JavascriptObjectRepository.Register("cxBound", cxBound, false, null);
+            logger.Info($"{MethodBase.GetCurrentMethod().Name}");
         }
 
         private void InitProgressMatrix()
         {
             progressMatrixControl = new ProgressMatrixControl();
-            progressMatrixControl.Size = new Size(100, 100);
+            progressMatrixControl.Size = new Size(80, 80);
             progressMatrixControl.BackColor = Color.Black;
 
-            ProgressLocX = (Width - progressMatrixControl.Width) / 2;
-            ProgressLocY = (Height - progressMatrixControl.Height) / 2;
-            progressMatrixControl.Location = new Point(ProgressLocX, ProgressLocY);
-
-            progressMatrixControl.Style = ProgressMatrixControl.ProgressStyle.Classic;
-            progressMatrixControl.BackColor = Color.Black;
-            mBrowserEngine.Controls.Add(progressMatrixControl);
-            progressMatrixControl.Hide();
+            //progressMatrixControl.Hide();
+            logger.Info($"{MethodBase.GetCurrentMethod().Name}");
         }
 
         public mainForm()
         {
             InitializeComponent();
+            logger.Info(AppStarted + Application.ProductVersion + " <==============================| ");
             skDialog.StartInfo += SkDialog_StartInfo;
             skDialog.RootPathInfo += SkDialog_RootPathInfo;
             skDialog.SelectedSystem += SkDialog_SelectedSystem;
+            buildLabel.Text = "Build: " + Application.ProductVersion;
 
             topo = NFTopography.New();
             InitializeDox();
             InitalizeBrowserEngine();
-            InitProgressMatrix();
+
             toolStripStatusLabel1.Text = "";
             toolStripStatusLabel2.Text = "";
+            //logger.Info($"{MethodBase.GetCurrentMethod().Name}");
         }
 
         private void SkDialog_SelectedSystem(object sender, string e)
         {
             Text = "SystemAcceptance" + " : " + skDialog.SelectedKey;
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} - {skDialog.SelectedKey}");
         }
 
         private void SkDialog_RootPathInfo(object sender, string e)
         {
             rootPath = e.ToString();
-            language = Settings.Default.Language;
+            //language = Settings.Default.SelectedLanguage;
+            language = skDialog.Language;
+            //Settings.Default.Save();
+            //Settings.Default.Upgrade();
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} - {rootPath} - {language}");
         }
 
         private void SkDialog_StartInfo(object sender, Dictionary<string, DirectoryInfo> tabInfo)
@@ -176,6 +183,7 @@ namespace SystemAcceptance
                 });
             };
             Activate();
+            logger.Info($"{MethodBase.GetCurrentMethod().Name}");
         }
 
         private void CreateTabStructure(Dictionary<string, DirectoryInfo> tabInfo)
@@ -246,11 +254,11 @@ namespace SystemAcceptance
                         {
                             DisableButtonsOnProgress(tabPage);
                             toolStripStatusLabel1.Text = "Printing pdf..";
-                            progressMatrixControl.Show();
+                            progressMatrixControl.ShowProgress(this);
                             progressMatrixControl.ProgressAnimation();
                         }));
 
-
+                        Task.Delay(2000);
                         PrintPdf(projectPath, project);
                     }
                     else
@@ -263,10 +271,12 @@ namespace SystemAcceptance
                     panelsDict[Name].OnGenerate += OnExecutePipeline;
                     panelsDict[Name].OnHelp -= OnHelp;
                     panelsDict[Name].OnHelp += OnHelp;
+                    logger.Info($"{MethodBase.GetCurrentMethod().Name} - {tabPage} - {project}");
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    logger.Info($"{ex}");
+                    MessageBox.Show(ex.Message);
                 }
             };
 
@@ -365,6 +375,7 @@ namespace SystemAcceptance
 
         private void SelectFirstTabPage()
         {
+            logger.Info($"{MethodBase.GetCurrentMethod().Name}");
             try
             {
                 var tp = tabControl.TabPages[0];
@@ -392,7 +403,7 @@ namespace SystemAcceptance
             }
             catch (Exception ex)
             {
-
+                logger.Info($"{ex}");
                 MessageBox.Show(ex.Message);
             }
         }
@@ -404,6 +415,7 @@ namespace SystemAcceptance
             evalDox.setParameter("AsyncOutput", new NFVariant(false));
             evalDox.setParameter("ColorPalette", new NFVariant("NFTopoToColor<NFColorFunctors::NFTopoHeightPixelToHSVRainbowFunctor>"));
             evalDox.setParameter("ColorPaletteBar", new NFVariant("NFTopoToColor<NFColorFunctors::NFTopoHeightPixelToHSVRainbowFunctor>"));
+            logger.Info($"{MethodBase.GetCurrentMethod().Name}");
         }
 
         private void OnHelp(object sender, EventArgs arg)
@@ -456,6 +468,7 @@ namespace SystemAcceptance
 
         private void ExecutePipeline(string fileName = "")
         {
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} begin..");
             NFEvaluationPointer topoStatistic = new NFEvaluationPointer(factory.getObjectByName("NFTopoStatistic").get());
             NFParameterSetPointer statisticParameter = NFParameterSet.New();
             NFParameterSetPointer inputParameter = NFParameterSet.New();
@@ -469,7 +482,6 @@ namespace SystemAcceptance
 
             project = tabControl.SelectedTab.Name;
             string projectPath = tabDirInfoDict[project].FullName + "\\";
-
             /*
              * Load all plugins  inside the current folder. either ned or dll  
              * 
@@ -517,9 +529,10 @@ namespace SystemAcceptance
             }
             else
             {
-                isFitsFile = true ;
+                isFitsFile = true;
             }
 
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} - Selected file: {fileName} {fileNames}");
             //-----------------------------------------------------------------------------------------------------------------
 
             specsDlg = new SpecificationForm(rootPath, project, isFitsFile, fileName);
@@ -527,12 +540,13 @@ namespace SystemAcceptance
 
 
             //string algoName = parseTemplateFile(projectPath + project + ".md", project);
-            string algoName = parseTemplateFile(mdFile, project);
+            string algoName = parseTemplateFile(mdFile, project);  // md file si null if deutsch is selected !
             eval = new NFEvaluationPointer(factory.getObjectByName(algoName).get());
 
             if (eval.get() == null)
             {
-                throw new IOException("not");
+                logger.Error($"{MethodBase.GetCurrentMethod().Name} - {eval.get()} - {algoName}");
+                throw new IOException($"{eval}: null");
             }
 
             preader.setSource(projectPath + algoName + ".npsx");
@@ -554,7 +568,8 @@ namespace SystemAcceptance
 
             BeginInvoke(new Action(() =>
             {
-                progressMatrixControl.Show();
+                //progressMatrixControl.Show();
+                progressMatrixControl.ShowProgress(this);
                 progressMatrixControl.ProgressAnimation();
             }));
             /// Start:  do computation 
@@ -567,7 +582,6 @@ namespace SystemAcceptance
                     //toolStripStatusLabel1.Text += actualFilename + " | ";
                     BeginInvoke(new Action(() =>
                     {
-
                         toolStripStatusLabel2.Text = actualFilename;
                     }));
                     Application.DoEvents();
@@ -620,8 +634,13 @@ namespace SystemAcceptance
 
                         if (rc != 0)
                         {
-                            MessageBox.Show("Error on evaluation. Wrong system selected !");
-                            toolStripStatusLabel1.Text = "Error on evaluation. Wrong system selected!";
+                            BeginInvoke(new Action(() =>
+                            {
+
+                                MessageBox.Show("Error on evaluation. Wrong system selected !"); //
+                                toolStripStatusLabel1.Text = "Error on evaluation. Wrong system selected!";
+                            }));
+
                         }
                         cxBound.State = true;
 
@@ -649,7 +668,7 @@ namespace SystemAcceptance
                             evalDox.setInputParameterSet(specsDlg.sensorParameter, psetIndex);
                             psetIndex++;
                         }
-                       
+
                         if (specsDlg.testerParameter != null)
                         {
                             evalDox.setInputParameterSet(specsDlg.testerParameter, psetIndex);
@@ -677,8 +696,13 @@ namespace SystemAcceptance
                         rc = evalDox.evaluate();
                         if (rc != 0)
                         {
-                            MessageBox.Show("Error on document creation");
-                            toolStripStatusLabel1.Text = "Error on document creation ";
+                            BeginInvoke(new Action(() =>
+                            {
+                                MessageBox.Show("Error on document creation"); //
+                                //toolStripStatusLabel1.BackColor = Color.Red;
+                                toolStripStatusLabel1.Text = "Error on document creation ";
+                            }));
+
                         }
 
                         if (File.Exists(projectPath + project + ".html"))
@@ -718,11 +742,14 @@ namespace SystemAcceptance
             });
         }
 
+
+
+
         //private async Task PrintPdf(string projectPath, string projectName)
         private void PrintPdf(string projectPath, string projectName)
         {
-
-            string jsonFile = Settings.Default.OptionsPath;
+            //string jsonFile = Settings.Default.OptionsPath;
+            string jsonFile = FileHelper.optionsFile;
 
             LoadPDFsettings(jsonFile);
             toolStripStatusLabel1.Text = "";
@@ -754,7 +781,6 @@ namespace SystemAcceptance
 
                 mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, printCallback);
 
-
                 //await Task.Delay(100);
                 BeginInvoke(new Action(() =>
                 {
@@ -769,20 +795,16 @@ namespace SystemAcceptance
 
         private void PrintCallback_PrintFinished(object sender, bool e)
         {
-
             BeginInvoke(new Action(() =>
             {
                 toolStripStatusLabel1.Text = "Printing Done ";
-
                 progressMatrixControl.StopProgress();
                 progressMatrixControl.Hide();
                 EnableButtonOnProgress(tabPage);
-
             }));
         }
 
         /// End
-
 
         private void ExecuteSummary()
         {
@@ -853,7 +875,8 @@ namespace SystemAcceptance
                 DisableButtonsOnProgress(tabPage);
                 toolStripStatusLabel1.Text = "Saving pdf files..";
                 toolStripStatusLabel2.Text = "";
-                progressMatrixControl.Show();
+                //progressMatrixControl.Show();
+                progressMatrixControl.ShowProgress(this);
                 progressMatrixControl.ProgressAnimation();
             }));
 
@@ -958,6 +981,7 @@ namespace SystemAcceptance
 
         private void mainForm_Shown(object sender, EventArgs e)
         {
+            DoubleBuffered = true;
             skDialog.Show(this);
             PdfOptions = new PdfOptions();
             PdfOptions.OptionsChanged += PdfOptions_OptionsChanged;
@@ -968,7 +992,6 @@ namespace SystemAcceptance
         {
             try
             {
-
                 string file = File.ReadAllText(filename);
                 if (new FileInfo(filename).Length == 0)
                 {
@@ -1008,7 +1031,6 @@ namespace SystemAcceptance
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -1020,13 +1042,14 @@ namespace SystemAcceptance
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Cef.Shutdown();
-            StatusListener.Close();
             PdfOptions.OptionsChanged -= PdfOptions_OptionsChanged;
             printCallback.PrintFinished -= PrintCallback_PrintFinished;
             skDialog.StartInfo -= SkDialog_StartInfo;
             skDialog.RootPathInfo -= SkDialog_RootPathInfo;
             skDialog.SelectedSystem -= SkDialog_SelectedSystem;
             //NFEvalCSHelpers.NFEvalDestroy();
+            StatusListener.Close();
+            FileHelper.DeleteJsonFile(FileHelper.SettingFiles, FileHelper.infoSettings);
         }
 
 
@@ -1044,10 +1067,7 @@ namespace SystemAcceptance
         }
 
         private void mainForm_Resize(object sender, EventArgs e)
-        {
-            //progressMatrixControl.Location = new Point((Width - ProgressLocX) /2, (Height - ProgressLocY) /2);
-        }
-
+        { }
 
         private void pDFOptionsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -1055,7 +1075,95 @@ namespace SystemAcceptance
             pdfOptions.ShowDialog();
         }
 
-       
+        private void buildLabel_DoubleClick(object sender, EventArgs e)
+        {
+            Clipboard.SetText(buildLabel.Text);
+        }
+
+        private void tabControl_DrawItem(object sender, DrawItemEventArgs e)
+        {
+
+            //TabControl tabControl = sender as TabControl;
+            TabPage page = tabControl.TabPages[e.Index];
+            Rectangle tabRect = e.Bounds;
+
+            bool isSelected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
+            bool isHovered = (e.Index == hoveredIndex);
+
+            Color startColor;
+            Color endColor;
+            Color textColor;
+
+            if (isSelected)
+            {
+                startColor = Color.SteelBlue;
+                endColor = Color.LightSkyBlue;
+                textColor = Color.White;
+            }
+            else if (isHovered)
+            {
+                startColor = Color.Orange;
+                endColor = Color.White;
+                textColor = Color.Black;
+            }
+            else
+            {
+                //startColor = SystemColors.Control;
+                //endColor = SystemColors.Control;
+                startColor = Color.FromArgb(240, 242, 245);
+                endColor = Color.FromArgb(240, 242, 245);
+                textColor = Color.Black;
+            }
+
+            using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
+                tabRect, startColor, endColor, System.Drawing.Drawing2D.LinearGradientMode.Vertical))
+            {
+                e.Graphics.FillRectangle(brush, tabRect);
+            }
+
+            TextRenderer.DrawText(
+                e.Graphics,
+                page.Text,
+                e.Font,
+                tabRect,
+                textColor,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+            );
+
+            e.DrawFocusRectangle();
+        }
+
+
+
+        private System.Drawing.Drawing2D.GraphicsPath RoundedRect(Rectangle bounds, int radius)
+        {
+            int diameter = radius * 2;
+            var path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90);
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90);
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90);
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90);
+            path.CloseFigure();
+            return path;
+        }
+
+        private void mainForm_Load(object sender, EventArgs e)
+        {
+            InitProgressMatrix();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            string path = FileHelper.LogsDir;
+            if (Directory.Exists(path))
+            {
+                Process.Start(path);
+            }
+            else
+            {
+                MessageBox.Show($"{MethodBase.GetCurrentMethod().Name} - Directory doesn't exists!");
+            }
+        }
     }
 
     static class mainFormExtensions
@@ -1208,7 +1316,7 @@ namespace SystemAcceptance
             {
                 string fileContents = File.ReadAllText(frmSelect.SelectedKey);
 
-                var pattern = @"<I3 n=""HeightScaleFactor"">(.*)</I3>";
+                //var pattern = @"<I3 n=""HeightScaleFactor"">(.*)</I3>";
 
                 var pattern2 = @"(<I3 n=""HeightScaleFactor"">)(.*)(</I3>)";
 

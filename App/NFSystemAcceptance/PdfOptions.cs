@@ -60,7 +60,9 @@ namespace SystemAcceptance
             Control.ControlCollection controlCollection = groupBox1.Controls;
             string file;// = File.ReadAllText(path);
 
-            path = Settings.Default.OptionsPath;
+            //path = Settings.Default.OptionsPath;
+            path = FileHelper.optionsFile;
+
             if (!File.Exists(path))
             {
                 SetDefault();

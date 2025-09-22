@@ -93,7 +93,7 @@
             // 
             // plainProgressPainter1
             // 
-            this.plainProgressPainter1.Color = System.Drawing.Color.LightSeaGreen;
+            this.plainProgressPainter1.Color = System.Drawing.Color.Orange;
             this.plainProgressPainter1.GlossPainter = null;
             this.plainProgressPainter1.LeadingEdge = System.Drawing.Color.Transparent;
             this.plainProgressPainter1.ProgressBorderPainter = this.plainBorderPainter2;

@@ -6,12 +6,16 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NLog;
+using System.Reflection;
 
 namespace SystemAcceptance
 {
     static class Program
     {
-        private static string AppName = "NFSystemCalibration";
+        private static Logger log = LogManager.GetCurrentClassLogger();
+
+        private static string AppName = "SystemAcceptance";
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -22,6 +26,7 @@ namespace SystemAcceptance
             {
                 if (!mutex.WaitOne(0, false))
                 {
+                    log.Warn($"{MethodBase.GetCurrentMethod().Name} {AppName} is already running.");
                     MessageBox.Show("SystemAcceptance is already running.", AppName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
@@ -30,6 +35,7 @@ namespace SystemAcceptance
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            FileHelper.CheckSettingsFile();
             Application.Run(new mainForm());
 
             de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalDestroy();

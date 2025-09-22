@@ -5,6 +5,8 @@ using System.IO;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
+using SystemAcceptance.Helpers;
 
 namespace SystemAcceptance
 {
@@ -57,12 +59,12 @@ namespace SystemAcceptance
                 return ansiString;
             }
         }
+
+
         private NFParameterSetPointer standardType;
 
         private NFParameterSetPointer sensorType;
 
-
-        private NFParameterSetPointer testerType;
         private NFParameterSetPointer stagesType;
 
         //out
@@ -80,9 +82,21 @@ namespace SystemAcceptance
 
         private FileInfo fileInfo;
 
+        private Info info = new Info();//
+
         public SpecificationForm(string rootPath, string selectedTab, bool isFits, string file)
         {
             InitializeComponent();
+
+            //---------- Load Info.json ---------------
+            string infoFile = File.ReadAllText(FileHelper.infoSettings);
+            Info jsonFile = JsonConvert.DeserializeObject<Info>(infoFile);
+            txtCustomer.Text = jsonFile.Customer;
+            txtTester.Text = jsonFile.Tester;
+            txtTemperature.Text = jsonFile.Temperature;
+            txtLocation.Text = jsonFile.Location;
+            txtHumidity.Text = jsonFile.Humidity;
+            //-----------------------------------------
 
             string sTab = selectedTab;
 
@@ -160,7 +174,6 @@ namespace SystemAcceptance
 
             if (standardSpecs.Length > 0)
             {
-
                 bool readSuccess = preader.read();
                 if (false == readSuccess)
                 {
@@ -217,6 +230,14 @@ namespace SystemAcceptance
                 NFTopographyPointer topo;
                 string actualFilename = file;
                 NFFileReaderPointer reader = NFFileReader.New();
+
+                ////Write
+                //NFFileWriterPointer writer = NFFileWriter.New();
+                //writer.setInputTopo(topo);
+                //writer.setFileName(actualFilename);
+                //writer.evaluate();
+                //// ----------
+
                 reader.setFileName(actualFilename);
                 int rc = reader.evaluate();
                 if (rc != 0)
@@ -240,7 +261,7 @@ namespace SystemAcceptance
                         {
                             string s = string.Concat(sensor.TakeWhile((c) => c != ' '));
                             Console.WriteLine(s);
-                            Sensor = s;
+                            Sensor = s.ToString();
                         }
                         else
                         {
@@ -248,6 +269,15 @@ namespace SystemAcceptance
                         }
                         //Console.WriteLine(sensor);
                     }
+                    if (topo.getMetaData().containsParameter("Serial"))
+                    {
+                        string serial = topo.getMetaData().getParameter("Serial").valueToString();
+                        txtSystemNumber.Text = serial;
+                        jsonFile.SystemNummer = serial;
+                    }
+                   
+
+                    //Console.WriteLine(topo.getMetaData().toJSON().ToString());
                 }
             }
             //===============================================================================================================================
@@ -290,12 +320,15 @@ namespace SystemAcceptance
 
             //   tester
             {
+
+               
                 testerParameter = NFParameterSet.New();
-                testerParameter.setParameter("Tester Name", new NFVariant(txtTester.Text));
-                testerParameter.setParameter("Location", new NFVariant(txtLocation.Text));
-                testerParameter.setParameter("Customer", new NFVariant(txtCustomer.Text));
-                testerParameter.setParameter("Temperature", new NFVariant(txtTemperature.Text));
-                testerParameter.setParameter("Humidity", new NFVariant(txtHumidity.Text));
+                testerParameter.setParameter("Tester Name", new NFVariant(jsonFile.Tester));
+                testerParameter.setParameter("Location", new NFVariant(jsonFile.Location));
+                testerParameter.setParameter("Customer", new NFVariant(jsonFile.Customer));
+                testerParameter.setParameter("Temperature", new NFVariant(jsonFile.Temperature));
+                testerParameter.setParameter("Humidity", new NFVariant(jsonFile.Humidity));
+                testerParameter.setParameter("Serial", new NFVariant(jsonFile.SystemNummer));
 
                 txtTester.TextChanged += (sender, args) =>
                 {
@@ -322,10 +355,14 @@ namespace SystemAcceptance
 
                 txtHumidity.TextChanged += (sender, args) =>
                 {
-
                     testerParameter.setParameter("Humidity", new NFVariant(txtHumidity.Text));
                 };
-
+                txtSystemNumber.TextChanged += (sender, args) =>
+                {
+                    testerParameter.setParameter("Serial", new NFVariant(txtSystemNumber.Text));
+                };
+                string json = JsonConvert.SerializeObject(jsonFile, Formatting.Indented);
+                File.WriteAllText(FileHelper.infoSettings, json);
             }
             // TO DO : stages
 
@@ -391,14 +428,13 @@ namespace SystemAcceptance
                         if (s == item.Name)
                         {
                             cmb.SelectedValue = s;
-
                         }
                     }
                 }
                 else
                 {
-                    //cmb.SelectedItem = dataSource[0];
-                    cmb.SelectedValue = dataSource[0].ToString();
+                    cmb.SelectedItem = dataSource[0];
+                    //cmb.SelectedValue = dataSource[0].ToString();
                 }
             }
         }
@@ -435,6 +471,71 @@ namespace SystemAcceptance
             return ansiString;
         }
 
+        private void txtCustomer_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SpecificationForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                info.Customer = txtCustomer.Text;
+                info.SystemNummer = txtSystemNumber.Text;
+                info.Tester = txtTester.Text;
+                info.Temperature = txtTemperature.Text;
+                info.Location = txtLocation.Text;
+                info.Humidity = txtHumidity.Text;
+
+                string jsonData = JsonConvert.SerializeObject(info, Formatting.Indented);
+
+                string outputFile = FileHelper.infoSettings;
+                string outputPath = FileHelper.SettingFiles;
+                if (outputFile != null)
+                {
+                    File.WriteAllText(outputFile, jsonData);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
+
+        private void txtTemperature_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string text = ((Control) sender ).Text;
+            if (e.KeyChar == '-' && text.Length == 0)
+            {
+                e.Handled = false;
+                return;
+            }
+
+            if (e.KeyChar == '.' && text.Length > 0 && !text.Contains("."))
+            {
+                e.Handled = false;
+                return;
+            }
+            e.Handled = (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar));
+        }
+
+        private void txtHumidity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string text = ((Control)sender).Text;
+            if (e.KeyChar == '-' && text.Length == 0)
+            {
+                e.Handled = false;
+                return;
+            }
+
+            if (e.KeyChar == '.' && text.Length > 0 && !text.Contains("."))
+            {
+                e.Handled = false;
+                return;
+            }
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
     }
 
 }

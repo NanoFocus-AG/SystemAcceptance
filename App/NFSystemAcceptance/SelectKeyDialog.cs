@@ -1,15 +1,16 @@
-﻿using ProgressODoom;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.Win32;
+using Newtonsoft.Json;
+using ProgressODoom;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.ComponentModel;
-using System.Windows.Forms;
+using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 using SystemAcceptance.Properties;
-using Newtonsoft.Json;
-using Microsoft.Extensions.Options;
 
 namespace SystemAcceptance
 {
@@ -31,10 +32,10 @@ namespace SystemAcceptance
         public event EventHandler<Dictionary<string, DirectoryInfo>> StartInfo;
         public event EventHandler<string> RootPathInfo;
         public event EventHandler<string> SelectedSystem;
-        private string lang;
-        public string Language { get { return lang; } }
 
-        bool splash = true;
+        private string _language;
+        public string Language { get { return _language; } }
+
         public string SelectedKey = string.Empty;
         List<string> dataList = new List<string>();
         public Dictionary<string, DirectoryInfo> tabInfo = new Dictionary<string, DirectoryInfo>();
@@ -45,26 +46,7 @@ namespace SystemAcceptance
         List<Panel> PanelList = new List<Panel>();
         List<Label> LabelList = new List<Label>();
 
-        public enum SelectedLanguage
-        {
-            EN = 0,
-            DE = 1
-        }
-
-        private bool CheckLanguageStatus()
-        {
-            string en = Settings.Default.Language;
-            if (en != null && en != "DE")
-            {
-                englishRb.Checked = true;
-                return true;
-            }
-            else
-            {
-                deutschRb.Checked = true;
-                return false;
-            }
-        }
+        
         private void PrepareApp()
         {
             de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalInit();
@@ -128,8 +110,6 @@ namespace SystemAcceptance
             if (true == Directory.Exists(RepositoryPath + sys))
             {
                 DirectoryInfo[] subDirs = rootDir.GetDirectories();
-
-              
                 foreach (DirectoryInfo dirInfo in subDirs)
                 {
                     //var files = dirInfo.GetFiles("*.md");
@@ -167,7 +147,7 @@ namespace SystemAcceptance
         {
             SelectedKey = "";
             InitializeComponent();
-            CheckLanguageStatus();
+            //CheckLanguageStatus();
             progressBarEx2.Hide();
             TopLevel = true;
 
@@ -220,6 +200,7 @@ namespace SystemAcceptance
             StartProgress();
             bgWorker.RunWorkerAsync();
             bgWorker.WorkerReportsProgress = true;
+            LoadLanguageSelection();
         }
 
         private void BgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -286,35 +267,35 @@ namespace SystemAcceptance
                         //SetSystem(btnTag);
                         label1.Text = btnTag;
                         label1.ForeColor = Color.White;
-                        panel1.BackColor = Color.SlateGray;
+                        panel1.BackColor = Color.SteelBlue;
                         break;
                     case "button2":
                         //toolStripStatusLabel1.Text = "  µScan - CP";
                         //SetSystem(btnTag);
                         label2.Text = btnTag;
                         label2.ForeColor = Color.White;
-                        panel2.BackColor = Color.SlateGray;
+                        panel2.BackColor = Color.SteelBlue;
                         break;
                     case "button3":
                         //toolStripStatusLabel1.Text = "  µScan - CL";
                         //SetSystem(btnTag);
                         label3.Text = btnTag;
                         label3.ForeColor = Color.White;
-                        panel3.BackColor = Color.SlateGray;
+                        panel3.BackColor = Color.SteelBlue;
                         break;
                     case "button4":
                         //toolStripStatusLabel1.Text = "  µSprint - CX";
                         //SetSystem(btnTag);
                         label4.Text = btnTag;
                         label4.ForeColor = Color.White;
-                        panel4.BackColor = Color.SlateGray;
+                        panel4.BackColor = Color.SteelBlue;
                         break;
                     case "button5":
                         //toolStripStatusLabel1.Text = "  WI"; 
                         //SetSystem(btnTag);
                         label5.Text = btnTag;
                         label5.ForeColor = Color.White;
-                        panel5.BackColor = Color.SlateGray;
+                        panel5.BackColor = Color.SteelBlue;
                         break;
                     default:
                         toolStripStatusLabel1.Text = "";
@@ -338,7 +319,6 @@ namespace SystemAcceptance
                 OnRootpathEvent(rootDir.FullName);
                 Close();
             }
-            
         }
 
         #region Drag Form on MouseDown
@@ -395,18 +375,51 @@ namespace SystemAcceptance
 
         private void englishRb_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.Language = SelectedLanguage.EN.ToString();
-            Settings.Default.Save();
-            Settings.Default.Upgrade();
-            lang = Settings.Default.Language.ToString();
+            if (englishRb.Checked)
+            {
+                SaveLanguageSelection("EN");
+                LoadLanguageSelection();
+            }
         }
 
         private void deutschRb_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.Language = SelectedLanguage.DE.ToString();
-            Settings.Default.Save();    
-            Settings.Default.Upgrade();
-            lang = Settings.Default.Language.ToString();
+            if (deutschRb.Checked)
+            {
+                SaveLanguageSelection("DE");
+                LoadLanguageSelection();
+            }
+        }
+
+        private void SaveLanguageSelection(string language)
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(FileHelper.languageSettings));
+                File.WriteAllText(FileHelper.languageSettings, language);
+            }
+            catch (IOException ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void LoadLanguageSelection()
+        {
+            try
+            {
+                if (!File.Exists(FileHelper.languageSettings))
+                    return;
+
+                var lang = File.ReadAllText(FileHelper.languageSettings).Trim();
+                _language = lang;
+                englishRb.Checked = lang.Equals("EN", StringComparison.OrdinalIgnoreCase);
+                deutschRb.Checked = lang.Equals("DE", StringComparison.OrdinalIgnoreCase);
+            }
+            catch (IOException ex)
+            {
+                throw ex;
+            }
         }
     }
 
