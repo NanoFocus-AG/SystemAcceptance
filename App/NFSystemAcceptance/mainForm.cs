@@ -30,7 +30,7 @@ namespace SystemAcceptance
     public partial class mainForm : Form
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private const string AppStarted = " |==============================> SystemAcceptance Started ";
+        //private const string AppStarted = " |==============================> SystemAcceptance Started ";
         private ProgressMatrixControl progressMatrixControl;
 
         SelectKeyDialog skDialog = new SelectKeyDialog();
@@ -128,7 +128,8 @@ namespace SystemAcceptance
         public mainForm()
         {
             InitializeComponent();
-            logger.Info(AppStarted + Application.ProductVersion + " <==============================| ");
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} - Begin of Constructor!");
+            //logger.Info(AppStarted + Application.ProductVersion + " <==============================| ");
             skDialog.StartInfo += SkDialog_StartInfo;
             skDialog.RootPathInfo += SkDialog_RootPathInfo;
             skDialog.SelectedSystem += SkDialog_SelectedSystem;
@@ -140,7 +141,7 @@ namespace SystemAcceptance
 
             toolStripStatusLabel1.Text = "";
             toolStripStatusLabel2.Text = "";
-            //logger.Info($"{MethodBase.GetCurrentMethod().Name}");
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} - End of Constructor!");
         }
 
         private void SkDialog_SelectedSystem(object sender, string e)
@@ -284,50 +285,33 @@ namespace SystemAcceptance
         }
 
         #region Show/Hide Buttons
-        private void HideButtons(TabPage tabPage)
+       
+
+        private void SetButtonsVisible(Control parent, bool visible)
         {
-            TabPage tp = tabPage;
-            Control.ControlCollection c = tp.Controls;
-            foreach (Control ctrl in c)
+            foreach (Control ctrl in parent.Controls)
             {
-                if (ctrl is UserControl)
+                if (ctrl is Button btn)
                 {
-                    foreach (Panel pn in ctrl.Controls)
-                    {
-                        foreach (Control ct in pn.Controls)
-                        {
-                            foreach (Button btn in ct.Controls.OfType<Button>())
-                            {
-                                btn.Visible = false;
-                            }
-                        }
-                    }
+                    btn.Visible = visible;
+                }
+
+                if (ctrl.HasChildren)
+                {
+                    SetButtonsVisible(ctrl, visible);
                 }
             }
+        }
+
+        private void HideButtons(TabPage tabPage)
+        {
+            SetButtonsVisible(tabPage, false);
         }
 
         private void ShowButtons(TabPage tabPage)
         {
-            TabPage tp = tabPage;
-            Control.ControlCollection c = tp.Controls;
-            foreach (Control ctrl in c)
-            {
-                if (ctrl is UserControl)
-                {
-                    foreach (Panel pn in ctrl.Controls)
-                    {
-                        foreach (Control ct in pn.Controls)
-                        {
-                            foreach (Button btn in ct.Controls.OfType<Button>())
-                            {
-                                btn.Visible = true;
-                            }
-                        }
-                    }
-                }
-            }
+            SetButtonsVisible(tabPage, true);
         }
-
         private void DisableButtonsOnProgress(TabPage tabPage)
         {
             TabPage tp = tabPage;
@@ -371,6 +355,8 @@ namespace SystemAcceptance
                 }
             }
         }
+
+
         #endregion
 
         private void SelectFirstTabPage()

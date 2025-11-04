@@ -21,31 +21,69 @@ namespace SystemAcceptance
         public static string languageSettings = SettingFiles + "lang.txt";
         public static string LogsDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Nanofocus\metrology\log\";
 
+        //public static void CheckSettingsFile()
+        //{
+        //    try
+        //    {
+        //        if (!Directory.Exists(SettingFiles) || !File.Exists(SettingFiles))
+        //        {
+        //            Directory.CreateDirectory(SettingFiles);
+        //            Info info = new Info();
+        //            info.Customer = "Default";
+        //            info.SystemNummer = "Default";
+        //            info.Tester = "Default";
+        //            info.Temperature = "Default";
+        //            info.Location = "Default";
+        //            info.Humidity = "Default";
+        //            string jsFile = JsonConvert.SerializeObject(info, Formatting.Indented);
+
+        //            File.WriteAllText(infoSettings, jsFile);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw ex;
+        //    }
+        //}
+
         public static void CheckSettingsFile()
         {
             try
             {
-                if (!Directory.Exists(SettingFiles) || !File.Exists(SettingFiles))
+                if (string.IsNullOrWhiteSpace(SettingFiles))
+                    throw new ArgumentException("SettingFiles path cannot be null or empty.");
+
+                if (string.IsNullOrWhiteSpace(infoSettings))
+                    throw new ArgumentException("infoSettings path cannot be null or empty.");
+
+                if (!Directory.Exists(SettingFiles))
                 {
                     Directory.CreateDirectory(SettingFiles);
-                    Info info = new Info();
-                    info.Customer = "Default";
-                    info.SystemNummer = "Default";
-                    info.Tester = "Default";
-                    info.Temperature = "Default";
-                    info.Location = "Default";
-                    info.Humidity = "Default";
-                    string jsFile = JsonConvert.SerializeObject(info, Formatting.Indented);
+                }
 
-                    File.WriteAllText(infoSettings, jsFile);
+                if (!File.Exists(infoSettings))
+                {
+                    Info info = new Info
+                    {
+                        Customer = "Default",
+                        SystemNummer = "Default",
+                        Tester = "Default",
+                        Temperature = "Default",
+                        Location = "Default",
+                        Humidity = "Default"
+                    };
+
+                    string json = JsonConvert.SerializeObject(info, Formatting.Indented);
+                    File.WriteAllText(infoSettings, json);
                 }
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                throw; 
             }
         }
+
 
         public static string SearchForLanguages(string projectPath, string languageDir, string mdFile)
         {

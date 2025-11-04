@@ -1,13 +1,14 @@
-﻿using ProgressODoom;
+﻿using Microsoft.Extensions.Logging;
+using NLog;
+using ProgressODoom;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NLog;
-using System.Reflection;
 
 namespace SystemAcceptance
 {
@@ -16,6 +17,7 @@ namespace SystemAcceptance
         private static Logger log = LogManager.GetCurrentClassLogger();
 
         private static string AppName = "SystemAcceptance";
+        private const string AppStarted = " |==============================> SystemAcceptance Started ";
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -31,7 +33,8 @@ namespace SystemAcceptance
                     return;
                 }
             }
-            SetEnviromentVariables();
+            log.Info(AppStarted + Application.ProductVersion + " <==============================| ");
+            SetEnvironmentVariables();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -41,25 +44,34 @@ namespace SystemAcceptance
             de.nanofocus.NFEval.NFEvalCSHelpers.NFEvalDestroy();
         }
 
-        private static int SetEnviromentVariables()
+
+        private static int SetEnvironmentVariables()
         {
             int ret = 0;
+            string envVarName = "NFEVAL_PLUGIN_DIRS";
+            log.Info($"{MethodBase.GetCurrentMethod().Name} started.");
             try
             {
-                string PluginPath = Environment.GetEnvironmentVariable("NFEVAL_PLUGIN_DIRS", EnvironmentVariableTarget.Machine);
+                string existingValue = Environment.GetEnvironmentVariable(envVarName, EnvironmentVariableTarget.Machine);
+                string defaultPluginDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Nanofocus", "evaluation", "Plugins");
 
-                if (PluginPath.Length == 0)
+                string normalizedDefault = defaultPluginDir.TrimEnd(Path.DirectorySeparatorChar);
+                List<string> existingPaths = new List<string>();
+                if (!string.IsNullOrWhiteSpace(existingValue))
                 {
-
+                    existingPaths = existingValue.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(p => p.Trim().TrimEnd(Path.DirectorySeparatorChar)).ToList();
                 }
-                string addedPath = "c:\\Program Files\\Nanofocus\\evaluation\\Plugins;" + PluginPath;
-                Environment.SetEnvironmentVariable("NFEVAL_PLUGIN_DIRS", addedPath, EnvironmentVariableTarget.Process);
+                bool alreadyContains = existingPaths.Any(p => string.Equals(p, normalizedDefault, StringComparison.OrdinalIgnoreCase));
+                string newValue = alreadyContains ? existingValue : string.Join(";", new[] { defaultPluginDir }.Concat(existingPaths));
+
+                Environment.SetEnvironmentVariable(envVarName, newValue, EnvironmentVariableTarget.Process);
+                log.Info($"{envVarName} successfully set to: {newValue}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Problem during environment initialization " + ex.Message);
+                log.Error("Problem during environment initialization", ex);
+                ret = -1;
             }
-
             return ret;
         }
 
