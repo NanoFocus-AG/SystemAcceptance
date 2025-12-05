@@ -377,7 +377,7 @@ namespace SystemAcceptance
         {
             if (englishRb.Checked)
             {
-                SaveLanguageSelection("EN");
+                SaveLanguageSelection("en");
                 LoadLanguageSelection();
             }
         }
@@ -386,7 +386,7 @@ namespace SystemAcceptance
         {
             if (deutschRb.Checked)
             {
-                SaveLanguageSelection("DE");
+                SaveLanguageSelection("de");
                 LoadLanguageSelection();
             }
         }
@@ -413,8 +413,8 @@ namespace SystemAcceptance
 
                 var lang = File.ReadAllText(FileHelper.languageSettings).Trim();
                 _language = lang;
-                englishRb.Checked = lang.Equals("EN", StringComparison.OrdinalIgnoreCase);
-                deutschRb.Checked = lang.Equals("DE", StringComparison.OrdinalIgnoreCase);
+                englishRb.Checked = lang.Equals("en", StringComparison.OrdinalIgnoreCase);
+                deutschRb.Checked = lang.Equals("de", StringComparison.OrdinalIgnoreCase);
             }
             catch (IOException ex)
             {

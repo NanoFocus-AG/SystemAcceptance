@@ -45,7 +45,7 @@
 <div id="sumresults">  </div>
 
 <script>
-
+function runEvaluation(){
 var PARAM = @PJSON{"Set":0}@;
 var SENSOR = @PJSON{"Set":2}@;
 var STANDARD =@PJSON{"Set":1}@;
@@ -75,7 +75,7 @@ Result["status"] = status ;
 Result["timestamp"] = Date.now();
 sessionStorage.setItem(document.title+"Lateral X ", JSON.stringify(Result));
 
-
+}
 </script>
 
  

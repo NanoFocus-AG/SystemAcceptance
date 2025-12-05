@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NLog;
+using PdfSharp.Fonts;
 using ProgressODoom;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace SystemAcceptance
         [STAThread]
         static void Main()
         {
+            GlobalFontSettings.UseWindowsFontsUnderWindows = true;
             using (Mutex mutex = new Mutex(false, "Global\\" + AppName))
             {
                 if (!mutex.WaitOne(0, false))

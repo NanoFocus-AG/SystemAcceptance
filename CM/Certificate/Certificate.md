@@ -22,6 +22,8 @@
 |__Date of calibration__  |  @DAY@.@MONTH@.@YEAR@  | |
 |__Calibration Certificate No.__ | @PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@  | |
 |__Evaluation__  |The measured values at the calibration time are within the tolerance range.  | |
+|__Temperature__  | @PARAM{"Name": "Temperature"}@ | |
+|__Humidity__  | @PARAM{"Name": "Humidity"}@ | |
 |__Tester__  | @PARAM{"Name":"Tester Name"}@  | |
 |__Date__ |  @DAY@.@MONTH@.@YEAR@ | |
 | | | | 

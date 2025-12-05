@@ -171,7 +171,6 @@
             this.txtCustomer.Name = "txtCustomer";
             this.txtCustomer.Size = new System.Drawing.Size(147, 22);
             this.txtCustomer.TabIndex = 0;
-            this.txtCustomer.TextChanged += new System.EventHandler(this.txtCustomer_TextChanged);
             // 
             // txtTemperature
             // 
@@ -179,6 +178,7 @@
             this.txtTemperature.Name = "txtTemperature";
             this.txtTemperature.Size = new System.Drawing.Size(145, 22);
             this.txtTemperature.TabIndex = 3;
+            this.txtTemperature.TextChanged += new System.EventHandler(this.txtTemperature_TextChanged);
             this.txtTemperature.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTemperature_KeyPress);
             // 
             // label8

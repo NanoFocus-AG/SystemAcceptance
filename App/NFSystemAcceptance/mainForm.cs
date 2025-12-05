@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -29,6 +30,7 @@ namespace SystemAcceptance
 
     public partial class mainForm : Form
     {
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
         //private const string AppStarted = " |==============================> SystemAcceptance Started ";
         private ProgressMatrixControl progressMatrixControl;
@@ -53,10 +55,11 @@ namespace SystemAcceptance
         private NFEvalDox evalDox;
         private string systemNumber = "";
         private SpecificationForm specsDlg;
-        private List<string> pdfDocs = new List<string>();
+        private List<string> pdfDocsList = new List<string>();
 
         private string language;
-
+        private readonly object _printLock = new object();
+        private Task _lastPrintTask = Task.CompletedTask;
         private CXBoundObject cxBound;
         PdfOptions PdfOptions;
         private double MarginTop { get; set; }
@@ -94,9 +97,7 @@ namespace SystemAcceptance
             // Initialize cef with the provided settings
             Cef.Initialize(settings);
             //CefSharp.Cef.EnableHighDPISupport(); // Not needed as this is enabled by deault in Chromium.
-
             mBrowserEngine = new ChromiumWebBrowser("");
-
             BrowserEngineMenuHandler menu = new BrowserEngineMenuHandler();
             mBrowserEngine.MenuHandler = menu;
 
@@ -125,6 +126,15 @@ namespace SystemAcceptance
             logger.Info($"{MethodBase.GetCurrentMethod().Name}");
         }
 
+        private void ChangeLanguage(string cultureCode)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureCode);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureCode);
+
+            //Controls.Clear();
+            InitializeComponent();
+        }
+
         public mainForm()
         {
             InitializeComponent();
@@ -142,6 +152,24 @@ namespace SystemAcceptance
             toolStripStatusLabel1.Text = "";
             toolStripStatusLabel2.Text = "";
             logger.Info($"{MethodBase.GetCurrentMethod().Name} - End of Constructor!");
+            
+        }
+
+        private void StatusListener_OnNewFileEvent(string fullFile)
+        {
+            if (lblMetrology.InvokeRequired)
+            {
+                lblMetrology.Invoke(new Action(() =>
+                
+                lblMetrology.Text = "New Measurement result: " + fullFile));
+            
+                lblMetrology.BackColor = Color.White;
+            }
+            else
+            {
+                lblMetrology.Text = "New Measurement result: " + fullFile;
+                lblMetrology.BackColor = Color.White;
+            }
         }
 
         private void SkDialog_SelectedSystem(object sender, string e)
@@ -153,15 +181,14 @@ namespace SystemAcceptance
         private void SkDialog_RootPathInfo(object sender, string e)
         {
             rootPath = e.ToString();
-            //language = Settings.Default.SelectedLanguage;
             language = skDialog.Language;
-            //Settings.Default.Save();
-            //Settings.Default.Upgrade();
+            //ChangeLanguage(language);
             logger.Info($"{MethodBase.GetCurrentMethod().Name} - {rootPath} - {language}");
         }
 
         private void SkDialog_StartInfo(object sender, Dictionary<string, DirectoryInfo> tabInfo)
         {
+            language = skDialog.Language;
             string panelName = tabPage1.Name + ".p1";
             panelsDict.Add(panelName, new tabPanel(panelName));
             tabControl.TabPages[tabPage1.Name].Controls.Add(panelsDict[panelName]);
@@ -170,19 +197,7 @@ namespace SystemAcceptance
             CreateTabStructure(tabInfo);
 
             Text += " " + rootPath;
-
-            //rootPath = rootPath;
-
-            StatusListener.OnNewFileEvent += (string fname) =>
-            {
-                this.UIThread(delegate
-                {
-                    if (File.Exists(fname))
-                    {
-                        ExecutePipeline(fname);
-                    }
-                });
-            };
+            StatusListener.OnNewFileEvent += StatusListener_OnNewFileEvent;
             Activate();
             logger.Info($"{MethodBase.GetCurrentMethod().Name}");
         }
@@ -235,14 +250,26 @@ namespace SystemAcceptance
                     toolStripStatusLabel2.Text = "";
                     string Name = tabControl.SelectedTab.Name + ".p1";
                     panelsDict[Name].setBrowserEngine(mBrowserEngine);
-                    string projectPath = tabDirInfoDict[project].FullName + "\\";
-                    string fullURL = tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html";
+                    string projectPath = tabDirInfoDict[project].FullName + @"\";
+                    //string fullURL = tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html";
 
+                    string l = language;
+                    string fileSuffix = l == "de" ? "_de" : "";
+                    string fileName = string.Empty;
+                    if (tabPage.Text == "Certificate" || tabPage.Text == "Summary")
+                    {
+                        fileName = projectPath + project + fileSuffix + ".html";
+                    }
+                    else
+                    {
+                        fileName = "output.html";
+                    }
+                    string fullURL = Path.Combine(projectPath, fileName);
+
+                    //mBrowserEngine.Reload(true); // Clear the cache ?
                     if (File.Exists(fullURL))
                     {
                         Uri url = new Uri("file://" + fullURL);
-
-                        //mBrowserEngine.Load(url.AbsolutePath);
                         mBrowserEngine.Load(url.AbsolutePath);
                         while (mBrowserEngine.IsLoading)
                         {
@@ -257,6 +284,7 @@ namespace SystemAcceptance
                             toolStripStatusLabel1.Text = "Printing pdf..";
                             progressMatrixControl.ShowProgress(this);
                             progressMatrixControl.ProgressAnimation();
+                            Activate();
                         }));
 
                         Task.Delay(2000);
@@ -273,6 +301,7 @@ namespace SystemAcceptance
                     panelsDict[Name].OnHelp -= OnHelp;
                     panelsDict[Name].OnHelp += OnHelp;
                     logger.Info($"{MethodBase.GetCurrentMethod().Name} - {tabPage} - {project}");
+                    //SaveRenderedHtml(projectPath + "output.html");
                 }
                 catch (Exception ex)
                 {
@@ -285,7 +314,7 @@ namespace SystemAcceptance
         }
 
         #region Show/Hide Buttons
-       
+
 
         private void SetButtonsVisible(Control parent, bool visible)
         {
@@ -370,17 +399,30 @@ namespace SystemAcceptance
                 string name = tabControl.SelectedTab.Name + ".p1";
                 panelsDict[name].setBrowserEngine(mBrowserEngine);
                 mBrowserEngine.Refresh();
-                if (File.Exists(tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html"))
-                {
-                    Uri Url = new Uri("file://" + tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
 
-                    mBrowserEngine.Load(Url.AbsolutePath);
+                project = tabControl.SelectedTab.Name;
+                string projectPath = tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\";
+                string l = language;
+                string fileSuffix = l == "de" ? "_de" : "";
+                string fileName = project + fileSuffix + ".html";
+                string fullURL = Path.Combine(projectPath, fileName);
+
+                if (File.Exists(fullURL))
+                {
+                    //Uri Url = new Uri("file://" + tabDirInfoDict[tabControl.SelectedTab.Name].FullName + "\\" + tabControl.SelectedTab.Name + ".html");
+                    Uri url = new Uri("file://" + fullURL);
+
+                    mBrowserEngine.Load(url.AbsolutePath);
                 }
                 else
                 {
                     mBrowserEngine.LoadHtml("<html><head></head><body></body></html>");
                 }
-
+                while (mBrowserEngine.IsLoading)
+                {
+                    Thread.Sleep(10);
+                }
+                Thread.Sleep(100);
                 panelsDict[name].OnGenerate -= OnExecutePipeline;
                 panelsDict[name].OnGenerate += OnExecutePipeline;
 
@@ -447,7 +489,7 @@ namespace SystemAcceptance
             }
         }
 
-        private void OnExecutePipeline(object sender, EventArgs arg)
+        private void  OnExecutePipeline(object sender, EventArgs arg)
         {
             ExecutePipeline();
         }
@@ -467,6 +509,8 @@ namespace SystemAcceptance
             Application.DoEvents();
 
             project = tabControl.SelectedTab.Name;
+            TabPage tp = tabControl.SelectedTab;
+            
             string projectPath = tabDirInfoDict[project].FullName + "\\";
             /*
              * Load all plugins  inside the current folder. either ned or dll  
@@ -526,7 +570,7 @@ namespace SystemAcceptance
 
 
             //string algoName = parseTemplateFile(projectPath + project + ".md", project);
-            string algoName = parseTemplateFile(mdFile, project);  // md file si null if deutsch is selected !
+            string algoName = parseTemplateFile(mdFile, project);
             eval = new NFEvaluationPointer(factory.getObjectByName(algoName).get());
 
             if (eval.get() == null)
@@ -550,11 +594,11 @@ namespace SystemAcceptance
             eval.setParameter("Working Directory", v);
             int topoIndex = 0;
 
-            //Progress.ProgressBar progressBar = new Progress.ProgressBar();
-
+          
             BeginInvoke(new Action(() =>
             {
-                //progressMatrixControl.Show();
+                
+                DisableButtonsOnProgress(tp);
                 progressMatrixControl.ShowProgress(this);
                 progressMatrixControl.ProgressAnimation();
             }));
@@ -586,7 +630,7 @@ namespace SystemAcceptance
                     }
                     else
                     {
-                        systemNumber = "000";
+                        systemNumber = "000"; // default
                     }
 
                     //List<string> list = topo.getMetaData().getParameterNames().ToList();
@@ -672,31 +716,62 @@ namespace SystemAcceptance
                         evalDox.setInputParameterSet(statisticParameter, psetIndex);
                         psetIndex++;
 
-                        //evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
-                        evalDox.setParameter("Input", new NFVariant(mdFile));
+                        ////evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
+                        //evalDox.setParameter("Input", new NFVariant(mdFile));
 
-                        evalDox.setParameter("StyleSheet", new NFVariant(projectPath + project + ".css"));
+                        //evalDox.setParameter("StyleSheet", new NFVariant(projectPath + project + ".css"));
+                        ////evalDox.setParameter("Output", new NFVariant(projectPath + project + ".html"));
 
-                        evalDox.setParameter("Output", new NFVariant(projectPath + project + ".html"));
+                        string[] languages = { "en", "de" };
 
-                        rc = evalDox.evaluate();
+                        foreach (string lang in languages)
+                        {
+                            string fileSuffix = lang == "de" ? "_de" : "";
+                            string outputFileName = project + fileSuffix + ".html";
+                            string outputPath = Path.Combine(projectPath, outputFileName);
+                            if (lang == "de")
+                            {
+                                evalDox.setParameter("Input", new NFVariant(mdFile));
+                            }
+                            else
+                            {
+                                evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
+                            }
+                            evalDox.setParameter("StyleSheet", new NFVariant(projectPath + project + ".css"));
+                            evalDox.setParameter("Output", new NFVariant(outputPath));
+                            rc = evalDox.evaluate();
+                        }
+
                         if (rc != 0)
                         {
                             BeginInvoke(new Action(() =>
                             {
                                 MessageBox.Show("Error on document creation"); //
-                                //toolStripStatusLabel1.BackColor = Color.Red;
                                 toolStripStatusLabel1.Text = "Error on document creation ";
                             }));
-
                         }
 
-                        if (File.Exists(projectPath + project + ".html"))
-                        {
-                            Uri url = new Uri("file://" + projectPath + project + ".html");
+                        //if (File.Exists(projectPath + project + ".html"))
+                        //{
+                        //    Uri url = new Uri("file://" + projectPath + project + ".html");
 
+                        //    mBrowserEngine.Load(url.AbsolutePath);
+                        //}
+
+                        string l = language;
+                        string fSuffix = l == "de" ? "_de" : "";
+                        string fName = project + fSuffix + ".html";
+                        string fullPath = Path.Combine(projectPath, fName);
+                        if (File.Exists(fullPath))
+                        {
+                            Uri url = new Uri("file://" + fullPath);
                             mBrowserEngine.Load(url.AbsolutePath);
                         }
+                        else
+                        {
+                            Console.WriteLine("HTML file not found!");
+                        }
+
                         toolStripStatusLabel1.Text = ".";
                         Application.DoEvents();
                     }
@@ -715,21 +790,462 @@ namespace SystemAcceptance
                 {
                     //_ = PrintPdf(projectPath, project);
                     PrintPdf(projectPath, project);
-                    ExecuteSummary();
+
+                    RunEvaluation();
+
+                    SaveRenderedHtml(projectPath + "output.html");
+
                     ExecuteCertificate();
+                    ExecuteSummary();
+                    
                 });
 
-                //progressBar.Stop();
                 BeginInvoke(new Action(() =>
                 {
+                    EnableButtonOnProgress(tp);
                     progressMatrixControl.StopProgress();
                     progressMatrixControl.Hide();
                 }));
             });
         }
 
+        private async void RunEvaluation()
+        {
+            IFrame frame = mBrowserEngine.GetMainFrame();
+            await frame.EvaluateScriptAsync("runEvaluation();");
+        }
+
+        private async void SaveRenderedHtml(string outputPath)
+        {
+            IFrame frame = mBrowserEngine.GetMainFrame();
+            string html = await frame.GetSourceAsync();
+
+            File.WriteAllText(outputPath, html);
+        }
+
+        //private async void ExecutePipeline(string fileName = "")
+        //{
+        //    logger.Info($"{MethodBase.GetCurrentMethod().Name} begin..");
+
+        //    try
+        //    {
+        //        BeginInvoke(new Action(() =>
+        //        {
+        //            DisableButtonsOnProgress(tabPage);
+        //            progressMatrixControl.ShowProgress(this);
+        //            progressMatrixControl.ProgressAnimation();
+        //            toolStripStatusLabel1.Text = "Processing…";
+        //            toolStripStatusLabel2.Text = "";
+        //        }));
 
 
+
+        //        string[] fileNames;
+
+        //        if (string.IsNullOrEmpty(fileName))
+        //        {
+        //            NFFileDialogBox dlg = new NFFileDialogBox();
+        //            var result = dlg.ShowDialog();
+
+        //            if (result != DialogResult.OK)
+        //            {
+        //                BeginInvoke(new Action(() =>
+        //                {
+        //                    progressMatrixControl.StopProgress();
+        //                    progressMatrixControl.Hide();
+        //                    EnableButtonOnProgress(tabPage);
+        //                    toolStripStatusLabel1.Text = "";
+        //                    toolStripStatusLabel2.Text = "";
+        //                }));
+        //                return;
+        //            }
+
+        //            fileNames = dlg.Filenames ?? new[] { dlg.FileName };
+        //        }
+        //        else
+        //        {
+        //            fileNames = new[] { fileName };
+        //        }
+
+        //        BeginInvoke(new Action(() =>
+        //        {
+        //            DisableButtonsOnProgress(tabPage);
+        //            progressMatrixControl.ShowProgress(this);
+        //            progressMatrixControl.ProgressAnimation();
+        //            toolStripStatusLabel1.Text = "Processing…";
+        //            toolStripStatusLabel2.Text = "";
+        //        }));
+
+        //        project = tabControl.SelectedTab.Name;
+        //        string projectPath = tabDirInfoDict[project].FullName + "\\";
+
+        //        bool isFitsFile = Path.GetExtension(fileNames[0]).Equals(".fits",
+        //                               StringComparison.InvariantCultureIgnoreCase);
+
+        //        specsDlg = new SpecificationForm(rootPath, project, isFitsFile, fileNames[0]);
+        //        specsDlg.ShowDialog();
+
+
+        //        await Task.Run(() =>
+        //        {
+        //            RunEvaluationPipeline(fileNames, projectPath);
+        //        });
+
+
+        //        ExecuteSummary();
+        //        ExecuteCertificate();
+
+
+        //        List<string> pdfs = await GenerateAllPdfsAsync(projectPath, project);
+        //        pdfDocsList = pdfs;
+
+
+        //        //await PrintFilesAsync(pdfDocsList, systemNumber);
+
+        //        BeginInvoke(new Action(() =>
+        //        {
+        //            progressMatrixControl.StopProgress();
+        //            progressMatrixControl.Hide();
+        //            EnableButtonOnProgress(tabPage);
+        //            toolStripStatusLabel1.Text = "Completed";
+        //        }));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        logger.Error(ex);
+        //        MessageBox.Show(ex.Message, "Pipeline Error");
+        //    }
+        //}
+
+        private void RunEvaluationPipeline(string[] fileNames, string projectPath)
+        {
+            logger.Info("RunEvaluationPipeline()");
+
+            var nedFiles = new DirectoryInfo(projectPath).GetFiles("*.ned");
+            if (nedFiles.Length > 0)
+            {
+                logger.Info($"Loading plugins from: {projectPath}");
+                NFEval_I_CS810x64.NFLoadPlugins(projectPath);
+            }
+            else
+            {
+                logger.Warn($"No NED plugins found in: {projectPath}");
+            }
+
+            //foreach (var name in factory.getObjectNames())
+            //    logger.Info("LOADED ENGINE: " + name);
+
+            var topoStatistic = new NFEvaluationPointer(factory.getObjectByName("NFTopoStatistic").get());
+            var preader = NFParameterSetReader.New();
+
+            string mdFile = FileHelper.SearchForLanguages(projectPath, language, project + ".md");
+            string algoName = parseTemplateFile(mdFile, project);
+
+            eval = new NFEvaluationPointer(factory.getObjectByName(algoName).get());
+            if (eval.get() == null)
+                throw new Exception("Selected evaluation engine is null. Wrong system?");
+
+            preader.setSource(projectPath + algoName + ".npsx");
+            if (preader.read())
+                eval.setParameterSet(preader.getParameterSet());
+
+            var wd = new NFVariant(projectPath);
+            eval.setParameter("WorkingDirectory", wd);
+            eval.setParameter("WorkingDir", wd);
+            eval.setParameter("Working Dir", wd);
+            eval.setParameter("Working Directory", wd);
+
+            int topoIndex = 0;
+
+            foreach (string actualFilename in fileNames)
+            {
+                var reader = NFFileReader.New();
+                reader.setFileName(actualFilename);
+
+                if (reader.evaluate() != 0)
+                    throw new Exception("Could not read file: " + actualFilename);
+
+                topo = reader.getOutputTopo();
+
+                if (topo.getMetaData().containsParameter("Serial"))
+                    systemNumber = topo.getMetaData().getParameter("Serial").getString();
+
+                if (eval.getNumberOfInputTopos() == 1)
+                    eval.setInputTopo(topo, 0);
+                else
+                    eval.setInputTopo(topo, topoIndex);
+
+                topoStatistic.setInputTopo(topo);
+                topoStatistic.evaluate();
+
+                topoIndex++;
+                if (topoIndex >= eval.getNumberOfInputTopos())
+                {
+                    topoIndex = 0;
+                    int rc = eval.evaluate();
+
+                    if (rc != 0)
+                        throw new Exception("Evaluation failed — likely wrong system selected.");
+
+                    GenerateDox(projectPath, mdFile);
+                }
+            }
+
+            // Save parameter
+            var pwriter = NFParameterSetWriter.New();
+            pwriter.setDestination(projectPath + algoName + ".npsx");
+            pwriter.setParameterSet(eval.getParameterSet());
+            pwriter.write();
+
+            cxBound.State = false;
+        }
+
+        private void GenerateDox(string projectPath, string mdFile)
+        {
+            evalDox.setNumberOfInputTopos(1 + eval.getNumberOfOutputTopos());
+
+            evalDox.setInputTopo(topo, 0);
+
+            for (int i = 0; i < eval.getNumberOfOutputTopos(); i++)
+                evalDox.setInputTopo(eval.getOutputTopo(i), i + 1);
+
+            int psetIndex = 0;
+            evalDox.setInputParameterSet(eval.getOutputParameterSet(), psetIndex++);
+            if (specsDlg.standardParameter != null) evalDox.setInputParameterSet(specsDlg.standardParameter, psetIndex++);
+            if (specsDlg.sensorParameter != null) evalDox.setInputParameterSet(specsDlg.sensorParameter, psetIndex++);
+            if (specsDlg.testerParameter != null) evalDox.setInputParameterSet(specsDlg.testerParameter, psetIndex++);
+            if (specsDlg.stagesParameter != null) evalDox.setInputParameterSet(specsDlg.stagesParameter, psetIndex++);
+
+            var statistic = new NFVariant(topo.getMetaData().getParameter("Filename").valueToString());
+            evalDox.setInputParameterSet(topo.getMetaData(), psetIndex++);
+
+            string[] languages = { "en", "de" };
+
+            foreach (string lang in languages)
+            {
+                string suffix = lang == "de" ? "_de" : "";
+                string output = Path.Combine(projectPath, project + suffix + ".html");
+
+                string input = (lang == "de") ? mdFile : Path.Combine(projectPath, project + ".md");
+
+                evalDox.setParameter("Input", new NFVariant(input));
+                evalDox.setParameter("StyleSheet", new NFVariant(Path.Combine(projectPath, project + ".css")));
+                evalDox.setParameter("Output", new NFVariant(output));
+
+                if (evalDox.evaluate() != 0)
+                    throw new Exception("Failed to create HTML: " + output);
+            }
+        }
+
+        private static readonly List<string> _pdfOrder = new List<string>
+        {
+            "Certificate",
+            "Summary",
+            "Flatness",
+            "Lighting",
+            "DepthA1",
+            "DepthA2",
+            "Roughness",
+            "LateralX",
+            "LateralY"
+        };
+
+
+        private List<string> SortPdfsInRequiredOrder(List<string> pdfs)
+        {
+            return pdfs.OrderBy(pdf =>
+                {
+                    string name = Path.GetFileNameWithoutExtension(pdf);
+
+                    int index = _pdfOrder.FindIndex(orderName => name.Contains(orderName));
+
+                    return index == -1 ? int.MaxValue : index;
+                }).ToList();
+        }
+
+        private async Task PrintFilesAsync(List<string> files, string systemNo = "")
+        {
+            BeginInvoke(new Action(() =>
+            {
+                DisableButtonsOnProgress(tabPage);
+                progressMatrixControl.ShowProgress(this);
+                progressMatrixControl.ProgressAnimation();
+                toolStripStatusLabel1.Text = "Merging PDFs...";
+                toolStripStatusLabel2.Text = "";
+            }));
+
+            try
+            {
+                files = files.Where(f => File.Exists(f) && new FileInfo(f).Length > 0).ToList();
+                files = SortPdfsInRequiredOrder(files);
+                if (files.Count == 0)
+                {
+                    MessageBox.Show("No PDF files to merge.");
+                    return;
+                }
+
+                PdfDocument output = new PdfDocument();
+
+                foreach (var file in files)
+                {
+                    using (var doc = PdfReader.Open(file, PdfDocumentOpenMode.Import))
+                    {
+                        for (int i = 0; i < doc.PageCount; i++)
+                            output.AddPage(doc.Pages[i]);
+                    }
+                }
+
+                // Page numbers
+                XFont font = new XFont("Arial", 9, XFontStyleEx.Regular);
+                XBrush brush = XBrushes.Black;
+
+                string total = output.PageCount.ToString();
+
+                for (int i = 0; i < output.PageCount; i++)
+                {
+                    var page = output.Pages[i];
+                    var rect = new XRect(0, page.Height - 20, page.Width, 15);
+
+                    using (XGraphics gfx = XGraphics.FromPdfPage(page))
+                        gfx.DrawString($"{i + 1} / {total}", font, brush, rect, XStringFormats.Center);
+                }
+
+                string final = Path.Combine(rootPath, $"SystemAcceptance_{systemNo}.pdf");
+                output.Save(final);
+                Process.Start(final);
+
+                BeginInvoke(new Action(() =>
+                {
+                    toolStripStatusLabel1.Text = "Saved:";
+                    toolStripStatusLabel2.Text = final;
+                }));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                logger.Error(ex);
+            }
+            finally
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    progressMatrixControl.StopProgress();
+                    progressMatrixControl.Hide();
+                    EnableButtonOnProgress(tabPage);
+                }));
+            }
+        }
+
+        private async Task<List<string>> GenerateAllPdfsAsync(string projectPath, string projectName)
+        {
+            var pdfs = new List<string>();
+            string[] languages = { "en", "de" };
+            string[] sections = { projectName, "Summary", "Certificate" };
+
+            foreach (var section in sections)
+            {
+                foreach (var lang in languages)
+                {
+                    string suffix = lang == "de" ? "_de" : "";
+                    string html = Path.Combine(projectPath, $"{section}{suffix}.html");
+                    string pdf = Path.Combine(projectPath, $"{section}{suffix}.pdf");
+
+                    if (File.Exists(pdf)) File.Delete(pdf);
+
+                    await NavigateAndPrintAsync(html, pdf);
+
+                    if (File.Exists(pdf))
+                        pdfs.Add(pdf);
+                }
+            }
+
+            return pdfs;
+        }
+
+        private async Task NavigateAndPrintAsync(string htmlPath, string pdfPath)
+        {
+            //if (!File.Exists(htmlPath))
+            //{
+            //    logger.Warn($"HTML missing: {htmlPath}");
+            //    return;
+            //}
+
+            var settings = new PdfPrintSettings
+            {
+                MarginType = CefPdfPrintMarginType.Custom,
+                PrintBackground = true,
+                MarginTop = MarginTop,
+                MarginBottom = MarginBottom,
+                MarginLeft = MarginLeft,
+                MarginRight = MarginRight
+            };
+
+            lock (_printLock)
+            {
+                _lastPrintTask = _lastPrintTask.ContinueWith(async _ =>
+                {
+                    try
+                    {
+                        var url = new Uri("file://" + htmlPath);
+                        var loadTask = WaitForPageLoadAsync();
+
+                        mBrowserEngine.Load(url.AbsoluteUri);
+                        await loadTask.ConfigureAwait(false);
+
+                        await PrintToPdfAsync(pdfPath, settings).ConfigureAwait(false);
+
+                        logger.Info($"Printed: {pdfPath}");
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.Error(ex, $"NavigateAndPrintAsync failed: {htmlPath}");
+                        throw;
+                    }
+                }).Unwrap();
+            }
+
+            await _lastPrintTask.ConfigureAwait(false);
+        }
+
+        private Task PrintToPdfAsync(string pdfPath, PdfPrintSettings settings)
+        {
+            var tcs = new TaskCompletionSource<bool>();
+
+            EventHandler<bool> handler = null;
+            handler = (s, success) =>
+            {
+                printCallback.PrintFinished -= handler;
+
+                if (success)
+                    tcs.TrySetResult(true);
+                else
+                    tcs.TrySetException(new Exception("PrintToPdf failed."));
+            };
+
+            printCallback.PrintFinished += handler;
+
+            mBrowserEngine.GetBrowser().GetHost().PrintToPdf(pdfPath, settings, printCallback);
+
+            return tcs.Task;
+        }
+
+        private Task WaitForPageLoadAsync()
+        {
+            var tcs = new TaskCompletionSource<bool>();
+
+            EventHandler<LoadingStateChangedEventArgs> handler = null;
+            handler = (s, e) =>
+            {
+                if (!e.IsLoading)
+                {
+                    mBrowserEngine.LoadingStateChanged -= handler;
+                    tcs.TrySetResult(true);
+                }
+            };
+
+            mBrowserEngine.LoadingStateChanged += handler;
+            return tcs.Task;
+        }
 
         //private async Task PrintPdf(string projectPath, string projectName)
         private void PrintPdf(string projectPath, string projectName)
@@ -759,11 +1275,12 @@ namespace SystemAcceptance
 
                 settings.MarginTop = MarginTop;
                 settings.MarginBottom = MarginBottom;
+
                 settings.MarginLeft = MarginLeft;
                 settings.MarginRight = MarginRight;
 
-                pdfDocs.Remove(filename);
-                pdfDocs.Add(filename);
+                pdfDocsList.Remove(filename);
+                pdfDocsList.Add(filename);
 
                 mBrowserEngine.GetBrowser().GetHost().PrintToPdf(filename, settings, printCallback);
 
@@ -776,6 +1293,61 @@ namespace SystemAcceptance
             catch (Exception)
             {
                 toolStripStatusLabel1.Text = "  Printing  Failed";
+            }
+        }
+
+        private void PrintAllLanguagePdfs(string projectPath, string projectName)
+        {
+            string jsonFile = FileHelper.optionsFile;
+            LoadPDFsettings(jsonFile);
+
+            toolStripStatusLabel1.Text = "";
+            toolStripStatusLabel2.Text = "";
+
+            string[] languages = { "en", "de" };
+
+            foreach (string lang in languages)
+            {
+                try
+                {
+                    string suffix = lang == "de" ? "_de" : "";
+                    string htmlFile = Path.Combine(projectPath, projectName + suffix + ".html");
+                    string pdfFile = Path.Combine(projectPath, projectName + suffix + ".pdf");
+
+                    if (!File.Exists(htmlFile))
+                    {
+                        toolStripStatusLabel1.Text += $"HTML file missing: {htmlFile}\n";
+                        continue;
+                    }
+
+                    if (File.Exists(pdfFile)) File.Delete(pdfFile);
+
+                    PdfPrintSettings settings = new PdfPrintSettings
+                    {
+                        MarginType = CefPdfPrintMarginType.Custom,
+                        PrintBackground = true,
+                        MarginTop = MarginTop,
+                        MarginBottom = MarginBottom,
+                        MarginLeft = MarginLeft,
+                        MarginRight = MarginRight
+                    };
+
+                    pdfDocsList.Remove(pdfFile);
+                    pdfDocsList.Add(pdfFile);
+
+                    mBrowserEngine.Load(new Uri("file://" + htmlFile).AbsolutePath);
+
+                    mBrowserEngine.GetBrowser().GetHost().PrintToPdf(pdfFile, settings, printCallback);
+
+                    BeginInvoke(new Action(() =>
+                    {
+                        toolStripStatusLabel2.Text += $"Generated: {pdfFile}\n";
+                    }));
+                }
+                catch (Exception ex)
+                {
+                    toolStripStatusLabel1.Text += $"Printing failed for {lang}: {ex.Message}\n";
+                }
             }
         }
 
@@ -799,28 +1371,40 @@ namespace SystemAcceptance
             if (false == tabDirInfoDict.ContainsKey(project)) return;
 
             string projectPath = tabDirInfoDict[project].FullName + "\\";
-            // Check if Language exists
-            //string language = Settings.Default.Language;
+
             string mdFile = FileHelper.SearchForLanguages(projectPath, language, project + ".md");
 
             evalDox.setNumberOfInputTopos(1);
 
             evalDox.setInputTopo(topo, 0);
+            int rc = -1;
+            string[] languages = { "en", "de" };
 
-            //evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
-            evalDox.setParameter("Input", new NFVariant(mdFile));
-
-            evalDox.setParameter("StyleSheet", new NFVariant(projectPath + project + ".css"));
-
-            evalDox.setParameter("Output", new NFVariant(projectPath + project + ".html"));
-
-            int rc = evalDox.evaluate();
+            foreach (string lang in languages)
+            {
+                string fileSuffix = lang == "de" ? "_de" : "";
+                string outputFileName = project + fileSuffix + ".html";
+                string outputPath = Path.Combine(projectPath, outputFileName);
+                if (lang == "de")
+                {
+                    evalDox.setParameter("Input", new NFVariant(mdFile));
+                }
+                else
+                {
+                    evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
+                }
+                evalDox.setParameter("StyleSheet", new NFVariant(projectPath + project + ".css"));
+                evalDox.setParameter("Output", new NFVariant(outputPath));
+                rc = evalDox.evaluate();
+            }
             if (rc != 0)
             {
                 MessageBox.Show("Error on document creation");
                 toolStripStatusLabel1.Text = "Error on document creation";
                 return;
             }
+
+            //SaveRenderedHtml(projectPath+"output.html");
         }
 
         private void ExecuteCertificate()
@@ -829,22 +1413,40 @@ namespace SystemAcceptance
             if (false == tabDirInfoDict.ContainsKey(project)) return;
 
             string projectPath = tabDirInfoDict[project].FullName + "\\";
-            // Check if Language exists
-            //string language = Settings.Default.Language;
             string mdFile = FileHelper.SearchForLanguages(projectPath, language, project + ".md");
 
             evalDox.setNumberOfInputTopos(1);
 
             evalDox.setInputTopo(topo, 0);
 
-            //evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
-            evalDox.setParameter("Input", new NFVariant(mdFile));
+            ////evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
+            //evalDox.setParameter("Input", new NFVariant(mdFile));
 
-            evalDox.setParameter("StyleSheet", new NFVariant(projectPath + project + ".css"));
+            //evalDox.setParameter("StyleSheet", new NFVariant(projectPath + project + ".css"));
 
-            evalDox.setParameter("Output", new NFVariant(projectPath + project + ".html"));
+            //evalDox.setParameter("Output", new NFVariant(projectPath + project + ".html"));
 
-            int rc = evalDox.evaluate();
+            //int rc = evalDox.evaluate();
+            int rc = -1;
+            string[] languages = { "en", "de" };
+
+            foreach (string lang in languages)
+            {
+                string fileSuffix = lang == "de" ? "_de" : "";
+                string outputFileName = project + fileSuffix + ".html";
+                string outputPath = Path.Combine(projectPath, outputFileName);
+                if (lang == "de")
+                {
+                    evalDox.setParameter("Input", new NFVariant(mdFile));
+                }
+                else
+                {
+                    evalDox.setParameter("Input", new NFVariant(projectPath + project + ".md"));
+                }
+                evalDox.setParameter("StyleSheet", new NFVariant(projectPath + project + ".css"));
+                evalDox.setParameter("Output", new NFVariant(outputPath));
+                rc = evalDox.evaluate();
+            }
             if (rc != 0)
             {
                 MessageBox.Show("Error on document creation");
@@ -853,8 +1455,8 @@ namespace SystemAcceptance
             }
         }
 
-        private async Task PrintFiles(List<string> files, string systemNo = "")
         //private void PrintFiles(List<string> files, string systemNo = "")
+        private async Task PrintFiles(List<string> files, string systemNo = "")
         {
             BeginInvoke(new Action(() =>
             {
@@ -865,6 +1467,7 @@ namespace SystemAcceptance
                 progressMatrixControl.ShowProgress(this);
                 progressMatrixControl.ProgressAnimation();
             }));
+
 
             int certificateIndex = files.FindIndex(x => x.Contains("Certificate"));
             if (certificateIndex != 0 && certificateIndex > 0)
@@ -909,6 +1512,7 @@ namespace SystemAcceptance
                     page = outputDocument.AddPage(page);
                 }
             }
+
             // Add the page counter.
             // Make a font and a brush to draw the page counter.
             XFont font = new XFont("Arial", 9, XFontStyleEx.Regular);
@@ -959,10 +1563,12 @@ namespace SystemAcceptance
             }
         }
 
-        private void printToolStripMenuItem1_Click(object sender, EventArgs e)
+        private async void printToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Task.Run(() => PrintFiles(pdfDocs, systemNumber));
-            //PrintFiles(pdfDocs, systemNumber);
+            //Task.Run(() => PrintFiles(pdfDocsList, systemNumber));
+            ////PrintFiles(pdfDocs, systemNumber);
+
+            await PrintFilesAsync(pdfDocsList, systemNumber);
         }
 
         private void mainForm_Shown(object sender, EventArgs e)
@@ -1101,8 +1707,7 @@ namespace SystemAcceptance
                 textColor = Color.Black;
             }
 
-            using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(
-                tabRect, startColor, endColor, System.Drawing.Drawing2D.LinearGradientMode.Vertical))
+            using (var brush = new System.Drawing.Drawing2D.LinearGradientBrush(tabRect, startColor, endColor, System.Drawing.Drawing2D.LinearGradientMode.Vertical))
             {
                 e.Graphics.FillRectangle(brush, tabRect);
             }
@@ -1354,7 +1959,6 @@ namespace SystemAcceptance
                             file.WriteLine(frmSelect.SelectedKey);
                             file.WriteLine("actual HeightScale Factor: " + factors[0] + "\n" + "new HeightScale Factor: " + newHeightScaleFactor.ToString());
                             file.WriteLine("-----------------------------------------------------------------------------------------");
-
                         }
                     }
                 }
@@ -1366,8 +1970,6 @@ namespace SystemAcceptance
             }
             return newHeightScaleFactor;
         }
-
-
 
         public double getHeightScaleFactor()
         {

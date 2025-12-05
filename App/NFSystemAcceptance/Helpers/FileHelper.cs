@@ -69,9 +69,9 @@ namespace SystemAcceptance
                         Customer = "Default",
                         SystemNummer = "Default",
                         Tester = "Default",
-                        Temperature = "Default",
-                        Location = "Default",
-                        Humidity = "Default"
+                        Temperature = "",
+                        Location = "Oberhausen",
+                        Humidity = ""
                     };
 
                     string json = JsonConvert.SerializeObject(info, Formatting.Indented);
@@ -83,7 +83,6 @@ namespace SystemAcceptance
                 throw; 
             }
         }
-
 
         public static string SearchForLanguages(string projectPath, string languageDir, string mdFile)
         {

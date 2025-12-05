@@ -11,11 +11,11 @@
 
 |||||
 |-|-|-|-|
-|__System:__|  CM |__Calibration instruction:__| VDI/VDE 2655 Part 1.2|
-|__Type__|   @PARAM{"Name":"Model"}@|__Certificate number:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
-|__System number:__| @PARAM{"Name":"Serial"}@|__Standard:__|@PARAM{"Name":"Lateralnormal","Precision":12}@|
-|__Customer:__| @PARAM{"Name":"Manufacturer"}@|__Unit location:__ | @PARAM{"Name":"Location"}@|
-|__Lens:__|@PARAM{"Name":"LensSerialNumber"}@|__Date:__ | @YEAR@-@MONTH@-@DAY@ |
+|__System:__|  CM |__Kalibrierungsanleitung:__| VDI/VDE 2655 Part 1.2|
+|__Typ__|   @PARAM{"Name":"Model"}@|__Zertifikatsnummer:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
+|__Systemnummer:__| @PARAM{"Name":"Serial"}@|__Standard:__|@PARAM{"Name":"Lateralnormal","Precision":12}@|
+|__Kunde:__| @PARAM{"Name":"Manufacturer"}@|__Standort:__ | @PARAM{"Name":"Location"}@|
+|__Linse:__|@PARAM{"Name":"LensSerialNumber"}@|__Datum:__ | @YEAR@-@MONTH@-@DAY@ |
 |||||
 |||||
 |||||
@@ -75,8 +75,8 @@ Result["nominal"] = nominal ;
 Result["status"] = status ;
 Result["timestamp"] = Date.now();
 sessionStorage.setItem(document.title+"Lateral Y", JSON.stringify(Result));
-
 }
+
 </script>
 
  

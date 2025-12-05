@@ -1,4 +1,4 @@
-<!--   EvalAlgoName=grooveA2 -->
+<!--   EvalAlgoName=grooveA1 -->
 
 
 
@@ -6,21 +6,21 @@
 |-:|
 |![](logo.png)|
 
-### Depth A2
+## Depth A1
 
 
 
 |||||
 |-|-|-|-|
-|__System:__|  CM |__Calibration instruction:__| VDI/VDE 2655 Part 1.2|
-|__Type__|   @PARAM{"Name":"Model"}@|__Certificate number:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
-|__System number:__| @PARAM{"Name":"Serial"}@|__Standard:__|@PARAM{"Name":"Tiefeneinstellnormal","Precision":12}@|
-|__Customer:__| @PARAM{"Name":"Manufacturer"}@|__Unit location:__ | @PARAM{"Name":"Location"}@|
-|__Lens:__|@PARAM{"Name":"LensSerialNumber"}@|__Date:__ | @YEAR@-@MONTH@-@DAY@ |
+|__System:__|  CM |__Kalibrierungsanleitung:__| VDI/VDE 2655 Part 1.2|
+|__Typ__|   @PARAM{"Name":"Model"}@|__Zertifikatsnummer:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
+|__Systemnummer:__| @PARAM{"Name":"Serial"}@|__Standard:__|@PARAM{"Name":"Tiefeneinstellnormal","Precision":12}@|
+|__Kunde:__| @PARAM{"Name":"Manufacturer"}@|__Standort:__ | @PARAM{"Name":"Location"}@|
+|__Linse:__|@PARAM{"Name":"LensSerialNumber"}@|__Datum:__ | @YEAR@-@MONTH@-@DAY@ |
 |||||
 |||||
 |||||
-
+ 
  
 
 
@@ -30,14 +30,14 @@
 
  
 
-
 ### Evaluation
 
 //|||||||
 //|-|-|-|-|-|-|
 //|unit|nominal value|target value| | tolerance +/-| result|
 //| µm| @PARAM{"Name":"Soll","Precision":3}@|  @PARAM{"Name":"d","Precision":3}@||| <spban id="control"> Ok</span>|
-  
+ 
+
 
 
 
@@ -45,7 +45,6 @@
 <script src="../../SystemAcceptance.js"> </script>
 <script>
 function runEvaluation(){
-
 var PARAM = @PJSON{"Set":0}@;
 var META = @MJSON{"Set":0}@;
 
@@ -106,10 +105,10 @@ for (i = 0; i<length;++i)
 
 stddev = Math.sqrt(variance);
 range = Math.max(...values) - Math.min(...values);
-var result = checkResult(mean, nominal, tolerance);
-//var result = checkResult((mean*-1), nominal, tolerance);
+var result = checkResult((mean*-1), nominal, tolerance);
 
 row = table.insertRow();  // DOM method for creating table rows
+row.insertCell().textContent =  "";
 row.insertCell().textContent =  "Unit";
 row.insertCell().textContent =  "Nominal";
 row.insertCell().textContent =  "Measured";
@@ -121,9 +120,10 @@ row.insertCell().textContent =  "Result";
 
 
 row = table.insertRow();  // DOM method for creating table rows
+row.insertCell().textContent =  "Depth";
 row.insertCell().textContent =  "µm";
 row.insertCell().textContent =  nominal.toFixed(3);
-row.insertCell().textContent =  mean.toFixed(3);
+row.insertCell().textContent =  mean.toFixed(3)*-1;
 row.insertCell().textContent =  tolerance.toFixed(3);
 row.insertCell().textContent =  stddev.toFixed(6);
 row.insertCell().textContent =  range.toFixed(6);
@@ -174,17 +174,22 @@ btn2.onclick = function () {
 	table.deleteRow(2);
   sessionStorage.clear();
 };
-
 var Result = {"value":0,"nominal":0,"status":"","timestamp":0};
-Result["value"] = mean.toFixed(3) ;
+Result["value"] = mean.toFixed(3)*-1 ;
 Result["nominal"] = nominal.toFixed(3) ;
 Result["status"] = result ;
 Result["timestamp"] = Date.now();
+
 document.getElementById("sumresults").appendChild(btn2);
-sessionStorage.setItem(document.title+"Depth A2 ", JSON.stringify(Result));
+sessionStorage.setItem(document.title+"Depth A1 ", JSON.stringify(Result));
 }
 </script>
 
 
 
 --- 
+
+
+
+
+ 

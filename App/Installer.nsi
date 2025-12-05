@@ -1,3 +1,10 @@
+;--------------------------------
+; SystemAcceptance Installer Script
+; Copyright (c) NanoFocus AG
+; Author: Doruntin Koci
+; Date: 18.09.2024
+;--------------------------------
+
 SetCompressor /SOLID zlib
 SetCompressorDictSize 64
 Unicode true
@@ -7,6 +14,9 @@ Unicode true
 !include "logiclib.nsh"
 !include "FileFunc.nsh"
 !include "winmessages.nsh"
+
+
+
 ; All users / current user page
 !define MULTIUSER_EXECUTIONLEVEL Highest
 !define MULTIUSER_MUI
@@ -32,14 +42,18 @@ Unicode true
 !define MUI_LANGDLL_REGISTRY_ROOT "${PRODUCT_UNINST_ROOT_KEY}"
 !define MUI_LANGDLL_REGISTRY_KEY "${PRODUCT_UNINST_KEY}"
 !define MUI_LANGDLL_REGISTRY_VALUENAME "NSIS:Language"
-
+!insertmacro GetFileVersion
 
 InstallDir "$PROGRAMFILES64\Nanofocus\evaluation\SystemAcceptance"
 
 Name "SystemAcceptance"
 OutFile  "Setup_SystemAcceptance.exe"
 BrandingText "NanoFocus AG"
-Caption "$(^Name)  - Generated: ${__DATE__}"
+Caption "$(^Name)  v$AppVer - ${__DATE__}"
+
+Var AppVer
+
+
 
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "German"
@@ -51,6 +65,19 @@ var hwnd
 Var LogoSelection
 Var NEW_LOGO
 Var TARGET_DIR
+
+Function .onInit
+  ; Get the version from the EXE
+  ${GetFileVersion} "D:\source\repos\SystemAcceptance\App\NFSystemAcceptance\bin\x64\Release\SystemAcceptance.exe" $AppVer
+  ${If} $AppVer == ""
+    StrCpy $AppVer "1.0.0.0"
+  ${EndIf}
+
+  ; Dynamically set the installer window title
+  System::Call 'user32::SetWindowTextA(i $HWNDPARENT, t "SystemAcceptance $AppVer")'
+  
+  
+FunctionEnd
 
 Function SelectLogo
   ; Create Radio Buttons

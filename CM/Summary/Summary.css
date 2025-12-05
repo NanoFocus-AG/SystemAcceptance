@@ -3,15 +3,15 @@
 body  {
         width : 70%;
         margin: 0 auto;
-        padding-right: 1em;
-        padding-left: 1em;
+         padding-right: 0 0.5em;
+        padding-left: 0 0.5em;
         max-width: 84em; 
         border-left: 0px solid black;
         border-right: 0px solid black;
         color: black;
         font-family: Calibri,sans-serif;
-        font-size: 100%;
-        line-height: 100%;
+       font-size: 93%;
+        line-height: 1.5;
         background-color: #FFFFFF; 
 		clear: both;
 		background-size: 40px 40px;
@@ -39,7 +39,7 @@ table {
 
 th, td {
   text-align: left;
-  padding: 6px;
+  padding: 3px 4px;
 } 
 
 tr:nth-child(even) {

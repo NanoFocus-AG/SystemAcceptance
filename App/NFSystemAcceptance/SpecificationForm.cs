@@ -471,10 +471,7 @@ namespace SystemAcceptance
             return ansiString;
         }
 
-        private void txtCustomer_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void SpecificationForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -505,36 +502,91 @@ namespace SystemAcceptance
 
         private void txtTemperature_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string text = ((Control) sender ).Text;
-            if (e.KeyChar == '-' && text.Length == 0)
+
+            if (char.IsControl(e.KeyChar))
             {
-                e.Handled = false;
                 return;
             }
 
-            if (e.KeyChar == '.' && text.Length > 0 && !text.Contains("."))
+            if (char.IsDigit(e.KeyChar))
             {
-                e.Handled = false;
+                string txt = txtTemperature.Text;
+                int commaPos = txt.IndexOf(',');
+
+                if (commaPos == -1)
+                {
+                    if (txt.Length >=2)
+                    {
+                        e.Handled = true;
+                    }
+                }
+                else
+                {
+                    if (commaPos >=2 && txtTemperature.SelectionStart <= commaPos)
+                    {
+                        e.Handled = true;
+                    }
+                }
                 return;
             }
-            e.Handled = (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar));
+
+            if (e.KeyChar == ',')
+            {
+                if (!txtTemperature.Text.Contains(','))
+                {
+                    return;
+                }
+                e.Handled = true;
+                return;
+            }
+            e.Handled = true;
         }
 
         private void txtHumidity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string text = ((Control)sender).Text;
-            if (e.KeyChar == '-' && text.Length == 0)
+
+            if (char.IsControl(e.KeyChar))
             {
-                e.Handled = false;
+                return;
+            }
+            if (char.IsDigit(e.KeyChar))
+            {
+                if (txtHumidity.Text.Length >=2)
+                {
+                    e.Handled = true;
+                }
                 return;
             }
 
-            if (e.KeyChar == '.' && text.Length > 0 && !text.Contains("."))
+            
+            e.Handled = true;
+        }
+
+       
+
+        private void txtTemperature_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = txtTemperature;
+            string txt = tb.Text;
+            if (string.IsNullOrEmpty(txt))
             {
-                e.Handled = false;
                 return;
             }
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+
+            int commaPos = txt.IndexOf(',');
+            if (commaPos == -1)
+            {
+                return;
+            }
+            string before = txt.Substring(0, commaPos + 1);
+            string after = txt.Substring(commaPos + 1);
+
+            if (after.Length > 1)
+            {
+                after = after.Substring(0, 1);
+                tb.Text = before + after;
+                tb.SelectionStart = tb.Text.Length;
+            }
         }
     }
 

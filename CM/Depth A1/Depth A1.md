@@ -6,7 +6,7 @@
 |-:|
 |![](logo.png)|
 
-## Depth
+## Depth A1
 
 
 
@@ -44,7 +44,7 @@
 <div id="sumresults">  </div>
 <script src="../../SystemAcceptance.js"> </script>
 <script>
-
+function runEvaluation(){
 var PARAM = @PJSON{"Set":0}@;
 var META = @MJSON{"Set":0}@;
 
@@ -182,7 +182,7 @@ Result["timestamp"] = Date.now();
 
 document.getElementById("sumresults").appendChild(btn2);
 sessionStorage.setItem(document.title+"Depth A1 ", JSON.stringify(Result));
-
+}
 </script>
 
 
