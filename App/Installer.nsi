@@ -29,7 +29,7 @@ Unicode true
 ;!include "MUI2.nsh"
 !define MUI_COMPONENTSPAGE_SMALLDESC ;No value
 ;!define MUI_UI ".\Contrib\UIs\modern.exe" ;Value
-!define MUI_UI "C:\NSIS\Contrib\UIs\modern.exe" ;Value
+!define MUI_UI "${NSISDIR}\Contrib\UIs\modern.exe" ;Value
 !define MUI_INSTFILESPAGE_COLORS "000000 FFFFFF" ;Two colors
 
 
