@@ -161,8 +161,8 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NFEval_CS_SDK">
-      <HintPath>C:\Program Files\Nanofocus\evaluation\NFEval_CS_SDK.dll</HintPath>
-    </Reference>
+<HintPath>$(NFEVAL_DIR)\bin\NFEval_CS_SDK.dll</HintPath>
+</Reference>
     <Reference Include="NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.6.0.5\lib\net46\NLog.dll</HintPath>
     </Reference>
@@ -192,9 +192,6 @@
     </Reference>
     <Reference Include="PdfSharp.WPFonts, Version=6.2.2.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.6.2.2\lib\netstandard2.0\PdfSharp.WPFonts.dll</HintPath>
-    </Reference>
-    <Reference Include="ProgressMatrix">
-      <HintPath>..\..\..\ProgressMatrixControl\bin\Release\ProgressMatrix.dll</HintPath>
     </Reference>
     <Reference Include="ProgressODoom, Version=1.0.6117.26918, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ProgressODoom.1.0.6117.26918\lib\net20\ProgressODoom.dll</HintPath>
@@ -349,6 +346,10 @@
     <ProjectReference Include="..\..\..\NFOpenFileDialog\NFOpenFileDialog\NFOpenFileDialog.csproj">
       <Project>{c3eb443d-0049-4843-ba06-3066a16de9ce}</Project>
       <Name>NFOpenFileDialog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ProgressMatrixControl\ProgressMatrix.csproj">
+      <Project>{16d1dfff-c585-4321-b777-6b200a3e2260}</Project>
+      <Name>ProgressMatrix</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

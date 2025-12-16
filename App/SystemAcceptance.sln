@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemAcceptance", "NFSyste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NFOpenFileDialog", "..\..\NFOpenFileDialog\NFOpenFileDialog\NFOpenFileDialog.csproj", "{C3EB443D-0049-4843-BA06-3066A16DE9CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgressMatrix", "..\..\ProgressMatrixControl\ProgressMatrix.csproj", "{16D1DFFF-C585-4321-B777-6B200A3E2260}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{C3EB443D-0049-4843-BA06-3066A16DE9CE}.Release|x64.Build.0 = Release|x64
 		{C3EB443D-0049-4843-BA06-3066A16DE9CE}.Release|x86.ActiveCfg = Release|Any CPU
 		{C3EB443D-0049-4843-BA06-3066A16DE9CE}.Release|x86.Build.0 = Release|Any CPU
+		{16D1DFFF-C585-4321-B777-6B200A3E2260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16D1DFFF-C585-4321-B777-6B200A3E2260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16D1DFFF-C585-4321-B777-6B200A3E2260}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{16D1DFFF-C585-4321-B777-6B200A3E2260}.Debug|x64.Build.0 = Debug|Any CPU
+		{16D1DFFF-C585-4321-B777-6B200A3E2260}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{16D1DFFF-C585-4321-B777-6B200A3E2260}.Debug|x86.Build.0 = Debug|Any CPU
+		{16D1DFFF-C585-4321-B777-6B200A3E2260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16D1DFFF-C585-4321-B777-6B200A3E2260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16D1DFFF-C585-4321-B777-6B200A3E2260}.Release|x64.ActiveCfg = Release|Any CPU
+		{16D1DFFF-C585-4321-B777-6B200A3E2260}.Release|x64.Build.0 = Release|Any CPU
+		{16D1DFFF-C585-4321-B777-6B200A3E2260}.Release|x86.ActiveCfg = Release|Any CPU
+		{16D1DFFF-C585-4321-B777-6B200A3E2260}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
