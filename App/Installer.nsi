@@ -68,7 +68,7 @@ Var TARGET_DIR
 
 Function .onInit
   ; Get the version from the EXE
-  ${GetFileVersion} "D:\source\repos\SystemAcceptance\App\NFSystemAcceptance\bin\x64\Release\SystemAcceptance.exe" $AppVer
+  ${GetFileVersion} ".\NFSystemAcceptance\bin\x64\Release\SystemAcceptance.exe" $AppVer
   ${If} $AppVer == ""
     StrCpy $AppVer "1.0.0.0"
   ${EndIf}
