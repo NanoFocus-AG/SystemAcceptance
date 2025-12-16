@@ -161,8 +161,8 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NFEval_CS_SDK">
-<HintPath>$(NFEVAL_DIR)\bin\NFEval_CS_SDK.dll</HintPath>
-</Reference>
+      <HintPath>$(NFEVAL_DIR)\bin\NFEval_CS_SDK.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.6.0.5\lib\net46\NLog.dll</HintPath>
     </Reference>
@@ -358,8 +358,8 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release "C:\NSIS\makensis.exe" "$(SolutionDir)\Installer.nsi"
-if $(ConfigurationName) == Release copy /Y "$(SolutionDir)Setup_SystemAcceptance.exe" "C:\Users\koci\Desktop\SysAcceptance_Last_Release"</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Release "M:\tools\NSIS\makensis.exe" "$(SolutionDir)\Installer.nsi"
+if $(ConfigurationName) == Release copy /Y "$(SolutionDir)Setup_SystemAcceptance.exe" "C:\Users\%25USERNAME%25\Desktop\SysAcceptance_Last_Release"</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
