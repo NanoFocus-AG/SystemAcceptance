@@ -1,4 +1,4 @@
-<!--   EvalAlgoName=grooveA2 -->
+<!--   EvalAlgoName=NFCalculateGrooveA2 -->
 
 
 
@@ -6,13 +6,13 @@
 |-:|
 |![](logo.png)|
 
-### Depth A2
+### Depth
 
 
 
 |||||
 |-|-|-|-|
-|__System:__|  CM |__Calibration instruction:__| VDI/VDE 2655 Part 1.2|
+|__System:__|  @PARAM{"Name":"SystemTypeName"}@ |__Calibration instruction:__| VDI/VDE 2655 Part 1.2|
 |__Type__|   @PARAM{"Name":"Model"}@|__Certificate number:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |__System number:__| @PARAM{"Name":"Serial"}@|__Standard:__|@PARAM{"Name":"Tiefeneinstellnormal","Precision":12}@|
 |__Customer:__| @PARAM{"Name":"Manufacturer"}@|__Unit location:__ | @PARAM{"Name":"Location"}@|
@@ -36,7 +36,7 @@
 //|||||||
 //|-|-|-|-|-|-|
 //|unit|nominal value|target value| | tolerance +/-| result|
-//| µm| @PARAM{"Name":"Soll","Precision":3}@|  @PARAM{"Name":"d","Precision":3}@||| <spban id="control"> Ok</span>|
+//| µm| @PARAM{"Name":"Soll","Precision":3}@|  @PARAM{"Name":"d:","Precision":3}@||| <spban id="control"> Ok</span>|
   
 
 
@@ -87,10 +87,10 @@ for(let i = 0; i<length;++i)
 	
 	//row = table.insertRow();  // DOM method for creating table rows
     //row.insertCell().textContent =  i.toString();      
-    //row.insertCell().textContent =  data["d"].value.toFixed(3);
+    //row.insertCell().textContent =  data["d:"].value.toFixed(3);
 	
-	average += data["d"].value;
-	values[i]= data["d"].value;
+	average += data["d:"].value;
+	values[i]= data["d:"].value;
 	 
 }
 mean = average / length;
@@ -175,13 +175,7 @@ btn2.onclick = function () {
   sessionStorage.clear();
 };
 
-var Result = {"value":0,"nominal":0,"status":"","timestamp":0};
-Result["value"] = mean.toFixed(3) ;
-Result["nominal"] = nominal.toFixed(3) ;
-Result["status"] = result ;
-Result["timestamp"] = Date.now();
 document.getElementById("sumresults").appendChild(btn2);
-sessionStorage.setItem(document.title+"Depth A2 ", JSON.stringify(Result));
 }
 </script>
 

@@ -14,5 +14,6 @@ namespace SystemAcceptance.Helpers
         public string Temperature { get; set; }
         public string Location { get; set; }
         public string Humidity { get; set; }
+        public string LensNr { get; set; }
     }
 }

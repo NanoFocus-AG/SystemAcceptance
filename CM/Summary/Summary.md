@@ -7,7 +7,7 @@
 
 |||||
 |-|-|-|-|
-|__System:__|  CM |__Calibration instruction:__| VDI/VDE 2655 Part 1.2|
+|__System:__|  @PARAM{"Name":"SystemTypeName"}@ |__Calibration instruction:__| VDI/VDE 2655 Part 1.2|
 |__Type__|   @PARAM{"Name":"Model"}@|__Certificate number:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |__System number:__| @PARAM{"Name":"Serial"}@|__Unit location:__ | @PARAM{"Name":"Location"}@|
 |__Customer:__| @PARAM{"Name":"Manufacturer"}@|__Date:__ | @YEAR@-@MONTH@-@DAY@ |

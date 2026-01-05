@@ -65,12 +65,14 @@ namespace SystemAcceptance
 
         private NFParameterSetPointer sensorType;
 
+        private NFParameterSetPointer systemType;
+
         private NFParameterSetPointer stagesType;
 
         //out
         public NFParameterSetPointer sensorParameter;
         public NFParameterSetPointer standardParameter;
-        public NFParameterSetPointer testerParameter;
+        public NFParameterSetPointer infoParameter;
         public NFParameterSetPointer stagesParameter;
 
         NFParameterSetReaderPointer preader = NFParameterSetReader.New();
@@ -84,10 +86,38 @@ namespace SystemAcceptance
 
         private Info info = new Info();//
 
+
+        private void LoadSystemTypes()
+        {
+            string filePath = FileHelper.systemTypFile;
+
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("systemTyp.json not found");
+                return;
+            }
+
+            string json = File.ReadAllText(filePath);
+
+            var systemTypes = JsonConvert.DeserializeObject<List<string>>(json);
+
+            cmbSystemType.DataSource = systemTypes;
+            if (systemTypes.Count > 0) 
+            { 
+                infoParameter.setParameter("SystemTypeName", new NFVariant(systemTypes[0]));
+            }
+            else
+            {
+                infoParameter.setParameter("SystemTypeName", new NFVariant(""));
+            }
+        }
+
+
         public SpecificationForm(string rootPath, string selectedTab, bool isFits, string file)
         {
             InitializeComponent();
 
+            //LoadSystemTypes();
             //---------- Load Info.json ---------------
             string infoFile = File.ReadAllText(FileHelper.infoSettings);
             Info jsonFile = JsonConvert.DeserializeObject<Info>(infoFile);
@@ -96,6 +126,7 @@ namespace SystemAcceptance
             txtTemperature.Text = jsonFile.Temperature;
             txtLocation.Text = jsonFile.Location;
             txtHumidity.Text = jsonFile.Humidity;
+            txtSystemNumber.Text = jsonFile.SystemNummer;
             //-----------------------------------------
 
             string sTab = selectedTab;
@@ -275,13 +306,24 @@ namespace SystemAcceptance
                         txtSystemNumber.Text = serial;
                         jsonFile.SystemNummer = serial;
                     }
-                   
+                    else
+                    {
+                        txtSystemNumber.Text = jsonFile.SystemNummer;
+                    }
 
-                    //Console.WriteLine(topo.getMetaData().toJSON().ToString());
+                    if (topo.getMetaData().containsParameter("LensSerialNumber"))
+                    {
+                        string lensNr = topo.getMetaData().getParameter("LensSerialNumber").valueToString();
+                        txtLensNr.Text = lensNr;
+                        jsonFile.SystemNummer = lensNr;
+                    }
+
+                    Console.WriteLine(topo.getMetaData().toJSON().ToString());
                 }
             }
             //===============================================================================================================================
-
+            else
+            {}
 
             NFParameterNameListType sensorTypelist = sensorType.getParameterNames();
             if (sensorTypelist.Count > 0)
@@ -317,49 +359,68 @@ namespace SystemAcceptance
                 sensorParameter = new NFParameterSetPointer(v.getParameterSet());
             };
             //}
+            
 
-            //   tester
+            //   info
             {
 
-               
-                testerParameter = NFParameterSet.New();
-                testerParameter.setParameter("Tester Name", new NFVariant(jsonFile.Tester));
-                testerParameter.setParameter("Location", new NFVariant(jsonFile.Location));
-                testerParameter.setParameter("Customer", new NFVariant(jsonFile.Customer));
-                testerParameter.setParameter("Temperature", new NFVariant(jsonFile.Temperature));
-                testerParameter.setParameter("Humidity", new NFVariant(jsonFile.Humidity));
-                testerParameter.setParameter("Serial", new NFVariant(jsonFile.SystemNummer));
+                infoParameter = NFParameterSet.New();
+
+                LoadSystemTypes();
+
+
+                infoParameter.setParameter("Tester Name", new NFVariant(jsonFile.Tester));
+                infoParameter.setParameter("Location", new NFVariant(jsonFile.Location));
+                infoParameter.setParameter("Customer", new NFVariant(jsonFile.Customer));
+                infoParameter.setParameter("Temperature", new NFVariant(jsonFile.Temperature));
+                infoParameter.setParameter("Humidity", new NFVariant(jsonFile.Humidity));
+                infoParameter.setParameter("Serial", new NFVariant(jsonFile.SystemNummer));
+                infoParameter.setParameter("LensSerialNumber", new NFVariant(jsonFile.LensNr));
+
+
+                //foreach (string p in infoParameter.getParameterNames())
+                //{
+                //    Console.WriteLine(p);
+                //}
+
+                cmbSystemType.SelectedIndexChanged += (sender, args) =>
+                {
+                    string selectedSys = cmbSystemType.SelectedItem.ToString();
+                    infoParameter.setParameter("SystemTypeName", new NFVariant(selectedSys));
+                };
 
                 txtTester.TextChanged += (sender, args) =>
                 {
-
-                    testerParameter.setParameter("Tester Name", new NFVariant(txtTester.Text));
+                    infoParameter.setParameter("Tester Name", new NFVariant(txtTester.Text));
                 };
 
                 txtLocation.TextChanged += (sender, args) =>
                 {
-                    testerParameter.setParameter("Location", new NFVariant(txtLocation.Text));
+                    infoParameter.setParameter("Location", new NFVariant(txtLocation.Text));
                 };
 
                 txtCustomer.TextChanged += (sender, args) =>
                 {
-
-                    testerParameter.setParameter("Customer", new NFVariant(txtCustomer.Text));
+                    infoParameter.setParameter("Customer", new NFVariant(txtCustomer.Text));
                 };
 
                 txtTemperature.TextChanged += (sender, args) =>
                 {
-
-                    testerParameter.setParameter("Temperature", new NFVariant(txtTemperature.Text));
+                    infoParameter.setParameter("Temperature", new NFVariant(txtTemperature.Text));
                 };
 
                 txtHumidity.TextChanged += (sender, args) =>
                 {
-                    testerParameter.setParameter("Humidity", new NFVariant(txtHumidity.Text));
+                    infoParameter.setParameter("Humidity", new NFVariant(txtHumidity.Text));
                 };
                 txtSystemNumber.TextChanged += (sender, args) =>
                 {
-                    testerParameter.setParameter("Serial", new NFVariant(txtSystemNumber.Text));
+                    infoParameter.setParameter("Serial", new NFVariant(txtSystemNumber.Text));
+                };
+
+                txtLensNr.TextChanged += (sender, args) =>
+                {
+                    infoParameter.setParameter("LensSerialNumber", new NFVariant(txtLensNr.Text));
                 };
                 string json = JsonConvert.SerializeObject(jsonFile, Formatting.Indented);
                 File.WriteAllText(FileHelper.infoSettings, json);
@@ -471,7 +532,7 @@ namespace SystemAcceptance
             return ansiString;
         }
 
-       
+
 
         private void SpecificationForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -483,7 +544,7 @@ namespace SystemAcceptance
                 info.Temperature = txtTemperature.Text;
                 info.Location = txtLocation.Text;
                 info.Humidity = txtHumidity.Text;
-
+                info.LensNr = txtLensNr.Text;
                 string jsonData = JsonConvert.SerializeObject(info, Formatting.Indented);
 
                 string outputFile = FileHelper.infoSettings;
@@ -497,7 +558,7 @@ namespace SystemAcceptance
             {
                 throw ex;
             }
-            
+
         }
 
         private void txtTemperature_KeyPress(object sender, KeyPressEventArgs e)
@@ -515,14 +576,14 @@ namespace SystemAcceptance
 
                 if (commaPos == -1)
                 {
-                    if (txt.Length >=2)
+                    if (txt.Length >= 2)
                     {
                         e.Handled = true;
                     }
                 }
                 else
                 {
-                    if (commaPos >=2 && txtTemperature.SelectionStart <= commaPos)
+                    if (commaPos >= 2 && txtTemperature.SelectionStart <= commaPos)
                     {
                         e.Handled = true;
                     }
@@ -551,18 +612,18 @@ namespace SystemAcceptance
             }
             if (char.IsDigit(e.KeyChar))
             {
-                if (txtHumidity.Text.Length >=2)
+                if (txtHumidity.Text.Length >= 2)
                 {
                     e.Handled = true;
                 }
                 return;
             }
 
-            
+
             e.Handled = true;
         }
 
-       
+
 
         private void txtTemperature_TextChanged(object sender, EventArgs e)
         {

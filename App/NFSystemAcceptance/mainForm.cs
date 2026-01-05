@@ -699,9 +699,9 @@ namespace SystemAcceptance
                             psetIndex++;
                         }
 
-                        if (specsDlg.testerParameter != null)
+                        if (specsDlg.infoParameter != null)
                         {
-                            evalDox.setInputParameterSet(specsDlg.testerParameter, psetIndex);
+                            evalDox.setInputParameterSet(specsDlg.infoParameter, psetIndex);
                             psetIndex++;
                         }
 
@@ -1013,7 +1013,7 @@ namespace SystemAcceptance
             evalDox.setInputParameterSet(eval.getOutputParameterSet(), psetIndex++);
             if (specsDlg.standardParameter != null) evalDox.setInputParameterSet(specsDlg.standardParameter, psetIndex++);
             if (specsDlg.sensorParameter != null) evalDox.setInputParameterSet(specsDlg.sensorParameter, psetIndex++);
-            if (specsDlg.testerParameter != null) evalDox.setInputParameterSet(specsDlg.testerParameter, psetIndex++);
+            if (specsDlg.infoParameter != null) evalDox.setInputParameterSet(specsDlg.infoParameter, psetIndex++);
             if (specsDlg.stagesParameter != null) evalDox.setInputParameterSet(specsDlg.stagesParameter, psetIndex++);
 
             var statistic = new NFVariant(topo.getMetaData().getParameter("Filename").valueToString());
@@ -1817,7 +1817,7 @@ namespace SystemAcceptance
                 FileInfo[] listNPSX = new FileInfo[2];
                 listNPSX[0] = new FileInfo(hicosSprint);
 
-                var p64 = Environment.GetEnvironmentVariable("NFEVAL_DIR_64");
+                string p64 = Environment.GetEnvironmentVariable("NFEVAL_DIR_64");
                 listNPSX[1] = new FileInfo(p64 + "\\config\\NFHicosSensor.npsx");
 
                 hs = updateNPSX(listNPSX, hs);

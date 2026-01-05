@@ -20,6 +20,7 @@ namespace SystemAcceptance
         public static string infoSettings = SettingFiles + "info.json";
         public static string languageSettings = SettingFiles + "lang.txt";
         public static string LogsDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Nanofocus\metrology\log\";
+        public static string systemTypFile = RepositoryPath + @"\CM\Standards\SystemTyp.json";
 
         //public static void CheckSettingsFile()
         //{
@@ -71,7 +72,8 @@ namespace SystemAcceptance
                         Tester = "Default",
                         Temperature = "",
                         Location = "Oberhausen",
-                        Humidity = ""
+                        Humidity = "",
+                        LensNr = ""
                     };
 
                     string json = JsonConvert.SerializeObject(info, Formatting.Indented);

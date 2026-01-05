@@ -7,7 +7,7 @@
 
 |||||
 |-|-|-|-|
-|__System:__|  CM |__Kalibrierungsanleitung:__| VDI/VDE 2655 Part 1.2|
+|__System:__|  @PARAM{"Name":"SystemTypeName"}@ |__Kalibrierungsanleitung:__| VDI/VDE 2655 Part 1.2|
 |__Typ__|   @PARAM{"Name":"Model"}@|__Zertifikatsnummer:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |__Systemnummer:__| @PARAM{"Name":"Serial"}@|__Standort:__ | @PARAM{"Name":"Location"}@|
 |__Kunde:__| @PARAM{"Name":"Manufacturer"}@|__Datum:__ | @YEAR@-@MONTH@-@DAY@ |

@@ -11,7 +11,7 @@
 
 |||||
 |-|-|-|-|
-|__System:__|  CM |__Kalibrierungsanleitung:__| VDI/VDE 2655 Part 1.2|
+|__System:__|  @PARAM{"Name":"SystemTypeName"}@ |__Kalibrierungsanleitung:__| VDI/VDE 2655 Part 1.2|
 |__Typ__|   @PARAM{"Name":"Model"}@|__Certificate number:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
 |__Systemnummer:__| @PARAM{"Name":"Serial"}@|__Standard:__|@PARAM{"Name":"Rauhnormal","Precision":12}@|
 |__Kunde:__| @PARAM{"Name":"Manufacturer"}@|__Standort:__ | @PARAM{"Name":"Location"}@|
