@@ -45,7 +45,6 @@
 <script src="../../SystemAcceptance.js"> </script>
 <script>
 function runEvaluation(){
-
 var PARAM = @PJSON{"Set":0}@;
 var META = @MJSON{"Set":0}@;
 
@@ -174,8 +173,13 @@ btn2.onclick = function () {
 	table.deleteRow(2);
   sessionStorage.clear();
 };
-
+var Result = {"value":0,"nominal":0,"status":"","timestamp":0};
+Result["value"] = mean.toFixed(3) ;
+Result["nominal"] = nominal.toFixed(3) ;
+Result["status"] = result ;
+Result["timestamp"] = Date.now();
 document.getElementById("sumresults").appendChild(btn2);
+sessionStorage.setItem(document.title+"Depth A2 ", JSON.stringify(Result));
 }
 </script>
 
