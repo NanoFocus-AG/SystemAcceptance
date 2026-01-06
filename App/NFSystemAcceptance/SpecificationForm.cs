@@ -65,7 +65,6 @@ namespace SystemAcceptance
 
         private NFParameterSetPointer sensorType;
 
-        private NFParameterSetPointer systemType;
 
         private NFParameterSetPointer stagesType;
 
@@ -86,6 +85,19 @@ namespace SystemAcceptance
 
         private Info info = new Info();//
 
+        private void SaveSystemType(int sType)
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(FileHelper.systemTypeSetting).Trim());
+                File.WriteAllText(FileHelper.systemTypeSetting, sType.ToString());
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
 
         private void LoadSystemTypes()
         {
@@ -103,8 +115,9 @@ namespace SystemAcceptance
 
             cmbSystemType.DataSource = systemTypes;
             if (systemTypes.Count > 0) 
-            { 
-                infoParameter.setParameter("SystemTypeName", new NFVariant(systemTypes[0]));
+            {
+                cmbSystemType.SelectedIndex = FileHelper.GetSystemType();
+                infoParameter.setParameter("SystemTypeName", new NFVariant(systemTypes[FileHelper.GetSystemType()]));
             }
             else
             {
@@ -116,7 +129,7 @@ namespace SystemAcceptance
         public SpecificationForm(string rootPath, string selectedTab, bool isFits, string file)
         {
             InitializeComponent();
-
+            //cmbSystemType.SelectedIndex = FileHelper.GetSystemType();
             //LoadSystemTypes();
             //---------- Load Info.json ---------------
             string infoFile = File.ReadAllText(FileHelper.infoSettings);
@@ -387,6 +400,7 @@ namespace SystemAcceptance
                 {
                     string selectedSys = cmbSystemType.SelectedItem.ToString();
                     infoParameter.setParameter("SystemTypeName", new NFVariant(selectedSys));
+                    SaveSystemType(cmbSystemType.SelectedIndex);
                 };
 
                 txtTester.TextChanged += (sender, args) =>

@@ -19,6 +19,7 @@ namespace SystemAcceptance
         public static string SettingFiles = ProgramData_Folder + AppName + "\\settings\\";
         public static string infoSettings = SettingFiles + "info.json";
         public static string languageSettings = SettingFiles + "lang.txt";
+        public static string systemTypeSetting = SettingFiles + "systemType.txt";
         public static string LogsDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Nanofocus\metrology\log\";
         public static string systemTypFile = RepositoryPath + @"\CM\Standards\SystemTyp.json";
 
@@ -118,6 +119,29 @@ namespace SystemAcceptance
                 return null;
             }
         }
+
+        public static int GetSystemType()
+        {
+            try
+            {
+                if (File.Exists(systemTypeSetting))
+                {
+                    string text = File.ReadAllText(systemTypeSetting).Trim();
+
+                    if (int.TryParse(text, out int index))
+                    {
+                        return index;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            return 0; 
+        }
+
 
         public static void DeleteJsonFile(string directoryPath, string fileName)
         {
