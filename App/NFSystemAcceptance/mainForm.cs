@@ -562,7 +562,7 @@ namespace SystemAcceptance
                 isFitsFile = true;
             }
 
-            logger.Info($"{MethodBase.GetCurrentMethod().Name} - Selected file: {fileName} {fileNames}");
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} - Selected file: Filename: {fileName} || Multiple Filenames: {fileNames}");
             //-----------------------------------------------------------------------------------------------------------------
 
             specsDlg = new SpecificationForm(rootPath, project, isFitsFile, fileName);
@@ -1642,6 +1642,8 @@ namespace SystemAcceptance
             //NFEvalCSHelpers.NFEvalDestroy();
             StatusListener.Close();
             FileHelper.DeleteJsonFile(FileHelper.SettingFiles, FileHelper.infoSettings);
+            logger.Info("Application Closed!");
+            LogManager.Shutdown();
         }
 
 
