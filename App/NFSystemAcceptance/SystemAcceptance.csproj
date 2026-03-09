@@ -164,7 +164,7 @@
       <HintPath>$(NFEVAL_DIR)\bin\NFEval_CS_SDK.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=6.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.6.1.0\lib\net46\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.6.1.1\lib\net46\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp, Version=6.2.4.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>..\packages\PDFsharp.6.2.4\lib\netstandard2.0\PdfSharp.dll</HintPath>
