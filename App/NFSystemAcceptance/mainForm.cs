@@ -1633,6 +1633,7 @@ namespace SystemAcceptance
 
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            statusStrip1.BackColor = Color.Red;
             Cef.Shutdown();
             PdfOptions.OptionsChanged -= PdfOptions_OptionsChanged;
             printCallback.PrintFinished -= PrintCallback_PrintFinished;
@@ -1657,6 +1658,7 @@ namespace SystemAcceptance
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            statusStrip1.BackColor = Color.Red;
             Application.Exit();
         }
 

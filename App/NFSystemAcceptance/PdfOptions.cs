@@ -1,15 +1,19 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 using SystemAcceptance.Properties;
 
 namespace SystemAcceptance
 {
     public partial class PdfOptions : Form
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public event EventHandler<string> OptionsChanged;
 
         string path;
@@ -38,6 +42,7 @@ namespace SystemAcceptance
         private void OnOptionChanged(string file)
         {
             OptionsChanged?.Invoke(this, file);
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} Path: {file}");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,11 +57,13 @@ namespace SystemAcceptance
 
             File.WriteAllText(path, jsFile);
             OnOptionChanged(path);
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} PDF Options Window Closed!");
             Close();
         }
 
         private void PdfOptions_Load(object sender, EventArgs e)
         {
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} ");
             Control.ControlCollection controlCollection = groupBox1.Controls;
             string file;// = File.ReadAllText(path);
 
@@ -103,11 +110,13 @@ namespace SystemAcceptance
         private void MarginLeft_ValueChanged(object sender, EventArgs e)
         {
             MarginRight.Value = MarginLeft.Value;
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} MarginRight: {MarginRight.Value}");
         }
 
         private void MarginRight_ValueChanged(object sender, EventArgs e)
         {
             MarginLeft.Value = MarginRight.Value;
+            logger.Info($"{MethodBase.GetCurrentMethod().Name} MarginLeft: {MarginLeft.Value}");
         }
 
     }
