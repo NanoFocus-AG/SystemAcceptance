@@ -138,7 +138,7 @@ namespace SystemAcceptance
         public mainForm()
         {
             InitializeComponent();
-            logger.Info($"{MethodBase.GetCurrentMethod().Name} - Begin of Constructor!");
+            //logger.Info($"{MethodBase.GetCurrentMethod().Name} - Begin of Constructor!");
             //logger.Info(AppStarted + Application.ProductVersion + " <==============================| ");
             skDialog.StartInfo += SkDialog_StartInfo;
             skDialog.RootPathInfo += SkDialog_RootPathInfo;
@@ -151,7 +151,7 @@ namespace SystemAcceptance
 
             toolStripStatusLabel1.Text = "";
             toolStripStatusLabel2.Text = "";
-            logger.Info($"{MethodBase.GetCurrentMethod().Name} - End of Constructor!");
+            //logger.Info($"{MethodBase.GetCurrentMethod().Name} - End of Constructor!");
             
         }
 
@@ -597,7 +597,6 @@ namespace SystemAcceptance
           
             BeginInvoke(new Action(() =>
             {
-                
                 DisableButtonsOnProgress(tp);
                 progressMatrixControl.ShowProgress(this);
                 progressMatrixControl.ProgressAnimation();
@@ -1658,8 +1657,10 @@ namespace SystemAcceptance
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            statusStrip1.BackColor = Color.Red;
+            statusStrip1.BackColor = Color.OrangeRed;
             Application.Exit();
+            //Application.Restart();
+            //Process.GetCurrentProcess().Kill();
         }
 
         private void mainForm_Resize(object sender, EventArgs e)
