@@ -331,7 +331,7 @@ namespace SystemAcceptance
                         jsonFile.SystemNummer = lensNr;
                     }
 
-                    Console.WriteLine(topo.getMetaData().toJSON().ToString());
+                    //Console.WriteLine(topo.getMetaData().toJSON().ToString());
                 }
             }
             //===============================================================================================================================

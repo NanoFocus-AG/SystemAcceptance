@@ -1062,6 +1062,42 @@ namespace SystemAcceptance
                 }).ToList();
         }
 
+        private string MergePdfs(List<string> files, string systemNo)
+        {
+            string final = Path.Combine(rootPath, $"SystemAcceptance_{systemNo}.pdf");
+
+            using (var output = new PdfDocument())
+            {
+                // Merge pages
+                foreach (var file in files)
+                {
+                    using (var doc = PdfReader.Open(file, PdfDocumentOpenMode.Import))
+                    {
+                        for (int i = 0; i < doc.PageCount; i++)
+                            output.AddPage(doc.Pages[i]);
+                    }
+                }
+
+                // Add page numbers
+                XFont font = new XFont("Arial", 9, XFontStyleEx.Regular);
+                XBrush brush = XBrushes.Black;
+                string total = output.PageCount.ToString();
+
+                for (int i = 0; i < output.PageCount; i++)
+                {
+                    var page = output.Pages[i];
+                    var rect = new XRect(0, page.Height - 20, page.Width, 15);
+
+                    using (XGraphics gfx = XGraphics.FromPdfPage(page))
+                        gfx.DrawString($"{i + 1} / {total}", font, brush, rect, XStringFormats.Center);
+                }
+
+                output.Save(final);
+            }
+
+            return final;
+        }
+
         private async Task PrintFilesAsync(List<string> files, string systemNo = "")
         {
             BeginInvoke(new Action(() =>
@@ -1076,45 +1112,27 @@ namespace SystemAcceptance
             try
             {
                 files = files.Where(f => File.Exists(f) && new FileInfo(f).Length > 0).ToList();
+
                 files = SortPdfsInRequiredOrder(files);
+
                 if (files.Count == 0)
                 {
                     MessageBox.Show("No PDF files to merge.");
                     return;
                 }
 
-                PdfDocument output = new PdfDocument();
+                // Run merge on background
+                string final = await Task.Run(() => MergePdfs(files, systemNo)).ConfigureAwait(false);
 
-                foreach (var file in files)
-                {
-                    using (var doc = PdfReader.Open(file, PdfDocumentOpenMode.Import))
-                    {
-                        for (int i = 0; i < doc.PageCount; i++)
-                            output.AddPage(doc.Pages[i]);
-                    }
-                }
-
-                // Page numbers
-                XFont font = new XFont("Arial", 9, XFontStyleEx.Regular);
-                XBrush brush = XBrushes.Black;
-
-                string total = output.PageCount.ToString();
-
-                for (int i = 0; i < output.PageCount; i++)
-                {
-                    var page = output.Pages[i];
-                    var rect = new XRect(0, page.Height - 20, page.Width, 15);
-
-                    using (XGraphics gfx = XGraphics.FromPdfPage(page))
-                        gfx.DrawString($"{i + 1} / {total}", font, brush, rect, XStringFormats.Center);
-                }
-
-                string final = Path.Combine(rootPath, $"SystemAcceptance_{systemNo}.pdf");
-                output.Save(final);
-                Process.Start(final);
-
+                // Open file
                 BeginInvoke(new Action(() =>
                 {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = final,
+                        UseShellExecute = true
+                    });
+
                     toolStripStatusLabel1.Text = "Saved:";
                     toolStripStatusLabel2.Text = final;
                 }));
@@ -1134,6 +1152,7 @@ namespace SystemAcceptance
                 }));
             }
         }
+
 
         private async Task<List<string>> GenerateAllPdfsAsync(string projectPath, string projectName)
         {
