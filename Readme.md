@@ -10,6 +10,6 @@ Furthermore
 the algorithm description  *.ned  files  and the  input parameter  *.npsx file are specified.
 
 
-Special folders are   _Certificate_ and _Summary_, which results in a front page and a second page for sum up main resilt of acceptance.
+Special folders are   _Certificate_ and _Summary_, which results in a front page and a second page for sum up main result of acceptance.
 
 

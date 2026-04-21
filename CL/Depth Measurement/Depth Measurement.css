@@ -1,7 +1,8 @@
 <style type="text/css" >
 @media screen,print {
 body  {
-        margin: auto;
+		width: 70%;
+        margin: 0 auto;
         padding-right: 1em;
         padding-left: 1em;
         max-width: 84em; 
@@ -9,7 +10,7 @@ body  {
         border-right: 0px solid black;
         color: black;
         font-family: Calibri,sans-serif;
-        font-size: 100%;
+        font-size: 0.9em;
         line-height: 100%;
         background-color: #FFFFFF; 
 		clear: both;
@@ -29,8 +30,9 @@ h1, h2, h3, h4, h5, h6,p {
    
 table {
           border-collapse: collapse;
-          width: 100%;
-          
+          width: 96em;
+          font-size: 0.96em;
+		  margin: 0 auto;
           }
 
 th, td {
@@ -46,7 +48,7 @@ tr:nth-child(even) {
 .table2{
      
     border-collapse: collapse;
-    width: 90%;
+    width: 96em;
 }
 
 

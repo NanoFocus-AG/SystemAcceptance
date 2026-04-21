@@ -11,19 +11,21 @@
 
 |||||
 |-|-|-|-|
-|System: |  CM |Calibration instruction:| VDI/VDE 2655 Part 1.2|
-|Type|   CM explorer| Certificate number: |@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
-|System number:| @PARAM{"Name":"Serial"}@|||
-|Customer:| @PARAM{"Name":"Manufacturer"}@|||
-|Objective Lens: |@PARAM{"Name":"Lens"}@|||
-|Obj.Number:| @PARAM{"Name":"LensSerial"}@ |   ||
-|Standard: |@PARAM{"Name":"Ebenheitsnormal","Precision":12}@|||
+|__System:__|  @PARAM{"Name":"SystemTypeName"}@ |__Calibration instruction:__| VDI/VDE 2655 Part 1.2|
+|__Type__|   @PARAM{"Name":"Model"}@|__Certificate number:__|@PARAM{"Name":"Serial"}@-@YEAR@@MONTH@@DAY@|
+|__System number:__| @PARAM{"Name":"Serial"}@|__Standard:__|@PARAM{"Name":"Ebenheitsnormal","Precision":12}@|
+|__Customer:__| @PARAM{"Name":"Manufacturer"}@|__Unit location:__ | @PARAM{"Name":"Location"}@|
+|__Lens:__|@PARAM{"Name":"LensSerialNumber"}@|__Date:__ | @YEAR@-@MONTH@-@DAY@ |
+|||||
+|||||
+|||||
+
 
  
 
- ||
+||
 |:-:|
-|@IMAGE{"Name":"Intensity","Topo":1,"Width":400}@|
+|@IMAGE{"Name":"Intensity","Topo":1,"Width":220}@|
 ||
  
  
@@ -32,21 +34,16 @@
 
 |||||||
 |:-:|:-:|:-:|:-:|:-:|:-:|
-| |unit|nominal value < | tolerance +/- | actual value| status|
-| Homogenity   | % | @PARAM{"Name":"min_Ausleuchtung","Precision":6}@  |     |  @PARAM{"Name":"Homogenity","Precision":3}@ | <span id="control"> Ok</span>|
+| |unit|nominal value < | actual value| tolerance +/- | status|
+| Homogenity   | % | @PARAM{"Name":"min_Ausleuchtung","Precision":6}@  |   @PARAM{"Name":"Homogenity","Precision":3}@  |  - | <span id="control"> Ok</span>|
  
-
-__Unit location:__ @PARAM{"Name":"Location"}@
-
-__Date:__ @YEAR@-@MONTH@-@DAY@ 
-
-__Tester:__ @PARAM{"Name":"Tester Name"}@
+---
 
  
 
  
 <script>
-
+function runEvaluation(){
 var PARAM = @PJSON{"Set":0}@;
 var META = @MJSON{"Set":0}@;
 
@@ -75,8 +72,8 @@ Result["value"] = value ;
 Result["nominal"] = nominal ;
 Result["status"] = status ;
 Result["timestamp"] = Date.now();
-sessionStorage.setItem(document.title+"Result", JSON.stringify(Result));
-
+sessionStorage.setItem(document.title+"Lighting", JSON.stringify(Result));
+}
 
 </script>
 

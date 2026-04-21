@@ -57,7 +57,9 @@ tr:nth-child(even) {
 
 }
 @media print   {
-	
+	  #b1 {
+    display: none;
+  }
 	page {
 		size: A4,portrait;
 		orientation: portrait;

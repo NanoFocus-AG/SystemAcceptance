@@ -69,7 +69,8 @@ tr:nth-child(even) {
         text-align: justify;  Blocksatz 
         quotes: "\201E" "\201C" "\201A" "\2018";
 		line-height: 100%;
-		width: 100% !important;
+		width: 210mm !important;
+		height: 297mm;
         margin: 0 !important;
         padding: 0 !important;
     }
